@@ -1,0 +1,351 @@
+\documentclass[12pt,oneside,a4paper]{article}
+\usepackage{amsthm,amsmath,amssymb,graphicx,array,tocloft,listings,xcolor,hyperref}
+\hypersetup{
+  colorlinks=true,   % Abilita il colore dei link (senza box intorno)
+  linkcolor=blue,    % Colore per i link interni (come quelli nell'indice)
+  urlcolor=red,      % Colore per i link URL esterni
+  filecolor=magenta, % Colore per i link ai file locali
+  citecolor=green,   % Colore per i riferimenti bibliografici
+  pdfborder={0 0 0}  % Disabilita i bordi intorno ai link
+}
+%esempio href			\href{Orale.pdf}{Altro Documento PDF}
+%altro esempio href		\href{https://www.esempio.com}{Visita esempio.com} oppure \url{sito.com}
+%\hyperlink{page50}{Clicca qui per andare alla pagina 50}
+%\hypertarget{page50}{\section{Pagina 50}}
+\newcommand\Omicron{O}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+\lstdefinestyle{pseudocodice}{
+    language=C++,  % Non importa quale linguaggio di base, lo utilizziamo per la sintassi
+    basicstyle=\ttfamily\footnotesize,  % Font di base
+    keywordstyle=\color{blue}\bfseries,  % Parole chiave in blu e in grassetto, comprende parole chiave c++ e quelle aggiunte
+    commentstyle=\color{red},  % Commenti in grigio, seguiti da //
+    stringstyle=\color{purple},  % Stringhe in viola, racchiuse fra virgolette, es: "ciao"
+    identifierstyle=\color{black},  % Variabili in nero (in generale tutto ciò che è scritto in maniera normale)
+    backgroundcolor=\color{lightgray},  % Colore di sfondo
+    numbers=left,  % Disabilita la numerazione delle righe
+    numberstyle=\tiny\color{black},%imposta stile dei numeri
+    frame=single,  % Bordo intorno al codice
+    breaklines=true,  % Rientro automatico delle linee troppo lunghe
+    morekeywords={then, begin, end, endif, endwhile, elif, endfor, and, or},  % Parole chiave personalizzate per pseudocodice
+    tabsize=3
+}
+\title{Algoritmi e strutture dati}
+\author{Matteo Mazzaretto}
+\date{2024}
+\begin{document}
+% tolgo la numerazione in modo che la lunghezza dell'indice non incida sulla lunghezza del documento
+\pagenumbering{gobble}
+\maketitle
+\begin{center}
+%do un nuovo nome alla tabella degli indici e la inizializzo
+\renewcommand{\contentsname}{Indice}
+\tableofcontents
+\end{center}
+\newpage
+%inizio l'effettivo conteggio delle pagine
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\section{Complessità problema}
+Dato un problema P, la complessità di P è la complessità del più efficiente algoritmo che lo risolve.\\
+Per complessità di algoritmo si intende il suo limite stretto, ovvero quando limite inferiore ($\Omega$) e il suo limite superiore ($\Omicron$) coincidono
+\section{Cos'è un heap, complessità ricerca massimo}
+L'heap è un albero ordinato binario quasi completo implementato come array, in cui $\forall$i il suo figlio sinistro ha indice 2*i e il suo figlio destro 2*i+1. La radice dell'heap è l'elemento con indice 1 nell'array e il genitore di ogni nodo si trova troncando il risultato di i/2.\\
+$\forall$i $>$= n/2 (dove n è la dimensione dell'array) è una foglia, ovvero non ha nè figli sinistri nè figli destri.\\
+Se si parla di max-heap, la complessità di ricerca del massimo è  $\Omicron$(1) poiché il massimo è sempre il primo elemento dell'array. Il max-heap ha proprietà che ogni nodo è $>$= discendenti e $<$= antenati
+\section{Metodo del limite e dimostrazione}
+$\lim_{n\to +\infty}$$\frac{f(n)}{g(n)}$=k$>$0 $\to$ f(n)=$\Theta$(g(n))
+\\
+$\lim_{n\to +\infty}$$\frac{f(n)}{g(n)}$=0 $\to$ f(n)=$\Omicron$((g(n))
+\\
+$\lim_{n\to +\infty}$$\frac{f(n)}{g(n)}$=$\infty$ $\to$ f(n)=$\Omega$(g(n))
+\\\\
+\href{Limite.pdf}{Foto dimostrazione}
+\section{Definizione albero binario, BST, complessità ricerca}
+Per albero binario si intende una struttura dati in cui ogni nodo non foglia ha uno o due figli, e una foglia non ha nodi figli.\\
+Per albero binario di ricerca si intende un albero binario ordinato tc $\forall$ nodo x\\
+1) $\forall$ nodo y sottoalbero sx y.key$<$=x.key \\
+2) $\forall$ nodo y sottoalbero sx y.key$>$=x.key \\
+Questa è una proprietà globale dell'albero, se fosse solo locale (come negli heap) l'albero non sarebbe più di ricerca\\
+La complessità della ricerca è $\Omicron$(h), dove h=logn se albero bilanciato
+\section{Dimostrazione che il limite degli ordinamenti è nlogn}
+Il limite degli ordinamenti sfrutta l'albero di decisione, il quale è un albero che descrive in maniera astratta l'esecuzione di algoritmi su input di dimensione n in cui ogni foglia rappresenta una e una sola permutazione dell'input, e ogni input è rappresentato da almeno una foglia. Se ciò non avviene vuol dire che l'agoritmo non è corretto.\\
+Bisogna comunque dire che $\Omega$(nlogn) si applica solo agli algoritmi che usano confronto tra elementi\\\\
+\href{alberodecisione.pdf}{Foto dimostrazione}.
+\section{Complessità quicksort e spiegazione breve algoritmo, caso medio, peggiore e perché tante ripartizioni sono caso medio}
+Il quicksort è un algoritmo del tipo divide et impera, il quale, prendendo un pivot, porta alla sinistra dell'array gli elementi $<$= e alla destra gli elementi $>$= tramite la funzione Partition (divide), e successivamente esegue ricorsivamente il quicksort sulla parte sinistra e parte destra della partizione (impera)\\
+\begin{lstlisting}[style=pseudocodice]
+QuickSort(A,p,r)
+if p<r
+	q=Partition(A,p,r)
+	QuickSort(A,p,q-1)
+	QuickSort(A,p,q+1)
+\end{lstlisting}
+La sua complessità nel caso peggiore è del tipo $\Omicron$($n^2$) perché il caso peggiore avviene quando l'array è già ordinato e si avrebbe un tempo di esecuzione T(n)=T(n-1)+$\Omega$(n)+T(0) poiché T(n)=$\sum_{i=1}^n (a(n-i)+b)$ \\
+La sua complessità nel caso medio è del tipo $\Omicron$(nlogn)\\
+Il partizionamento proporzionale o sbilanciato, studiandolo tramite gli alberi di ricorsione, porta a dire che l'altezza dell'albero è di tipo logaritmica con una forma del tipo T(n)=$\Omega$(n)+T(k)+T(n-k-1) che porta ad affermare che T(n)$<$=cnlogn (base del partizionamento) $\to$ T(n)=$\Omicron$(nlogn)
+\section{Counting sort, perché non si può usare sempre per ottenere ordinamento lineare, condizione affinché $ \Theta$(n), Radix Sort}
+Il counting sort è un ottimo algoritmo di ordinamento in tempo lineare ma richiede delle ipotesi che restringano l'input, ovvero che sia un array di interi compresi fra 0 e k$>$0\\
+\[
+\begin{cases}
+	\text{Input A[1....n] con A[j] $\in$ [0,1,....,k] }\\
+	\text{Output B[1.n] copia di A ordinata }
+\end{cases}
+\]
+\begin{lstlisting}[style=pseudocodice]
+CountingSort(A,B,k)
+
+C[0...k] riempito di tutti 0
+for j=1 to A.length
+	C[A[j]]++
+for i=1 to k
+	C[i]=C[i]+C[i-1]
+for j=A.length down to 1
+	B[C[A[j]]]=A[j]
+	C[A[j]]--
+\end{lstlisting}
+Inoltre, se k=$\Omicron$(n)$\to$costo $\Omicron$(n) in quanto il costo totale è $\Theta$(n+k)
+Oltretutto ha il contro di essere un algoritmo instabile, ovvero che, se sono presente delle ripetizioni, non è detto che esse mantengano l'ordine iniziale nell'array ordinato\\\\
+RadixSort è un tipo di algoritmo di ordinamento lineare che ordina, dato d=numero cifre significative, i numeri presenti nell'array per cifra significativa con un algoritmo stabile. Nella modalità MDM ordina dalla cifra più significativa, nella modalità LSD ordina dalla cifra meno significativa\\
+Per il RadixSort si usa il Counting Sort, quindi ogni iterazione ha $\Theta$(n+b) e con d=numero iterazioni si ha $\Theta$((n+b)d)\\
+b=$\Omicron$(1)/$\Omicron$(n)$\to$$\Theta$(nd)\\
+se d=1 $\to$ $\Theta$(n)\\
+Spazio: $\Theta$(n+b)
+\begin{lstlisting}[style=pseudocodice]
+RadixSort(A,d)
+for j=1 to d
+	ordina A rispetto alla cifra j-esima
+	con algoritmo stabile
+\end{lstlisting}
+\section{Tabella hash: complessità inserimento e rimozione, chaining e open addressing}
+Le tabelle hash sono molto efficienti, in quanto hanno un costo medio di $\Theta$(1) e un costo peggiore di $\Theta$(n)\\
+L'idea delle tabelle hash è usare uno spazio proporzionale al numero di elementi nella struttura\\
+Con le funzioni di hash ci possono essere più risultati uguali poiché gli hashing non sono iniettive\\
+L'inserimento e la rimozione hanno la grandissima qualità di essere entrambe $\Omicron$(1)\\
+Esistono due modi di costruire una tabella hash: chaining e open addressing\\
+Con il chaining se h(x1.key)=h(x2.key) allora la cella in cui entrambi finiranno viene implementata come una lista e viene considerato un fattore di carico $\alpha$=$\frac{n}{m}$ con n=celle tabella e m=elementi memorizzati. Bisogna però mettere in evidenza la distribuzione degli input e la qualità della funzione hash, la quale idealmente dovrebbe avere probabilità di assegnare ogni elemento in input con probabilità 1/m\\
+Nell'open addressing tutti gli elementi dell'insieme dinamico vengono memorizzati nella tabella
+\section{Doppio hashing (come scegliere le funzioni)}
+Date h1(k) e h2(k) hash unarie h(k,i)=(h1(k)+i(h2(k))) la condizione è che h2(k) e m (celle tabella) siano coprimi \\
+Ma come fare in modo che h(k,0)...h(k,m-1) è permutazione?\\
+(h1(k)+ih2(k) mod m) = (h1(k) + i'h2(k) mod m)\\
+(h1(k)+ih2(k) mod m) - (h1(k) + i'h2(k) mod m) = 0\\
+(h1(k)+ih2(k)-h1(k)-i'h2(k)) mod m = 0 $\to$ (ih2(k)-i'h2(k)) mod m = 0\\
+m divide (i-i') e 0$<$=i-i'$<$= (m-1) $\to$ i-i' = 0 $\to$ i=i'\\
+m primo h2(k) $<$ m $\to$ h2(k)=1+k mod m', m'$<$m
+\section{Max-heap e heapsort}
+Il max-heap è un albero binario ordinato quasi completo costruito come array, il quale ha le proprietà degli heap (figlio destro, sinistro e parent) in cui l'elemento massimo è il primo elemento dell'array, ogni nodo è $<$= antenati e $>$= discendenti\\
+L'heap sort è un algoritmo di ordinamento che sfrutta l'array costruito come heap per ordinarlo e ha complessità $\Omicron$(nlogn)\\\\
+\begin{lstlisting}[style=pseudocodice]
+HeapSort(A)
+
+BuildMaxHeap(A) 
+for i=A.length down to 2
+	A[1]$\iff$A[i]
+	A.size=A.size-1
+	MaxHeapify(A,1)
+\end{lstlisting}
+Invariante è che A[1...i] sia MaxHeap e che A[i+1...n] sia ordinato\\
+Inizio: A[1...n] è maxHeap\\
+Iterazione: A[1....i] è MaxHeap perché MaxHeapify su 1 funziona, il più grande va in fondo quindi A[i+1...n] ordinato\\
+Fine: A[1] MaxHeap, A[2..n] ordinato
+\section{Funzionamento e complessita maxHeapify e buildMaxHeap, complessità inserimento}
+MaxHeapify(A,i) assume che i due sottoalberi di A[i] siano MaxHeap e costruisce un MaxHeap in A[i...n] col seguente algoritmo:\\\\
+\begin{lstlisting}[style=pseudocodice]
+MaxHeapify(A,i)
+
+l=left(i) r=right(i)
+if(l<=A.size) and (A[l]>A[i])
+	max=l
+else
+	max=i
+if(r<=A.size) and (A[r]>A[max])
+	max=r
+if max!=i
+	swap(A,i,max)
+	MaxHeapify(A,max)
+\end{lstlisting}
+Esso ha una complessità di $\Omicron$(logn)
+Invece BuildMaxHeap è una funzione per costruire un MaxHeap partendo dall'array A, e sapendo che ogni foglia è $>$=(n/2) si costruisce il seguente algoritmo:\\\\
+\begin{lstlisting}[style=pseudocodice]
+BuildMaxHeap(A)
+
+for i=(A.length)/2 down to 1
+	MaxHeapify(A,i)
+\end{lstlisting}
+il quale costruisce continuamente MaxHeap partendo dal presupposto che una foglia è già MaxHeap\\
+Ha una complessità di $\Omicron$(nlogn) perché esegue n/2 volte un algoritmo di complessità $\Omicron$(logn)\\
+Ma, volendo essere più precisi, si arriva ad una complessità di $\Omicron$(n).\\\\
+\href{complessitaBuild.pdf}{Foto dimostrazione}.
+\section{Cos'è heap, complessità insert in heap}
+Spiegazione heap fatta sopra.\\
+L'insert ha complessità di tipo $\Omicron$(logn) e l'algoritmo è costruito così:\\\\
+\begin{lstlisting}[style=pseudocodice]
+Insert(A,k)
+
+A.size=A.size+1
+A[A.size]=k
+MaxHeapifyUp(A,A.size)
+\end{lstlisting}
+Questo algoritmo sfrutta MaxHeapifyUp che ha la proprietà di costruire un MaxHeap di A[i...n] partendo da un nodo "basso", forse maggiore di altri nodi (quindi $>$= antenati) che rovina le proprietà di MaxHeap ripristinandole con questo algoritmo:\\\\
+\begin{lstlisting}[style=pseudocodice]
+MaxHeapifyUp(A,i)
+
+if (i>1) and (A[i]>A[parent(i)]
+	swap(A,i,parent(i))
+	MaxHeapifyUp(A,parent(i))
+\end{lstlisting}
+\newpage
+\section{Definizione di RB-Tree e costo inserimento}
+I Red-Black trees sono BST in cui i nodi hanno i soliti attributi assieme all'attributo color, il quale può essere Red/Blach\\
+T.nil è un nodo con tutti gli attributi il cui colore è Black e si considera come una foglia (escluso per il T.nil sopra radice)\\
+Queste sono le sue proprietà:\\
+1) ogni nodo ha uno e un solo colore \\
+2) la radice è Black\\
+3) le foglie (T.nil) sono Black\\
+4) i figli di un nodo Red sono Black\\
+5) $\forall$nodo x, $\forall$cammino x$\to$foglia ha lo stesso numero di nodi Black. Vale per tutti i nodi $\iff$ vale per la radice\\
+Inoltre:\\
+1) se elimino i nodi Red ogni cammino radice$\to$foglia avrà la stessa lunghezza come un albero completo \\
+2) in ogni cammino i nodi rossi sono al più la metà \\
+h$<$=2$\log_{2}$(n+1)\\
+n(x)=numero nodi interni in Tx, bh(x)=numero nodi Black incontrati\\
+Inoltre n(x)$>$=$2^{bh(x)}$-1
+Il costo dell'inserimento è incredibilmente O(h), dove h=logn, ma è fattibile $\iff$ il nodo da inserire ha colore RED\\
+\newpage
+\subsection{Definizione funzioni}
+La funzione Insert è definita così:\\
+\begin{lstlisting}[style=pseudocodice]
+RB-Insert(T,z)
+
+	Insert(T,z)
+	z.color=RED
+	RB-InsertFixUp(T,z)
+\end{lstlisting}
+Con RB-InsertFixUp definita così:
+\begin{lstlisting}[style=pseudocodice]
+RB-InsertFixUp(T,z)
+
+while(z.p.color==RED)
+	if(z.p==z.p.p.left)
+		y=z.p.right
+		if(y.color==RED)			//CASO 1
+			y.color=BLACK
+			z.p.color=BLACK
+			z.p.p.color=RED
+			z=z.p.p
+		else							//CASO 2
+			if(z==z.p.right)		//CASO 2.1
+				Left(T,z.p)
+				z=z.left
+				z.p.color=BLACK
+				z.p.p.color=RED
+				Right(T,z.p.p)
+			else						//CASO 2.2
+				Right(T,z.p)
+				z=z.right
+				z.p.color=BLACK
+				z.p.p.color=RED
+				Left(T,z.p.p)
+			endif
+		endif
+	endif
+endwhile
+T.root.color=BLACK
+\end{lstlisting}
+\newpage
+La funzione RB-Delete è definita così
+\begin{lstlisting}[style=pseudocodice]
+RB-Delete(T, z)
+
+y = z 
+originalcolor = y.color
+if (z.left == T.nil)
+	x = z.right
+	Transplant(T, z, z.right)
+elif (z.right == T.nil)
+	x = z.left
+	Transplant(T, z, z.left)
+else:
+ 	y = Min(z.right)
+	originalcolor = y.color
+	x = y.right
+	if (y.p != z)
+		Transplant(T, y, y.right)
+		y.right = z.right
+		y.right.parent = y
+	endif
+	Transplant(T, z, y)
+	y.left = z.left
+	y.left.parent = y
+	y.color = z.color
+if (originalcolor == "BLACK")
+	RB-DeleteFixUp(T, x)
+\end{lstlisting}
+RB-DeleteFixUP definita così:
+\newpage
+\begin{lstlisting}[style=pseudocodice]
+RB-DeleteFixUp(T,x)
+while (x != T.root and x.color == "DOUBLEBLACK")
+	if (x == x.p.left:)
+		w = x.p.right
+		if(w.color == "RED")
+			w.color = "BLACK"
+			x.p.color = "RED"
+			Left(T, x.p)
+ 			w = x.p.right
+		if(w.left.color == "BLACK" and w.right.color == "BLACK")
+			w.color = "RED"
+ 			x = x.p
+		else:
+			if w.right.color == "BLACK":
+			w.left.color = "BLACK"
+			w.color = "RED"
+			Right(T, w)
+			w = x.p.right
+		w.color = x.p.color
+		x.p.color = "BLACK"
+		w.right.color = "BLACK"
+		Left(T, x.p)
+		x = T.root
+	else:
+		w = x.p.left
+		if w.color == "RED":
+			w.color = "BLACK"
+			x.p.color = "RED"
+			Right(T, x.p)
+		w = x.p.left
+		if (w.right.color == "BLACK" and w.left.color == "BLACK")
+			w.color = "RED"
+			x = x.p
+		else:
+			if w.left.color == "BLACK":
+				w.right.color = "BLACK"
+				w.color = "RED"
+				Left(T, w)
+ 				w = x.p.left
+			w.color = x.p.color
+			x.p.color = "BLACK"
+			w.left.color = "BLACK"
+			Right(T, x.p)
+			x = T.root
+endwhile
+x.color = "BLACK"
+\end{lstlisting}
+\section{Perché preferire BST a tabelle hash}
+In realtà non c'è esattamente una struttura preferibile in quanto tutte hanno sia dei pregi che dei difetti\\
+Gli BST sono molto utili se è necessario un ordinamento all'interno della struttura, e oltretutto ha la proprietà di eseguire la maggior parte delle operazioni (se bilanciato) in tempo $\Omicron$(logn)\\
+Invece le tabelle hash sono utili per mettere in corrispondenza una data chiave con un dato valore.\\
+Inoltre in una tabella di hashing ben dimensionata il costo medio di ricerca di ogni elemento è indipendente dal numero di elementi\\
+Il loro problema è che nei casi peggiori hanno un caso spaziale di $\Omicron$(n) ma come costo medio $\Omicron$(1)
+\section{Esistenza eventuale altro ordine per calcolare elementi nella terza condizione della dinamica}
+\section{Definizione di sottostringa e sottosequenza  e numero di sottostringe e sottosequenze in una stringa}
+\section{Generico algoritmo top down memorizzato}
+\section{Codici di Huffman}
+\section{Quale tra gli esercizi di programmazione dinamica svolti a lezione non si risolveva solo risolvendo sottoproblemi}
+\section{Definizione e vantaggi memoizzazione, complessità e funzionamento dell'ineserimento in un min heap}
+\section{Codice prefisso}
+\section{Confronto tra varie funzioni, algoritmo di dinamica del compito memoizzato, vantaggio algoritmi memoizzati rispetto agli iterativi}
+\section{Scansione riempimento della tabella di LCS}
+\section{Differenza tra approccio top-down e bottom-up per programmazione dinamica. Vantaggi e svantaggi di entrambi}
+\section{Complessità sottostringa, complessità sottosequenza, complessità LCS}
+\end{document}

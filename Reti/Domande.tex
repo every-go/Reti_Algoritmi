@@ -1,0 +1,149 @@
+\documentclass[12pt,oneside,a4paper]{article}
+\usepackage{ragged2e,graphicx,tocloft,hyperref}
+\title{Reti di Calcolatori}
+\author{Matteo Mazzaretto}
+\date{2024}
+\hypersetup{
+  colorlinks=true,   % Abilita il colore dei link (senza box intorno)
+  linkcolor=blue,    % Colore per i link interni (come quelli nell'indice)
+  urlcolor=red,      % Colore per i link URL esterni
+  filecolor=magenta, % Colore per i link ai file locali
+  citecolor=green,   % Colore per i riferimenti bibliografici
+  pdfborder={0 0 0}  % Disabilita i bordi intorno ai link
+}
+\begin{document}
+% tolgo la numerazione in modo che la lunghezza dell'indice non incida sulla lunghezza del documento
+\pagenumbering{gobble}
+\maketitle
+\begin{center}
+%do un nuovo nome alla tabella degli indici e la inizializzo
+\renewcommand{\contentsname}{Indice}
+\tableofcontents
+\end{center}
+%inizio l'effettivo conteggio delle pagine
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\newpage
+\section{Tipi di cavo (2014)}
+Ci sono diversi tipi di cavo, fra i più utilizzati si trovano:\\
+1) Unshielded Twisted Pair (UTP): coppia di fili annodati tra loro con il twist che serve a limitare l'interferenza reciproca che altrimenti sarebbe troppo elevata
+2) Cavo coassiale: hanno una schermatura migliore dei cavi UTP e per questo sono molto usati per TV via cavo e le MAN (metropolitan area network). La loro larghezza di banda è all'incirca 1GHz\\
+3) fibra ottica: non si ha più elettricità ma si trasporta la luce, grazie a un pezzetto di vetro interno che non deve assolutamente rompersi, però non subisce interferenze elettriche. La connessione tra fibre può avere: connettori che perdono 10-20$\%$ di luce, allineatori meccanici coi quali si perde il 10$\%$ di luce, oppure per fusione con la quale si perde il 2$\%$ di luce
+\section{Satelliti (2015, 16, 18, 19, 20 21, 23, 24)}
+Esistono tre tipologie principali di satelliti: \\
+GEO (geostazionari $>$35km), MEO (compreso fra 5km e 15km), LEO($<$5km)\\
+Nelle parti non comprese ci sono le "fascie di Van Allen" le quali assorbono la luce del Sole e causano problemi alle telecomunicazioni. Esse devono essere evitate tramite dei "buchi" altrimenti i satelliti si scioglierebbero all'istante\\
+Più basso è il satellite più ne servono perché coprono un'area bassa ma i tempi di comunicazione sono ridotti rispettoa  un satellite elevato
+\subsection{Satelliti MEO}
+Oribta media, il primo satellite della storia, lo Sputnik, lanciato nel 1957, è stato MEO\\
+Qui si trovano i satelliti utili per la geolocalizzazione, il cui servizio è attualmente del Dipartimento della Difesa USA ed è un servizio gratuito offerto dopo la tragedia del KAL007 in cui sono morti 269 persone fra cui tanti civili americani
+\subsection{Satelliti GEO}
+Sono satelliti fermi nella nostra testa che stanno nell'orbita circolare dell'equatore. C'è un limite di 180 satelliti per evitare interferenze. Sono usati tipicamente come satelliti spia, per il meteo o per la televisione via satellite
+\subsection{Satelliti LEO}
+La comunicazione è velocissima perché la distanza è minore e non sono presenti le fasce di Van Allen, utilizzato per l'Internet satellitare e il telefono satellitare, ideato col progetto Iridium (sistema di 77 satelliti diventati 66) per coprire l'intera superficie terrestre esclusi Iran, Libia, Siria, Corea del Nord per motivi politici\\
+Attualmente fa parte dello Tsunami Warning System\\
+\subsection{Attuale}
+Attualmente, il satellite va benissimo per servire zone poco popolate, per reti militari, utenti dedicati, completare la rete terresetre, studi meteorologici e per il broadcasting
+\subsection{Molniya,Tundra}
+Sono satelliti con orbita ellittica
+\section{Bit o baud rate}
+Bit rate: è il doppio del baud rate, è il numero di bit che si possono trasmettere contemporaneamente con ogni impulso\\
+Bit rate=baudrate*$\log{2}$(V), V=numero simboli\\
+Baud rate: si trasmette un impulso usando 4 frequenze con l'alfabeto composto da 4 simbolo con ognuno dal peso di 2 bits
+\section{Serie di Fourier}
+La trasformata di Fourier è un'operazione matematica che permette di rappresentare un segnale (tipicamente una funzione nel dominio del tempo o dello spazio) come una somma di funzioni sinusoidali (onde di diversa frequenza). In altre parole, la trasformata di Fourier consente di passare dal dominio del tempo o dello spazio al dominio della frequenza, rivelando le componenti di frequenza che compongono il segnale.\\
+La trasformata di Fourier scompone un segnale in una serie di onde sinusoidali di diverse frequenze, ampiezze e fasi. Questo è particolarmente utile perché:\\
+Analisi di segnali: Permette di analizzare un segnale in termini di frequenze, utile ad esempio in elaborazione del segnale (audio, video, immagini), comunicazioni, acustica, fisica, e in molte altre aree.\\
+Filtraggio: Consente di isolare o rimuovere frequenze specifiche (ad esempio, per ridurre il rumore in un segnale).\\
+Compressione: Le trasformate di Fourier sono utilizzate in tecniche di compressione dei dati, come nel formato MP3 per l'audio o JPEG per le immagini.\\
+La trasformata di Fourier è uno strumento potente per analizzare la struttura di frequenza di un segnale e viene utilizzato in numerosi campi come la fisica, l'ingegneria, le telecomunicazioni e l'elaborazione dei segnali.
+\section{Modulazione segnale digitale}
+Ci sono 3 principali modi di modulare il segnale digitale:
+\begin{enumerate}
+\item ampliezza: in questo metodo, l’ampiezza dell’onda portante viene variata in base al segnale d’informazione. È una delle forme più antiche di modulazione e viene ancora utilizzata in molte trasmissioni radio AM.
+\item frequenza: la frequenza dell’onda portante viene variata in base al segnale d’informazione. Questo metodo offre una migliore qualità del segnale rispetto all’AM, ed è frequentemente utilizzato nelle trasmissioni radio FM.
+\item fase: invece di variare l’ampiezza o la frequenza, la fase dell’onda portante viene cambiata in base al segnale d’informazione. Questa tecnica è simile alla FM, ma altera la fase dell’onda invece della sua frequenza.
+\end{enumerate}
+\section{QPSK (2015)}
+QPSK vuol dire "Quadrature phase shift keying) e indica lo spostamento di fase delle one con la chiave con 4 intervalli simmetrici: 45°, 135°, 225°, 315°\\
+Grazie a ciò si ha un alfabeto di 4 simboli che è doppio rispetto ai baud\\
+Si potrebbe aumentare nella modulazione in fase aumentando il bitrate ma il problema è che più aumentano i simboli più sono simili causando problemi nelle telecomunicazioni\\
+\section{QAM (2019, 20, 22, 23)}
+Ci sono diversi tipi di QAM:\\
+Col QAM-16 si combinano più tipi di modulazione mescolando assieme le modulazioni in ampiezza e fase in modo che se qualcosa viene attenuato o disperso il sistema è più robusto\\
+Poi esiste anche il QAM-64 il quale permette di arrivare a un bitrate sestuplo rispetto ai baud e 3 volte quello dei QPSK\\
+I QAM ottimali però sono i "circular QAM" i quali sono di difficile generazione e decodificazione e per questo si opta per i 	QAM rettangolari
+\section{ADSL (2024)}
+L'Asymmetrci DSL (ADSL) è un tipo di DSL (Digital Subscriber Line) le quali sono nate per via delle necessità di vedere i video e quindi spingere di più sul download\\
+La soluzione adottata è quella di rimuovere i filtri della linea telefonica passando così da 4Khz a 1.1MHz (milioni di hertz) aggiungendo però lo splitter, un nuovo filtro che separa parte Internet e parte telefonica ma col pregio di costare pochissimo\\
+Ma quindi cosa fa l'ADSL esattamente?\\
+Si allocano diversi slot di frequenza col "Frequency Division Multiplexing" per i vari canali con l'opportuno encoding/decoding\\
+Attualmente si spezza la banda in 256 sottocanali da 4312.5Hz (1 voce, 5 vuoti, 32 upload, resto download) e indipendenti, ovvero ogni canale viene trattato come una connessione telefonica a sè stante e c'è controllo costante sulla qualità della trasmissione $\to$ ogni canale può essere rallentato/accelerato indipendetemente
+L'ADSL (assieme all'ADSL 2+) oltretutto supporta la variante all-digital in cui si guadagnano 256Kbps rinunciando alla parte voce
+\section{TDM Multiplexing (2016)}
+È un tipo di multiplexing temporale\\
+Invece di separare con i canali separa il tempo, ovvero le frequenze rimangono uguali ma ogni "tot tempo" si cambia il canale\\
+Ha la comodità di dividere il tempo in tantissimi canali, potenzialmente infiniti, ma più essi aumentano ognuno avrà a disposizione meno capacità e quindi sarà più lento
+\section{Handoff (2023)}
+\subsection{Handoff 1G}
+Nella prima generazione di trasmissione dati attraverso la rete di telefonia mobile, analogica, è presente lo standard AMPS (Advanced Mobile Phone System) per gli USA\\
+L'handoff era una tecnica che occoreva quando il segnale era debole per ricollegarsi ad un segnale migliore.\\
+Quando c'è bisogno di questa tecnica lo switching office (la stazione base di ogni cella) chiede alle celle vicino quanta potenza ricevono dal cellulare ed esso viene assegnato alla cella con potenza più alta.\\
+Ci sono due tipi:
+\begin{enumerate}
+\item \textbf{hard handoff}: la vecchia stazione molla il cellulare e la nuova lo riaggancia con del lag di circa 0.3 secondi che rischiano di rovinare la qualità delle chiamate in corso 
+\item \textbf{soft handoff}: la nuova cella acquisisce il cellulare prima che la vecchia cella lo lasci, però il cellulare deve collegarsi a due frequenze contemporaneamente aumentando costi e potenza
+\end{enumerate}
+\subsection{Handoff 2G}
+Mentre nell'handoff 1G se ne occupa il control switch, nel nuovo standard D-AMPS (evoluzione dell'AMPS e compatibile con lui) inizia l'idea delle "tacchette" presente nei telefoni attuali\\
+Questo perché, mentre prima il control switch si occupava di tutti i cellulari (centralizzando l'impegno) adesso ogni cellulare monitora periodicamente la qualità del rapporto misurando la potenza del segnale e venendo associato ad una cella.\\
+Infatti, le tacchette rapresentano la potenza del segnale e quando è basso la base lo disconnette e riacquisisce il segnale più potente.\\
+Il nome di questa tenica è MAHO (Mobile Assisted Hand Off)\\
+Nonostante sembri un grosso dispendio di energia in realtà il carico sul cellulare è minimo perché si sfruttano i tempi morti dovuti al TDM per misurare la potenza del segnale
+\section{Modulazione delta (2016, 17, 18, 19, 20, 22, 23)}
+È un tipo di algoritimica a basso consumo per comprimere a bassa energia un'onda\\
+Se scende si pone uno 0, se sale si pone un 1 per identificare l'andamento, ma si perde l'informazione della foma.\\
+È una compressione molto conveniente perché bisogna solo calcolare i momenti di crescita e discesa ed è velocissimo a comprimere e decomprimere perdendo però qualità sul suono\\
+Le comunicazione "compresse" vengono gestite usando una classica TDM (Time Division Multiplexing)
+\section{Standard 2G}
+\section{CDMA (Code Division Multiple Access) (2016, 18)}
+Il CDMA (Code Division Multiple Access) è una tecnologia di comunicazione wireless che consente a più utenti di condividere la stessa banda di frequenza simultaneamente. Ogni utente è identificato da un codice univoco, che permette di distinguere i segnali sovrapposti. Grazie alla codifica e alla modulazione dei segnali, CDMA offre alta efficienza nello spettro, resistenza alle interferenze e sicurezza. È stata utilizzata nelle reti cellulari di seconda generazione (2G) e terza generazione (3G), come nel sistema IS-95 e in alcune implementazioni di UMTS.
+\section{Bit o byte stuffing (2017, 18, 19, 20, 22, 23, 24)}
+\section{Error control}
+\section{Go back n (2015, 20, 24)}
+\section{Selective repeat(2022)}
+\section{Aloha (2014, 17, 18, 19, 21, 23)}
+\section{CSMA (2017, 18, 20)}
+\section{CSMA non persistent (2022)}
+\section{Adaptive tree walk protocol (2015, 18, 24)}
+\section{Stazione nascosta (2019, 20, 24)}
+\section{Codifica Manchester (2014, 18, 19, 20, 22, 24)}
+\section{Flooding (2015, 16, 18, 20, 23)}
+\section{Distance Vector routing (2014, 19, 20, 24)}
+\section{Link State Routing (2018, 21, 22, 23)}
+\section{Quality of Service (QOS) (2014, 20, 23)}
+\section{Choke packet (2016, 18, 19, 21, 22, 23, 24)}
+\section{Load sheeding (2016, 18, 19, 21, 22, 23, 24)}
+\section{Leaky bucket (2015)}
+\section{Token bucket (2016, 18, 19, 20, 21, 24)}
+\section{CIDR (2014, 15, 16, 17, 18, 19, 22)}
+\section{NAT (Network Address Resolution Protocol) (2015, 18, 19, 22, 23)}
+\section{ARP (Address Resolution Protocol) (2014, 17, 18, 19, 20, 22, 23, 24)}
+\section{ICMP (2014, 15, 22)}
+\section{IPv4 (2024)}
+\section{IPv6 (2016, 20, 23)}
+\section{UDP (2014, 16, 17, 18, 20, 22, 23, 24)}
+\section{TCP, Tree-Way Handshaking (2016)}
+\section{Attacchi ciphertext only (2019, 20)}
+\section{Sostituzione monoalfabetica (2019, 24)}
+\section{Cifrari a trasposizione (2014, 15, 20)}
+\section{DES e triplo DES (2016, 18, 20, 21, 22, 23, 24)}
+\section{One time pad (blocco monouso) (2015, 16, 18, 20)}
+\section{ECB (2014)}
+\section{Counter mode cipher (2016)}
+\section{Stream cipher (2015, 16, 18, 19, 20, 23, 24)}
+\section{Hash crittografici, HMAC (2016, 18, 19)}
+\section{Modi di attaccare DNS (2018)}
+\section{802.11 (2015)}
+\section{IPSec (2019, 20, 22)}
+\end{document}
