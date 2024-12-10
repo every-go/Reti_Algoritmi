@@ -50,7 +50,7 @@ Usando `copia` e `distruggi` possiamo provare a fare un tentativo di definizione
 >[!success] Ok, Desgin Pattern Assegnazione Profonda
 >```cpp
 >bolletta& bolletta::operator=(const bolletta& b) {
->	if(this  != b) { // operator != tra puntatori
+>	if(this  != &b) { // operator != tra puntatori
 >		distruggi(first);
 >		first = copia(b.first);
 >	}
