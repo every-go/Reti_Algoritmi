@@ -18,7 +18,7 @@
     language=C++,  % Non importa quale linguaggio di base, lo utilizziamo per la sintassi
     basicstyle=\ttfamily\footnotesize,  % Font di base
     keywordstyle=\color{blue}\bfseries,  % Parole chiave in blu e in grassetto, comprende parole chiave c++ e quelle aggiunte
-    commentstyle=\color{red},  % Commenti in grigio, seguiti da //
+    commentstyle=\color{red},  % Commenti in rosso, seguiti da //
     stringstyle=\color{purple},  % Stringhe in viola, racchiuse fra virgolette, es: "ciao"
     identifierstyle=\color{black},  % Variabili in nero (in generale tutto ciò che è scritto in maniera normale)
     backgroundcolor=\color{lightgray},  % Colore di sfondo
@@ -59,7 +59,7 @@ $\lim_{n\to +\infty}$$\frac{f(n)}{g(n)}$=0 $\to$ f(n)=$\Omicron$((g(n))
 \\
 $\lim_{n\to +\infty}$$\frac{f(n)}{g(n)}$=$\infty$ $\to$ f(n)=$\Omega$(g(n))
 \\\\
-\href{Limite.pdf}{Foto dimostrazione}
+\href{limite.pdf}{Foto dimostrazione}
 \section{Definizione albero binario, BST, complessità ricerca}
 Per albero binario si intende una struttura dati in cui ogni nodo non foglia ha uno o due figli, e una foglia non ha nodi figli.\\
 Per albero binario di ricerca si intende un albero binario ordinato tc $\forall$ nodo x\\
@@ -265,71 +265,70 @@ if (z.left == T.nil)
 elif (z.right == T.nil)
 	x = z.left
 	Transplant(T, z, z.left)
-else:
+else
  	y = Min(z.right)
 	originalcolor = y.color
 	x = y.right
-	if (y.p != z)
-		Transplant(T, y, y.right)
-		y.right = z.right
-		y.right.parent = y
-	endif
-	Transplant(T, z, y)
-	y.left = z.left
-	y.left.parent = y
-	y.color = z.color
-if (originalcolor == "BLACK")
-	RB-DeleteFixUp(T, x)
+	if(y!=z.right)
+		TransPlant(T,y,y.right)
+		y.right=z.right
+		y.right.p=y
+	else
+		x.p=y
+		Transplant(T,z,y)
+		y.left=z.left
+		y.left.p=y
+		y.color=z.color
+	if(originalcolor==BLACK)
+		RB-DeleteFixUp(T,x)
 \end{lstlisting}
-RB-DeleteFixUP definita così:
+RB-DeleteFixUp definita così:
 \newpage
 \begin{lstlisting}[style=pseudocodice]
 RB-DeleteFixUp(T,x)
-while (x != T.root and x.color == "DOUBLEBLACK")
-	if (x == x.p.left:)
+while (x != T.root and x.color == BLACK)
+	if (x == x.p.left)
 		w = x.p.right
-		if(w.color == "RED")
-			w.color = "BLACK"
-			x.p.color = "RED"
+		if(w.color == RED)
+			w.color = BLACK
+			x.p.color = RED
 			Left(T, x.p)
  			w = x.p.right
-		if(w.left.color == "BLACK" and w.right.color == "BLACK")
-			w.color = "RED"
+		if(w.left.color == BLACK and w.right.color == BLACK)
+			w.color = RED
  			x = x.p
-		else:
-			if w.right.color == "BLACK":
-			w.left.color = "BLACK"
-			w.color = "RED"
+		elif (w.right.color == BLACK)
+			w.left.color = BLACK
+			w.color = RED
 			Right(T, w)
 			w = x.p.right
 		w.color = x.p.color
-		x.p.color = "BLACK"
-		w.right.color = "BLACK"
+		x.p.color = BLACK
+		w.right.color = BLACK
 		Left(T, x.p)
-		x = T.root
-	else:
+		x=T.root
+	else
 		w = x.p.left
-		if w.color == "RED":
-			w.color = "BLACK"
-			x.p.color = "RED"
+		if(w.color == RED)
+			w.color = BLACK
+			x.p.color = RED
 			Right(T, x.p)
-		w = x.p.left
-		if (w.right.color == "BLACK" and w.left.color == "BLACK")
-			w.color = "RED"
-			x = x.p
-		else:
-			if w.left.color == "BLACK":
-				w.right.color = "BLACK"
-				w.color = "RED"
-				Left(T, w)
- 				w = x.p.left
-			w.color = x.p.color
-			x.p.color = "BLACK"
-			w.left.color = "BLACK"
-			Right(T, x.p)
-			x = T.root
-endwhile
-x.color = "BLACK"
+ 			w = x.p.left
+		if(w.right.color == BLACK and w.left.color == BLACK)
+			w.color = RED
+ 			x = x.p
+		elif (w.left.color == BLACK)
+			w.right.color = BLACK
+			w.color = RED
+			Left(T, w)
+			w = x.p.left
+		w.color = x.p.color
+		x.p.color = BLACK
+		w.left.color = BLACK
+		Right(T, x.p)
+		x=T.root
+	endif
+x.color=BLACK
 \end{lstlisting}
 \section{Perché preferire BST a tabelle hash}
 In realtà non c'è esattamente una struttura preferibile in quanto tutte hanno sia dei pregi che dei difetti\\
@@ -337,9 +336,27 @@ Gli BST sono molto utili se è necessario un ordinamento all'interno della strut
 Invece le tabelle hash sono utili per mettere in corrispondenza una data chiave con un dato valore.\\
 Inoltre in una tabella di hashing ben dimensionata il costo medio di ricerca di ogni elemento è indipendente dal numero di elementi\\
 Il loro problema è che nei casi peggiori hanno un caso spaziale di $\Omicron$(n) ma come costo medio $\Omicron$(1)
-\section{Esistenza eventuale altro ordine per calcolare elementi nella terza condizione della dinamica}
 \section{Definizione di sottostringa e sottosequenza  e numero di sottostringe e sottosequenze in una stringa}
-\section{Generico algoritmo top down memorizzato}
+Dato un alfabeto finito $\Sigma$, una stringa X=$<$$x_1$, ... ,$x_m$$>$ $x_i$ $\in$ $\Sigma$ per 1$<$=i$<$=m è una concatenazione finita di simboli in $\Sigma$\\
+Lunghezza di X: $|X|$=m\\
+$\sum^{\ast}$ è l'insieme di tutte le stringhe di lunghezza finita costruibile su $\Sigma$\\
+Stringa vuota: $\xi$$\in$$\Sigma^{\ast}$ per convenzione\\
+Una sottostringa di X:\\
+\begin{math}
+X_i ... j = <x_i, ... , x_j>\\
+1<=i<=j<=m
+\end{math}\\
+Quante sono le sottostringhe di una stringa?\\
+\begin{math}
+1+m+\binom{m}{2} \text{(scelta di 2 indici estremi} = 1+m+\frac{m(m-1)}{2}=\Theta(m^2)\\
+=1+\sum_{i=1}^{m}\sum_{j=i}^{m} 1=1+\sum_{i=1}^{m}(m-i+1)=1+\frac{m(m+1)}{2}=\Theta(m^2)
+\end{math}
+Una sottosequenza di X:\\
+Z è sottosequenza di X se esiste una successione crescente di indici 1$<$=$i_{1}$$<$$i_{2}$$<$ ... $<$$i_{k}$$<$=m tale che $z_{j}$=$x_{ij}$, 1$<$=j$<$=k\\
+Quante sono le sottosequenze di una stringa?\\
+$\sum_{k=0}^{m}$ $\binom{m}{k}$ = $2^{m}$
+\section{Esistenza eventuale altro ordine per calcolare elementi nella terza condizione della dinamica}
+\section{Generico algoritmo top down memoizzato}
 \section{Codici di Huffman}
 \section{Quale tra gli esercizi di programmazione dinamica svolti a lezione non si risolveva solo risolvendo sottoproblemi}
 \section{Definizione e vantaggi memoizzazione, complessità e funzionamento dell'ineserimento in un min heap}
