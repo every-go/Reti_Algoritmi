@@ -807,36 +807,292 @@ la granularità dei prefissi può complicare l'analisi e la diagnosi di problemi
 \item Dipendenza da un'adeguata progettazione del routing:\\
 una configurazione errata può portare a inefficienze o a conflitti nel routing.
 \end{enumerate}
-\section{NAT (Network Address Resolution Protocol) (2015, 18, 19, 22, 23)}
-\subsection{Descrizione}
-\subsection{Ambiti d'uso}
-\subsection{Pregi}
-\subsection{Difetti}
-\section{ARP (Address Resolution Protocol) (2014, 17, 18, 19, 20, 22, 23, 24)}
-\subsection{Descrizione}
-\subsection{Ambiti d'uso}
-\subsection{Pregi}
-\subsection{Difetti}
-\section{ICMP (2014, 15, 22)}
-\subsection{Descrizione}
-\subsection{Ambiti d'uso}
-\subsection{Pregi}
-\subsection{Difetti}
 \section{IPv4 (2024)}
 \subsection{Descrizione}
+IPv4 (Internet Protocol versione 4) è il protocollo che definisce il formato del datagramma IP e il meccanismo per il trasferimento di dati tra dispositivi su reti basate su IP\\
+L'intestazione (header) di un datagramma IPv4 è suddivisa in due parti principali:
+\begin{itemize}
+\item Parte fissa: È lunga 20 byte e include campi essenziali come:
+\begin{itemize}
+\item Versione:\\
+specifica la versione del protocollo IP in uso (4 per IPv4)
+\item Lunghezza dell'header:\\
+indica la dimensione dell'intestazione in multipli di 4 byte
+\item Tipo di servizio (ToS):\\
+permette di selezionare la qualità del servizio (QoS)
+\item Lunghezza totale:\\
+specifica la dimensione complessiva del datagramma, inclusi header e payload
+\item Time to Live (TTL):\\
+numero massimo di salti consentiti, per evitare che i datagrammi circolino indefinitamente in rete
+\item Checksum:\\
+utilizzato per verificare l'integrità dell'intestazione durante il trasporto
+\item Indirizzo sorgente e destinazione:\\
+rispettivamente l'indirizzo IP del mittente e del destinatario
+\end{itemize}
+\item Parte variabile: può contenere aggiunte opzionali, come timestamp, sicurezza, o registrazione del percorso, pensate per eventuali funzionalità future
+\end{itemize}
+IPv4 è stato progettato con un'architettura robusta per gestire le comunicazioni su reti eterogenee, garantendo adattabilità
 \subsection{Ambiti d'uso}
+IPv4 è il protocollo fondamentale per l'invio di pacchetti nello strato di rete (network layer) e rappresenta la base delle comunicazioni su Internet\\
+Alcuni ambiti di utilizzo:
+\begin{itemize}
+\item Trasporto dati su Internet:\\
+è il protocollo principale per il trasferimento di pacchetti tra dispositivi collegati alla rete
+\item Reti locali (LAN) e geografiche (WAN):\\
+IPv4 è utilizzato in contesti di rete di diversa scala, dal piccolo ufficio a reti globali
+\item Interconnessione di reti eterogenee:\\
+permette la comunicazione tra dispositivi con architetture diverse, garantendo universalità e flessibilità
+\item Gestione del traffico dinamico:\\
+IPv4 utilizza tecniche come il routing dinamico e il flooding per garantire la consegna anche in condizioni di rete non ottimali (es. congestione o attacchi)
+\end{itemize}
+IPv4 non implementa meccanismi di controllo degli errori per garantire alte prestazioni; questo compito è demandato ai livelli superiori
 \subsection{Pregi}
+\begin{itemize}
+\item Struttura gerarchica degli indirizzi:\\
+gli indirizzi IPv4 vengono assegnati attraverso un sistema gerarchico gestito da autorità centralizzate garantendo efficienza nella distribuzione e nel routing
+\item Compatibilità universale:\\
+IPv4 è supportato da praticamente tutti i dispositivi connessi alla rete, rendendolo il protocollo più utilizzato per le comunicazioni IP
+\item Semplicità e robustezza:\\
+è progettato per essere operativo in contesti di rete dinamici, garantendo resilienza contro interruzioni o perdite di pacchetti
+\item Cachability e instradamento ottimizzato:\\
+grazie alla struttura gerarchica, il routing può essere ottimizzato attraverso subnetting e aggregazione degli indirizzi
+\end{itemize}
 \subsection{Difetti}
+Nonostante i suoi pregi, IPv4 presenta alcuni limiti intrinseci:
+\begin{itemize}
+\item Limitazione degli indirizzi disponibili:\\
+gli indirizzi IPv4 sono a 32 bit, il che consente circa 4,3 miliardi di indirizzi univoci\\
+Tuttavia, lo spazio degli indirizzi è ormai quasi esaurito a causa della crescita esponenziale dei dispositivi connessi
+\item Frammentazione dei pacchetti:\\
+in reti con diverse dimensioni di MTU (Maximum Transmission Unit), i pacchetti devono essere frammentati, aumentando l'overhead e la complessità
+\item Vulnerabilità alla sicurezza:\\
+IPv4 non include nativamente meccanismi di sicurezza, come l'autenticazione o la crittografia, che devono essere implementati tramite protocolli aggiuntivi
+\item Limite del TTL:\\
+il campo TTL consente al datagramma un massimo di 255 salti\\
+Anche se i router possono rigenerare i datagrammi, questo valore rappresenta una limitazione nei casi estremi
+\end{itemize}
+\section{NAT (Network Address Translation) (2015, 18, 19, 22, 23)}
+\subsection{Descrizione}
+L'idea del protocollo NAT è simulare un'intera sottorete usando un solo indirizzo IP\\
+Internamente:\\
+la rete funziona con degli indirizzi IP interni, che sono invisibili all'esterno\\
+Esternamente:\\
+la rete appare come un singolo indirizzo IP\\
+Ogni pacchetto che esce dalla rete perde il suo indirizzo IP e viene sostituito dall'unico indirizzo NAT\\
+Certi indirizzi sono riservati per le reti interne ai NAT e non possono essere usati come normali indirizzi Internet\\
+\begin{itemize}
+\item 10.0.0.0 (rete da $2^{24}$ hosts)
+\item 172.16.0.0 (rete da $2^{20}$ hosts)
+\item 192.168.0.0 (rete da $2^{16}$ hosts)
+\end{itemize}
+\subsection{Ambiti d'uso}
+Il NAT è largamente utilizzato in diversi contesti, tra cui:
+\begin{enumerate}
+\item Reti domestiche e aziendali:\\
+permette a più dispositivi di connettersi a Internet utilizzando un unico indirizzo IP pubblico, riducendo la necessità di acquistare più indirizzi IP
+\item Conservazione degli indirizzi IPv4:\\
+a causa della scarsità degli indirizzi IPv4 pubblici, il NAT è una soluzione pratica per estendere l'utilizzo di un singolo indirizzo IP su più dispositivi
+\item Sicurezza di rete:\\
+nasconde gli indirizzi IP interni, rendendo più difficile per un attaccante esterno identificare e attaccare i dispositivi interni
+\end{enumerate}
+\subsection{Pregi}
+Il NAT presenta numerosi vantaggi, tra cui:
+\begin{enumerate}
+\item Risparmio di indirizzi IPv4:\\
+consente l'uso di un singolo indirizzo IP pubblico per una rete di molti dispositivi, riducendo il consumo di indirizzi IPv4
+\item Maggiore sicurezza:\\
+gli indirizzi IP privati della rete interna non sono visibili all'esterno, il che aumenta la sicurezza contro attacchi diretti
+\item Facilità di configurazione:\\
+il NAT può essere implementato facilmente su router e dispositivi di rete senza modificare i dispositivi della rete interna
+\item Flessibilità:\\
+permette di cambiare gli indirizzi interni senza influire sulle comunicazioni esterne
+\item Supporto per il port forwarding:\\
+consente di configurare regole per inoltrare il traffico specifico verso determinati dispositivi interni
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Difficoltà di tracciamento:\\
+il NAT modifica gli indirizzi IP nei pacchetti, rendendo più complessa l'analisi del traffico e il tracciamento delle connessioni
+\item Performance:\\
+nei router con risorse limitate, il processo di traduzione degli indirizzi può introdurre un leggero overhead e rallentare le connessioni
+\item Incompatibilità con IPv6 puro:\\
+con l'adozione di IPv6, il NAT diventa meno rilevante poiché IPv6 offre un numero sufficiente di indirizzi unici per ogni dispositivo
+\end{enumerate}
+\section{ARP (Address Resolution Protocol) (2014, 17, 18, 19, 20, 22, 23, 24)}
+\subsection{Descrizione}
+L'Address Resolution Protocol (ARP) è un protocollo appartenente al livello di rete (network layer) che consente di trovare la corrispondenza tra un indirizzo IP e un indirizzo MAC (Media Access Control) necessario per la comunicazione all'interno di una rete locale (LAN).
+Il suo funzionamento può essere riassunto come segue:
+\begin{itemize}
+\item Ogni macchina all'interno della rete mantiene una tabella ARP, che contiene le corrispondenze tra indirizzi IP e indirizzi MAC conosciuti.
+\item Quando un dispositivo deve inviare un pacchetto a un altro dispositivo della rete e conosce solo l'indirizzo IP di destinazione, genera un messaggio ARP in broadcast (richiesta ARP).
+\item La macchina destinataria, riconoscendo il proprio indirizzo IP nella richiesta, risponde con un messaggio ARP di risposta (unicast) contenente il proprio indirizzo MAC.
+\item La corrispondenza IP-MAC viene salvata nella cache ARP del dispositivo richiedente per ottimizzare le comunicazioni future.
+\end{itemize}
+Ogni pacchetto ARP include in piggyback (ossia come dato aggiuntivo) la corrispondenza tra indirizzo IP e indirizzo MAC, permettendo così il continuo aggiornamento della tabella ARP.
+\subsection{Ambiti d'uso}
+Il protocollo ARP è fondamentale per la comunicazione in reti IPv4 locali e viene utilizzato in diverse situazioni, tra cui:
+\begin{enumerate}
+\item Trasmissione in reti Ethernet:\\
+consente a un dispositivo di determinare l'indirizzo MAC del destinatario per poter incapsulare correttamente il pacchetto a livello data-link
+\item Routing locale:\\
+è indispensabile quando un router deve inviare pacchetti a un dispositivo nella rete locale
+\item Comunicazioni client-server:\\
+viene utilizzato ogni volta che un client locale deve comunicare con un server nella stessa rete, come in reti domestiche o aziendali
+\end{enumerate}
+\subsection{Pregi}
+ARP offre diversi vantaggi nel contesto delle reti:
+\begin{enumerate}
+\item Semplicità:\\
+il protocollo ARP è semplice e diretto, progettato per svolgere una funzione specifica: risolvere gli indirizzi IP in indirizzi MAC
+\item Trasparenza:\\
+il processo di risoluzione degli indirizzi avviene automaticamente e in modo trasparente per l'utente finale e le applicazioni
+\item Efficienza:\\
+una volta risolta la corrispondenza, i risultati vengono memorizzati nella cache ARP per ridurre la latenza e migliorare le prestazioni in comunicazioni successive
+\item Compatibilità universale:\\
+ARP è supportato dalla maggior parte delle reti Ethernet e IPv4, garantendo interoperabilità tra dispositivi di rete
+\end{enumerate}
+\subsection{Difetti}
+Nonostante la sua utilità, il protocollo ARP presenta alcune limitazioni e vulnerabilità:
+\begin{enumerate}
+\item Dipendenza da IPv4:\\
+ARP è progettato per IPv4, e quindi non è utilizzabile in reti IPv6
+\item Possibili sovraccarichi di rete:\\
+in reti molto grandi o con dispositivi instabili, un numero elevato di richieste ARP può causare congestione, degradando le prestazioni della rete
+\end{enumerate}
+\section{ICMP (2014, 15, 22)}
+\subsection{Descrizione}
+Internet Control Message Protocol (ICMP) è un protocollo di rete del livello 3 (network layer) progettato per trasmettere messaggi di controllo e segnalazione tra dispositivi in una rete IP\\
+ICMP non è utilizzato per il trasferimento di dati applicativi, ma per comunicare errori, condizioni di rete o informazioni diagnostiche. Alcune delle sue funzioni principali includono
+\begin{itemize}
+\item Segnalare errori, come l'inaccessibilità di una destinazione o il superamento del TTL (Time to Live)
+\item Gestione del controllo del traffico, ad esempio avvisando un mittente di ridurre la velocità di trasmissione tramite messaggi ICMP Source Quench (sebbene poco usati oggi)
+\end{itemize}
+I messaggi ICMP vengono trasportati all'interno di datagrammi IP, ma non garantiscono la consegna: ICMP si basa sul protocollo IP, che è di tipo best-effort (il sistema fa del suo meglio per consegnare i dati, ma non garantisce alcuna affidabilità, ordine o tempi di consegna precisi)
+\subsection{Ambiti d'uso}
+ICMP è utilizzato in vari contesti per il controllo e la gestione delle reti:
+\begin{enumerate}
+\item Diagnostica della rete:
+\begin{enumerate}
+\item Lo strumento \texttt{ping} utilizza ICMP Echo Request ed Echo Reply per verificare la raggiungibilità di un dispositivo di rete
+\item \texttt{Traceroute} utilizza ICMP per determinare il percorso che un pacchetto segue attraverso una rete
+\end{enumerate}
+\item Gestione degli errori:
+\begin{enumerate}
+\item Notifica di destinazione irraggiungibile (Destination Unreachable) quando un pacchetto non può essere consegnato
+\item Avviso di superamento del TTL (Time Exceeded) quando un pacchetto supera il numero massimo di salti consentiti
+\end{enumerate}
+\item Ottimizzazione della rete:\\
+ICMP può suggerire al mittente di ridurre la velocità di trasmissione o instradare i pacchetti su percorsi alternativi
+\item Supporto al routing dinamico:\\
+ICMP viene utilizzato dai router per segnalare problemi o aggiornamenti di stato ai sistemi di gestione della rete
+\end{enumerate}
+\subsection{Pregi}
+ICMP offre numerosi vantaggi per il monitoraggio e la gestione delle reti:
+\begin{enumerate}
+\item Leggerezza:\\
+ICMP è un protocollo leggero con overhead minimo, rendendolo ideale per notifiche e diagnosi rapide
+\item Strumento diagnostico essenziale:\\
+fornisce informazioni cruciali sulla connettività e le prestazioni di rete, indispensabili per i tecnici e gli amministratori di rete
+\item Universalità:\\
+essendo parte integrante del protocollo IP, ICMP è supportato da quasi tutti i dispositivi di rete
+\end{enumerate}
+\subsection{Difetti}
+Nonostante la sua utilità, ICMP presenta alcune limitazioni e vulnerabilità:
+\begin{enumerate}
+\item Nessuna garanzia di consegna: ICMP si basa sul protocollo IP, che è un protocollo best-effort, quindi i messaggi ICMP possono andare persi
+\item Vulnerabilità alla sicurezza
+\item Blocco in alcune reti:\\
+per motivi di sicurezza, molti firewall e dispositivi di rete bloccano i messaggi ICMP, riducendo la loro utilità per diagnosi o gestione della rete
+\end{enumerate}
 \section{IPv6 (2016, 20, 23)}
 \subsection{Descrizione}
+IPv6 (Internet Protocol versione 6) è la nuova versione del protocollo IP progettata per superare i limiti di IPv4, in particolare il problema dell'esaurimento degli indirizzi
+Le principali caratteristiche di IPv6 sono:
+\begin{enumerate}
+\item Indirizzi più grandi:\\
+gli indirizzi IPv6 sono lunghi 16 byte rispetto ai 4 byte di IPv4\\
+Questo consente di avere un numero quasi illimitato di indirizzi, sufficiente per soddisfare le esigenze future di Internet e l'espansione dell'Internet of Things (IoT)
+\item Eliminazione del checksum:\\
+IPv6 non include un campo checksum nell'header per velocizzare l'elaborazione dei pacchetti
+\item Struttura dell'header semplificata:\\
+l'header di IPv6 è più semplice e uniforme rispetto a quello di IPv4, riducendo il carico sui router e migliorando l'efficienza del routing
+\item Supporto nativo per QoS:\\
+IPv6 include un campo chiamato Flow Label, progettato per facilitare la gestione della qualità del servizio (QoS) per applicazioni in tempo reale, come voce e video
+\end{enumerate}
 \subsection{Ambiti d'uso}
+IPv6 è progettato per essere il protocollo fondamentale di Internet nel futuro e trova applicazione nei seguenti contesti:
+\begin{enumerate}
+\item Reti moderne: viene utilizzato in infrastrutture che richiedono scalabilità, sicurezza e gestione avanzata della rete, come i data center e le reti aziendali
+\item Trasmissioni multicast: IPv6 supporta nativamente la trasmissione multicast, ottimizzando la distribuzione di dati a più destinatari, ad esempio per lo streaming video o l'aggiornamento simultaneo di dispositivi
+\item Reti con mobilità: IPv6 semplifica la gestione degli indirizzi in scenari di mobilità, come nei dispositivi mobili, supportando handover efficienti e connessioni stabili
+\end{enumerate}
 \subsection{Pregi}
+IPv6 offre numerosi vantaggi rispetto a IPv4:
+\begin{enumerate}
+\item Indirizzi illimitati: Con i suoi 128 bit, IPv6 consente la creazione di circa $3.4 \times 10^{38}$ indirizzi univoci, risolvendo il problema dell'esaurimento degli indirizzi IP
+\item Efficienza nel routing: L'header semplificato e l'uso di tecniche come il prefix aggregation migliorano la velocità di instradamento e riducono il carico sui router
+\item Supporto alla mobilità: IPv6 include funzionalità avanzate per supportare dispositivi mobili, migliorando la gestione delle connessioni durante gli spostamenti
+\end{enumerate}
 \subsection{Difetti}
+IPv6 presenta anche alcune limitazioni e sfide:
+\begin{enumerate}
+\item Compatibilità limitata con IPv4:\\
+IPv6 non è direttamente compatibile con IPv4, richiedendo l'uso di meccanismi di transizione
+\item Adozione lenta:\\
+nonostante i vantaggi, l'adozione di IPv6 è stata lenta a causa della necessità di aggiornare le infrastrutture, i dispositivi e il software
+\item Overhead maggiore:\\
+l'header di IPv6 è più grande di quello di IPv4 (40 byte contro 20 byte), il che può aumentare leggermente l'overhead in alcune reti a bassa capacità
+\end{enumerate}
 \section{UDP (2014, 16, 17, 18, 20, 22, 23, 24)}
 \subsection{Descrizione}
+Il User Datagram Protocol (UDP) è un protocollo di trasporto\\
+UDP è progettato per la trasmissione rapida di dati con un overhead minimo, adottando un approccio best-effort\\
+A differenza del TCP, non fornisce meccanismi di controllo della connessione, ritrasmissione o verifica dell'ordine dei pacchetti
+Le principali caratteristiche di UDP includono:
+\begin{enumerate}
+\item Nessuna connessione:\\
+UDP è un protocollo connectionless, il che significa che non stabilisce una connessione prima dell'invio dei dati
+\item Struttura semplice:\\
+il segmento UDP contiene solo informazioni essenziali: porta di origine, porta di destinazione, lunghezza del segmento e checksum
+\item Velocità e leggerezza:\\
+poiché non implementa controlli di errore o ritrasmissione, UDP è parecchio veloce
+\item Multiplexing:\\
+UDP consente la comunicazione tra più applicazioni attraverso l'uso delle porte
+\item Affidabilità delegata:\\
+qualsiasi controllo di errore o meccanismo di affidabilità deve essere implementato dall'applicazione che utilizza UDP
+\end{enumerate}
 \subsection{Ambiti d'uso}
+UDP viene utilizzato in diversi scenari, principalmente in applicazioni che richiedono bassa latenza, velocità o trasmissione continua di dati:
+\begin{enumerate}
+\item Streaming audio e video:\\
+per garantire una riproduzione fluida, è preferibile perdere qualche pacchetto piuttosto che ritardare la trasmissione
+\item Trasmissioni multicast e broadcast:\\
+UDP è utilizzato per inviare dati a più destinatari contemporaneamente
+\end{enumerate}
 \subsection{Pregi}
+UDP presenta numerosi vantaggi per applicazioni specifiche:
+\begin{enumerate}
+\item Bassa latenza:\\
+l'assenza di meccanismi di controllo della connessione rende UDP ideale per applicazioni in tempo reale
+\item Efficienza:\\
+il ridotto overhead del protocollo garantisce una trasmissione dei dati più veloce rispetto a TCP
+\item Semplicità:\\
+grazie alla sua struttura minimale, UDP è facile da implementare e consuma meno risorse di sistema
+\item Supporto multicast e broadcast:\\
+UDP consente trasmissioni simultanee a più destinatari, a differenza di TCP
+\item Adatto per applicazioni specifiche:\\
+è perfetto per scenari in cui la perdita di pacchetti non compromette l'esperienza complessiva, come lo streaming
+\end{enumerate}
 \subsection{Difetti}
+Nonostante i suoi vantaggi, UDP ha delle limitazioni:
+\begin{enumerate}
+\item Mancanza di affidabilità:\\
+UDP non garantisce la consegna dei pacchetti, che possono essere persi o arrivare fuori ordine
+\item Assenza di controllo di errore:\\
+il checksum di UDP rileva solo errori nei dati, ma non offre alcuna correzione o ritrasmissione automatica
+\item Non adatto per dati critici:\\
+applicazioni che richiedono integrità e affidabilità dei dati (come il trasferimento di file) devono utilizzare protocolli come TCP
+\end{enumerate}
 \section{TCP, Tree-Way Handshaking (2016)}
 \subsection{Descrizione}
 \subsection{Ambiti d'uso}
