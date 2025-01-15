@@ -355,14 +355,98 @@ Una sottosequenza di X:\\
 Z è sottosequenza di X se esiste una successione crescente di indici 1$<$=$i_{1}$$<$$i_{2}$$<$ ... $<$$i_{k}$$<$=m tale che $z_{j}$=$x_{ij}$, 1$<$=j$<$=k\\
 Quante sono le sottosequenze di una stringa?\\
 $\sum_{k=0}^{m}$ $\binom{m}{k}$ = $2^{m}$
-\section{Esistenza eventuale altro ordine per calcolare elementi nella terza condizione della dinamica}
+\section{Diversi tipi di ordine per calcolare elementi nella programmazione dinamica}
+In generale, l'algoritmo di programmazione dinamica si basa su una tabella (o matrice) in cui vengono calcolati i valori per tutti i sottoproblemi, e l'ordine con cui questi valori vengono calcolati è importante per garantire che ogni elemento venga calcolato solo dopo che tutti gli elementi di cui dipende sono già stati calcolati\\
+Gli ordini di calcolo più comuni sono i row-major e i column-major\\
+Possibilità di cambiamento dell'ordine:\\
+Nel contesto della programmazione dinamica, l'ordine di calcolo può essere modificato a condizione che rispetti le dipendenze tra gli elementi\\
+Se un elemento dipende da altri, è necessario calcolarlo solo dopo che questi altri elementi sono stati già calcolati
 \section{Generico algoritmo top down memoizzato}
+Un algoritmo top-down memoizzato è una tecnica di programmazione dinamica in cui il problema viene risolto ricorsivamente e i risultati intermedi vengono memorizzati in una struttura dati (tipicamente un array o una tabella) per evitare di ricalcolarli più volte\\
+Questo approccio è particolarmente utile per risolvere problemi in cui ci sono sovrapposizioni di sottoproblemi\\
+Ecco come funziona un algoritmo top-down memoizzato:\\
+Struttura di base:\\
+Top-down: Inizialmente, l'algoritmo tenta di risolvere il problema principale\\
+Memoizzazione: Quando l'algoritmo si trova a dover calcolare un sottoproblema che è già stato risolto in precedenza, invece di ricalcolarlo, recupera il valore dalla memoria\\
+Passaggi:\\
+Definisci la funzione ricorsiva che calcola il risultato\\
+Usa una tabella (o array) per memorizzare i risultati già calcolati\\
+Prima di calcolare un valore, verifica se è già presente nella tabella\\
+Se il valore è già calcolato, restituiscilo direttamente, altrimenti, calcolalo e memorizzalo
 \section{Codici di Huffman}
+I codici di Huffman sono una classe di codici che permettono di costruire un albero binario ottimale per la compressione dei dati\\
+In questo albero, ogni carattere del file è rappresentato da un percorso che si sviluppa verso il basso, inserendo un 0 o un 1 nei rami sinistro o destro (questo dipende dalla convenzione utilizzata)\\
+I codici di Huffman sono particolarmente adatti per file con un alfabeto a frequenza variabile\\
+L'output di questo algoritmo rappresenta un \textit{encoding} ottimale per questo tipo di file, poiché garantisce che l'encoding di ogni carattere non sia mai un prefisso dell'encoding di un altro carattere\\
+Questo rende l'encoding decifrabile e consente di comprimere i dati al massimo, riducendo la dimensione del file
 \section{Quale tra gli esercizi di programmazione dinamica svolti a lezione non si risolveva solo risolvendo sottoproblemi}
-\section{Definizione e vantaggi memoizzazione, complessità e funzionamento dell'ineserimento in un min heap}
-\section{Codice prefisso}
-\section{Confronto tra varie funzioni, algoritmo di dinamica del compito memoizzato, vantaggio algoritmi memoizzati rispetto agli iterativi}
+Uno degli esempi è il modo di risolvere il problema delle LIS (Longest Increasing Subsequence) poiché è necessario avere sottoproblemi più vincolati, in quanto LIS(x$_{i+1}$) = $<$LIS(x$_{i}$), x$_{i+1}$$>$ funzionerebbe solo per alcuni casi\\
+Una possibile soluzione è avere un sottoproblema con proprietà aggiuntive, ovvero calcolare la più lunga IS di x$_i$ che termina proprio con x$_i$\\
+Definizione: Z=LIS(x$_i$) è la più lunga tra le IS(x$_i$) con Z=$<$z$_1$, ..., z$_k$$>$ = $<$x$_{i1}$, ..., x$ik$ $>$ con x$_{ik}$ = x$_i$
+\section{Definizione e vantaggi della memoizzazione}
+La memoizzazione è una tecnica utilizzata nella programmazione dinamica che consente di evitare la risoluzione ripetuta di sottoproblemi, un fenomeno che può diventare particolarmente problematico in esempi come il calcolo della \textit{Longest Common Subsequence (LCS)}, della \textit{Longest Increasing Subsequence (LIS)}, o anche in problemi più semplici come la sequenza di \textit{Fibonacci}\\
+In pratica, la memoizzazione consiste nel salvataggio dei risultati dei sottoproblemi risolti in una struttura dati, in modo che ogni sottoproblema venga calcolato solo una volta\\
+Successivamente, se il sottoproblema viene richiesto di nuovo, il risultato viene recuperato dalla struttura dati, evitando di ricalcolarlo\\
+Inoltre, la memoizzazione consente di ridurre drasticamente la complessità di un algoritmo\\
+Ad esempio, nel caso del calcolo della LCS, si passa da una complessità di \( \Theta\left( \binom{m}{n} \right) \) a una complessità di \( \Theta(m \cdot n) \), grazie alla memorizzazione dei risultati intermedi
+\section{Codici Prefisso}
+Nel contesto dei codici di Huffman, un \textit{codice prefisso} è un tipo di codice in cui nessun codice assegnato a un simbolo è un prefisso del codice assegnato a un altro simbolo\\
+Questo è un requisito fondamentale per garantire che l'encoding sia decifrabile in modo univoco, senza ambiguità\\
+Il codice di Huffman è progettato in modo che ogni carattere venga rappresentato da una sequenza di bit, e questi bit sono scelti in modo tale che nessuna sequenza di bit (associata a un carattere) sia un prefisso di un'altra\\
+Questo permette di distinguere facilmente i simboli durante la decodifica, senza la necessità di un separatore speciale tra i codici\\
+La proprietà del codice prefisso è garantita dalla struttura ad albero binario dei codici di Huffman\\
+Quando un albero di Huffman viene costruito, i caratteri più frequenti vengono assegnati a codici più brevi, mentre quelli meno frequenti ottengono codici più lunghi\\
+L'albero binario è costruito in modo che ogni codice assegnato ai caratteri non sia un prefisso di un altro codice, rendendo l'encoding decifrabile in modo efficiente\\
+L'assenza di prefissi tra i codici consente un'ottimizzazione delle operazioni di compressione e decodifica, in quanto un codice può essere interpretato completamente senza bisogno di ulteriori informazioni aggiuntive
 \section{Scansione riempimento della tabella di LCS}
-\section{Differenza tra approccio top-down e bottom-up per programmazione dinamica. Vantaggi e svantaggi di entrambi}
-\section{Complessità sottostringa, complessità sottosequenza, complessità LCS}
+La scansione del riempimento della tabella di LCS può essere fatta o con scansione row-major (riga per riga) oppure scansione column-major (colonna per colonna)\\
+Infatti, la tabella LCS è una tabella a due dimensioni, e per questo richiede una scansione del tipo sopracitato\\
+Faccio un esempio con scansione row-major
+\newpage
+\begin{lstlisting}[style=pseudocodice]
+for i = 0 to length(X)
+	L[i,0] = 0
+for j = 1 to length(Y)
+	L[0, j] = 0
+for i = 1 to length(X)
+	for j=1 to length(Y)
+		if(x[i] = y[j])
+			L[i,j] = 1+ L[i-1, j-1]
+		elif (L[i-1, j] >= L[1, j-1])
+			L[i, j] = L[i-1, j]
+		else
+			L[i,j] = L[i,j-1]
+return L[m, n]
+\end{lstlisting}
+\section{Differenza tra approccio top-down e bottom-up per la programmazione dinamica. Vantaggi e svantaggi di entrambi}
+L'approccio \textit{top-down} è una tecnica di risoluzione dei problemi in cui si parte dal problema globale, per poi suddividerlo ricorsivamente in sottoproblemi sempre più piccoli fino a risolverli\\
+Dopo aver risolto i sottoproblemi, si risale per combinare i risultati e ottenere la soluzione del problema iniziale\\
+Questo approccio è particolarmente utile quando i sottoproblemi sono ben definiti e si interconnettono in modo sincrono, come nel caso della sequenza di Fibonacci\\
+L'approccio \textit{bottom-up}, invece, è il contrario: si parte dal problema più piccolo, risolvendo prima i sottoproblemi di base, per poi combinare i risultati per risolvere problemi più grandi\\
+Questo approccio è tipico di problemi come la \textit{Longest Common Subsequence (LCS)}, in cui si risolvono prima le sequenze più corte per costruire progressivamente la soluzione completa\\
+Entrambi gli approcci si prestano molto bene alla memoizzazione, che consente di evitare il ricalcolo di sottoproblemi già risolti, migliorando l'efficienza dell'algoritmo\\
+\textbf{Vantaggi dell'approccio top-down:}
+\begin{itemize}
+\item È più naturale e intuitivo per problemi che si prestano a una soluzione ricorsiva
+\item È più facile da implementare in alcuni casi, in quanto si può risolvere il problema direttamente in modo ricorsivo, con l'ausilio della memoizzazione per ottimizzare il calcolo
+\item È ideale per problemi in cui non si conosce in anticipo la dimensione della soluzione o la struttura dei sottoproblemi
+\end{itemize}
+\textbf{Svantaggi dell'approccio top-down:}
+\begin{itemize}
+\item Può comportare un overhead di memoria e tempo a causa delle chiamate ricorsive, specialmente per problemi che richiedono una grande quantità di memoria stack
+\item La ricorsione può essere meno efficiente rispetto a un approccio iterativo, a causa della gestione del controllo delle chiamate
+\item Non è sempre facile evitare il ricalcolo dei sottoproblemi senza una memoizzazione adeguata
+\end{itemize}
+\textbf{Vantaggi dell'approccio bottom-up:}
+\begin{itemize}
+\item Non comporta l'overhead della ricorsione, poiché i sottoproblemi vengono risolti in ordine crescente senza chiamate ricorsive
+\item È più efficiente in termini di memoria, in quanto non richiede lo stack di chiamate della ricorsione
+\item È spesso più semplice da ottimizzare, poiché i sottoproblemi vengono risolti in modo iterativo e non richiedono una gestione complessa della ricorsione
+\end{itemize}
+\textbf{Svantaggi dell'approccio bottom-up:}
+\begin{itemize}
+\item Può essere meno intuitivo per problemi che sono naturalmente ricorsivi, rendendo il codice più difficile da scrivere e leggere
+\item Potrebbe essere necessario allocare e gestire strutture dati di grandi dimensioni per risolvere il problema, il che può risultare inefficiente in termini di memoria per alcuni problemi
+\item In alcuni casi, l'approccio bottom-up potrebbe richiedere una maggiore complessità nell'organizzazione dei sottoproblemi
+\end{itemize}
 \end{document}
