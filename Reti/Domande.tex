@@ -625,6 +625,10 @@ Ogni router conserva una tabella che definisce la migliore distanza onosciuta pe
 Queste tabelle sono aggiornate scambiando informazioni con i router vicini\\
 Alla fine del processo ogni router conosce il collegamento migliore per raggiungere qualsiasi destinazione
 \subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Reti locali (LAN) e piccole reti aziendali: adatto in ambienti dove la topologia della rete è stabile e le risorse sono limitate.
+\item Reti non critiche: in contesti dove il traffico e la complessità sono bassi, il Distance Vector può ancora essere una soluzione pratica grazie alla sua semplicità
+\end{enumerate}
 \subsection{Pregi}
 Reagisce molto rapidamente alle buone notizie, convergendo velocemente alle risposte corrette calcolando i cammini minimi\\
 Infatti le buone notizie sono elaborate in un solo scambio di vettori 
@@ -1095,34 +1099,145 @@ applicazioni che richiedono integrità e affidabilità dei dati (come il trasfer
 \end{enumerate}
 \section{TCP, Tree-Way Handshaking (2016)}
 \subsection{Descrizione}
+TCP è uno dei principali protocolli di rete su Internet\\
+Connection-oriented, apre un canale per scambiare dati, trasmette e poi si chiude il canale\\
+Full-duplex e point-to-point, è un protocollo reliable (affidabile) e il checksum è solo frutto di semplici somme e non codici di error detection complessi\\
+Oltretutto ha integrati il controllo del flusso, il controllo della congestione e la ritrasmissione automatica
 \subsection{Ambiti d'uso}
+TCP viene utilizzato in tutti quei contesti dove è essenziale avere una trasmissione dati affidabile, anche a costo di una maggiore latenza\\
+Alcuni esempi includono:
+\begin{enumerate}
+\item Navigazione web: protocollo HTTP e HTTPS
+\item Email: protocolli come SMTP, IMAP e POP3
+\item Trasferimenti di file: FTP (File Transfer Protocol.
+\item Applicazioni di gestione remota: SSH e Telnet
+\item Sistemi di database: comunicazioni tra client e server di database
+\end{enumerate}
 \subsection{Pregi}
+I suoi pregi sono anche le sue principali caratteristiche:
+\begin{enumerate}
+\item Affidabile
+\item Permette di controllare la congestione
+\item Supporto universale: ampiamente supportato su tutti i sistemi operativi e dispositivi connessi a Internet
+\item Versatilità: adatto a una vasta gamma di applicazioni, dalle comunicazioni interattive (come SSH) ai trasferimenti di file
+\end{enumerate}
 \subsection{Difetti}
+\begin{enumerate}
+\item Maggiore latenza: l'affidabilità e il controllo di flusso aumentano la latenza rispetto ai protocolli più semplici, come UDP
+\item Overhead elevato: le informazioni aggiuntive necessarie per la gestione di sequenze, ritrasmissioni e controllo della congestione aumentano l'overhead
+\item Non adatto a trasmissioni in tempo reale: per applicazioni come lo streaming video o i giochi online, l'elevata latenza e la gestione dell'ordine dei pacchetti possono essere controproducenti
+\item Gestione della connessione: essendo orientato alla connessione, richiede una fase di handshake iniziale, che può essere onerosa in applicazioni con molte connessioni brevi
+\item Difficoltà in reti instabili: in reti molto instabili, il numero di ritrasmissioni può crescere significativamente, rallentando ulteriormente la comunicazione
+\end{enumerate}
 \section{Attacchi ciphertext only (2019, 20)}
+Uno dei più comuni esempi di questo tipo di attacco è l'attacco brute-force
 \subsection{Descrizione}
+Gli attacchi ciphertext-only sono un tipo di attacco crittografico in cui l'attaccante dispone solo di uno o più testi cifrati, senza alcuna conoscenza aggiuntiva sul testo in chiaro o sulla chiave utilizzata per cifrarli\\
+L'obiettivo è dedurre il contenuto dei messaggi (testo in chiaro) o, idealmente, la chiave crittografica, sfruttando le caratteristiche del testo cifrato e potenziali vulnerabilità nell'algoritmo di cifratura
 \subsection{Ambiti d'uso}
+Attualmente non sono molto utilizzabili in contesti molto più moderni, infatti vengono usati per cifrari deboli o obsoleti come il cifrario di Cesare (o potenzialmente qualsiasi sostituzione monoalfabetica o un DES a chiave singola),\\
+Però è utile quando ad esempio si intercettano delle comunicazioni oppure per analizzare vecchi documenti cifrati\\
+Infine, è usato come un parametro di criptoanalisi per un nuovo algoritmo
 \subsection{Pregi}
+1) non richiede l'accesso al plaintext (testo in chiaro) o alla chiave\\
+2) applicabile in condizioni realistiche
 \subsection{Difetti}
+1) come menzionato prima, quasi inutile su algoritmi moderni, i quali non rendono noti pattern significativi nel cyphertext\\
+2) dipendente da schemi ripetitivi\\
+3) alta complessità computazionale
 \section{Sostituzione monoalfabetica (2019, 24)}
 \subsection{Descrizione}
+Tipo di crittografia molto debole nell'epoca moderna\\
+Consiste nel sostituire ogni lettera con un'altra cosicché il testo sia pressoché indecifrabile (se letto senza opportuni algoritmi di cifratura)\\
+Viene considerato un algoritmo che è parte del principio di Kerchoff, ovvero che "Il design di un sistema non dovrebbe richiedere segretezza e compromettere il sistema non dovrebbe dare problemi ai corrispondenti"\\
+Infatti il suo principio ha dato vita all'idea che l'algoritmo di encrypting deve essere pubblico (tutti sanno che ogni lettera è sostituita con un'altra) ma le chiavi sono segrete (nessuno sa quale lettere sono state sostituite)
 \subsection{Ambiti d'uso}
+Il suo uso è nato nel passato, grazie all'uso di questa tecnica in documenti militari e diplomatici\\
+L'esempio più famoso è il cifrario di Cesare, il quale consiste nel scambiare ogni lettera con quella 3 lettere davanti nell'alfabeto (esempio la A con la D, la B con la E e così via)\\
+Attualmente viene usato anche come principio d'insegnamento della crittografia e per sfide educative ma non trova quasi mai contesti moderni nell'ambito di internet in cui esso sia realmente utilizzato e sicuro, infatti ormai viene usato più per comunicazioni informali o non critiche
 \subsection{Pregi}
+Il suo grosso pregio è che ci possono essere tantissime chiavi, ovvero 26!-1 chiavi diverse e, con la brute-force, per tentare tutte le combinazioni ci vorrebbe troppo tempo\\
+Inoltre ha dalla sua la facilità d'implementazione e decifratura, comodo se si vuole dare un minimo di sicurezza, ha una bassa dipendenza da risorse tecnologiche ed è ottimo contro i "non esperti"\\
+Inoltre un errore nella cifratura o decifratura di un singolo carattere non compromette gli altri caratteri del messaggio, infatti ogni lettera è cifrata in modo indipendente, a differenza di cifrari più avanzati che collegano i blocchi.
 \subsection{Difetti}
+Ampiamente superata dagli algoritmi moderni, come il DES o anche il triple DES, è decifrabile da qualunque attaccante che abbia una quasi minima conoscenza di crittografia\\
+Infatti, quando si hanno ulteriori informazioni sul sistema, come l'alfabeto utilizzato, la frequenza delle lettere più presenti in quell'alfabeto, i bigrammi e i trigrammi più frequenti, è facile risalire con un'analisi semi-statistica ogni lettere quale lettera rappresenta realmente, rendendo poi più facile la decifratura nei successivi passaggi\\
+Tutto questo infatti si chiama frequency analysis
 \section{Cifrari a trasposizione (2014, 15, 20)}
 \subsection{Descrizione}
+I cifrari a trasposizione sono tecniche di cifratura che consistono nel riordinare le lettere del testo in chiaro seguendo uno schema predeterminato, senza modificarne il valore\\
+A differenza dei cifrari a sostituzione, che sostituiscono i caratteri con altri, la trasposizione si limita a permutare l'ordine delle lettere, generando un testo cifrato che appare casuale\\
+Questi metodi possono essere applicati in vari modi, come attraverso griglie, schemi a zig-zag o scacchiere
 \subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Storia: Utilizzati in contesti militari antichi, come la Scitala spartana, per la trasmissione sicura di messaggi
+\item Didattica: Usati per insegnare i principi fondamentali della crittografia e introdurre le differenze tra trasposizione e sostituzione
+\item Giochi e enigmistica: Applicati in puzzle crittografici o escape room per simulare la decifrazione di messaggi cifrati
+\end{enumerate}
 \subsection{Pregi}
+\begin{enumerate}
+\item Semplicità di implementazione: i cifrari a trasposizione sono facili da applicare sia manualmente che con strumenti minimi, come carta e penna
+\item Maggiore sicurezza rispetto alla sostituzione semplice: non conservano direttamente la frequenza delle lettere del testo in chiaro, rendendo più complessa l'analisi di frequenza
+\item Combinabilità: possono essere combinati con altri cifrari per aumentare la complessità della cifratura
+\item Nessuna propagazione degli errori: un errore nel testo cifrato influisce solo sulla posizione specifica e non compromette il resto del messaggio
+\end{enumerate}
 \subsection{Difetti}
+\begin{enumerate}
+\item Pattern evidenti: la trasposizione, se applicata a testi lunghi o con schemi ripetuti, può lasciare indizi utili per la decifrazione
+\item Vulnerabilità ad attacchi combinatori: con strumenti moderni, uno schema di trasposizione può essere decifrato analizzando tutte le possibili permutazioni
+\item Necessità di una chiave condivisa: la decifratura richiede che il destinatario conosca lo schema esatto usato per la trasposizione
+\item Limitata sicurezza moderna: contro i metodi crittografici avanzati, i cifrari a trasposizione non offrono un livello di protezione adeguato
+\end{enumerate}
 \section{DES e triplo DES (2016, 18, 20, 21, 22, 23, 24)}
 \subsection{Descrizione}
+Il **DES (Data Encryption Standard)** è un algoritmo di cifratura simmetrica sviluppato negli anni '70 e standardizzato nel 1977\\
+Utilizza una chiave di 56 bit e un approccio basato sulla cifratura a blocchi di 64 bit, combinando sostituzione e trasposizione attraverso 16 round di operazioni\\
+Il Triple DES (3DES) è un'estensione del DES che applica l'algoritmo tre volte in sequenza (cifratura-decifratura-cifratura) con due o tre chiavi separate per migliorare la sicurezza\\
 \subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Bancario: DES e 3DES sono stati ampiamente utilizzati nei sistemi bancari per proteggere transazioni elettroniche, come nei bancomat e nei POS
+\item Standard di sicurezza: 3DES è stato adottato come standard di sicurezza degli USA
+\end{enumerate}
 \subsection{Pregi}
+\begin{enumerate}
+\item Semplicità: DES e 3DES sono ben documentati e semplici da implementare
+\item Compatibilità: 3DES ha garantito una transizione graduale dai sistemi basati su DES
+\item Maggiore sicurezza rispetto a DES: l'uso di tre chiavi in 3DES aumenta significativamente la lunghezza effettiva della chiave, rendendo più difficile il brute-force
+\end{enumerate}
 \subsection{Difetti}
+\begin{enumerate}
+\item \textbf{Chiave corta (DES)}: i 56 bit di chiave di DES sono vulnerabili agli attacchi brute-force con le tecnologie attuali.
+\item Prestazioni (3DES): l'applicazione tripla dell'algoritmo lo rende più lento rispetto ad alcune soluzioni moderne
+\item Deprecazione: DES è considerato insicuro ed è stato deprecato dagli standard
+Anche 3DES è in fase di abbandono
+\item Lunghezza effettiva della chiave (3DES con 2 chiavi): l'uso di 2 chiavi in 3DES fornisce solo una lunghezza effettiva di 112 bit
+\end{enumerate}
 \section{One time pad (blocco monouso) (2015, 16, 18, 20)}
 \subsection{Descrizione}
+Il One Time Pad (OTP), o cifrario a blocco monouso, è un metodo di cifratura simmetrica che garantisce sicurezza perfetta, a condizione che venga utilizzato correttamente\\
+Il testo in chiaro viene combinato con una chiave completamente casuale, lunga almeno quanto il messaggio, utilizzando operazioni come lo XOR (esclusivo logico)\\
+Ogni chiave deve essere usata una sola volta, da cui il nome "blocco monouso"\\  
+L'OTP è teoricamente inviolabile, ma è inutilizzabile in tutti i contesti moderni, è utilizzato infatti solamente in situazioni eccezionali come comunicazioni segretissime che non possono in nessuna situazione trapelare all'esterno
 \subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Comunicazioni militari e diplomatiche: utilizzato per la trasmissione di informazioni estremamente sensibili, come i messaggi tra capi di stato o militari durante la guerra
+\item Sistemi ad alta sicurezza: Impiegato in sistemi dove la sicurezza assoluta è prioritaria, come nel caso di reti di intelligence
+\item Applicazioni teoriche: usato come esempio ideale per comprendere i limiti e i principi fondamentali della crittografia
+\end{enumerate}
 \subsection{Pregi}
+\begin{enumerate}
+\item Sicurezza perfetta: Se usato correttamente, l'OTP è matematicamente inviolabile, perché il testo cifrato non contiene informazioni statistiche sul testo in chiaro
+\item Semplicità matematica: Il metodo utilizza operazioni semplici, come lo XOR, che lo rendono facile da implementare
+\item Resistenza a tutti gli attacchi crittografici: nessun attacco basato sulla crittoanalisi può violare l'OTP se le sue regole vengono seguite
+\end{enumerate}
 \subsection{Difetti}
+\begin{enumerate}
+\item Gestione della chiave: richiede una chiave lunga quanto il messaggio, che deve essere distribuita e conservata in modo assolutamente sicuro
+\item Uso unico della chiave: ogni chiave può essere utilizzata una sola volta, aumentando la complessità logistica nelle comunicazioni frequenti
+\item Impraticabilità per messaggi lunghi: per messaggi di grandi dimensioni, la gestione delle chiavi diventa onerosa
+\item Difficoltà di distribuzione: la trasmissione sicura della chiave tra le parti è un problema significativo, soprattutto in scenari moderni.
+\item Dipendenza dalla casualità: la sicurezza dipende dalla qualità della chiave, che deve essere completamente casuale
+\end{enumerate}
 \section{ECB (2014)}
 \subsection{Descrizione}
 \subsection{Ambiti d'uso}
