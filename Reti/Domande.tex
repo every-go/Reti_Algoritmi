@@ -20,10 +20,10 @@
 \renewcommand{\contentsname}{Indice}
 \tableofcontents
 \end{center}
+\newpage
 %inizio l'effettivo conteggio delle pagine
 \pagenumbering{arabic}
 \setcounter{page}{1}
-\newpage
 \section{Tipi di cavo (2014)}
 Ci sono diversi tipi di cavo, fra i più utilizzati si trovano:\\
 \begin{enumerate}
@@ -348,35 +348,16 @@ Buffering elevato: la necessità di memorizzare i frame fuori ordine richiede pi
 \section{HDLC}
 \subsection{Descrizione}
 Protocollo concreto ideato inizialmente dall'IBM\\
-I suoi frames sono delimitati tramite bit stuffing e sono composti da:\\
-\begin{enumerate}
-\item Data: è il payload
-\item Checksum: calcolata usando CRC, una tecnica di error detection che sfrutta l'aritmetica polinomiale
-\item Address: serve per la componente di indirizzamento
-\item Control: flow control tramite sliding window $<$= 3 bit. Può essere:
-\begin{enumerate}
-\item Information: composto da Seq (n° controllo), next (ack in piggybacking) e P/F, un bit che indica P (Poll, si chiede al ricevente di iniziare la trasmissione) o F (Final, la trasmissione viene conclusa) 
-\item Supervisory: supervisione flusso di dati con campo Type 
-\begin{enumerate}
-\item Type 0: ACK quando il flusso è sbilanciato
-\item Type 1:NAK, vanno ritrasmessi tutti i frame a partire da quello indicato
-\item Type 2: Receiver not ready
-\item Type 3: classico NAK
-\end{enumerate}
-\item Unnumbered: è usato per ulteriori comandi di controllo:
-\begin{enumerate}
-\item DISC (DISConnect): la macchina sta uscendo dalla rete in maniera definitiva
-\item SNRM (Set Normal Response Mode): la nuova macchina entrata nella rete è meno importante
-\item SABM (Set Asynchronous Balanced Mode): la nuova macchina entrata nella rete ha gli stessi diritti
-\item FRMR (Frame Reject):il frame appena arrivato ha una sequenza di controllo non corretta/sconosciuta
-\item UA (Unnumbered ACK): ACK non numerato (la sliding window è una)
-\end{enumerate}
-\end{enumerate}
-\end{enumerate}
+L'HDLC (High-Level Data Link Control) è un protocollo standard della data link layer progettato per la trasmissione di dati in modo affidabile\\
+Si basa su una struttura a frame (trama) e supporta comunicazioni punto-punto e multipunto\\
+Il protocollo si occupa principalmente di:\\
+Organizzazione dei dati\\
+Affidabilità: fornisce meccanismi di rilevamento e correzione degli errori\\
+Controllo del flusso: evita la congestione gestendo il ritmo della trasmissione
 \subsection{Ambiti d'uso}
-Attualmente viene usato per modem/fax, reti di vario tipo e molti circuit bancari
+Attualmente viene usato per modem/fax, reti di vario tipo (come reti LAN  e WAN) e molti circuit bancari
 \subsection{Pregi}
-Affidabilità nella trasmissione:\\\
+Affidabilità nella trasmissione:\\
 HDLC utilizza meccanismi di rilevamento e correzione degli errori tramite checksum (Cyclic Redundancy Check, CRC), riducendo significativamente il rischio di errori nella trasmissione\\
 Versatilità:\\
 supporta configurazioni punto-punto e multipunto, rendendolo adatto a diverse architetture di rete\\
@@ -403,16 +384,7 @@ In Internet si usa il protocollo PPP (point-to-point protocol)\\
 Questo tipo di protocollo dà un metodo di framing per impacchettare dati che può essere LCP o NCP:\\
 LCP (Link Control Protocol): si occupa del controllo delflusso per attivare le connessione, test, negoziazione e chiusura\\
 NCP (Network Control Protocol): è il metodo per negoziare con lo strato superiore Network\\
-PPP usa byte stuffing nonostante sia leggermente meno efficiente perché è una tecnica di encoding più veloce rispetto al bit stuffing, e nella base di Internet anche la minima velocità in più fa la differenza\\
-Ha diversi campi:
-\begin{enumerate}
-\item FLAG: delimitatore frame
-\item Address: non viene mai usato, valore costante 11111111 (può essere tolto del tutto)
-\item Control: non si usa, valore costante 00000011 (può essere tolto del tutto)
-\item Protocol: si specifica il protocollo implementato (bit 0 per NCP, bit 1 per LCP)
-\item Checksum: calcolato usando CRC e fa solo error detection
-\item Payload: dati il cui significato dipende dal protocollo implementato
-\end{enumerate}
+PPP usa byte stuffing nonostante sia leggermente meno efficiente perché è una tecnica di encoding più veloce rispetto al bit stuffing, e nella base di Internet anche la minima velocità in più fa la differenza
 \subsection{Ambiti d'uso}
 Lo strato fondamentale di Internet, su di esso si basano tutti i protocolli "avanzati" e permette un rapido invio di messaggi con un error detection in aritmetica polinomiale
 \subsection{Pregi}
@@ -753,8 +725,8 @@ Il leaky bucket trova applicazione in diversi contesti, tra cui:
 \end{enumerate}
 \section{Token bucket (2016, 18, 19, 20, 21, 24)}
 \subsection{Descrizione}
-Il leaky bucket è un tipo di algoritmo utilizzato per regolare il flusso di dati in una rete al fine di garantire una trasmissione controllata e costante\\
-Si basa sull'analogia di un secchio che ogni tanto perde, infatti il suo funzionamento è la generazione, ogni certo intervallo di tempo, un token\\
+Il token bucket è un tipo di algoritmo utilizzato per regolare il flusso di dati in una rete al fine di garantire una trasmissione controllata e costante\\
+Si basa sull'analogia di un secchio che ogni tanto perde, infatti ogni certo intervallo di tempo genera un token\\
 I pacchetti in arrivo possono uscire solo se "bruciamo" un token disponibile
 \subsection{Ambiti d'uso}
 Come detto prima è un sistema necessario per garantire il flusso di dati ed è determinante in alcuni ambiti per il rispetto dei parametri del QoS\\
@@ -816,23 +788,7 @@ una configurazione errata può portare a inefficienze o a conflitti nel routing.
 IPv4 (Internet Protocol versione 4) è il protocollo che definisce il formato del datagramma IP e il meccanismo per il trasferimento di dati tra dispositivi su reti basate su IP\\
 L'intestazione (header) di un datagramma IPv4 è suddivisa in due parti principali:
 \begin{itemize}
-\item Parte fissa: È lunga 20 byte e include campi essenziali come:
-\begin{itemize}
-\item Versione:\\
-specifica la versione del protocollo IP in uso (4 per IPv4)
-\item Lunghezza dell'header:\\
-indica la dimensione dell'intestazione in multipli di 4 byte
-\item Tipo di servizio (ToS):\\
-permette di selezionare la qualità del servizio (QoS)
-\item Lunghezza totale:\\
-specifica la dimensione complessiva del datagramma, inclusi header e payload
-\item Time to Live (TTL):\\
-numero massimo di salti consentiti, per evitare che i datagrammi circolino indefinitamente in rete
-\item Checksum:\\
-utilizzato per verificare l'integrità dell'intestazione durante il trasporto
-\item Indirizzo sorgente e destinazione:\\
-rispettivamente l'indirizzo IP del mittente e del destinatario
-\end{itemize}
+\item Parte fissa: È lunga 20 byte e include campi essenziali
 \item Parte variabile: può contenere aggiunte opzionali, come timestamp, sicurezza, o registrazione del percorso, pensate per eventuali funzionalità future
 \end{itemize}
 IPv4 è stato progettato con un'architettura robusta per gestire le comunicazioni su reti eterogenee, garantendo adattabilità
@@ -924,7 +880,7 @@ con l'adozione di IPv6, il NAT diventa meno rilevante poiché IPv6 offre un nume
 \end{enumerate}
 \section{ARP (Address Resolution Protocol) (2014, 17, 18, 19, 20, 22, 23, 24)}
 \subsection{Descrizione}
-L'Address Resolution Protocol (ARP) è un protocollo appartenente al livello di rete (network layer) che consente di trovare la corrispondenza tra un indirizzo IP e un indirizzo MAC (Media Access Control) necessario per la comunicazione all'interno di una rete locale (LAN).
+L'Address Resolution Protocol (ARP) è un protocollo appartenente al livello di rete (network layer) che consente di trovare la corrispondenza tra un indirizzo IP e un indirizzo MAC (Media Access Control) necessario per la comunicazione all'interno di una rete locale (LAN)\\
 Il suo funzionamento può essere riassunto come segue:
 \begin{itemize}
 \item Ogni macchina all'interno della rete mantiene una tabella ARP, che contiene le corrispondenze tra indirizzi IP e indirizzi MAC conosciuti.
@@ -966,7 +922,8 @@ in reti molto grandi o con dispositivi instabili, un numero elevato di richieste
 \section{ICMP (2014, 15, 22)}
 \subsection{Descrizione}
 Internet Control Message Protocol (ICMP) è un protocollo di rete del livello 3 (network layer) progettato per trasmettere messaggi di controllo e segnalazione tra dispositivi in una rete IP\\
-ICMP non è utilizzato per il trasferimento di dati applicativi, ma per comunicare errori, condizioni di rete o informazioni diagnostiche. Alcune delle sue funzioni principali includono
+ICMP non è utilizzato per il trasferimento di dati applicativi, ma per comunicare errori, condizioni di rete o informazioni diagnostiche\\
+Alcune delle sue funzioni principali includono
 \begin{itemize}
 \item Segnalare errori, come l'inaccessibilità di una destinazione o il superamento del TTL (Time to Live)
 \item Gestione del controllo del traffico, ad esempio avvisando un mittente di ridurre la velocità di trasmissione tramite messaggi ICMP Source Quench (sebbene poco usati oggi)
@@ -1129,6 +1086,23 @@ I suoi pregi sono anche le sue principali caratteristiche:
 \item Gestione della connessione: essendo orientato alla connessione, richiede una fase di handshake iniziale, che può essere onerosa in applicazioni con molte connessioni brevi
 \item Difficoltà in reti instabili: in reti molto instabili, il numero di ritrasmissioni può crescere significativamente, rallentando ulteriormente la comunicazione
 \end{enumerate}
+\section{BGP}
+\subsection{Descrizione}
+Il BGP è un protocollo che stabilisce le regole per l'instradamento dei dati tra reti autonome, definendo come devono essere condivise e applicate le informazioni sulle rotte quando il traffico passa da una rete all'altra
+\subsection{Ambiti d'uso}
+Internet: gestisce l'instradamento globale del traffico tra provider di servizi Internet (ISP) e grandi reti aziendali\\
+Data center: ottimizza la comunicazione tra reti interne ed esterne nei grandi data center\\
+Grandi aziende: permette di gestire infrastrutture di rete distribuite su scala globale con resilienza garantita
+\subsection{Pregi}
+Scalabilità: è in grado di gestire milioni di rotte, rendendolo adatto alle reti più grandi\\
+Flessibilità: permette un controllo dettagliato del routing tramite policy personalizzate\\
+Resilienza: garantisce continuità della connessione grazie al supporto per ridondanza e failover\\
+Standard globale: è il protocollo di routing principale di Internet e universalmente supportato
+\subsection{Difetti}
+Complessità: la configurazione e gestione di BGP richiedono competenze tecniche avanzate\\
+Sicurezza debole: non dispone di meccanismi di sicurezza intrinseci ed è vulnerabile ad attacchi \\
+Errori umani: configurazioni errate possono propagarsi su larga scala, causando problemi globali\\
+Dipendenza da policy: le decisioni di instradamento non sempre garantiscono il percorso più rapido o ottimale
 \section{Attacchi ciphertext only (2019, 20)}
 Uno dei più comuni esempi di questo tipo di attacco è l'attacco brute-force
 \subsection{Descrizione}
@@ -1188,30 +1162,6 @@ Questi metodi possono essere applicati in vari modi, come attraverso griglie, sc
 \item Necessità di una chiave condivisa: la decifratura richiede che il destinatario conosca lo schema esatto usato per la trasposizione
 \item Limitata sicurezza moderna: contro i metodi crittografici avanzati, i cifrari a trasposizione non offrono un livello di protezione adeguato
 \end{enumerate}
-\section{DES e triplo DES (2016, 18, 20, 21, 22, 23, 24)}
-\subsection{Descrizione}
-Il **DES (Data Encryption Standard)** è un algoritmo di cifratura simmetrica sviluppato negli anni '70 e standardizzato nel 1977\\
-Utilizza una chiave di 56 bit e un approccio basato sulla cifratura a blocchi di 64 bit, combinando sostituzione e trasposizione attraverso 16 round di operazioni\\
-Il Triple DES (3DES) è un'estensione del DES che applica l'algoritmo tre volte in sequenza (cifratura-decifratura-cifratura) con due o tre chiavi separate per migliorare la sicurezza\\
-\subsection{Ambiti d'uso}
-\begin{enumerate}
-\item Bancario: DES e 3DES sono stati ampiamente utilizzati nei sistemi bancari per proteggere transazioni elettroniche, come nei bancomat e nei POS
-\item Standard di sicurezza: 3DES è stato adottato come standard di sicurezza degli USA
-\end{enumerate}
-\subsection{Pregi}
-\begin{enumerate}
-\item Semplicità: DES e 3DES sono ben documentati e semplici da implementare
-\item Compatibilità: 3DES ha garantito una transizione graduale dai sistemi basati su DES
-\item Maggiore sicurezza rispetto a DES: l'uso di tre chiavi in 3DES aumenta significativamente la lunghezza effettiva della chiave, rendendo più difficile il brute-force
-\end{enumerate}
-\subsection{Difetti}
-\begin{enumerate}
-\item \textbf{Chiave corta (DES)}: i 56 bit di chiave di DES sono vulnerabili agli attacchi brute-force con le tecnologie attuali.
-\item Prestazioni (3DES): l'applicazione tripla dell'algoritmo lo rende più lento rispetto ad alcune soluzioni moderne
-\item Deprecazione: DES è considerato insicuro ed è stato deprecato dagli standard
-Anche 3DES è in fase di abbandono
-\item Lunghezza effettiva della chiave (3DES con 2 chiavi): l'uso di 2 chiavi in 3DES fornisce solo una lunghezza effettiva di 112 bit
-\end{enumerate}
 \section{One time pad (blocco monouso) (2015, 16, 18, 20)}
 \subsection{Descrizione}
 Il One Time Pad (OTP), o cifrario a blocco monouso, è un metodo di cifratura simmetrica che garantisce sicurezza perfetta, a condizione che venga utilizzato correttamente\\
@@ -1238,39 +1188,219 @@ L'OTP è teoricamente inviolabile, ma è inutilizzabile in tutti i contesti mode
 \item Difficoltà di distribuzione: la trasmissione sicura della chiave tra le parti è un problema significativo, soprattutto in scenari moderni.
 \item Dipendenza dalla casualità: la sicurezza dipende dalla qualità della chiave, che deve essere completamente casuale
 \end{enumerate}
+\section{DES e triplo DES (2016, 18, 20, 21, 22, 23, 24)}
+\subsection{Descrizione}
+Il **DES (Data Encryption Standard)** è un algoritmo di cifratura simmetrica sviluppato negli anni '70 e standardizzato nel 1977\\
+Utilizza una chiave di 56 bit e un approccio basato sulla cifratura a blocchi di 64 bit, combinando sostituzione e trasposizione attraverso 16 round di operazioni\\
+Il Triple DES (3DES) è un'estensione del DES che applica l'algoritmo tre volte in sequenza (cifratura-decifratura-cifratura) con due o tre chiavi separate per migliorare la sicurezza\\
+Encrypting e decrypting sono oltretutto intercambiabili perché non ci deve essere un ordine preciso, l'importante è non criptare e decriptare con la stessa chiave
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Bancario: DES e 3DES sono stati ampiamente utilizzati nei sistemi bancari per proteggere transazioni elettroniche, come nei bancomat e nei POS
+\item Standard di sicurezza: 3DES è stato adottato come standard di sicurezza degli USA
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Semplicità: DES e 3DES sono ben documentati e semplici da implementare
+\item Compatibilità: 3DES ha garantito una transizione graduale dai sistemi basati su DES
+\item Maggiore sicurezza rispetto a DES: l'uso di tre chiavi in 3DES aumenta significativamente la lunghezza effettiva della chiave, rendendo più difficile il brute-force
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item \textbf{Chiave corta (DES)}: i 56 bit di chiave di DES sono vulnerabili agli attacchi brute-force con le tecnologie attuali.
+\item Prestazioni (3DES): l'applicazione tripla dell'algoritmo lo rende più lento rispetto ad alcune soluzioni moderne
+\item Deprecazione: DES è considerato insicuro ed è stato deprecato dagli standard
+Anche 3DES è in fase di abbandono
+\item Lunghezza effettiva della chiave (3DES con 2 chiavi): l'uso di 2 chiavi in 3DES fornisce solo una lunghezza effettiva di 112 bit
+\end{enumerate}
+\section{AES}
+\subsection{Descrizione}
+L'Advanced Encryption Standard (AES) è il successore del Data Encryption Standard (DES) ed è l'attuale standard mondiale per la crittografia simmetrica\\
+AES è composto da diversi algoritmi di cifratura a blocchi, utilizzando chiavi di lunghezza variabile\\
+Le chiavi e i blocchi possono essere scelti a 128 bit, 192 bit o 256 bit, sin dal momento della creazione dello standard, permettendo l'evoluzione della sicurezza e la scalabilità dello stesso quando necessario
+\subsection{Ambiti d'uso}
+AES è ampiamente utilizzato in molti ambiti, tra cui:
+\begin{enumerate}
+\item Crittografia dei dati: protezione dei dati sensibili in archiviazione e durante il trasferimento (ad esempio, in HTTPS, VPN, e-mail criptate).
+\item Sistemi di autenticazione: protezione delle password e delle credenziali di accesso
+\item Comunicazioni sicure: impiegato nei protocolli di sicurezza come SSL/TLS, WPA2 (Wi-Fi Protected Access), e IPsec
+\item Sistemi di pagamento: crittografia delle transazioni bancarie e carte di credito
+\end{enumerate}
+\subsection{Pregi}
+I principali vantaggi di AES includono:
+\begin{enumerate}
+\item Elevata sicurezza: AES è considerato sicuro contro attacchi come il brute force, e le chiavi di 256 bit offrono un livello di sicurezza molto elevato
+\item Velocità: AES è molto veloce sia in hardware che in software, ed è progettato per essere efficiente anche in dispositivi con risorse limitate
+\item Resilienza: AES è resistente a vari tipi di attacchi crittografici, come quelli basati su analisi delle frequenze
+\item Standard ampiamente supportato: AES è universalmente adottato e supportato in numerosi dispositivi e software di sicurezza
+\end{enumerate}
+\subsection{Difetti}
+Nonostante i numerosi vantaggi, AES presenta alcuni svantaggi:
+\begin{enumerate}
+\item Efficienza in dispositivi a bassa potenza: sebbene AES sia efficiente in hardware, può risultare meno ottimizzato in ambienti a bassa potenza o risorse limitate se implementato in software
+\item Dipendenza dalla gestione delle chiavi: la sicurezza di AES dipende fortemente dalla corretta gestione delle chiavi. Se le chiavi vengono compromesse, la protezione dei dati è compromessa
+\end{enumerate}
+\section{RSA}
+\subsection{Descrizione}
+RSA è un algoritmo di crittografia a chiave pubblica, ampiamente utilizzato per la protezione dei dati\\
+La sicurezza di RSA si basa sulla difficoltà di fattorizzare numeri molto grandi, il che lo rende adatto per applicazioni come la firma digitale e lo scambio sicuro di chiavi
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Firma digitale: utilizzato per verificare l'autenticità dei documenti e dei messaggi
+\item Scambio sicuro di chiavi: usato per stabilire connessioni sicure tra due parti, come nel caso di SSL/TLS
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Sicurezza basata su matematica solida: la sicurezza di RSA è ben compresa e si basa su principi matematici comprovati
+\item Flessibilità: può essere utilizzato sia per la crittografia che per la firma digitale
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Bassa velocità: RSA è più lento rispetto ad altri algoritmi simmetrici, il che lo rende meno ideale per cifrare grandi quantità di dati
+\item Vulnerabilità alla fattorizzazione: la sicurezza di RSA può essere compromessa se i numeri utilizzati sono troppo piccoli o se vengono sviluppati metodi di fattorizzazione più efficienti
 \section{ECB (2014)}
 \subsection{Descrizione}
+ECB (Electronic Code Book) è un modo di trasmettere testi cifrati\\
+Infatti, il testo viene suddiviso in blocchi, e ogni blocco viene considerato come se fosse la pagina di un libro\\
+Per risolvere eventuali mescolamenti delle pagine da parte di attaccanti, si creano dipendenze tra le pagine del libro in modo che non sia possibile scambiarle di posto
 \subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Cifratura di dati in batch: adatto per situazioni in cui i dati devono essere cifrati separatamente e senza dipendenza tra i blocchi
+\item Applicazioni con requisiti di alta velocità: l'assenza di dipendenza tra i blocchi permette un'elaborazione rapida, ideale per applicazioni che richiedono performance elevate
+\item Sistemi legacy: utilizzato in sistemi più vecchi o in ambienti con limitate risorse di elaborazione
+\end{enumerate}
 \subsection{Pregi}
+I principali vantaggi dell'ECB includono:
+\begin{enumerate}
+\item Semplicità: il funzionamento di ECB è facile da comprendere e implementare
+\item Parallellizzazione: poiché ogni blocco è cifrato separatamente, l'algoritmo può essere facilmente parallellizzato per migliorare le performance
+\item Velocità: essendo una modalità senza dipendenza tra i blocchi, è generalmente veloce e consuma meno risorse computazionali rispetto ad altri metodi
+\end{enumerate}
 \subsection{Difetti}
-\section{Counter mode cipher (2016)}
-\subsection{Descrizione}
-\subsection{Ambiti d'uso}
-\subsection{Pregi}
-\subsection{Difetti}
+Nonostante i vantaggi, ECB presenta anche alcuni svantaggi significativi:
+\begin{enumerate}
+\item Vulnerabilità agli attacchi di pattern: poiché lo stesso blocco di testo in chiaro viene sempre cifrato nello stesso modo, i pattern nei dati possono essere facilmente identificati, rendendo ECB meno sicuro per dati sensibili, come quelli contenenti informazioni ripetitive
+\item Mancanza di diffusione: non essendo basato su meccanismi di mescolamento tra blocchi, eventuali debolezze in un singolo blocco possono propagarsi attraverso i dati cifrati
+\end{enumerate}
 \section{Stream cipher (2015, 16, 18, 19, 20, 23, 24)}
 \subsection{Descrizione}
+I cifrari a flusso cifrano i dati un bit o un byte alla volta\\
+A differenza dei cifrari a blocchi, che operano su intere unità di dati (blocchi), i cifrari a flusso utilizzano una chiave segreta per generare una sequenza di bit che viene combinata con il testo in chiaro tramite XOR\\
+Sono più adatti per applicazioni che richiedono una cifratura continua, come nei canali di comunicazione
 \subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Comunicazioni in tempo reale: utilizzato in ambienti come il VoIP (Voice over IP) e altre forme di comunicazione in tempo reale
+\item Protezione dei dati mobili: implementato in dispositivi mobili per garantire la cifratura continua dei dati
+\item Trasmissioni in tempo reale: impiegato per la cifratura di flussi di dati in tempo reale in applicazioni come video streaming e giochi online
+\end{enumerate}
 \subsection{Pregi}
+\begin{enumerate}
+\item Alta velocità: i cifrari a flusso sono veloci, poiché operano su singoli bit o byte, rendendoli ideali per applicazioni che richiedono elevata velocità di cifratura
+\item Efficienza in spazi limitati: essendo basati su una chiave continua, i cifrari a flusso sono ideali per dispositivi con risorse di calcolo limitate
+\item Adatti per flussi di dati infiniti: sono perfetti per applicazioni dove il flusso di dati non è predefinito o è continuo nel tempo
+\end{enumerate}
 \subsection{Difetti}
-\section{Hash crittografici, HMAC (2016, 18, 19)}
+\begin{enumerate}
+\item Vulnerabilità al riutilizzo della chiave: se la stessa chiave viene riutilizzata, i dati cifrati diventano vulnerabili agli attacchi
+\item Difficoltà di implementazione sicura: un'implementazione scorretta può esporre la chiave segreta a possibili attacchi
+\end{enumerate}
+\section{MTM}
 \subsection{Descrizione}
+MTM (Man In The Middle) si riferisce a un tipo di attacco in cui un attaccante modifica i dati scambiati tra due parti senza il loro consenso\\
+Questi attacchi possono compromettere l'integrità e l'autenticità delle informazioni, inoltre i dati possono essere rubati dagli attaccanti\\
+Per essere contrastato, sono stati ideati i CA (Certification Authority) che certificano che l'unità con cui si sta parlando è effettivamente quella vera e non qualcuno che finge di essere ad esempio una banca
 \subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Attacchi contro i sistemi di comunicazione sicura: utilizzati per compromettere l'integrità dei dati trasmessi su reti sicure
+\item Furto di dati sensibili: Gli attacchi MTM possono essere utilizzati per alterare o rubare dati sensibili
+\end{enumerate}
 \subsection{Pregi}
+\begin{enumerate}
+\item Facilità di esecuzione: gli attacchi MTM non richiedono necessariamente una conoscenza avanzata delle tecniche di hacking
+\item Alta efficacia: gli attacchi MTM possono compromettere rapidamente la sicurezza dei sistemi target
+\end{enumerate}
 \subsection{Difetti}
-\section{Modi di attaccare DNS (2018)}
-\subsection{Descrizione}
-\subsection{Ambiti d'uso}
-\subsection{Pregi}
-\subsection{Difetti}
-\section{802.11 (2015)}
-\subsection{Descrizione}
-\subsection{Ambiti d'uso}
-\subsection{Pregi}
-\subsection{Difetti}
+\begin{enumerate}
+\item Contrasto tramite crittografia: l'uso di crittografia e firme digitali può prevenire gli attacchi MTM
+\item Alta visibilità in ambienti protetti: gli attacchi MTM sono più facili da rilevare in ambienti sicuri e ben protetti
+\end{enumerate}
 \section{IPSec (2019, 20, 22)}
 \subsection{Descrizione}
+IPsec è un protocollo di rete che fornisce crittografia e autenticazione per le comunicazioni IP\\
+Viene utilizzato per garantire la sicurezza delle comunicazioni tramite reti non sicure, come Internet, ed è particolarmente utile per la creazione di VPN sicure
 \subsection{Ambiti d'uso}
+\begin{enumerate}
+\item VPN (Virtual Private Network): utilizzato per creare reti private virtuali sicure su reti pubbliche
+\item Comunicazioni sicure tra dispositivi: protegge le comunicazioni tra dispositivi in reti aziendali o su Internet
+\end{enumerate}
 \subsection{Pregi}
+\begin{enumerate}
+\item Sicurezza forte: fornisce protezione contro intercettazioni e alterazioni dei dati
+\item Compatibilità con vari protocolli di rete: IPSec può essere utilizzato su molteplici protocolli di rete, inclusi IPv4 e IPv6
+\end{enumerate}
 \subsection{Difetti}
+\begin{enumerate}
+\item Complessità di implementazione: la configurazione e la gestione di IPSec possono essere complesse
+\item Overhead di rete: l'uso di IPSec può introdurre un overhead di rete, rallentando le comunicazioni
+\end{enumerate}
+\section{Modi di attaccare DNS (2018)}
+\subsection{Descrizione}
+Gli attacchi al Domain Name System (DNS) mirano a compromettere la risoluzione dei nomi di dominio, influenzando le comunicazioni su Internet. Due delle principali tecniche di attacco sono il DNS spoofing e il DDoS (Distributed Denial of Service)\\
+Il DNS spoofing consiste nell'inviare risposte DNS false a un client o a un server DNS, ingannando il sistema di risoluzione dei domini e redirigendo il traffico verso destinazioni non desiderate\\
+Il DDoS contro i server DNS può essere utilizzato per sovraccaricare un server DNS con un volume massiccio di traffico, impedendo che possa risolvere correttamente i domini per gli utenti legittimi
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Attacchi contro la disponibilità di siti web: utilizzati per dirottare il traffico Internet verso server malevoli (DNS spoofing) o per sovraccaricare i server DNS, rendendo i siti web e i servizi online irraggiungibili (DDoS)
+\item Attacchi di phishing: il DNS spoofing viene utilizzato per reindirizzare gli utenti a siti web fasulli, rubando informazioni sensibili come credenziali di login, dati bancari, e altro
+\item Interruzione di servizio: il DDoS su server DNS è utilizzato per impedire la risoluzione dei domini, causando interruzioni nei servizi di rete
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Semplicità: gli attacchi come il DNS spoofing sono relativamente facili da eseguire, richiedendo poche risorse e conoscenze tecniche
+\item Efficacia: Il DNS spoofing può compromettere rapidamente la navigazione web, reindirizzando gli utenti a siti malevoli
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Difesa con DNSSEC: meccanismi di protezione come DNSSEC (DNS Security Extensions) possono prevenire il DNS spoofing
+\item Difficoltà di difesa contro DDoS: i DDoS contro i server DNS richiedono soluzioni scalabili come il bilanciamento del carico e l'uso di reti distribuite per mitigare l'impatto
+\end{enumerate}
+\section{Hash crittografici, HMAC (2016, 18, 19)}
+\subsection{Descrizione}
+Un hash crittografico è una funzione che prende un input e restituisce una stringa di lunghezza fissa\\
+Le funzioni hash sono progettate per essere unidirezionali, cioè facili da calcolare ma difficili da invertire\\
+HMAC (Hashed Message Authentication Code) è una costruzione basata su una funzione hash che fornisce un meccanismo di autenticazione per verificare l'integrità e l'autenticità dei messaggi
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Autenticazione nei protocolli di rete: utilizzato in protocollo come IPsec, TLS e HTTPS per garantire che i dati non siano stati alterati durante la trasmissione
+\item Verifica dell'integrità dei dati: impiegato per assicurare che i dati non siano stati modificati durante la trasmissione o l'archiviazione
+\item Generazione di chiavi segrete: utilizzato per la generazione di chiavi segrete condivise tra due parti
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Sicurezza: HMAC fornisce una forte garanzia di integrità e autenticità, proteggendo i dati da modifiche non autorizzate
+\item Flessibilità: È compatibile con qualsiasi funzione hash, come SHA-1, SHA-256, ecc
+\item Efficienza: HMAC è relativamente efficiente dal punto di vista computazionale, rendendolo adatto anche a dispositivi con risorse limitate
+\end{enumerate}
+\subsection{Difetti}
+Lentezza con funzioni hash deboli: se la funzione hash utilizzata non è ottimale le prestazioni e la sicurezza possono essere compromesse
+\end{enumerate}
+\section{WEP}
+\subsection{Descrizione}
+WEP (Wired Equivalent Privacy) è un protocollo di sicurezza per le reti wireless, progettato per fornire un livello di protezione simile a quello delle reti cablate\\
+Utilizza il sistema di cifratura RC4 e una chiave di 64 o 128 bit per criptare i dati trasmessi tra il dispositivo wireless e il punto di accesso
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Reti wireless domestiche: WEP è stato uno dei primi protocolli di sicurezza per reti Wi-Fi e veniva utilizzato principalmente nelle reti domestiche
+\item Reti aziendali: In passato, molte aziende implementavano WEP per proteggere le loro reti wireless interne, sebbene sia stato successivamente sostituito da protocolli più sicuri come WPA e WPA2
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Implementazione semplice: WEP è facile da configurare e implementare, rendendolo una scelta popolare nelle prime fasi della sicurezza delle reti wireless
+\item Supporto diffuso: essendo uno dei primi protocolli di sicurezza per le reti wireless, WEP è stato ampiamente supportato da vari dispositivi
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Vulnerabilità nella cifratura: Il metodo di cifratura RC4 e la gestione delle chiavi sono vulnerabili ad attacchi di forza bruta e attacchi di tipo "cracking", rendendo WEP obsoleto
+\item Debolezza nella gestione delle chiavi: WEP utilizza una chiave condivisa statica, il che rende facile per un attaccante decifrare i dati dopo l'acquisizione di una quantità sufficiente di pacchetti cifrati
+\end{enumerate}
 \end{document}
