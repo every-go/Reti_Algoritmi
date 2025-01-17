@@ -37,7 +37,7 @@ Fornisce ampiezza di banda ed eccellente immunità al rumore
 \item Fibra ottica: non si ha più elettricità ma si trasporta la luce, grazie a un pezzetto di vetro interno che non deve assolutamente rompersi, però non subisce interferenze elettriche\\
 La connessione tra fibre può avere: connettori che perdono 10-20$\%$ di luce, allineatori meccanici coi quali si perde il 10$\%$ di luce, oppure per fusione con la quale si perde il 2$\%$ di luce\\
 L'ampiezza di banda raggiungibile va sicuramente oltre i 50Tbps ma si è chiusi dal limite pratico di 10Gbps\\
-C'è anche un tipo di fibra detto monomodale in cui la luce si propaga solo in linea retta, è più costosa ed utilizzata sopratutto sulle lunghe distanze
+C'è anche un tipo di fibra detto monomodale in cui la luce si propaga solo in linea retta, è più costosa ed utilizzata soprattutto sulle lunghe distanze
 \end{enumerate}
 \section{Satelliti (2015, 16, 18, 19, 20 21, 23, 24)}
 Esistono tre tipologie principali di satelliti: \\
@@ -68,7 +68,6 @@ Poiché i satelliti GEO appaiono "fissi" nel cielo, non è necessario un sistema
 \end{enumerate}
 \subsubsection{Difetti}
 C'è un limite di 180 satelliti per evitare interferenze tra le frequenze radio e sovrapposizioni delle orbite, inoltre richiedono tantissima energia prodotta comunque dai pannelli solari\\
-Inoltre, utilizzando la banda Ku si è molto limitati dalla pioggia\\
 Sono satelliti fermi nella nostra testa che stanno nell'orbita circolare dell'equatore il che vuol dire che sono meno efficaci alle alte latitudini (vicino ai poli)\\
 Infine sono un vero disastro per sicurezza e privacy perché tutto può essere ascoltato da tutti (salva la crittografia adottata)
 \subsection{Satelliti MEO}
@@ -94,7 +93,7 @@ Forniscono connessioni Internet a banda larga, permettono di osservare la Terra,
 \subsubsection{Pregi}
 Il tempo di latenza è molto breve, i costi di lancio e costruzione sono ridotti rispetto ai satelliti più elevati\\
 Si ha un'alta risoluzione per ottenere immagini più dettagliate\\
-Sono facili da aggiornare, nel senso che le costellazioni di satelliti possono essere integrate o sostiuite rapidamente\\
+Sono facili da aggiornare, nel senso che le costellazioni di satelliti possono essere integrate o sostituite rapidamente\\
 Le stazioni terrestri non hanno bisogno di molta energia, il ritardo nelle comunicazioni è di pochi millisecondi
 \subsubsection{Difetti}
 Avendo una durata operativa molto bassa, ora sono presenti tantissimi detriti spaziali che rischiano di scombussolare l'intero sistema dei satelliti causando un effetto domino\\
@@ -163,7 +162,7 @@ Efficienza limitata, sicuramente inferiore alla QAM
 \subsection{Descrizione}
 Ci sono diversi tipi di QAM:\\
 Col QAM-16 si combinano più tipi di modulazione (4 ampiezze e 4 fasi per un totale di 16 combinazioni) in modo che se qualcosa viene attenuato o disperso il sistema è più robusto permettendo la trasmissione di 4 bit per simbolo\\
-Poi esiste anche il QAM-64 il quale permette di arrivare a un bitrate sestuplo rispetto ai baud (6 bit per simbollo) e 3 volte quello dei QPSK
+Poi esiste anche il QAM-64 il quale permette di arrivare a un bitrate sestuplo rispetto ai baud (6 bit per simbolo) e 3 volte quello dei QPSK
 \subsection{Ambiti d'uso}
 Usato principalmete per telecomunicazioni e reti dati come DSL, ADSL, Reti wireless, tecnologie 4G e 5G, per la televisione digitale e il broadcasting, per le comunicazioni satellitari, per il modem e la trasmissione dati su fibra ottica
 \subsection{Pregi}
@@ -183,7 +182,7 @@ Per evitare interferenze tra il segnale telefonico e quello internet, viene intr
 \subsection{Ambiti d'uso}
 Usata come sistema di connessione per abitazioni private, piccole e medie imprese, appartamenti e condomini
 \subsection{Pregi}
-Si può spezzare la banda in 256 sottocanali da 4312.5Hz (1 voce, 5 vuoti, 32 upload, resto download) e indipendenti, ovvero ogni canale viene trattato come una connessione telefonica a sè stante e c'è controllo costante sulla qualità della trasmissione $\to$ ogni canale può essere rallentato/accelerato indipendetemente\\
+Si può spezzare la banda in 256 sottocanali da 4312.5Hz (1 voce, 5 vuoti, 32 upload, resto download) e indipendenti, ovvero ogni canale viene trattato come una connessione telefonica a sé stante e c'è controllo costante sulla qualità della trasmissione $\to$ ogni canale può essere rallentato/accelerato indipendetemente\\
 Inoltre si ha un costo contenuto e un'accessibilità diffusa
 \subsection{Difetti}
 La velocità e la qualità della connessione ADSL diminuiscono significativamente con l'aumentare della distanza dell'abitazione o dell'ufficio dalla centrale telefonica\\
@@ -256,14 +255,14 @@ Il byte stuffing è utilizzato per codificare pacchetti dati nei protocolli a fr
 Metodo semplice e intuitivo per gestire il problema dei caratteri riservati\\
 Il primo metodo adottato per realizzare l'escaping risultando storico e consolidato in molte applicazioni
 \subsubsection{Difetti}
-Il problema potenziale è che ci possono essere molte più flag/escape del necessario, in quanto ogni carattere originale dopo lo stuffing è preceduto da un escape, e se già ci sono degli escape nel messaggi originale in quello finale ce ne saranno molti di più rendendo lunga la decodifica del messaggio\\
+Il problema potenziale è che ci possono essere molte più flag/escape del necessario, in quanto ogni carattere originale dopo lo stuffing è preceduto da un escape, e se già ci sono degli escape nel messaggio originale in quello finale ce ne saranno molti di più rendendo lunga la decodifica del messaggio\\
 Oltretutto usa grandezze fisse il che lo rende inefficiente in contesti che richiedono maggiore flessibilità
 \subsection{Bit stuffing}
 \subsubsection{Descrizione}
 Il bit stuffing è una tecnica più sofisticata che lavora a livello di bit anziché di byte\\
 In questa tecnica, viene aggiunto un bit 0 ogni volta che nel flusso di dati appaiono cinque bit consecutivi impostati a 1\\ Questo serve a evitare che il ricevitore interpreti erroneamente una sequenza di bit come un FLAG 
 \subsubsection{Ambiti d'uso}
-Il bit stuffing è ampiamente utilizzato in protocolli di comunicazione ad alta efficienza, come HDLC (High-Level Data Link Control), reti CAN, e altre tecnologie di trasmissione dati in cui è essenziale ottimizzare la trasmissione rispetto al byte stuffing
+Il bit stuffing è ampiamente utilizzato in protocolli di comunicazione ad alta efficienza, come HDLC (High-Level Data Link Control), e altre tecnologie di trasmissione dati in cui è essenziale ottimizzare la trasmissione rispetto al byte stuffing
 \subsubsection{Pregi}
 Risolve il problema della grandezza fissa usando i bit e risolve il problema degli escaping multipli\\
 Con la tecnica dello 0 dopo cinque 1 si ha un solo livello di escaping consentendo una più veloce decodifica
@@ -329,7 +328,7 @@ Non adatto a reti con alti tassi di errore, dove le frequenti ritrasmissioni pos
 Ritardo aumentato: i frame corretti che seguono un errore non possono essere elaborati finché il frame errato non viene ritrasmesso e riconosciuto
 \section{Selective Repeat (2022)}
 \subsection{Descrizione}
-Selective Repeat è protocollo di trasmissione basato sulle Sliding Windows, progettato per gestire in modo efficiente la comunicazione tra mittente e ricevente sopratutto in presenza di errori\\
+Selective Repeat è protocollo di trasmissione basato sulle Sliding Windows, progettato per gestire in modo efficiente la comunicazione tra mittente e ricevente soprattutto in presenza di errori\\
 In questo caso specifico la taglia delle sliding window per chi riceve è di una taglia maggiore rispetto ai Go back N (1) richiedendo però un buffer di taglia la sua apertura\\
 Consente al ricevitore di accettare e memorizzare i frame ricevuti fuori ordine in un buffer\\
 Permette al mittente di ritrasmettere solo i frame specifici che risultano persi o corrotti, riducendo l'overhead associato alla ritrasmissione di interi blocchi di dati
@@ -355,7 +354,7 @@ Organizzazione dei dati\\
 Affidabilità: fornisce meccanismi di rilevamento e correzione degli errori\\
 Controllo del flusso: evita la congestione gestendo il ritmo della trasmissione
 \subsection{Ambiti d'uso}
-Attualmente viene usato per modem/fax, reti di vario tipo (come reti LAN  e WAN) e molti circuit bancari
+Attualmente viene usato per modem/fax, reti di vario tipo (come reti LAN  e WAN) e molti circuiti bancari
 \subsection{Pregi}
 Affidabilità nella trasmissione:\\
 HDLC utilizza meccanismi di rilevamento e correzione degli errori tramite checksum (Cyclic Redundancy Check, CRC), riducendo significativamente il rischio di errori nella trasmissione\\
@@ -363,8 +362,6 @@ Versatilità:\\
 supporta configurazioni punto-punto e multipunto, rendendolo adatto a diverse architetture di rete\\
 Controllo di flusso efficiente:\\
 implementa tecniche di acknowledgment e gestione della finestra scorrevole per garantire una trasmissione fluida ed evitare congestioni\\
-Semplicità delle operazioni:\\
-le tre modalità di funzionamento (Normal Response Mode, Asynchronous Balanced Mode, e Asynchronous Response Mode) permettono flessibilità e semplicità nell'implementazione\\
 Efficienza nella trasmissione continua:\\
 HDLC utilizza frame strutturati con overhead minimo, ottimizzando la trasmissione di dati su collegamenti con capacità elevate
 \subsection{Difetti}
@@ -382,7 +379,7 @@ In caso di errore, il frame deve essere ritrasmesso, aumentando il ritardo
 Le connessioni Internet possono essere dedicate punto a punto (point-to-point)\\
 In Internet si usa il protocollo PPP (point-to-point protocol)\\
 Questo tipo di protocollo dà un metodo di framing per impacchettare dati che può essere LCP o NCP:\\
-LCP (Link Control Protocol): si occupa del controllo delflusso per attivare le connessione, test, negoziazione e chiusura\\
+LCP (Link Control Protocol): si occupa del controllo del flusso per attivare le connessione, test, negoziazione e chiusura\\
 NCP (Network Control Protocol): è il metodo per negoziare con lo strato superiore Network\\
 PPP usa byte stuffing nonostante sia leggermente meno efficiente perché è una tecnica di encoding più veloce rispetto al bit stuffing, e nella base di Internet anche la minima velocità in più fa la differenza
 \subsection{Ambiti d'uso}
@@ -394,7 +391,7 @@ Purtroppo usando il byte stuffing dipende da delle grandezze fisse e non per l'a
 \section{Aloha (2014, 17, 18, 19, 21, 23)}
 \subsection{Descrizione}
 Aloha è un tipo di protocollo multiaccesso, ovvero quei sistemi di comunicazione multipla in cui c'è un unico canale condiviso da molti (contention)\\
-Ogni protocollo di questo tipo ha la station model (entità che trasmettono) e le collision (quando 2 frame si sovrappongono c'è una collisione e sono inutilizzabile rendendo inutile CDMA)\\
+Ogni protocollo di questo tipo ha la station model (entità che trasmettono) e le collision (quando 2 frame si sovrappongono c'è una collisione e sono inutilizzabili)\\
 Questo protocollo sfrutta le probabilità, infatti, nell'eventualità di una collisione, il tempo di ritrasmissione è deciso dalle probabilità\\
 La probabilità che k frames siano generati in un certo intervallo di tempo è di tipo Poisson e viene studiata con la sua distribuzione\\
 Grazie a questa si ottiene che con Aloha "classico" si ottiene un 18,4$\%$ di banda che ha il pregio di non dipendere dal numero di trasmissioni contemporanee\\
@@ -452,7 +449,7 @@ utilizzato nei sistemi dove il mezzo trasmissivo è condiviso da molteplici disp
 Semplicità:\\
 CSMA è relativamente semplice da implementare e si adatta bene a reti a basso traffico o con poche stazioni attive\\
 Efficienza in reti leggere:\\
-Con pochi dispositivi attivi, la probabilità di collisione è bassa, e il protocollo garantisce una trasmissione efficace\\
+con pochi dispositivi attivi, la probabilità di collisione è bassa, e il protocollo garantisce una trasmissione efficace\\
 Flessibilità:\\
 è adatto sia a reti cablate (CSMA/CD) sia a reti wireless (CSMA/CA), con modifiche per adattarsi alle caratteristiche specifiche del mezzo trasmissivo\\
 Uso decentralizzato:\\
@@ -510,12 +507,12 @@ Infatti si cerca di crearne uno capace di usare il metodo della contesa per otte
 SI basa sulle probabilità\\
 Dividono le stazioni in gruppi in cui ognuno ha uno slot e solo le stazioni di quel gruppo possono competere per quello slot\\
 Se uno di loro vince acquisisce il controllo del canale e trasmette il frame altrimenti se l'intervallo rimane inutilizzato o c'è una collisione si "avvia" il secondo gruppo\\
-La difficoltà è ridurre il livello di contdesa per ogni intervallo\\
+La difficoltà è ridurre il livello di contesa per ogni intervallo\\
 Lo slotted ALOHA è un tipo di protocollo in cui tutte le stazioni sono in un singolo gruppo\\
 Un esempio è l'adaptive tree walk protocol, il quale può essere visto come un albero binario dove, nel primo slot tutti possono tentare di acquisire il controllo del canale ma se nessuno ci riesce viene diviso a metà in modo da far contendere N/2 stazioni ogni volta in modo ricorsivo fino a quando non si trova chi vince per trasmettere il suo frame\\
-Dato che l'algoritmo ricerca dal basso all'alto si parte dal livello P che sarebbe il logaritmo in base 2 del numero di stazioni attive per individuare più velocemente la stazione a cui permettere di trasmettere il frame
+Dato che l'algoritmo ricerca dall'alto al basso si parte dal livello P che sarebbe il logaritmo in base 2 del numero di stazioni attive per individuare più velocemente la stazione a cui permettere di trasmettere il frame
 \subsection{Ambiti d'uso}
-Sono protocolli utilizzati in ambiti come reti Ethernet, reti wirelsse, mobile, nei sistemi operativi per la gestione delle risorse condivise, nei sistemi distribuiti e nell'Internet of Things\\
+Sono protocolli utilizzati in ambiti come reti Ethernet, reti wireless, mobile, nei sistemi operativi per la gestione delle risorse condivise, nei sistemi distribuiti e nell'Internet of Things\\
 L'adaptive tree walk protocol viene usato specialmente per reti a traffico elevato, reti satellitari, gestione delle trasmissioni dei disposivitivi Internet of Things, nelle applicazioni di monitoraggio
 \subsection{Pregi}
 \begin{enumerate}
@@ -525,7 +522,7 @@ L'adaptive tree walk protocol viene usato specialmente per reti a traffico eleva
 \item L'adaptive tree walk protocol ha una scalabilità molto elevata in quanto si può avere un numero crescente di nodi
 \end{enumerate}
 \subsection{Difetti}
-I difetti possono essere l'overhead di controllo, la latenza elevata in caso di traffico leggero, la complessità di implementazione (la navigazione dinamica e la costruzione di una struttura ad albero richiedono parecchia complessità) e non è ottimale in ambienti asincroni
+I difetti possono essere l'overhead di controllo, la latenza elevata in caso di traffico leggero, la complessità di implementazione (la navigazione dinamica e la costruzione di una struttura ad albero richiedono parecchia complessità) e non è ottimale in ambienti asincroni, oltre al continuo aggiornamento
 \section{Stazione nascosta (2019, 20, 24)}
 \subsection{Descrizione}
 Nei casi wireless la topologia della rete non è fissa ma cambia dinamicamente causando il fatto che non c'è un singolo canale per tutti ma varie zone spaziali dove alcune stazioni interagiscono ed altre no\\
@@ -583,7 +580,7 @@ Per evitare problemi di ridondanza e congestione, si usano dei metodi di control
 1) hop counting: indica il numero massimo di stazioni dopo le quali il pacchetto è inutilizzabile\\
 2) tracking: tiene traccia dei pacchetti già trasmessi e non li ritrasmette per prevenire duplicazioni
 \subsection{Ambiti d'uso}
-Utilissimo quando il carico di rete non è molto alto, la topologia di rete è estremamente variabile ed è critico che un messaggio arrivi nel minor tempo possibile (indipendemente dall'efficienza complessiva)
+Utilissimo quando il carico di rete non è molto alto, la topologia di rete è estremamente variabile ed è critico che un messaggio arrivi nel minor tempo possibile (indipendentemente dall'efficienza complessiva)
 \subsection{Pregi}
 1) il flooding sceglie sempre la via migliore\\
 2) è il più robusto algoritmo di routing rispetto alle modifiche della rete grazie al fatto che non è dipendente da tabelle di routing statiche
@@ -672,7 +669,7 @@ Il traffico a bassa priorità potrebbe risentire negativamente di QoS, con prest
 \section{Choke packet (2016, 18, 19, 21, 22, 23, 24)}
 \subsection{Descrizione}
 Il choke packet è una tecnica che avviene quando la capacità della linea o di qualche stazione si satura\\
-In questa tecnica un host dimezza il suo data rate appena riceve un choke packet, ovvero un pacchetto che si invia quando la rete è congestionata
+In questa tecnica un host dimezza il suo data rate appena riceve un choke packet, ovvero un pacchetto che si invia quando la rete è congestionata\\
 Per l'uscita dal choke ci si aspetta un periodo di tempo detto fading
 \subsection{Ambiti d'uso}
 Il suo ambito d'uso principale è al fine di "decongestionare" la rete, infatti con questa tecnica si dimezza il flusso dati in uscita e permette di elaborare al meglio i pacchetti già arrivati
@@ -727,7 +724,7 @@ Il leaky bucket trova applicazione in diversi contesti, tra cui:
 \subsection{Descrizione}
 Il token bucket è un tipo di algoritmo utilizzato per regolare il flusso di dati in una rete al fine di garantire una trasmissione controllata e costante\\
 Si basa sull'analogia di un secchio che ogni tanto perde, infatti ogni certo intervallo di tempo genera un token\\
-I pacchetti in arrivo possono uscire solo se "bruciamo" un token disponibile
+I pacchetti in arrivo possono uscire solo se "bruciano" un token disponibile
 \subsection{Ambiti d'uso}
 Come detto prima è un sistema necessario per garantire il flusso di dati ed è determinante in alcuni ambiti per il rispetto dei parametri del QoS\\
 Infatti, se il traffico per un certo periodo è lento ma poi c'è un burst (aumento) si riesce a gestire meglio consumando i token che si sono accumulati
@@ -888,7 +885,7 @@ Il suo funzionamento può essere riassunto come segue:
 \item La macchina destinataria, riconoscendo il proprio indirizzo IP nella richiesta, risponde con un messaggio ARP di risposta (unicast) contenente il proprio indirizzo MAC.
 \item La corrispondenza IP-MAC viene salvata nella cache ARP del dispositivo richiedente per ottimizzare le comunicazioni future.
 \end{itemize}
-Ogni pacchetto ARP include in piggyback (ossia come dato aggiuntivo) la corrispondenza tra indirizzo IP e indirizzo MAC, permettendo così il continuo aggiornamento della tabella ARP.
+Ogni pacchetto ARP include in piggyback (ossia come dato aggiuntivo) la corrispondenza tra indirizzo IP e indirizzo MAC, permettendo così il continuo aggiornamento della tabella ARP
 \subsection{Ambiti d'uso}
 Il protocollo ARP è fondamentale per la comunicazione in reti IPv4 locali e viene utilizzato in diverse situazioni, tra cui:
 \begin{enumerate}
@@ -926,7 +923,7 @@ ICMP non è utilizzato per il trasferimento di dati applicativi, ma per comunica
 Alcune delle sue funzioni principali includono
 \begin{itemize}
 \item Segnalare errori, come l'inaccessibilità di una destinazione o il superamento del TTL (Time to Live)
-\item Gestione del controllo del traffico, ad esempio avvisando un mittente di ridurre la velocità di trasmissione tramite messaggi ICMP Source Quench (sebbene poco usati oggi)
+\item Gestione del controllo del traffico, ad esempio avvisando un mittente di ridurre la velocità di trasmissione
 \end{itemize}
 I messaggi ICMP vengono trasportati all'interno di datagrammi IP, ma non garantiscono la consegna: ICMP si basa sul protocollo IP, che è di tipo best-effort (il sistema fa del suo meglio per consegnare i dati, ma non garantisce alcuna affidabilità, ordine o tempi di consegna precisi)
 \subsection{Ambiti d'uso}
@@ -967,7 +964,7 @@ per motivi di sicurezza, molti firewall e dispositivi di rete bloccano i messagg
 \end{enumerate}
 \section{IPv6 (2016, 20, 23)}
 \subsection{Descrizione}
-IPv6 (Internet Protocol versione 6) è la nuova versione del protocollo IP progettata per superare i limiti di IPv4, in particolare il problema dell'esaurimento degli indirizzi
+IPv6 (Internet Protocol versione 6) è la nuova versione del protocollo IP progettata per superare i limiti di IPv4, in particolare il problema dell'esaurimento degli indirizzi\\
 Le principali caratteristiche di IPv6 sono:
 \begin{enumerate}
 \item Indirizzi più grandi:\\
@@ -1008,7 +1005,7 @@ l'header di IPv6 è più grande di quello di IPv4 (40 byte contro 20 byte), il c
 \subsection{Descrizione}
 Il User Datagram Protocol (UDP) è un protocollo di trasporto\\
 UDP è progettato per la trasmissione rapida di dati con un overhead minimo, adottando un approccio best-effort\\
-A differenza del TCP, non fornisce meccanismi di controllo della connessione, ritrasmissione o verifica dell'ordine dei pacchetti
+A differenza del TCP, non fornisce meccanismi di controllo della connessione, ritrasmissione o verifica dell'ordine dei pacchetti\\
 Le principali caratteristiche di UDP includono:
 \begin{enumerate}
 \item Nessuna connessione:\\
@@ -1086,7 +1083,7 @@ I suoi pregi sono anche le sue principali caratteristiche:
 \item Gestione della connessione: essendo orientato alla connessione, richiede una fase di handshake iniziale, che può essere onerosa in applicazioni con molte connessioni brevi
 \item Difficoltà in reti instabili: in reti molto instabili, il numero di ritrasmissioni può crescere significativamente, rallentando ulteriormente la comunicazione
 \end{enumerate}
-\section{BGP}
+\section{Border Gateway Protocol: BGP}
 \subsection{Descrizione}
 Il BGP è un protocollo che stabilisce le regole per l'instradamento dei dati tra reti autonome, definendo come devono essere condivise e applicate le informazioni sulle rotte quando il traffico passa da una rete all'altra
 \subsection{Ambiti d'uso}
@@ -1190,10 +1187,10 @@ L'OTP è teoricamente inviolabile, ma è inutilizzabile in tutti i contesti mode
 \end{enumerate}
 \section{DES e triplo DES (2016, 18, 20, 21, 22, 23, 24)}
 \subsection{Descrizione}
-Il **DES (Data Encryption Standard)** è un algoritmo di cifratura simmetrica sviluppato negli anni '70 e standardizzato nel 1977\\
+Il DES (Data Encryption Standard) è un algoritmo di cifratura simmetrica sviluppato negli anni '70 e standardizzato nel 1977\\
 Utilizza una chiave di 56 bit e un approccio basato sulla cifratura a blocchi di 64 bit, combinando sostituzione e trasposizione attraverso 16 round di operazioni\\
-Il Triple DES (3DES) è un'estensione del DES che applica l'algoritmo tre volte in sequenza (cifratura-decifratura-cifratura) con due o tre chiavi separate per migliorare la sicurezza\\
-Encrypting e decrypting sono oltretutto intercambiabili perché non ci deve essere un ordine preciso, l'importante è non criptare e decriptare con la stessa chiave
+Il Triple DES (3DES) è un'estensione del DES che applica l'algoritmo tre volte in sequenza con due o tre chiavi separate per migliorare la sicurezza\\
+Encrypting e decrypting sono oltretutto intercambiabili perché non ci deve essere un ordine preciso, l'importante è non criptare e decriptare con la stessa chiave, altrimenti si applicherebbe un DES singolo
 \subsection{Ambiti d'uso}
 \begin{enumerate}
 \item Bancario: DES e 3DES sono stati ampiamente utilizzati nei sistemi bancari per proteggere transazioni elettroniche, come nei bancomat e nei POS
@@ -1207,10 +1204,10 @@ Encrypting e decrypting sono oltretutto intercambiabili perché non ci deve esse
 \end{enumerate}
 \subsection{Difetti}
 \begin{enumerate}
-\item \textbf{Chiave corta (DES)}: i 56 bit di chiave di DES sono vulnerabili agli attacchi brute-force con le tecnologie attuali.
+\item Chiave corta (DES): i 56 bit di chiave di DES sono vulnerabili agli attacchi brute-force con le tecnologie attuali.
 \item Prestazioni (3DES): l'applicazione tripla dell'algoritmo lo rende più lento rispetto ad alcune soluzioni moderne
 \item Deprecazione: DES è considerato insicuro ed è stato deprecato dagli standard
-Anche 3DES è in fase di abbandono
+Anche 3DES è in fase di abbandono, venendo sostituito da AES
 \item Lunghezza effettiva della chiave (3DES con 2 chiavi): l'uso di 2 chiavi in 3DES fornisce solo una lunghezza effettiva di 112 bit
 \end{enumerate}
 \section{AES}
@@ -1247,7 +1244,7 @@ La sicurezza di RSA si basa sulla difficoltà di fattorizzare numeri molto grand
 \subsection{Ambiti d'uso}
 \begin{enumerate}
 \item Firma digitale: utilizzato per verificare l'autenticità dei documenti e dei messaggi
-\item Scambio sicuro di chiavi: usato per stabilire connessioni sicure tra due parti, come nel caso di SSL/TLS
+\item Scambio sicuro di chiavi: usato per stabilire connessioni sicure tra due parti
 \end{enumerate}
 \subsection{Pregi}
 \begin{enumerate}
@@ -1258,6 +1255,7 @@ La sicurezza di RSA si basa sulla difficoltà di fattorizzare numeri molto grand
 \begin{enumerate}
 \item Bassa velocità: RSA è più lento rispetto ad altri algoritmi simmetrici, il che lo rende meno ideale per cifrare grandi quantità di dati
 \item Vulnerabilità alla fattorizzazione: la sicurezza di RSA può essere compromessa se i numeri utilizzati sono troppo piccoli o se vengono sviluppati metodi di fattorizzazione più efficienti
+\end{enumerate}
 \section{ECB (2014)}
 \subsection{Descrizione}
 ECB (Electronic Code Book) è un modo di trasmettere testi cifrati\\
@@ -1383,7 +1381,6 @@ HMAC (Hashed Message Authentication Code) è una costruzione basata su una funzi
 \end{enumerate}
 \subsection{Difetti}
 Lentezza con funzioni hash deboli: se la funzione hash utilizzata non è ottimale le prestazioni e la sicurezza possono essere compromesse
-\end{enumerate}
 \section{WEP}
 \subsection{Descrizione}
 WEP (Wired Equivalent Privacy) è un protocollo di sicurezza per le reti wireless, progettato per fornire un livello di protezione simile a quello delle reti cablate\\
