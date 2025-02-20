@@ -68,9 +68,9 @@ Per albero binario di ricerca si intende un albero binario ordinato tc $\forall$
 Questa è una proprietà globale dell'albero, se fosse solo locale (come negli heap) l'albero non sarebbe più di ricerca\\
 La complessità della ricerca è $\Omicron$(h), dove h=logn se albero bilanciato
 \section{Dimostrazione che il limite degli ordinamenti è nlogn}
-Il limite degli ordinamenti sfrutta l'albero di decisione, il quale è un albero che descrive in maniera astratta l'esecuzione di algoritmi su input di dimensione n in cui ogni foglia rappresenta una e una sola permutazione dell'input, e ogni input è rappresentato da almeno una foglia. Se ciò non avviene vuol dire che l'agoritmo non è corretto.\\
+Il limite degli ordinamenti sfrutta l'albero di decisione, il quale è un albero che descrive in maniera astratta l'esecuzione di algoritmi su input di dimensione n in cui ogni foglia rappresenta una e una sola permutazione dell'input, e ogni permutazione è rappresentata da almeno una foglia. Se ciò non avviene vuol dire che l'agoritmo non è corretto\\
 Bisogna comunque dire che $\Omega$(nlogn) si applica solo agli algoritmi che usano confronto tra elementi\\\\
-\href{alberodecisione.pdf}{Foto dimostrazione}.
+\href{alberodecisione.pdf}{Foto dimostrazione}
 \section{Complessità quicksort e spiegazione breve algoritmo, caso medio, peggiore e perché tante ripartizioni sono caso medio}
 Il quicksort è un algoritmo del tipo divide et impera, il quale, prendendo un pivot, porta alla sinistra dell'array gli elementi $<$= e alla destra gli elementi $>$= tramite la funzione Partition (divide), e successivamente esegue ricorsivamente il quicksort sulla parte sinistra e parte destra della partizione (impera)\\
 \begin{lstlisting}[style=pseudocodice]
@@ -78,7 +78,7 @@ QuickSort(A,p,r)
 if p<r
 	q=Partition(A,p,r)
 	QuickSort(A,p,q-1)
-	QuickSort(A,p,q+1)
+	QuickSort(A,q+1,r)
 \end{lstlisting}
 La sua complessità nel caso peggiore è del tipo $\Omicron$($n^2$) perché il caso peggiore avviene quando l'array è già ordinato e si avrebbe un tempo di esecuzione T(n)=T(n-1)+$\Omega$(n)+T(0) poiché T(n)=$\sum_{i=1}^n (a(n-i)+b)$ \\
 La sua complessità nel caso medio è del tipo $\Omicron$(nlogn)\\
@@ -122,10 +122,11 @@ L'idea delle tabelle hash è usare uno spazio proporzionale al numero di element
 Con le funzioni di hash ci possono essere più risultati uguali poiché gli hashing non sono iniettive\\
 L'inserimento e la rimozione hanno la grandissima qualità di essere entrambe $\Omicron$(1)\\
 Esistono due modi di costruire una tabella hash: chaining e open addressing\\
-Con il chaining se h(x1.key)=h(x2.key) allora la cella in cui entrambi finiranno viene implementata come una lista e viene considerato un fattore di carico $\alpha$=$\frac{n}{m}$ con n=celle tabella e m=elementi memorizzati. Bisogna però mettere in evidenza la distribuzione degli input e la qualità della funzione hash, la quale idealmente dovrebbe avere probabilità di assegnare ogni elemento in input con probabilità 1/m\\
+Con il chaining se h(x1.key)=h(x2.key) allora la cella in cui entrambi finiranno viene implementata come una lista e viene considerato un fattore di carico $\alpha$=$\frac{n}{m}$ con n=elementi memorizzati e m=celle tabella\\
+Bisogna però mettere in evidenza la distribuzione degli input e la qualità della funzione hash, la quale idealmente dovrebbe avere probabilità di assegnare ogni elemento in input con probabilità 1/m\\
 Nell'open addressing tutti gli elementi dell'insieme dinamico vengono memorizzati nella tabella
 \section{Doppio hashing (come scegliere le funzioni)}
-Date h1(k) e h2(k) hash unarie h(k,i)=(h1(k)+i(h2(k))) la condizione è che h2(k) e m (celle tabella) siano coprimi \\
+Date h1(k) e h2(k) hash unarie h(k,i)=(h1(k)+i(h2(k))) mod m: la condizione è che h2(k) e m (celle tabella) siano coprimi \\
 Ma come fare in modo che h(k,0)...h(k,m-1) è permutazione?\\
 (h1(k)+ih2(k) mod m) = (h1(k) + i'h2(k) mod m)\\
 (h1(k)+ih2(k) mod m) - (h1(k) + i'h2(k) mod m) = 0\\
@@ -197,7 +198,7 @@ if (i>1) and (A[i]>A[parent(i)]
 \newpage
 \section{Definizione di RB-Tree e costo inserimento}
 I Red-Black trees sono BST in cui i nodi hanno i soliti attributi assieme all'attributo color, il quale può essere Red/Blach\\
-T.nil è un nodo con tutti gli attributi il cui colore è Black e si considera come una foglia (escluso per il T.nil sopra radice)\\
+T.nil è un nodo con tutti gli attributi il cui colore è Black e si considera come una foglia "collegata" alla radice e a tutte le foglie dell'albero\\
 Queste sono le sue proprietà:\\
 1) ogni nodo ha uno e un solo colore \\
 2) la radice è Black\\
@@ -227,7 +228,7 @@ RB-InsertFixUp(T,z)
 
 while(z.p.color==RED)
 	if(z.p==z.p.p.left)
-		y=z.p.right
+		y=z.p.p.right
 		if(y.color==RED)			//CASO 1
 			y.color=BLACK
 			z.p.color=BLACK
@@ -249,6 +250,8 @@ while(z.p.color==RED)
 			endif
 		endif
 	endif
+	else if(z.p==z.p.p.right)
+	(duale)
 endwhile
 T.root.color=BLACK
 \end{lstlisting}
@@ -356,6 +359,7 @@ Z è sottosequenza di X se esiste una successione crescente di indici 1$<$=$i_{1
 Quante sono le sottosequenze di una stringa?\\
 $\sum_{k=0}^{m}$ $\binom{m}{k}$ = $2^{m}$
 \section{Diversi tipi di ordine per calcolare elementi nella programmazione dinamica}
+\textbf{Disclaimer: non sapevo bene cosa intendesse per ordine}
 In generale, l'algoritmo di programmazione dinamica si basa su una tabella (o matrice) in cui vengono calcolati i valori per tutti i sottoproblemi, e l'ordine con cui questi valori vengono calcolati è importante per garantire che ogni elemento venga calcolato solo dopo che tutti gli elementi di cui dipende sono già stati calcolati\\
 Gli ordini di calcolo più comuni sono i row-major e i column-major\\
 Possibilità di cambiamento dell'ordine:\\
@@ -374,7 +378,7 @@ Usa una tabella (o array) per memorizzare i risultati già calcolati\\
 Prima di calcolare un valore, verifica se è già presente nella tabella\\
 Se il valore è già calcolato, restituiscilo direttamente, altrimenti, calcolalo e memorizzalo
 \section{Codici di Huffman}
-I codici di Huffman sono una classe di codici che permettono di costruire un albero binario ottimale per la compressione dei dati\\
+I codici di Huffman sono una classe di codici ricavati da un albero binario ottimale per la compressione dei file\\
 In questo albero, ogni carattere del file è rappresentato da un percorso che si sviluppa verso il basso, inserendo un 0 o un 1 nei rami sinistro o destro (questo dipende dalla convenzione utilizzata)\\
 I codici di Huffman sono particolarmente adatti per file con un alfabeto a frequenza variabile\\
 L'output di questo algoritmo rappresenta un \textit{encoding} ottimale per questo tipo di file, poiché garantisce che l'encoding di ogni carattere non sia mai un prefisso dell'encoding di un altro carattere\\
@@ -412,10 +416,8 @@ for i = 1 to length(X)
 	for j=1 to length(Y)
 		if(x[i] = y[j])
 			L[i,j] = 1+ L[i-1, j-1]
-		elif (L[i-1, j] >= L[1, j-1])
-			L[i, j] = L[i-1, j]
 		else
-			L[i,j] = L[i,j-1]
+			L[i,j] = max{L[i, j-1], L[i-1, j]}
 return L[m, n]
 \end{lstlisting}
 \section{Differenza tra approccio top-down e bottom-up per la programmazione dinamica. Vantaggi e svantaggi di entrambi}
@@ -423,7 +425,7 @@ L'approccio \textit{top-down} è una tecnica di risoluzione dei problemi in cui 
 Dopo aver risolto i sottoproblemi, si risale per combinare i risultati e ottenere la soluzione del problema iniziale\\
 Questo approccio è particolarmente utile quando i sottoproblemi sono ben definiti e si interconnettono in modo sincrono, come nel caso della sequenza di Fibonacci\\
 L'approccio \textit{bottom-up}, invece, è il contrario: si parte dal problema più piccolo, risolvendo prima i sottoproblemi di base, per poi combinare i risultati per risolvere problemi più grandi\\
-Questo approccio è tipico di problemi come la \textit{Longest Common Subsequence (LCS)}, in cui si risolvono prima le sequenze più corte per costruire progressivamente la soluzione completa\\
+Questo approccio è tipico di problemi come la \textit{Longest Common Subsequence (LCS)}, in cui si risolvono prima le sequenze più corte per costruire progressivamente la soluzione completa, comunque in generale per problemi con ricorrenze\\
 Entrambi gli approcci si prestano molto bene alla memoizzazione, che consente di evitare il ricalcolo di sottoproblemi già risolti, migliorando l'efficienza dell'algoritmo\\
 \textbf{Vantaggi dell'approccio top-down:}
 \begin{itemize}

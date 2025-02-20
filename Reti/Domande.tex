@@ -35,7 +35,7 @@ La loro larghezza di banda è all'incirca 1GHz\\
 Può estendersi per distanze più lunghe e consente velocità più elevate\\
 Fornisce ampiezza di banda ed eccellente immunità al rumore
 \item Fibra ottica: non si ha più elettricità ma si trasporta la luce, grazie a un pezzetto di vetro interno che non deve assolutamente rompersi, però non subisce interferenze elettriche\\
-La connessione tra fibre può avere: connettori che perdono 10-20$\%$ di luce, allineatori meccanici coi quali si perde il 10$\%$ di luce, oppure per fusione con la quale si perde il 2$\%$ di luce\\
+L'estensione di un cavo in fibra può avvenire attraverso: connettori che perdono 10-20$\%$ di luce, allineatori meccanici coi quali si perde il 10$\%$ di luce, oppure per fusione con la quale si perde il 2$\%$ di luce\\
 L'ampiezza di banda raggiungibile va sicuramente oltre i 50Tbps ma si è chiusi dal limite pratico di 10Gbps\\
 C'è anche un tipo di fibra detto monomodale in cui la luce si propaga solo in linea retta, è più costosa ed utilizzata soprattutto sulle lunghe distanze
 \end{enumerate}
@@ -47,7 +47,7 @@ Esse devono essere evitate tramite dei "buchi" altrimenti i satelliti si sciogli
 Più basso è il satellite più ne servono perché coprono un'area bassa ma i tempi di comunicazione sono ridotti rispetto a  un satellite elevato
 \subsection{Satelliti GEO}
 \subsubsection{Descrizione}
-Sono i satelliti più in alto del nostro mondo, sopra i 35km\\
+Sono i satelliti più distanti dalla superficie terrestre, sopra i 35km\\
 Essi devono superare le due fasce di Van Allen per restare stazionari nell'orbita circolare dell'Equatore\\
 Garantisce una copertura continua di vaste aree terrestri e un posizionamento stabile
 \subsubsection{Ambiti d'uso}
@@ -80,7 +80,7 @@ Qui si trovano i satelliti utili per la geolocalizzazione, il cui servizio è at
 Attualmente con la tecnologia A-GPS si migliora il GPS e si segnala dove sono presenti i satelliti (tramite le compagnie di rete telefonica) sfruttando l'effetto Doppler\\
 Infatti a quest'altitudine si trovano i 24 satelliti GPS necessari
 \subsubsection{Difetti}
-Il cosmo è pieno di satelliti di tipo MEO e questi sono nient'altro che rottami spaziali che inquinano il cosmo e rischiano continuamente di scontrarsi fra di loro creando sempre più microframmenti rischiando l'effetto domino
+Il cosmo è pieno di satelliti di tipo MEO che, una volta finito il carburante necessario alla loro ricollocazione, vengono allontanati. Quando un satellite, attivo o meno, si scontra con un altro corpo, esso "esplode" in una miriade di frammenti, che a loro volta costituiscono un rischio per gli altri satelliti attivi. Per questo, i frammenti devono essere tracciati e monitorati, in modo da evitare la possibilità di eventuali effetti domino
 \subsection{Satelliti LEO}
 \subsubsection{Descrizione}
 Utilizzato per l'Internet satellitare e il telefono satellitare, ideato col progetto Iridium (sistema di 77 satelliti diventati 66) per coprire l'intera superficie terrestre\\
@@ -99,7 +99,7 @@ Avendo una durata operativa molto bassa, ora sono presenti tantissimi detriti sp
 Inoltre hanno una copertura limitata e dei costi di manutenzione elevati (nel senso che sono necessari lanci frequenti)
 \section{Bit o baud rate}
 \subsection{Descrizione}
-Sono metriche di misurazione dell'informazione passata ogni secondo e permettono di calcolare la larghezza di banda\\
+Sono metriche di misurazione dell'informazione trasmessa ogni secondo e permettono di calcolare la larghezza di banda\\
 Bit rate: è il numero di bit che si possono trasmettere contemporaneamente con ogni impulso, è uguale al baudrate*log2(numero simboli)\\
 Baud rate: si trasmette un impulso usando 4 frequenze con l'alfabeto composto da 4 simboli con ognuno dal peso di 2 bits
 \subsection{Ambiti d'uso}
@@ -218,10 +218,10 @@ Sincronizzazione complessa precisa tra trasmettitore e ricevitore\\
 Sensibilità al ritardo, il quale se accumulato influenza negativamente sulla qualità dei servizi in tempo reale come la voce o il video
 \section{Handoff (2023)}
 \subsection{Handoff 1G}
-Nella prima generazione di trasmissione dati attraverso la rete di telefonia mobile, analogica, uno degli standard principali era l'AMPS (Advanced Mobile Phone System) per gli USA\\
+Nella prima generazione di trasmissione dati attraverso la rete di telefonia mobile analogica, uno degli standard principali era l'AMPS (Advanced Mobile Phone System) per gli USA\\
 L'handoff era una tecnica che occorreva quando il segnale era debole per ricollegarsi ad un segnale migliore\\
-In questa situazione lo switching office (la stazione base di ogni cella) chiede alle celle vicino quanta potenza ricevono dal cellulare ed esso viene assegnato alla cella con potenza più alta\\
-Ci sono due tipi:
+In questa situazione lo switching office (la stazione base di ogni cella) verifica attraverso le celle lo stato del segnale ricevuto dal dispositivo ed esso viene assegnato alla cella con potenza più alta\\
+Si presenta in due tipologie:
 \begin{enumerate}
 \item \textbf{hard handoff}: la vecchia stazione rilascia il cellulare prima che la nuova lo riagganci causando un ritardo di circa 0,3 secondi
 \item \textbf{soft handoff}: la nuova cella acquisisce il cellulare prima che la vecchia cella lo lasci, eliminando le interruzioni ma il cellulare deve collegarsi a due frequenze contemporaneamente aumentando costi e consumo energetico
@@ -233,7 +233,8 @@ Questo approccio è noto come MAHO (Mobile Assisted Hand Off) permettendo un car
 \section{Modulazione delta (2016, 17, 18, 19, 20, 22, 23)}
 \subsection{Descrizione}
 La modulazione delta è una tecnica di codifica a basso consumo utilizzata per comprimere segnali analogici in modo semplice ed efficiente\\
-Il principio base è quello di campionare il segnale a intervalli regolari e confrontare ogni campione con il valore precedente\\ Se il segnale cresce, si registra un 1; se diminuisce, si registra uno 0\\
+Il principio base è quello di campionare il segnale a intervalli regolari e confrontare ogni campione con il valore precedente\\
+Se il segnale cresce, si registra un 1, mentre se diminuisce, uno 0\\
 Questa rappresentazione descrive l'andamento del segnale, ma non ne conserva la forma precisa
 \subsection{Ambiti d'uso}
 Usato per le compressioni delle trasmissioni in digitale (come ad esempio per il 2G), nelle trasmissioni audio in dispositivi che non richiedono una qualità elevata, sistemi di acquisizione dati, nei dispositivi a bassa potenza, comunicazioni wireless a bassa velocità
@@ -344,7 +345,8 @@ Ritardo aumentato: i frame corretti che seguono un errore non possono essere ela
 \section{Selective Repeat (2022)}
 \subsection{Descrizione}
 Selective Repeat è protocollo di trasmissione basato sulle Sliding Windows, progettato per gestire in modo efficiente la comunicazione tra mittente e ricevente soprattutto in presenza di errori\\
-In questo caso specifico la taglia delle sliding window per chi riceve è di una taglia maggiore rispetto ai Go back N (1) richiedendo però un buffer di taglia la sua apertura\\
+In questo caso specifico la taglia delle sliding window per chi riceve è di una taglia maggiore rispetto ai Go back N (1), prevede la presenza di un buffer per la memorizzazione dei pacchetti mancanti dalla parte del ricevitore\\
+In questo modo è possibile calcolare quali pacchetti manchino (grazie ai numeri di sequenza) e chiedere al mittente di rispedirli singolarmente\\
 Consente al ricevitore di accettare e memorizzare i frame ricevuti fuori ordine in un buffer\\
 Permette al mittente di ritrasmettere solo i frame specifici che risultano persi o corrotti, riducendo l'overhead associato alla ritrasmissione di interi blocchi di dati
 \subsection{Ambiti d'uso}
@@ -362,7 +364,7 @@ Buffering elevato: la necessità di memorizzare i frame fuori ordine richiede pi
 \section{HDLC}
 \subsection{Descrizione}
 Protocollo concreto ideato inizialmente dall'IBM\\
-L'HDLC (High-Level Data Link Control) è un protocollo standard della data link layer progettato per la trasmissione di dati in modo affidabile\\
+L'HDLC (High-Level Data Link Control) è un protocollo standard è un protocollo del livello data link\\
 Si basa su una struttura a frame (trama) e supporta comunicazioni punto-punto e multipunto\\
 Il protocollo si occupa principalmente di:\\
 Organizzazione dei dati\\
@@ -405,7 +407,7 @@ Grazie al byte stuffing è molto veloce e permette le connessioni punto a punto 
 Purtroppo usando il byte stuffing dipende da delle grandezze fisse e non per l'appunto dai singoli bit come avviene nel bit stuffing
 \section{Aloha (2014, 17, 18, 19, 21, 23)}
 \subsection{Descrizione}
-Aloha è un tipo di protocollo multiaccesso, ovvero quei sistemi di comunicazione multipla in cui c'è un unico canale condiviso da molti (contention)\\
+Aloha è un tipo di protocollo multiaccesso, ovvero quei sistemi di comunicazione multipla in cui c'è un unico canale condiviso da molti (contention), che lo occuperanno in momenti diversi\\
 Ogni protocollo di questo tipo ha la station model (entità che trasmettono) e le collision (quando 2 frame si sovrappongono c'è una collisione e sono inutilizzabili)\\
 Questo protocollo sfrutta le probabilità, infatti, nell'eventualità di una collisione, il tempo di ritrasmissione è deciso dalle probabilità\\
 La probabilità che k frames siano generati in un certo intervallo di tempo è di tipo Poisson e viene studiata con la sua distribuzione\\
@@ -441,7 +443,8 @@ con molte collisioni, i tempi di ritrasmissione possono aumentare significativam
 \section{CSMA (2017, 18, 20)}
 \subsection{Descrizione}
 CSMA (Carrier Sense Multiple Access) è un protocollo multiaccesso più complesso ispirato da Aloha\\
-Prima di trasmettere si controlla se non ci sia già una trasmissione e, se essa è presente, controlla il canale e appena si libera trasmette il messaggio\\
+Prima di trasmettere si controlla se non ci sia già una trasmissione e, se essa è presente, si controlla che il canale sia libero\\
+Se così fosse, viene effettuato un controllo l'istante successivo finché non si ha la possibilità di trasmettere\\
 Ci sono diverse varianti di CSMA, che migliorano il protocollo in base al modo in cui le collisioni vengono gestite:\\
 CSMA/CD (Collision Detection):\\
 utilizzato nelle reti Ethernet cablate, rileva le collisioni durante la trasmissione e interrompe immediatamente la trasmissione\\
@@ -555,8 +558,8 @@ Per controllare se la trasmissione è conclusa si sfrutta il protocollo Aloha in
 \section{802.3}
 \subsection{Descrizione}
 802.3 è uno dei protocolli più famosi della storia ed è uno dei protocolli di Ethernet, il quale si prevede come minimo sarà in vigore fino al 2080/2100\\
-Questo protocollo in particolare ha un tipo di cablaggio a "serpente", a "lisca di pesce" e ad "albero"\\
-I suoi vari tipi hanno un nome identificativo "XBaseY" in cui X è la banda in Mbps, "Base" indica che è una connessione baseband (a frequenza unica) e Y è il tipo di cavo che differisce a seconda della lunghezza massima di ogni tratto senza ripetitori
+Questo protocollo in particolare ha un tipo di cablaggio a "serpente", a "lisca di pesce" oppure ad "albero"\\
+Per indicare i vari tipi di cavi si utilizza una notazione particolare, del tipo XbaseY, dove X indica la banda in Mbps, "Base" indica che è una connessione baseband (a frequenza unica) e Y è il tipo di cavo che differisce a seconda della lunghezza massima di ogni tratto senza ripetitori
 \subsection{Ambiti d'uso}
 Utilizzato principalmente per le reti locali LAN in cui addirittura è l'ambito principale dello standard, per il data center e cloud computing (è necessario un Ethernet ad alte prestazioni), in ambienti industriali, per le reti di provider di servizi e per le reti domestiche
 \subsection{Pregi}
@@ -564,7 +567,7 @@ L'Ethernet ha un'elevatissima diffusione e interoperabilità, un'altissima affid
 \subsection{Difetti}
 Alcuni difetti possono essere le limitazioni geografiche, la dipendenza dal cablaggio fisico, la scalabilità rispetto al wireless, il costo delle soluzioni ad alte prestazioni, la mancanza di mobilità e i consumi energetici
 \section{Codifica Manchester (2014, 18, 19, 20, 22, 24, 25)}
-\subsection{Descrizione} La codifica Manchester è una tecnica di comunicazione dati in cui ogni bit è rappresentato da una transizione all'interno di un intervallo di tempo predefinito\\
+\subsection{Descrizione} La codifica Manchester è una tecnica di modulazione dati in cui ogni bit è rappresentato da una transizione all'interno di un intervallo di tempo predefinito\\
 Questa caratteristica la rende auto-sincronizzante, consentendo una sincronizzazione precisa del flusso di dati tra il trasmettitore e il ricevitore\\
 Ogni bit viene trasmesso con una transizione specifica che ne identifica il valore:\\
 Una transizione da alto a basso può rappresentare uno 0\\
@@ -588,7 +591,7 @@ Riduzione della banda disponibile: il principale svantaggio della codifica Manch
 \section{Flooding (2015, 16, 18, 20, 23, 25)}
 \subsection{Descrizione}
 Il flooding è un algoritmo di routing, ovvero quel genere di algoritmi in cui ci si preoccupa di consegnare i pacchetti su una rete complessa\\
-Nel flooding ogni pacchetto viene ritrasmesso su tutte le linee di uscita, garantendo che il pacchetto raggiunga ogni possibile destinazione\\
+Nel flooding ogni pacchetto viene ritrasmesso su tutte le linee di uscita, garantendo che raggiunga ogni possibile destinazione\\
 Per evitare problemi di ridondanza e congestione, si usano dei metodi di controlllo aggiuntivi fra cui:\\
 1) hop counting: indica il numero massimo di stazioni dopo le quali il pacchetto è inutilizzabile\\
 2) tracking: tiene traccia dei pacchetti già trasmessi e non li ritrasmette per prevenire duplicazioni
@@ -681,9 +684,8 @@ Il traffico a bassa priorità potrebbe risentire negativamente di QoS, con prest
 \end{enumerate}
 \section{Choke packet (2016, 18, 19, 21, 22, 23, 24)}
 \subsection{Descrizione}
-Il choke packet è una tecnica che avviene quando la capacità della linea o di qualche stazione si satura\\
-In questa tecnica un host dimezza il suo data rate appena riceve un choke packet, ovvero un pacchetto che si invia quando la rete è congestionata\\
-Per l'uscita dal choke ci si aspetta un periodo di tempo detto fading
+Un choke packet funziona similmente al sistema a crediti di un bus: quando un router rileva una congestione nel flusso di trasmissione, si occupa di spedire ai vari mittenti un pacchetto di congestione, che obbliga un ritmo di spedizione moderato\\
+Dopo un po’ il flusso tornerà al suo ritmo originale autonomamente (fading)
 \subsection{Ambiti d'uso}
 Il suo ambito d'uso principale è al fine di "decongestionare" la rete, infatti con questa tecnica si dimezza il flusso dati in uscita e permette di elaborare al meglio i pacchetti già arrivati
 \subsection{Pregi}
@@ -708,9 +710,13 @@ Un altro problema è che una richiesta di choke può metterci troppo per deconge
 \subsection{Descrizione}
 Il leaky bucket è un tipo di algoritmo utilizzato per regolare il flusso di dati in una rete al fine di garantire una trasmissione controllata e costante\\
 Si basa sull'analogia di un secchio che perde: i dati entrano nel secchio a una velocità arbitraria, ma ne escono a un ritmo costante\\
-Se il secchio si riempie oltre la sua capacità, i dati in eccesso vengono scartati, garantendo così un controllo efficace del traffico\\
+Se il secchio si riempie oltre la sua capacità, i dati in eccesso vengono scartati, garantendo così un traffico controllato\\
 Questo meccanismo consente di evitare sovraccarichi della rete e di ridurre i burst di dati, ossia i picchi improvvisi di traffico\\
-L'algoritmo è solitamente implementato dal mittente per regolare il proprio tasso di trasmissione e rispettare i vincoli imposti dalla rete
+I due modi per implementare correttamente un algoritmo leaky bucket sono:
+\begin{itemize}
+	\item Sul mittente: viene regolata la frequenza di spedizione dei pacchetti in modo da non superare la soglia di tolleranza della rete
+	\item Sui nodi intermedi (router): il buffer di ricezione (secchio) è posto sul ricevente (router), e quando si riempie completamente (acqua) ciò che non può essere salvato viene perso
+\end{itemize}
 \subsection{Ambiti d'uso}
 Il leaky bucket trova applicazione in diversi contesti, tra cui:
 \begin{enumerate}
@@ -844,7 +850,7 @@ Anche se i router possono rigenerare i datagrammi, questo valore rappresenta una
 \end{itemize}
 \section{NAT (Network Address Translation) (2015, 18, 19, 22, 23)}
 \subsection{Descrizione}
-L'idea del protocollo NAT è simulare un'intera sottorete usando un solo indirizzo IP\\
+L'idea del protocollo NAT è simulare un'intera sottorete usando un solo indirizzo IP: gli indirizzi IP di una rete sono quelli, ma sono riutilizzabili tra sottoreti diverse (e anche da una sottorete “maggiore”) perché non sono visibili al di fuori della loro sottorete di appartenenza\\
 Internamente:\\
 la rete funziona con degli indirizzi IP interni, che sono invisibili all'esterno\\
 Esternamente:\\
@@ -1064,7 +1070,7 @@ applicazioni che richiedono integrità e affidabilità dei dati (come il trasfer
 \section{TCP, Trasmission Control Protocol (2016)}
 \subsection{Descrizione}
 TCP è uno dei principali protocolli di rete su Internet\\
-Connection-oriented, apre un canale per scambiare dati, trasmette e poi si chiude il canale\\
+È un protocollo di comunicazione orientato alla connessione, che si basa sul 3-way handshake\\
 Full-duplex e point-to-point, è un protocollo reliable (affidabile) e il checksum è solo frutto di semplici somme e non codici di error detection complessi\\
 Oltretutto ha integrati il controllo del flusso, il controllo della congestione e la ritrasmissione automatica
 \subsection{Ambiti d'uso}
