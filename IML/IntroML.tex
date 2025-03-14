@@ -1,0 +1,95 @@
+\documentclass[10pt,oneside,a4paper]{article}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,   % Abilita il colore dei link (senza box intorno)
+	linkcolor=blue,    % Colore per i link interni (come quelli nell'indice)
+	urlcolor=red,      % Colore per i link URL esterni
+	filecolor=magenta, % Colore per i link ai file locali
+	citecolor=green,   % Colore per i riferimenti bibliografici
+	pdfborder={0 0 0}  % Disabilita i bordi intorno ai link
+}
+\title{Introduzione all'apprendimento automatico}
+\author{Matteo Mazzaretto}
+\date{2024/2025}
+\begin{document}
+\pagenumbering{gobble}
+\maketitle
+\begin{center}
+%do un nuovo nome alla tabella degli indici e la inizializzo
+\renewcommand{\contentsname}{Indice}
+\tableofcontents
+\end{center}
+\newpage
+%inizio l'effettivo conteggio delle pagine
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\section{Prima parte}
+\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
+	neurali. Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
+	mediante la realizzazione di un’architettura a più strati, fornendo un esempio che evidenzi
+	le differenze/vantaggi di tale architettura}
+g
+\subsection{Si descrivano nel modo più accurato possibile i concetti di bias e variance, il loro rapporto e come nella pratica possano essere affrontati e ridotti i problemi. A tal fine si riportino anche esempi concreti che aiutino a chiarire i diversi aspetti coinvolti}
+g
+\subsection{Si descriva in modo accurato il modello di logistic regression, le sue principali caratteristi-
+	che ed il contributo dei diversi elementi presenti nella funzione di costo. Si riporti inoltre
+	una comparazione con il modello di classificazione lineare, evidenziando elementi in comu-
+	ne e differenze principali. Infine, si descriva chiaramente la procedura di addestramento
+	mediante l’applicazione di gradient descent}
+g
+\subsection{Si descriva dettagliatamente la procedura di cross-validation, motivandone scopo ed uti-
+	lità, e fornendo una chiara descrizione della (corretta) procedura di addestramento di un
+	qualunque sistema di machine learning. Si descrivano inoltre i concetti di true error ed
+	empirical error e se ne evidenzino le relazioni con la procedura di cross-validation}
+g
+\subsection{Quali sono i principali paradigmi del machine learning? Se ne riporti una descrizione
+	sintetica – chiarendo quali siano le principali differenze – con particolare enfasi per il caso
+	del supervised learning. Si distinguano in particolare classificazione e regressione}
+g
+\subsection{Cosa si intende per “one learning algorithm hypothesis” e come tale ipotesi si relaziona
+	con le reti neurali artificiali? Si fornisca inoltre una descrizione esaustiva degli elemen-
+	ti/ingredienti principali che permettono la definizione di una rete neurale multi-strato}
+g
+\subsection{Si descriva in modo dettagliato il modello di logistic regression (con regolarizzazione), le
+	sue principali caratteristiche ed il contributo dei diversi elementi presenti nella funzione
+	di costo. Si riporti infine una descrizione accurata delle differenze di tale modello rispetto
+	ad un semplice classificatore lineare, anche mediante esempi qualitativi}
+g
+\subsection{Si descriva dettagliatamente la procedura di model selection (aiutandosi con un esempio
+	concreto) e si fornisca una chiara giustificazione teorica/concettuale a tale procedura}
+g
+\subsection{Cosa si intende per inductive bias? Se ne riporti una definizione e si discutano le maggiori
+	implicazioni in termini pratici (si tenga primariamente conto degli algoritmi di machine
+	learning visti a lezione). Si introduca infine il concetto di bias-variance tradeoff}
+g
+\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e delle reti neurali multi-
+	strato. Si riporti inoltre un esempio di rete neurale per la realizzazione della porta logica
+	NAND (indicando i valori dei parametri e la funzione di attivazione prescelta)}
+g
+\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
+	neurali. Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
+	mediante la realizzazione di un’architettura multistrato, fornendo un esempio che evidenzi
+	le diffeerenze ed i vantaggi di tale architettura}
+g
+\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
+	neurali multi-strato, illustrando chiaramente le due fasi di feedforward e backpropagation.
+	Si riporti inoltre un esempio di rete neurale per la realizzazione di un semplice operatore
+	logico AND, ed uno per la funzione XOR}
+g
+\section{Seconda parte}
+\subsection{Spiegare in dettaglio gli elementi fondamentali di SVM; in particolare: 1) la sua interpretazione geometrica, 2) la funzione di costo, 3) le differenze/similitudini con altri modelli di ML. Infine, si introduca brevemente l’estensione di SVM basata sul kernel trick}
+g
+\subsection{Si descrivano nel modo più accurato possibile gli alberi di decisione, i loro vantaggi e svantaggi rispetto ad altri modelli (ad es. reti neurali) e si evidenzi il principale inductive bias di tale algoritmo. Si fornisca inoltre un semplice esempio di albero di decisione. Infine, si illustri brevemente l’estensione di tale modello attraverso random forest}
+g
+\subsection{Si descriva in modo accurato l’algoritmo k-NN, illustrando il ruolo dei principali iperparametri, i vantaggi e le debolezze del modello nei confronti di altri algoritmi affrontati nel corso, e si evidenzi il principale inductive bias di tale algoritmo}
+g
+\section{Appelli}
+\subsection{Si descriva accuratamente un esempio di rete neurale per la realizzazione di un operatore logico XOR (indicando valori dei parametri e funzione di attivazione prescelta); si fornisca inoltre l’analoga soluzione utilizzando un albero di decisione, e si discutano pro e contro delle due soluzioni}
+g
+\subsection{Si descrivano nel modo più accurato possibile i modelli di linear classification e logistic regression; si evidenzino differenze, vantaggi e svantaggi dell’uno rispetto all’altro. Si descriva infine il processo di apprendimento tramite gradient descent e le rispettive funzioni di costo, motivando in modo adeguato la particolare forma utilizzata in entrambi i casi.}
+g
+\subsection{Si descriva accuratamente un esempio di rete neurale per la realizzazione di un operatore logico AND, ed uno per la funzione OR (indicando valori dei parametri e funzione di attivazione prescelta). Si riporti infine un esempio di rete neruale per lo XNOR}
+g
+\subsection{Si descrivano nel modo più accurato possibile il modello di regressione lineare e la sua “estensione” al problema di classificazione. Infine, si compari il modello di classificazione lineare con quello di logistic regression, evidenziando le principali differenze}
+g
+\end{document}
