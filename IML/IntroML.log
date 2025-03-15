@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.2.27)  28 FEB 2025 12:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.2.27)  15 MAR 2025 12:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -253,7 +253,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.22 ... principali differenze}{4}{subsection.3.4}
+l.22 ... principali differenze}{5}{subsection.3.4}
                                                   % [2])
 \tf@toc=\write4
 \openout4 = `IntroML.toc'.
@@ -267,59 +267,88 @@ een already used, duplicate ignored
                    \relax 
 l.22 \newpage
               [3]
-Overfull \hbox (2.15546pt too wide) in paragraph at lines 32--32
+Overfull \hbox (2.15546pt too wide) in paragraph at lines 27--27
 \OT1/cmr/bx/n/12 A tal fine si ri-portino an-che es-empi con-creti che aiutino
  []
 
 
-Overfull \hbox (1.10141pt too wide) in paragraph at lines 47--47
-\OT1/cmr/bx/n/12 ing? Se ne ri-porti una de-scrizione sin-tet-ica { chiarendo
+Overfull \hbox (3.33388pt too wide) in paragraph at lines 28--32
+\OT1/cmr/m/n/10 Infatti, nel caso della re-gres-sione lin-eare, l'inductive bia
+s prin-ci-pale ^^Re che l'insieme
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--47
+
  []
 
 
 
 [1]
+Overfull \hbox (1.10141pt too wide) in paragraph at lines 75--75
+\OT1/cmr/bx/n/12 ing? Se ne ri-porti una de-scrizione sin-tet-ica { chiarendo
+ []
+
+
 
 [2]
-Overfull \hbox (5.25691pt too wide) in paragraph at lines 80--80
+Overfull \hbox (18.62357pt too wide) in paragraph at lines 86--86
+\OT1/cmr/bx/n/12 della porta log-ica NAND (in-di-cando i val-ori dei parametri
+ []
+
+
+
+[3]
+Overfull \hbox (5.25691pt too wide) in paragraph at lines 99--99
 []\OT1/cmr/bx/n/12 Spiegare in det-taglio gli el-e-menti fon-da-men-tali di SVM
 ;
  []
 
 
 
-[3]
-Overfull \hbox (1.08879pt too wide) in paragraph at lines 91--91
+[4]
+Overfull \hbox (1.08879pt too wide) in paragraph at lines 110--110
 \OT1/cmr/bx/n/12 uno per la fun-zione OR (in-di-cando val-ori dei parametri
  []
 
 
 
-[4] (./IntroML.aux)
+[5] (./IntroML.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
  ***********
-Package rerunfilecheck Info: File `IntroML.out' has not changed.
-(rerunfilecheck)             Checksum: 63405979680320805A3B5C4FF96F4392;32092.
+
+
+Package rerunfilecheck Warning: File `IntroML.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `IntroML.out':
+(rerunfilecheck)             Before: 8FFF4E11C9921C60AF9CE93D59E9BAC5;32012
+(rerunfilecheck)             After:  BFCF681960A394AA21E863E7979EABE9;30500.
  ) 
 Here is how much of TeX's memory you used:
- 8233 strings out of 475442
- 127253 string characters out of 5774890
+ 8243 strings out of 475442
+ 127367 string characters out of 5774890
  1943905 words of memory out of 5000000
- 30802 multiletter control sequences out of 15000+600000
+ 30806 multiletter control sequences out of 15000+600000
  562324 words of font info for 50 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,6n,79p,2353b,544s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on IntroML.pdf (7 pages, 94515 bytes).
+ 75i,6n,79p,2327b,544s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{subsection.1.12} has been referenced but does not e
+xist, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on IntroML.pdf (8 pages, 97410 bytes).
 PDF statistics:
- 252 PDF objects out of 1000 (max. 8388607)
- 230 compressed objects within 3 object streams
- 29 named destinations out of 1000 (max. 500000)
+ 262 PDF objects out of 1000 (max. 8388607)
+ 239 compressed objects within 3 object streams
+ 35 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

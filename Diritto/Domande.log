@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.2.27)  28 FEB 2025 14:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2025.2.27)  15 MAR 2025 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -328,7 +328,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.45 ...ne {45}Soggetti di diritto}{5}{section.45}
+l.44 ...nitoraggio automatizzati?}{11}{section.44}
                                                   % [2])
 \tf@toc=\write4
 \openout4 = `Domande.toc'.
@@ -342,73 +342,101 @@ een already used, duplicate ignored
                    \relax 
 l.23 	\newpage
                [3]
-
-[1]
-Overfull \hbox (1.20627pt too wide) in paragraph at lines 61--61
-\OT1/cmr/bx/n/14.4 abilit^^Ra civile in gen-erale e del ser-vice provider 
+Overfull \hbox (36.30629pt too wide) in paragraph at lines 28--40
+\OT1/cmr/m/n/10 Fatti: con-sue-tu-dine (com-por-ta-mento posto in es-sere dalla
+ gen-er-alit^^Ra di un'organizzazione
  []
 
 
-Overfull \hbox (65.01282pt too wide) in paragraph at lines 67--67
-[]\OT1/cmr/bx/n/14.4 Domande su RRI (con-cezione pro-ce-du-rale/normativa) 
+
+[1{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Overfull \hbox (9.00061pt too wide) in paragraph at lines 72--76
+\OT1/cmr/m/n/10 l'ordinamento giuridico sta-bilisce cri-teri per garan-tire co-
+erenza nell'interpretazione 
+ []
+
+
+Overfull \hbox (4.69505pt too wide) in paragraph at lines 78--79
+\OT1/cmr/m/n/10 pro-mul-gazione della norma e la co-erenza della norma con il s
+is-tema giuridico
  []
 
 
 
 [2]
-Overfull \hbox (4.39284pt too wide) in paragraph at lines 77--77
-[]\OT1/cmr/bx/n/14.4 Panoramica delle fonti del diritto, definizione,
- []
-
-
 
 [3]
 
 [4]
-Overfull \hbox (6.68121pt too wide) in paragraph at lines 115--115
-[]\OT1/cmr/bx/n/14.4 L'autonomia pat-ri-mo-ni-ale im-per-fetta cosa im-
+
+[5]
+Overfull \hbox (8.0007pt too wide) in paragraph at lines 195--200
+\OT1/cmr/m/n/10 L'organo giudiziario del Con-siglio d'Europa ^^Re la Corte eu-r
+o-pea dei diritti dell'uomo
+ []
+
+
+Overfull \hbox (8.14714pt too wide) in paragraph at lines 203--204
+[]\OT1/cmr/bx/n/10 Trattati is-ti-tu-tivi\OT1/cmr/m/n/10 , che cre-ano e re-gol
+ano il fun-zion-a-mento dell'Unione
  []
 
 
 
-[5]
+[6]
+Overfull \hbox (3.0897pt too wide) in paragraph at lines 206--207
+[]\OT1/cmr/bx/n/10 Principi gen-er-ali del diritto dell'UE\OT1/cmr/m/n/10 , ri-
+ca-vati dalle tradizioni giuridiche
+ []
 
-[6] (./Domande.aux)
+
+
+[7]
+
+[8]
+Overfull \hbox (1.20627pt too wide) in paragraph at lines 268--268
+\OT1/cmr/bx/n/14.4 abilit^^Ra civile in gen-erale e del ser-vice provider 
+ []
+
+
+Overfull \hbox (65.01282pt too wide) in paragraph at lines 274--274
+[]\OT1/cmr/bx/n/14.4 Domande su RRI (con-cezione pro-ce-du-rale/normativa) 
+ []
+
+
+
+[9]
+
+[10]
+
+[11] (./Domande.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
  ***********
-
-
-Package rerunfilecheck Warning: File `Domande.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Domande.out':
-(rerunfilecheck)             Before: C81F6218243F376E0769B512A12F5FFD;13316
-(rerunfilecheck)             After:  D7B9714075F5152B9A7D5742BF0187DF;13117.
+Package rerunfilecheck Info: File `Domande.out' has not changed.
+(rerunfilecheck)             Checksum: 7FECAE33872948F8EE3075D8AAFE14CC;13155.
  ) 
 Here is how much of TeX's memory you used:
- 8993 strings out of 475442
- 139733 string characters out of 5774890
+ 9056 strings out of 475442
+ 140337 string characters out of 5774890
  1939905 words of memory out of 5000000
- 31503 multiletter control sequences out of 15000+600000
- 562017 words of font info for 49 fonts, out of 8000000 for 9000
+ 31517 multiletter control sequences out of 15000+600000
+ 563038 words of font info for 52 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,6n,79p,719b,532s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{section.53} has been referenced but does not exist,
- replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on Domande.pdf (9 pages, 85429 bytes).
+ 75i,6n,79p,719b,591s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on Domande.pdf (14 pages, 148745 bytes).
 PDF statistics:
- 360 PDF objects out of 1000 (max. 8388607)
- 335 compressed objects within 4 object streams
- 61 named destinations out of 1000 (max. 500000)
- 425 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 447 PDF objects out of 1000 (max. 8388607)
+ 408 compressed objects within 5 object streams
+ 106 named destinations out of 1000 (max. 500000)
+ 417 words of extra memory for PDF output out of 10000 (max. 10000000)
 

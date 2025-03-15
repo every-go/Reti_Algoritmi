@@ -24,21 +24,49 @@
 \pagenumbering{arabic}
 \setcounter{page}{1}
 \section{Prima parte}
+\subsection{Si descrivano nel modo più accurato possibile i concetti di bias e variance, il loro rapporto e come nella pratica possano essere affrontati e ridotti i problemi. A tal fine si riportino anche esempi concreti che aiutino a chiarire i diversi aspetti coinvolti}
+Il bias rappresenta l'errore sistematico introdotto da un modello nel semplificare troppo il problema, portando a una rappresentazione inaccurata dei dati\\
+L'inductive bias rappresenta l'insieme di ipotesi che un algoritmo assume sulla funzione target per poter generalizzare dai dati di training ai dati nuovi\\
+Infatti, nel caso della regressione lineare, l'inductive bias principale è che l'insieme di input e output può essere rappresentato come una funzione lineare\\
+Ci sono esattamente due tipi:
+\begin{enumerate}
+	\item restriction: limita lo spazio delle ipotesi
+	\item impone l'ordine delle preferenze
+\end{enumerate}
+Il bias alto causa all'algoritmo la mancanza di relazioni rilevanti fra feature e target, ad esempio un modello di regressione lineare ha un bias alto se i dati reali seguono una relazione quadratica: la sua rigidità lo porterà a fare errori sistematici.
+La variance misura quanto il modello è sensibile alle variazioni nei dati di training\\
+Un modello ha varianza alta quando è molto sensibile ai cambiamenti nei dati di training: piccole variazioni nei dati possono portare a grandi differenze nelle predizioni\\
+Questo accade quando il modello è troppo complesso e tende a sovradattarsi (overfitting)\\
+Il loro rapporto principale porta al bias-variance tradeoff, ovvero ciò che rappresenta il rapporto tra bias e varianza: un modello con bias alto semplifica troppo il problema (underfitting), mentre un modello con varianza alta si adatta troppo ai dati di training (overfitting)\\
+L'obiettivo è trovare un equilibrio tra i due per minimizzare l'errore totale\\
+La cosa migliore per un algoritmo sarebbe avere bias basso, varianza bassa\\
+Alcuni metodi pratici per bilanciare bias e varianza:\\
+1) Ridurre il bias: usare modelli più complessi (es. passare da regressione lineare a polinomiale)\\
+2) Ridurre la varianza: usare più dati di training\\
+Diverse tecniche di apprendimento hanno diversi tipi di inductive bias:\\
+\begin{enumerate}
+	\item Regressione Lineare: assume che la relazione tra input e output sia lineare. Se i dati seguono una relazione non lineare, il modello farà errori sistematici
+	\item Reti Neurali: hanno un bias più flessibile, ma la loro architettura impone certe strutture (es. una rete convoluzionale è adatta a dati con correlazioni spaziali, come immagini)
+	\item Nearest Neighbors (NN): assume che dati simili abbiano etichette simili, basandosi sulla vicinanza in uno spazio di feature
+\end{enumerate}
+\subsection{Si descriva in modo accurato il modello di logistic regression, le sue principali caratteristiche
+	ed il contributo dei diversi elementi presenti nella funzione di costo. Si riporti inoltre
+	una comparazione con il modello di classificazione lineare, evidenziando elementi in comune
+	e differenze principali. Infine, si descriva chiaramente la procedura di addestramento
+	mediante l’applicazione di gradient descent}
+g
+\subsection{Si descriva in modo dettagliato il modello di logistic regression (con regolarizzazione), le
+	sue principali caratteristiche ed il contributo dei diversi elementi presenti nella funzione
+	di costo. Si riporti infine una descrizione accurata delle differenze di tale modello rispetto
+	ad un semplice classificatore lineare, anche mediante esempi qualitativi}
+g
 \subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
 	neurali. Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
 	mediante la realizzazione di un’architettura a più strati, fornendo un esempio che evidenzi
 	le differenze/vantaggi di tale architettura}
 g
-\subsection{Si descrivano nel modo più accurato possibile i concetti di bias e variance, il loro rapporto e come nella pratica possano essere affrontati e ridotti i problemi. A tal fine si riportino anche esempi concreti che aiutino a chiarire i diversi aspetti coinvolti}
-g
-\subsection{Si descriva in modo accurato il modello di logistic regression, le sue principali caratteristi-
-	che ed il contributo dei diversi elementi presenti nella funzione di costo. Si riporti inoltre
-	una comparazione con il modello di classificazione lineare, evidenziando elementi in comu-
-	ne e differenze principali. Infine, si descriva chiaramente la procedura di addestramento
-	mediante l’applicazione di gradient descent}
-g
-\subsection{Si descriva dettagliatamente la procedura di cross-validation, motivandone scopo ed uti-
-	lità, e fornendo una chiara descrizione della (corretta) procedura di addestramento di un
+\subsection{Si descriva dettagliatamente la procedura di crossvalidation, motivandone scopo ed utilità,
+	e fornendo una chiara descrizione della (corretta) procedura di addestramento di un
 	qualunque sistema di machine learning. Si descrivano inoltre i concetti di true error ed
 	empirical error e se ne evidenzino le relazioni con la procedura di cross-validation}
 g
@@ -47,23 +75,14 @@ g
 	del supervised learning. Si distinguano in particolare classificazione e regressione}
 g
 \subsection{Cosa si intende per “one learning algorithm hypothesis” e come tale ipotesi si relaziona
-	con le reti neurali artificiali? Si fornisca inoltre una descrizione esaustiva degli elemen-
-	ti/ingredienti principali che permettono la definizione di una rete neurale multi-strato}
-g
-\subsection{Si descriva in modo dettagliato il modello di logistic regression (con regolarizzazione), le
-	sue principali caratteristiche ed il contributo dei diversi elementi presenti nella funzione
-	di costo. Si riporti infine una descrizione accurata delle differenze di tale modello rispetto
-	ad un semplice classificatore lineare, anche mediante esempi qualitativi}
+	con le reti neurali artificiali? Si fornisca inoltre una descrizione esaustiva degli elementi/ingredienti
+	principali che permettono la definizione di una rete neurale multistrato}
 g
 \subsection{Si descriva dettagliatamente la procedura di model selection (aiutandosi con un esempio
 	concreto) e si fornisca una chiara giustificazione teorica/concettuale a tale procedura}
 g
-\subsection{Cosa si intende per inductive bias? Se ne riporti una definizione e si discutano le maggiori
-	implicazioni in termini pratici (si tenga primariamente conto degli algoritmi di machine
-	learning visti a lezione). Si introduca infine il concetto di bias-variance tradeoff}
-g
-\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e delle reti neurali multi-
-	strato. Si riporti inoltre un esempio di rete neurale per la realizzazione della porta logica
+\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e delle reti neurali multistrato.
+	Si riporti inoltre un esempio di rete neurale per la realizzazione della porta logica
 	NAND (indicando i valori dei parametri e la funzione di attivazione prescelta)}
 g
 \subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
@@ -72,7 +91,7 @@ g
 	le diffeerenze ed i vantaggi di tale architettura}
 g
 \subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
-	neurali multi-strato, illustrando chiaramente le due fasi di feedforward e backpropagation.
+	neurali multistrato, illustrando chiaramente le due fasi di feedforward e backpropagation.
 	Si riporti inoltre un esempio di rete neurale per la realizzazione di un semplice operatore
 	logico AND, ed uno per la funzione XOR}
 g
