@@ -16,6 +16,13 @@
 \pagenumbering{gobble}
 \maketitle
 \begin{center}
+	\textbf{ATTENZIONE: questo file è una rivisitazione personale delle domande chieste negli anni allo scritto di Reti di Calcolatori\\
+	Sono state aggiunte parecchie domande che secondo me può chiedere (sono quelle senza date fra parentesi), però non assicuro di dare
+	tutte le risposte di un programma così ampio\\
+	Infatti, ad esempio, al 2 appello 2024/2025 ha chiesto il CSMA p-persistente, del quale non c'è la descrizione completa in questo file}
+\end{center}
+\newpage
+\begin{center}
 %do un nuovo nome alla tabella degli indici e la inizializzo
 \renewcommand{\contentsname}{Indice}
 \tableofcontents
@@ -516,7 +523,7 @@ Minore utilizzo del canale in reti leggere:\\
 Rispetto al CSMA 1-persistente, in situazioni con pochi dispositivi attivi, il protocollo non persistente può essere meno efficiente perché introduce attese inutili\\
 Difficoltà nel garantire priorità:\\
 Non offre meccanismi per assegnare priorità alla trasmissione di dati urgenti, rendendolo meno adatto a reti con traffico prioritario
-\section{Protocolli a contesa limitata: adaptive tree walk protocol (2015, 18, 24)}
+\section{Protocolli a contesa limitata: adaptive tree walk protocol (2015, 18, 24, 25)}
 \subsection{Descrizione}
 I protocolli a contesa limitata cercano di unire i lati positivi dei metodi della contesa e dei metodi senza collisioni\\
 Infatti si cerca di crearne uno capace di usare il metodo della contesa per ottenere un ritardo limitato a basso carico e il metodo senza collisioni per raggiungere una buona efficienza di canale nelle situazioni a carico più elevato\\
@@ -895,7 +902,7 @@ nei router con risorse limitate, il processo di traduzione degli indirizzi può 
 \item Incompatibilità con IPv6 puro:\\
 con l'adozione di IPv6, il NAT diventa meno rilevante poiché IPv6 offre un numero sufficiente di indirizzi unici per ogni dispositivo
 \end{enumerate}
-\section{ARP (Address Resolution Protocol) (2014, 17, 18, 19, 20, 22, 23, 24)}
+\section{ARP (Address Resolution Protocol) (2014, 17, 18, 19, 20, 22, 23, 24, 25)}
 \subsection{Descrizione}
 L'Address Resolution Protocol (ARP) è un protocollo appartenente al livello di rete (network layer) che consente di trovare la corrispondenza tra un indirizzo IP e un indirizzo MAC (Media Access Control) necessario per la comunicazione all'interno di una rete locale (LAN)\\
 Il suo funzionamento può essere riassunto come segue:
