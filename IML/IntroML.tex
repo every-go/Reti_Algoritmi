@@ -1,5 +1,6 @@
 \documentclass[10pt,oneside,a4paper]{article}
 \usepackage{hyperref}
+\usepackage{graphicx}
 \hypersetup{
 	colorlinks=true,   % Abilita il colore dei link (senza box intorno)
 	linkcolor=blue,    % Colore per i link interni (come quelli nell'indice)
@@ -49,12 +50,211 @@ Diverse tecniche di apprendimento hanno diversi tipi di inductive bias:\\
 	\item Reti Neurali: hanno un bias più flessibile, ma la loro architettura impone certe strutture (es. una rete convoluzionale è adatta a dati con correlazioni spaziali, come immagini)
 	\item Nearest Neighbors (NN): assume che dati simili abbiano etichette simili, basandosi sulla vicinanza in uno spazio di feature
 \end{enumerate}
+
+
+\subsection{Concetti principali}
+\subsubsection{Linear Regression}
+la regressione lineare è una delle tecniche fondamentali nella \textbf{creazione di learning algorithms}.\\
+Ci permette, dato un set di dati di training composto da dei dati di ''input'' con una o più features e un dato target, di individuare una funzione approsimante del dataset che permetta di trovare il valore target anche per dati esterni al set di training. \\
+Per fare ciò useremo le seguenti funzioni:
+\begin{itemize}
+ \item la seguente funzione permette, dato un input con una o più feature, di calcolare il target :
+  $$h_{\Theta}(x)=\Theta_{0}+\Theta_{1}x_1$$
+  \textbf{Nota Bene}: in questo esempio il dato di input ha solo una feature, quindi abbiamo solo una variabile ($ x_1$ )\\
+ Nella formula precedente i $\Theta_{i}$ rappresentano dei coefficienti o pesi che cercano di realizzare una funzione tale che 
+ $$h_{\Theta}(x^{(i)})\approx y^{(i)}  \forall i$$
+ Le varie feature vanno pesate in quanto non contribuiscono in maniera omogenea al risultato (una caratteristica può essere più rilevante delle altre)
+ \item La seguente funzione è detta \textbf{funzione di costo} è:
+ $$J(\Theta_{0},\Theta_{1})= \frac{1}{2m} \sum_{i=1}^{m}(h_{\Theta}(x^{(i)})-y^{(i)})^2$$
+ \item Il nostro obiettivo è \textbf{ minimizzare }la funzione di costo
+ $$\min_{\Theta_{0},\Theta_{1}} J(\Theta_{0},\Theta_{1})$$
+ 
+ \end{itemize}
+ 
+ \subsubsection{Parameter learning, Gradient descend}
+Al fine di minimizzare la funzione di costo ci serve un algoritmo efficiente per aggiustare automaticamente i parametri $\Theta$ \\
+Per fare ciò usiamo il \textbf{Gradient descend} 
+ \begin{itemize}
+\item Data una funzione di costo:
+$$J(\Theta_{0},......,\Theta_{n})$$
+\item facciamo un piccolo ``passo'' nella direzione opposta al gradiente (gradiente moltiplicato per $-1$), si noti che questo algoritmo porta ad un minimo locale e potrebbe differire in base al punto di partenza (si veda figura 2)
+$$\Theta^{(j+1)} = \Theta^{(j)}-\eta \nabla J(\Theta^{(j)})$$
+Volendo fare un'analogia per chiarire il concetto possiamo immaginare di trovarci in montagna con una nebbia molto fitta, per tornare a valle cerchiamo di fare sempre un passo in discesa (si veda figura 1)
+
+
+
+\item $\Theta^{(j)}$ indica l'insieme delle $\Theta_{0},......,\Theta_{n}$ al j esimo passo \\
+(\textbf{NB} se l'aggiornamento delle $\theta $ non avviene come operazioni tra vettori, ma considerando ogni $\Theta$ come uno scalare è necessario aggiungere delle variabili temporanee per evitare che i cambiamenti di un $\Theta$ inluenzi anche gli altri)
+
+\item $\eta > 0$ è chiamato \textbf{learning rate}, è importante che non sia un valore troppo basso, perchè potrebbe portare a una convergenza troppo lenta, è importante che non sia troppo alto, perchè potrebbe non convergere (figura 3)
+
+\item dopo ogni passaggio il gradiente viene rivalutato per il nuovo vettore dei pesi $\Theta^{(j+1)}$ 
+\\ il processo si ripete finchè non si raggiunge uno scarto sufficientemente basso (il criterio dello scarto ferma la discesa del gradiente quando la differenza tra il gradiente al passo j e j+1 è prossima a 0 )
+
+\item  \textbf{Nota bene}: la funzione di costo va calcolata sull'interezza dei dati di addestramento gli x e y, \\
+in particolare X diventa matrice e Y diventa vettore (batch gradient descend)
+$$\nabla J(\Theta)=\frac{1}{m}X^{T}(h_{\Theta}(X)-Y)$$
+ \begin{itemize}
+\item $X$ è la matrice degli input, ha dimensione $mxn$
+\begin{itemize}
+\item \textbf{m}  è il numero di dati  nel training set
+\item \textbf{n} è il numero delle feature
+\end{itemize}
+\item $X^{T}$ è la matrice degli input trasposta
+\item $h_{\Theta}(X)$ è un vettore di tutte le previsioni (calcolate su ogni riga di X)
+\item $Y$ è il vettore dei target (i risultati ''reali'' del training set)
+\item questa formula è il diretto risultato dell'applicazione delle regole di derivazione sulla funzione di costo
+
+\end{itemize}
+\item come implementiamo $\nabla J(\Theta^{(j)})$ ovvero il calcolo del gradiente:
+eseguiamo l'operazione come segue $\forall i$, ovvero per tutti le caratteristiche (o feature) del nostro training set
+$$\Theta^{(j+1)}_{i}=\eta \frac{\partial}{\partial \Theta^{(j)}_{i}} J(\Theta^{(j)})$$
+ 
+e ripetiamo tale operazione fino a convergenza
+
+\item esistono anche altre varianti del gradient descend, come lo ''stochastic gradient descend'':
+aggiorna i paramentri considerando solo un elemento del training set alla volta, quindi calcolando il gradiente su un singolo campione di input. \\
+è necessario mischiare casualmente e tutti i campioni siano indipendenti e distribuiti uniformemente
+
+\end{itemize}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{Images/gradientDescend.png}
+  \caption{un esempio grafico per visualizzare cosa acccade.}
+  \label{fig:1}
+    \includegraphics[width=\linewidth]{Images/gradientDescend2.png}
+  \caption{Non univocità dell'ottimo trovato.}
+  \label{fig:2}
+  \end{figure}
+  \pagebreak
+  \begin{figure}
+    \includegraphics[width=\linewidth]{Images/learningRate.png}
+  \caption{Influenza di $\eta$ sulla convergenza.}
+  \label{fig:3}
+\end{figure}
+\pagebreak
+
+
+\subsubsection{Linear classifiers}
+Classificazione: \\
+serve a determinare a quale categoria specifica un campione appartiene, \\
+ad esempio : 
+\begin{itemize}
+\item il riconoscimento dei numeri
+\item riconoscimento delle email di spam
+
+\end{itemize}
+
+La differenza principale tra regressione e classificazione è che la regressione si occupa di calcolare un valore, l'esempio classico è il prezzo delle case di Boston dati alcune caratteristiche, mentre nella classificazione l'output è una classe o etichetta
+
+\begin{itemize}
+\item classificazione binaria.\\
+2 possibili labels (etichette)
+\item Classificazione multi-classe \\
+più possibili etichette
+\end{itemize}
+Con le conoscenze attuali possiamo realizzare la classificazione binaria sfruttando la regressione. \\
+\textbf{Classification as regression}
+\begin{itemize}
+\item Ricordiamo la funzione di regressione 
+$$h_{\Theta}(x)=\Theta^{T}x$$
+\item fissiamo dei classificatore di soglia
+
+\begin{itemize}
+\item se $h_{\Theta}(x) \ge 0,5$ allora predice $y=1$
+\item se $h_{\Theta}(x) < 0,5$ allora predice $y=-1$\\
+(in base al contesto potremmo avere $y=0$ )
+\item Abbiamo usato il -1 così da poter scrivere la funzione di classificazione nel seguente modo:
+$$y=sign(h_{\Theta}(x))$$
+\item Questa funzione è detta \textbf{linear classifier}, dato che ''imposta'' un confine lineare che separa lo spazio in 2 metà distinte
+
+\item Non sempre è una buona idea, dato che valori estremi potrebbero spostare la soglia e incasinare la classificazione per valori medii
+\end{itemize}
+\item interpretazione geometrica
+\begin{itemize}
+\item se lo spazio ha dimensione N, la soglia ha dimensione N-1.
+\item spazio a 2 dimensioni, il classificatore è una riga
+\item  spazio a 3 dimensioni, la soglia è un piano
+\item per spazi con una dimensione di ordine superiore non possiamo visualizzarlo, ma possiamo scriverlo matematicamente
+
+\begin{itemize}
+\item $\Theta^{T}x=0$ \\
+ è una linea passante attraverso l'origine e ortogonale a $\Theta $
+ 
+ \item  $\Theta^{T}x+\Theta_{0}=0$ \\ shifta la linea di $\Theta_{0}$, viene spesso chiamato ''bias term''
+ 
+ \item perciò la funzione di classificazione è 
+ $$sign(h_{\Theta}(x))=sign(\Theta^{T}x+\Theta_{0})$$
+\end{itemize}
+
+\end{itemize}
+
+\end{itemize}
+\subsubsection{regolarizzazione}
+
+
+
+
 \subsection{Si descriva in modo accurato il modello di logistic regression, le sue principali caratteristiche
 	ed il contributo dei diversi elementi presenti nella funzione di costo. Si riporti inoltre
 	una comparazione con il modello di classificazione lineare, evidenziando elementi in comune
 	e differenze principali. Infine, si descriva chiaramente la procedura di addestramento
 	mediante l’applicazione di gradient descent}
-g
+
+\textbf{attenzione la seguente risposta è da correggere perciò non prendetela per buona}
+
+
+Classificazione come regressione(o logistic regression, questa cosa è da verificare) :
+\begin{itemize}
+\item è una funzione di classificazione, ha quindi output binario, ovverro restituisce \textbf{-1} oppure 1\textbf{1}
+\item utilizza una funzione trovata tramite regressione lineare e un classificatore a soglia, e per praticità scriviamo la funzione di classificazione come $y = \mathrm{sign}(h_{\Theta}(x)+\Theta_{0})$ dove $\Theta_{0}$ è detto ''bias term'' ed è il classificatore a soglia
+\item La funzione di costo è delineata dalle seguenti formule(per praticità mi limito momentaneamente al caso con funzione h lineare):
+ \begin{itemize}
+ \item la prima funzione è:
+  $$h_{\Theta}(x)=\Theta_{0}+\Theta_{1}x$$
+ dove i $\Theta_{i}$ rappresentano dei coefficienti che cercano di realizzare una funzione tale che 
+ $$h_{\Theta}(x^{(i)})\approx y^{(i)}  \forall i$$
+ 
+ \item La funzione di costo è:
+ $$J(\Theta_{0},\Theta_{1})= \frac{1}{2m} \sum_{i=1}^{m}(h_{\Theta}(x^{(i)})-y^{(i)})^2$$
+ \item Il nostro obiettivo è minimizzare la funzione di costo
+ $$\min_{\Theta_{1}} J(\Theta_{1})$$
+ 
+ \end{itemize}
+ 
+ \item scelta dei parametri $\Theta$ e minimizzazione efficiente della funzione di costo J,
+ per fare ciò usiamo la discesa del gradiente o gradient descend
+ \begin{itemize}
+\item Data una funzione di costo:
+$$J(\Theta_{0},......,\Theta_{n})$$
+\item facciamo un piccolo ``passo'' nella direzione opposta al gradiente (gradiente moltiplicato per $-1$)
+$$\Theta^{(j+1)} = \Theta^{(j)}-\eta \nabla J(\Theta^{(j)})$$
+\item $\Theta^{(j)}$ indica l'insieme delle $\Theta_{0},......,\Theta_{n}$ al j esimo passo \\
+(\textbf{NB} se l'aggiornamento delle $\theta $ non avviene come operazioni tra vettori, ma considerando ogni $\Theta$ come uno scalare è necessario aggiungere delle variabili temporanee per evitare che i cambiamenti di un $\Theta$ inluenzi anche gli altri)
+
+\item $\eta > 0$ è chiamato \textbf{learning rate}
+\item dopo ogni passaggio il gradiente viene rivalutato per il nuovo vettore dei pesi $\Theta^{(j+1)}$ 
+\\ il processo si ripete finchè non si raggiunge uno scarto sufficientemente basso (il criterio dello scarto ferma la discesa del gradiente quando la differenza tra il gradiente al passo j e j+1 è prossima a 0 )
+
+\item  \textbf{Nota bene}: la funzione di costo va calcolata sull'interezza dei dati di addestramento gli x e y, \\
+in particolare X diventa matrice e Y diventa vettore
+$$\nabla J(\Theta)=\frac{1}{m}X^{T}(h_{\Theta}(X)-Y)$$
+ \begin{itemize}
+\item $X$ è la matrice degli input
+\item $X^{T}$ è la matrice degli input trasposta
+\item $h_{\Theta}(X)$ è un vettore di tutte le previsioni (calcolate su ogni riga di X)
+\item $Y$ è il vettore dei target (i risultati ''reali'' del training set)
+
+\end{itemize}
+\item come implementiamo $\nabla J(\Theta^{(j)})$ ovvero il calcolo del gradiente:
+eseguiamo l'operazione come segue $\forall i$, ovvero per tutti le caratteristiche (o feature) del nostro training set
+$$\Theta^{(j+1)}_{i}=\eta \frac{\partial}{\partial \Theta^{(j)}_{i}} J(Theta^{(j)})$$
+ 
+e ripetiamo tale operazione fino a convergenza
+
+\end{itemize}
+
+\end{itemize}
 \subsection{Si descriva in modo dettagliato il modello di logistic regression (con regolarizzazione), le
 	sue principali caratteristiche ed il contributo dei diversi elementi presenti nella funzione
 	di costo. Si riporti infine una descrizione accurata delle differenze di tale modello rispetto
