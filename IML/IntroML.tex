@@ -1,6 +1,12 @@
 \documentclass[10pt,oneside,a4paper]{article}
+
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\newif\ifincludeimages
+
+\includeimagestrue 
+%\includeimagesfalse
 \hypersetup{
 	colorlinks=true,   % Abilita il colore dei link (senza box intorno)
 	linkcolor=blue,    % Colore per i link interni (come quelli nell'indice)
@@ -10,7 +16,7 @@
 	pdfborder={0 0 0}  % Disabilita i bordi intorno ai link
 }
 \title{Introduzione all'apprendimento automatico}
-\author{Matteo Mazzaretto}
+\author{Matteo Mazzaretto, Davide Lorenzon}
 \date{2024/2025}
 \begin{document}
 \pagenumbering{gobble}
@@ -118,6 +124,8 @@ aggiorna i paramentri considerando solo un elemento del training set alla volta,
 
 \end{itemize}
 
+\ifincludeimages
+
 \begin{figure}
   \includegraphics[width=\linewidth]{Images/gradientDescend.png}
   \caption{un esempio grafico per visualizzare cosa acccade.}
@@ -134,7 +142,44 @@ aggiorna i paramentri considerando solo un elemento del training set alla volta,
 \end{figure}
 \pagebreak
 
+\fi
 
+\subsubsection{Features e polynomial regression}
+Spesso accade che una funzione lineare non approssimi in maniera accurata i dati.
+Perciò possiamo ''duplicare'' una feature \\
+\[
+\begin{bmatrix}
+x_{0} \\
+x_{1}  \\
+x_{2} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+x^{0} \\
+x^{1} \\
+x^{2} \\
+\end{bmatrix}
+\] \\
+Questo esempio risulta adatta ad un dataset rappresentabile con una parabola.
+Si può usare qualsiasi funzione (radicali, logaritmi, ecc...) e ciò permette maggiore flessibilità
+
+Rimane valida la formula già vista
+
+$$h_{\Theta}(X)=\Theta^{T}X$$
+
+\[
+h_{\Theta}(X) = 
+\begin{bmatrix}
+\Theta_{0} \\
+\Theta_{1} \\
+\Theta_{2}
+\end{bmatrix}^{\!T}
+\begin{bmatrix}
+x^{0} \\
+x^{1} \\
+x^{2}
+\end{bmatrix}
+\]
 \subsubsection{Linear classifiers}
 Classificazione: \\
 serve a determinare a quale categoria specifica un campione appartiene, \\
@@ -179,7 +224,7 @@ $$y=sign(h_{\Theta}(x))$$
 
 \begin{itemize}
 \item $\Theta^{T}x=0$ \\
- è una linea passante attraverso l'origine e ortogonale a $\Theta $
+ è una linea passante attraverso l'origine e ortogonale a $\Theta $ (ritorna uno scalare)
  
  \item  $\Theta^{T}x+\Theta_{0}=0$ \\ shifta la linea di $\Theta_{0}$, viene spesso chiamato ''bias term''
  
@@ -190,8 +235,57 @@ $$y=sign(h_{\Theta}(x))$$
 \end{itemize}
 
 \end{itemize}
-\subsubsection{regolarizzazione}
 
+\begin{itemize}
+\subsubsection{Regolarizzazione}
+\item \textbf{Overfitting}: se abbiamo troppe caratteristiche, la funzione ''appresa'' $h_{\Theta}(x)$ potrebbe adattarsi molto bene al set di addestramento, ma fallire nella generalizzazione di nuovi campioni. \\
+\item \textbf{Come individuarlo}: se abbiamo troppe caratteristiche e un training set troppo piccolo, potrebbero verificarsi problemi di overfitting.
+\item \textbf{Soluzioni}: 
+\begin{itemize}
+\item Ridurre il numero di caratteristiche durante la model selection
+\item Regolarizzazione
+
+\begin{itemize}
+\item Mantenere tutte le features/caratteristiche, ma riducendo l'influenza dei parametri $\Theta_{j}$
+\item Funziona bene quando abbiamo molte features e ognuna contribuisce un po' a predirre $Y$
+
+
+\end{itemize}
+
+\end{itemize}
+\item Come funziona la \textbf{regolarizzazione}: \\
+Supponiamo di voler penalizzare dei $\Theta_{3}$ e $\Theta_{4}$ al fine di renderli molto piccoli.\\
+Per fare ciò, ritocchiamo un po' la funzione di costo e alterando così il minimo:
+$$ J(\Theta)= \frac{1}{2m} \sum_{i=1}^{m}(h_{\Theta}(x^{(i)})-y^{(i)})^2+1000\Theta_{3}^{2}+1000\Theta_{4}^{2}$$
+$$\min_{\Theta} J(\Theta)=\min_{\Theta} \frac{1}{2m} \sum_{i=1}^{m}(h_{\Theta}(x^{(i)})-y^{(i)})^2+1000\Theta_{3}^{2}+1000\Theta_{4}^{2}$$
+
+\item o volendolo scrivere con una sintassi più generica:
+$$\min_{\Theta} J(\Theta)=\min_{\Theta} \frac{1}{2m} \sum_{i=1}^{m}(h_{\Theta}(x^{(i)})-y^{(i)})^2+\lambda \sum_{j=1}^{n}\Theta_{j}^{2}$$
+Questa modifica permette al \textbf{gradient descend} di ridurre i parametri desiderati
+
+\item Analizzando cosa accade nell'aggiornamento del gradient descend con la nuova funzione di costo:
+
+\begin{itemize}
+\item Ripeti fino a convergenza:
+$$\Theta_{0}^{j+1}=\Theta_{0}^{j}-\eta \frac{1}{m} \sum_{i=1}^{m}(h_{\Theta^{j}}(x^{(i)})-y^{(i)})x_{0}^{(i)}$$
+$$\Theta_{k}^{j+1}=\Theta_{k}^{j}-\eta \frac{1}{m}\sum_{i=1}^{m}(h_{\Theta^{j}}(x^{(i)})-y^{(i)})x_{k}^{(i)}+\frac{\lambda}{m}\Theta_{k}$$
+\item analizzando meglio la funzione possiamo scriverla nella seguente maniera:
+$$\Theta_{0}^{j+1}=\Theta_{0}^{j}-\eta \frac{1}{m} \sum_{i=1}^{m}(h_{\Theta^{j}}(x^{(i)})-y^{(i)})x_{0}^{(i)}$$
+$$\Theta_{k}^{j+1}=\Theta_{k}^{j}(1-\eta \frac{\lambda}{m} )-\eta \frac{1}{m}\sum_{i=1}^{m}(h_{\Theta^{j}}(x^{(i)})-y^{(i)})x_{k}^{(i)}$$
+
+\item Possiamo notare alcune cose molto interessanti:
+\begin{itemize}
+\item Il primo termine ($\eta \frac{\lambda}{m}$) è poco più piccolo di 1, quindi a riduce il parametro $\Theta_{k}$. \\
+Quindi abbiamo:
+$$\Theta_{k}^{j}(1-\eta \frac{\lambda}{m} ) < \Theta_{k}^{j}$$ $$ (\approx \Theta_{k}^{j} * 0,99)$$ 
+\item Il secondo termine è uguale alla funzione per l'aggiornamento dei $\Theta$ prima che introducessimo la regolarizzazione
+$$-\eta \frac{1}{m}\sum_{i=1}^{m}(h_{\Theta^{j}}(x^{(i)})-y^{(i)})x_{k}^{(i)}$$
+\end{itemize}
+
+\end{itemize}
+
+
+\end{itemize}
 
 
 
