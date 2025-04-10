@@ -230,7 +230,7 @@
 	Il perceptron è un modello semplice:\\
 	un neurone che fa una trasformazione per combinazione lineare con una "funzione di attivazione" definita come f($\Theta^T$x)\\
 	Questa funzione di attivazione può essere la sigmoide ($\frac{1}{1+e^-z}$), il tanh (tangente iperbolico), la ReLU ($max(0,x)$), Leaky ReLU: max(0.1x, x), Maxout: max($w_1^Tx+b_1, w_2^Tx+b_2$), ELU : x quando x$>=0$, $\alpha$($e^x$-1) quando $x<0$\\
-	Ogni neurone implementa da solo la logistic regression\\
+	Ogni neurone implementa da solo la logistic regression (nel caso in cui usi la funzione sigmoide)\\
 	Esso prende in input quindi tutti i pesi $\Theta$ e definisce tramite la funzione descritta precedentemente un output\\
 	Questi percepetron sono la base per la costruzione di una rete neurale multistrato, infatti essa è formata da più strati, divisi in 3 macrocategorie:
 	\begin{enumerate}
@@ -238,14 +238,28 @@
 		\item hidden layer ($>=1$) (NB il caso in cui il numero sia 0 è un perceptron classico)
 		\item output layer
 	\end{enumerate}
+	Il passaggio da uno strato all'altro si misura come
+	\[
+	a_i^{(l)} = f\left(\sum_{k=1}^{n^{(l-1)}} \Theta_{ik}^{(l)} a_k^{(l-1)} + b_i^{(l)}\right)
+	\]
+	
+	\textbf{Spiegazione dei simboli:}
+	\begin{itemize}
+		\item $a_i^{(l)}$: Attivazione del neurone $i$-esimo nel layer $l$.
+		\item $\Theta_{ik}^{(l)}$: Peso tra il neurone $k$ del layer $l-1$ e il neurone $i$ del layer $l$.
+		\item $b_i^{(l)}$: \textbf{Bias} (spesso incluso come $\Theta_{i0}^{(l)}$ con $a_0^{(l-1)} = 1$).
+		\item $f$: Funzione di attivazione (ReLU, sigmoide, ecc.).
+		\item $n^{(l-1)}$: Numero di neuroni nel layer precedente.
+	\end{itemize}
 	Mentre i perceptron riescono a fare unicamente una combinazione lineare, il collegamento fra più perceptron permette architetture molto più complesse che permettono di definire operazioni più difficili che un unico perceptron non riuscirebbe a fare\\
 	Questo permette la costruzione di un sistema che offre nettamente più vantaggi rispetto al perceptron singolo, ma anche un numero di collegamenti decisamente più elevato (per le reti che abbiamo visto fino ad ora ogni perceptron è collegato a tutti i perceptron dello stato successivo, portando la complessità computazionale ad essere molto elevata per sistemi formati da centinaia se non migliaia di strati)\\
 	Queste reti neurali seguono una fase di feed-forward, ovvero una propagazione in avanti dei dati dove si porta ogni dato da uno strato a quello successivo\\
 	L'architettura multistrato e la propagazione feed-forward permettono la costruzione di operatori logici OR, AND, XOR (XNOR $\to$ NOT AND NOT) e NAND (NOT AND)\\
+	La differenza principale fra questi operatori logici è che OR e AND sono operatori logici linearmente separabili, quindi non richiedono strati nascosti, invece XOR e NAND sono linearmente separabili e richiedono degli strati nascosti per arrivare al corretto risultato\\
 	\textbf{Gli esempi sono nelle slide/negli appunti}	
 		
 	
-	
+	\newpage
 	\section{Seconda parte}
 	\subsection{Spiegare in dettaglio gli elementi fondamentali di SVM; in particolare:
 		1) la sua interpretazione geometrica, 2) la funzione di costo, 3) le differenze/similitudini con altri modelli di ML.
