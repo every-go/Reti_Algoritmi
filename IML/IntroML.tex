@@ -81,7 +81,9 @@
 	Alcuni metodi pratici per bilanciare bias e varianza:\\
 	1) Ridurre il bias: usare modelli più complessi (es. passare da regressione lineare a polinomiale)\\
 	2) Ridurre la varianza: usare più dati di training\\
-	
+	Le learning curve (errori su training e validation) aiutano a diagnosticare questi problemi:\\
+	bias elevato si manifesta con errori alti su entrambi, mentre la variance si riconosce da un errore basso sul training ma alto sulla validation\\
+
 	
 	
 	\subsection{Si descriva in modo dettagliato il
@@ -141,19 +143,11 @@
 		\item \textbf{Esempio}: Per dati con outlier, la logistic regression è robusta mentre la regressione lineare può produrre un iperpiano distorto.
 	\end{itemize}
 	
-	\subsubsection{Addestramento con Gradient Descent}
-	La procedura iterativa aggiorna i parametri $\theta$ come:
+	L'addestramento con gradient descent usa la procedura iterativa aggiornando i parametri $\theta$ come:
 	\[
-	\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}
+	\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j} = \theta_j - \frac{\alpha}{m} \sum_{i=1}^{m} (h_{\theta}(x^{(i)}) - y^i)x_j^i
 	\]
-	dove:
-	\begin{itemize}
-		\item $\alpha$ è il learning rate
-		\item La derivata parziale per la logistic regression (senza regolarizzazione) è:
-		\[
-		\frac{\partial}{\partial\Theta_j}J(\Theta) = -\frac{1}{m}[ \sum_{i=1}^{m} (y^{(i)} - h_{\Theta}(x^{(i)})) \cdot x_j^{(i)} ]
-		\]	
-	\end{itemize}
+	dove $\alpha$ è il learning rate\\
 	L'algoritmo termina quando le derivate sono vicine a zero (punto di minimo), si può notare che è molto simile al procedimento di "gradient descent" della regressione lineare
 	
 	
@@ -205,6 +199,9 @@
 		\item recall: $\frac{TP}{TP+FN}$: frazione delle istanze rilevanti che sono recuperate
 	\end{itemize}
 	Il rapporto corretto, che purtroppo non può essere sempre preciso al 100\%, sopratutto su animali rarissimi di cui girano poco foto su Internet, si valuta tramite gli integrali fra le curve di precision e recall\\
+	Si possono però stimare bias e variance, infatti:
+	le learning curve rappresentano:\\
+	bias elevato se manifesta con errori alti su entrambi, la variance si riconosce da un errore basso sul training ma alto sulla validation
 	Inoltre, spesso si computa Prec@k e Rec@k nei top k risultati\\
 	Infine, un'altra misurazione è l'average precision (AP) che è una misura che combina recall e precision per risultati ordinati, quindi restituisce ciò che ha una precisione maggiore, che si calcola sommando la precisione quando si trova un True positive identificato realmente
 	\[ AP=\frac{\sum_{k=1}^{n}P(k) \cdot rel(k)}{\text{all instances}} \]
@@ -214,67 +211,65 @@
 	
 	
 	
-	\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
-		neurali. Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
-		mediante la realizzazione di un’architettura a più strati, fornendo un esempio che evidenzi
-		le differenze/vantaggi di tale architettura}
-	g
-	
-	
 	\subsection{Cosa si intende per “one learning algorithm hypothesis” e come tale ipotesi si relaziona
 		con le reti neurali artificiali? Si fornisca inoltre una descrizione esaustiva degli elementi/ingredienti
 		principali che permettono la definizione di una rete neurale multistrato}
-	g
-	
-	
-	\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e delle reti neurali multistrato.
-		Si riporti inoltre un esempio di rete neurale per la realizzazione della porta logica
-		NAND (indicando i valori dei parametri e la funzione di attivazione prescelta)}
-	g
+	"One learning algorithm hypothesis" si riferisce all'idea che esista un unico algoritmo di apprendimento che possa essere utilizzato per affrontare una vasta gamma di compiti, indipendentemente dalla specificità dei dati o della struttura del problema\\
+	In altre parole, questa ipotesi suggerisce che un solo algoritmo di apprendimento, se opportunamente configurato e allenato, possa essere in grado di risolvere una varietà di problemi, inclusi quelli complessi come la classificazione e la previsione\\
+	Nell'ambito delle reti neurali artificiali, questa ipotesi si relaziona al fatto che, nonostante le reti neurali possano variare in complessità e architettura, un singolo algoritmo di apprendimento, come la retropropagazione (backpropagation), può essere utilizzato per addestrare una rete neurale su vari tipi di dati, risolvendo compiti complessi come la classificazione o la regressione
 	
 	
 	
 	\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
-		neurali. Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
-		mediante la realizzazione di un’architettura multistrato, fornendo un esempio che evidenzi
-		le diffeerenze ed i vantaggi di tale architettura}
-	g
-	
-	
-	\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
-		neurali multistrato, illustrando chiaramente le due fasi di feedforward e backpropagation.
+		neurali, illustrando chiaramente la fase di feed-forward\\
+		Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
+		mediante la realizzazione di un’architettura a più strati, fornendo un esempio che evidenzi
+		le differenze/vantaggi di tale architettura
 		Si riporti inoltre un esempio di rete neurale per la realizzazione di un semplice operatore
-		logico AND, ed uno per la funzione XOR}
-	g
-	
-	
+		logico OR, AND, XOR, XNOR e NAND}
+	Il perceptron è un modello semplice:\\
+	un neurone che fa una trasformazione per combinazione lineare con una "funzione di attivazione" definita come f($\Theta^T$x)\\
+	Questa funzione di attivazione può essere la sigmoide ($\frac{1}{1+e^-z}$), il tanh (tangente iperbolico), la ReLU ($max(0,x)$), Leaky ReLU: max(0.1x, x), Maxout: max($w_1^Tx+b_1, w_2^Tx+b_2$), ELU : x quando x$>=0$, $\alpha$($e^x$-1) quando $x<0$\\
+	Ogni neurone implementa da solo la logistic regression\\
+	Esso prende in input quindi tutti i pesi $\Theta$ e definisce tramite la funzione descritta precedentemente un output\\
+	Questi percepetron sono la base per la costruzione di una rete neurale multistrato, infatti essa è formata da più strati, divisi in 3 macrocategorie:
+	\begin{enumerate}
+		\item input layer
+		\item hidden layer ($>=1$) (NB il caso in cui il numero sia 0 è un perceptron classico)
+		\item output layer
+	\end{enumerate}
+	Mentre i perceptron riescono a fare unicamente una combinazione lineare, il collegamento fra più perceptron permette architetture molto più complesse che permettono di definire operazioni più difficili che un unico perceptron non riuscirebbe a fare\\
+	Questo permette la costruzione di un sistema che offre nettamente più vantaggi rispetto al perceptron singolo, ma anche un numero di collegamenti decisamente più elevato (per le reti che abbiamo visto fino ad ora ogni perceptron è collegato a tutti i perceptron dello stato successivo, portando la complessità computazionale ad essere molto elevata per sistemi formati da centinaia se non migliaia di strati)\\
+	Queste reti neurali seguono una fase di feed-forward, ovvero una propagazione in avanti dei dati dove si porta ogni dato da uno strato a quello successivo\\
+	L'architettura multistrato e la propagazione feed-forward permettono la costruzione di operatori logici OR, AND, XOR (XNOR $\to$ NOT AND NOT) e NAND (NOT AND)\\
+	\textbf{Gli esempi sono nelle slide/negli appunti}	
 		
+	
+	
 	\section{Seconda parte}
 	\subsection{Spiegare in dettaglio gli elementi fondamentali di SVM; in particolare:
 		1) la sua interpretazione geometrica, 2) la funzione di costo, 3) le differenze/similitudini con altri modelli di ML.
 		Infine, si introduca brevemente l’estensione di SVM basata sul kernel trick}
 	g
 	
+	\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
+		neurali. Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
+		mediante la realizzazione di un’architettura multistrato, fornendo un esempio che evidenzi
+		le differenze ed i vantaggi di tale architettura}
+	g
+	
+	\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
+		neurali multistrato, illustrando chiaramente le due fasi di feedforward e backpropagation.}
+	
 	
 	
 	\subsection{Si descrivano nel modo più accurato possibile gli alberi di decisione, i loro vantaggi e svantaggi rispetto ad altri modelli (ad es. reti neurali)
-		 e si evidenzi il principale inductive bias di tale algoritmo. Si fornisca inoltre un semplice esempio di albero di decisione. Infine, si illustri brevemente l’estensione di tale modello attraverso random forest}
+		 e si evidenzi il principale inductive bias di tale algoritmo. Si fornisca inoltre un semplice esempio di albero di decisione, successivamente lo XOR. Infine, si illustri brevemente l’estensione di tale modello attraverso random forest}
 	g
 	
 	
 	\subsection{Si descriva in modo accurato l’algoritmo k-NN, illustrando il ruolo dei principali iperparametri, i vantaggi e le debolezze del modello nei 
 		confronti di altri algoritmi affrontati nel corso, e si evidenzi il principale inductive bias di tale algoritmo}
-	g
-	
-	
-	\section{Appelli}
-	\subsection{Si descriva accuratamente un esempio di rete neurale per la realizzazione di un operatore logico XOR (indicando valori dei parametri e funzione di
-		 attivazione prescelta); si fornisca inoltre l’analoga soluzione utilizzando un albero di decisione, e si discutano pro e contro delle due soluzioni}
-	g
-	
-	
-	\subsection{Si descriva accuratamente un esempio di rete neurale per la realizzazione di un operatore logico AND, ed uno per la funzione OR (indicando valori
-		 dei parametri e funzione di attivazione prescelta). Si riporti infine un esempio di rete neruale per lo XNOR}
 	g
 	
 	
