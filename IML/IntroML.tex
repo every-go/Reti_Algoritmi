@@ -73,7 +73,7 @@
 	\end{enumerate}
 	Il bias alto causa all'algoritmo la mancanza di relazioni rilevanti fra feature e target, ad esempio un modello di regressione lineare ha un bias alto se i dati reali seguono una relazione quadratica: la sua rigidità lo porterà a fare errori sistematici\\
 	La variance misura quanto il modello è sensibile alle variazioni nei dati di training\\
-	Un modello ha varianza alta quando è molto sensibile ai cambiamenti nei dati di training: piccole variazioni nei dati possono portare a grandi differenze nelle predizioni\\
+	Un modello ha varianza alta quando è molto sensibile ai cambiamenti nei dati di training: piccole variazioni possono portare a grandi differenze nelle predizioni\\
 	Questo accade quando il modello è troppo complesso e tende a sovradattarsi (overfitting)\\
 	Il loro rapporto principale porta al bias-variance tradeoff, ovvero ciò che rappresenta il rapporto tra bias e varianza: un modello con bias alto semplifica troppo il problema (underfitting), mentre un modello con varianza alta si adatta troppo ai dati di training (overfitting)\\
 	L'obiettivo è trovare un equilibrio tra i due per minimizzare l'errore totale\\
@@ -97,7 +97,7 @@
 	\begin{itemize}
 		\item La regressione lineare è sensibile a \textit{outliers} e può produrre valori al di fuori dell'intervallo $[0,1]$.
 		\item La logistic regression garantisce invece output probabilistici in $[0,1]$ tramite la \textbf{funzione sigmoide}\\
-		Comunque il suo scopo è quello di trovare una funzione $h \approx f: X \to Y$ dove Y è una classe e non in $\mathcal{R}$ come nella regressione lineare
+		Comunque il suo scopo è quello di trovare una funzione $h \approx f: X \to Y$ dove Y è un insieme di classi (2) e non in $\mathcal{R}$ come nella regressione lineare
 	\end{itemize}
 	
 	\subsubsection{Formulazione del modello}
@@ -124,7 +124,7 @@
 	\[
 	J(\theta) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)} \log(h_\theta(\mathbf{x}^{(i)})) + (1-y^{(i)}) \log(1 - h_\theta(\mathbf{x}^{(i)})) \right] + \frac{\lambda}{2m} \sum_{j=1}^n \theta_j^2
 	\]
-	Questa funzione serve per quando ci sono tantissime feature, quindi serve mantenere le due più importanti e le altre renderli molto piccole, dove quest'ultime sono molto poco influenti però danno il loro contributo per trovare y\\
+	Questa funzione serve per quando ci sono tantissime feature, però serve mantenere le due più importanti e le altre renderle molto piccole, dove quest'ultime sono molto poco influenti però danno il loro contributo per trovare y\\
 	Come in tutti gli altri casi, bisogna trovare $min(J(\Theta))$
 	
 	\subsubsection{Confronto con il classificatore lineare}
@@ -145,7 +145,7 @@
 	
 	L'addestramento con gradient descent usa la procedura iterativa aggiornando i parametri $\theta$ come:
 	\[
-	\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j} = \theta_j - \frac{\alpha}{m} \sum_{i=1}^{m} (h_{\theta}(x^{(i)}) - y^i)x_j^i
+	\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j} = \theta_j - \frac{\alpha}{m} (\sum_{i=1}^{m} (h_{\theta}(x^{(i)}) - y^i)x_j^i + \lambda \theta_j)
 	\]
 	dove $\alpha$ è il learning rate\\
 	L'algoritmo termina quando le derivate sono vicine a zero (punto di minimo), si può notare che è molto simile al procedimento di "gradient descent" della regressione lineare
@@ -169,11 +169,11 @@
 	Inoltre, c'è la procedura di "leave-one-out", che è un particolare caso di k-fold dove si divide il dataset in k set di dimensione uguale disgiunti a due a due e volta per volta dei sottoinsiemi vengono considerati validation set e training set fra di loro\\
 	Relativamente a questa procedura, si possono associare i concetti di "true error" ed "empirical error":\\
 	\begin{enumerate}
-		\item il "true error" di una particolare ipotesi \textit{h} che approssima \textit{f} rispetto a un dataset D è la probabilità che
+		\item il "true error" di una particolare ipotesi \textit{h} che approssima \textit{f} rispetto al dataset D è la probabilità che
 			  \textit{h} non classificherà correttamente un'istanza di D\\
 			  \[ error_D(h) = Prob_{x \in D}\{ f(x) \neq h(x) \} \]
 		\item il "empirical error" dell'ipotesi \textit{h} è dato da tutti i casi in cui h sbaglierà\\
-			  \[ error_T(h) = \#\{ (x,f(x)) \in T : f(x) \neq h(x) \}, T \subseteq D \]
+			  \[ error_T(h) = \frac{\#\{ (x,f(x)) \in T : f(x) \neq h(x) \}, T \subseteq D}{\text{instances of T}} \]
 	\end{enumerate}
 	Questi due errori diversi servono ad identificare il bias (assunzione troppo "forte/debole" che facciamo sulla funzione target) e la variance (la dipendenza dai dati)\\
 	Inoltre, serve ad identificare l'overfitting, il quale avviene quando:\\
@@ -198,13 +198,13 @@
 		\item precision: $\frac{TP}{TP+FP}$: frazione delle istanze recuperate che sono rilevanti
 		\item recall: $\frac{TP}{TP+FN}$: frazione delle istanze rilevanti che sono recuperate
 	\end{itemize}
-	Il rapporto corretto, che purtroppo non può essere sempre preciso al 100\%, sopratutto su animali rarissimi di cui girano poco foto su Internet, si valuta tramite gli integrali fra le curve di precision e recall\\
+	Il rapporto corretto, che purtroppo non può essere sempre preciso al 100\%, sopratutto su animali rarissimi di cui girano poche foto su Internet, si valuta tramite gli integrali fra le curve di precision e recall\\
 	Si possono però stimare bias e variance, infatti:
 	le learning curve rappresentano:\\
-	bias elevato se manifesta con errori alti su entrambi, la variance si riconosce da un errore basso sul training ma alto sulla validation
+	bias elevato se manifesta con errori alti su entrambi, la variance si riconosce da un errore basso sul training ma alto sulla validation\\
 	Inoltre, spesso si computa Prec@k e Rec@k nei top k risultati\\
 	Infine, un'altra misurazione è l'average precision (AP) che è una misura che combina recall e precision per risultati ordinati, quindi restituisce ciò che ha una precisione maggiore, che si calcola sommando la precisione quando si trova un True positive identificato realmente
-	\[ AP=\frac{\sum_{k=1}^{n}P(k) \cdot rel(k)}{\text{all instances}} \]
+	\[ AP=\frac{\sum_{k=1}^{n}P(k) \cdot rel(k)}{\text{all groundtruth instances}} \]
 	Quest'ultima sommatoria serve a trovare la corretta sequenza in cui i primi k risultati corretti compaiono, infatti se AP=1 vuol dire che tutti i risultati antecedenti al 1° sbagliato saranno corretti\\
 	Grazie a quest'ultima, nel caso del nostro esempio ma anche per altri modelli, si può trovare chiaramente qual è il modello migliore per un determinato problema
 	
@@ -231,14 +231,15 @@
 	un neurone che fa una trasformazione per combinazione lineare con una "funzione di attivazione" definita come f($\Theta^T$x)\\
 	Questa funzione di attivazione può essere la sigmoide ($\frac{1}{1+e^-z}$), il tanh (tangente iperbolico), la ReLU ($max(0,x)$), Leaky ReLU: max(0.1x, x), Maxout: max($w_1^Tx+b_1, w_2^Tx+b_2$), ELU : x quando x$>=0$, $\alpha$($e^x$-1) quando $x<0$\\
 	Ogni neurone implementa da solo la logistic regression (nel caso in cui usi la funzione sigmoide)\\
-	Esso prende in input quindi tutti i pesi $\Theta$ e definisce tramite la funzione descritta precedentemente un output\\
+	Esso prende in input quindi tutti i pesi $\Theta$ e definisce, tramite la funzione scelta fra quelle descritte precedentemente, un output\\
+	In questo caso, i pesi $\Theta$ sono definiti dalla fase di feed-forward dello strato precedente\\
 	Questi percepetron sono la base per la costruzione di una rete neurale multistrato, infatti essa è formata da più strati, divisi in 3 macrocategorie:
 	\begin{enumerate}
 		\item input layer
-		\item hidden layer ($>=1$) (NB il caso in cui il numero sia 0 è un perceptron classico)
+		\item hidden layer ($>=1$)
 		\item output layer
 	\end{enumerate}
-	Il passaggio da uno strato all'altro si misura come
+	Il passaggio da uno strato all'altro (feed-forward) si misura come
 	\[
 	a_i^{(l)} = f\left(\sum_{k=1}^{n^{(l-1)}} \Theta_{ik}^{(l)} a_k^{(l-1)} + b_i^{(l)}\right)
 	\]
@@ -255,7 +256,7 @@
 	Questo permette la costruzione di un sistema che offre nettamente più vantaggi rispetto al perceptron singolo, ma anche un numero di collegamenti decisamente più elevato (per le reti che abbiamo visto fino ad ora ogni perceptron è collegato a tutti i perceptron dello stato successivo, portando la complessità computazionale ad essere molto elevata per sistemi formati da centinaia se non migliaia di strati)\\
 	Queste reti neurali seguono una fase di feed-forward, ovvero una propagazione in avanti dei dati dove si porta ogni dato da uno strato a quello successivo\\
 	L'architettura multistrato e la propagazione feed-forward permettono la costruzione di operatori logici OR, AND, XOR (XNOR $\to$ NOT AND NOT) e NAND (NOT AND)\\
-	La differenza principale fra questi operatori logici è che OR e AND sono operatori logici linearmente separabili, quindi non richiedono strati nascosti, invece XOR e NAND sono linearmente separabili e richiedono degli strati nascosti per arrivare al corretto risultato\\
+	La differenza principale fra questi operatori logici è che OR e AND sono operatori logici linearmente separabili, quindi non richiedono strati nascosti, invece XOR e NAND non sono linearmente separabili e richiedono degli strati nascosti per arrivare al corretto risultato\\
 	\textbf{Gli esempi sono nelle slide/negli appunti}	
 		
 	
