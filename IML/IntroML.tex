@@ -1,5 +1,6 @@
 \documentclass[10pt,oneside,a4paper]{article}
-\usepackage{hyperref, amsmath}
+\usepackage{hyperref, amsmath, forest}
+\usetikzlibrary{positioning}  
 \hypersetup{
 	colorlinks=true,   % Abilita il colore dei link (senza box intorno)
 	linkcolor=blue,    % Colore per i link interni (come quelli nell'indice)
@@ -346,7 +347,9 @@
 		\item L'inizializzazione casuale dei pesi (non nulla) è cruciale per evitare simmetria nell'apprendimento
 		\item La backpropagation è applicabile a qualsiasi architettura feedforward
 	\end{itemize}
-	\subsection{Support Vector Machines (SVM)}
+	\subsection{Spiegare in dettaglio gli elementi fondamentali di SVM; in particolare:
+			1) la sua interpretazione geometrica, 2) la funzione di costo, 3) le differenze/similitudini con altri modelli di ML.
+			Infine, si introduca brevemente l’estensione di SVM basata sul kernel trick}
 	Le Support Vector Machines (SVM) sono un algoritmo di apprendimento supervisionato per classificazione e regressione. Pur essendo un classificatore lineare, può affrontare problemi non lineari attraverso il \textit{kernel trick}.
 	
 	\subsubsection{Interpretazione geometrica}
@@ -380,6 +383,7 @@
 			\item Entrambi sono classificatori lineari
 			\item LR minimizza la cross-entropy, SVM massimizza il margine
 			\item SVM più robusta a outliers
+			\item Logistic Regression fornisce probabilità, la SVM non lo fa direttamente
 		\end{itemize}
 		
 		\item \textbf{vs Reti Neurali}:
@@ -474,7 +478,8 @@
 	\end{itemize}
 	\subsubsection{Scelta k}
 	La scelta della k (parametro che indica quanti punti meno distante dall'istanza di test bisogna considerare) è molto importante, e con un dataset molto sbilanciato può portare la scelta ad essere sempre verso un'unica classe evitando le altre meno presenti\\
-	Fortunatamente, nei casi realistici i dataset difficilmente sono sbilanciati, e k viene scelta più piccola di $\sqrt{m}$, m = elementi dataset
+	Fortunatamente, nei casi realistici i dataset difficilmente sono sbilanciati, e k viene scelta più piccola di $\sqrt{m}$, m = elementi dataset\\
+	Infatti, una considerazione importante da fare è che la scelta di un k piccolo porta a basso bias ed alta varianza, invece un k grande porta ad alto bias e bassa varianza
 	
 	\subsection{Si descrivano nel modo più accurato possibile gli alberi di decisione, i loro vantaggi e svantaggi rispetto ad altri modelli (ad es. reti neurali)
 		e si evidenzi il principale inductive bias di tale algoritmo. Si fornisca inoltre un semplice esempio di albero di decisione, successivamente lo XOR. Infine, si illustri brevemente l’estensione di tale modello attraverso random forest}
@@ -487,16 +492,81 @@
 	Forniscono risultati interpretabili e supportano analisi di decisione\\
 	Ogni albero rappresenta la funzione d'ipotesi h(x) che vogliamo modellare\\
 	L'idea generale è che, dato un attributo per volta, si fa un test, poi, condizionatamente alla scelta, si prende un altro attributo per fare un altro test, fino a quando non si arriva alla foglia che assegna un valore all'input\\
+	Quindi, l'inductive bias principale è che si assume che la funzione target sia ben approssimabile da un reticolo di partizioni assiali successive, una per attributo\\
 	Gli alberi di decisione possono essere visti come modelli generati dalle regole d'induzione, che è una differenza sostanziale rispetto ad altri algoritmi come la regressione lineare (il cui inductive bias principale è che la classificazione sia di tipo binaria) oppure la regressione lineare (che cerca di minimizzare la MSE)\\
-	Il loro principale vantaggio è che viene costruito partizionando le scelte su un attributo in una determinata situazione, permettendo la costruzione di un albero di decisione ottimale, sopratutto con pochi attributi. Ciò permette di restringersi ad una dimensione per volta, dichiarando l'output solo quando si arriva alla fine\\
-	Il principale svantaggio è proprio il modo in cui costruire quest'albero, infatti ad oggi esistono diversi algoritmi ma, essendo un problema NP completo (non esprimibile con scelta greedy) non esiste ancora un algoritmo ottimale che permette la costruzione di un albero "perfetto". Un'idea è quella di minimizzare l'entropia per ogni sottoset oppure di massimizzare l'Information Gain (H(S) - H(S $ | $ a)), dove H(S) è l'entropia\\
-	Inoltre, un altro svantaggio è che forniscono divisioni assiali (paralleli agli assi) ed è più complicato permettere la costruzione di divisioni oblique come si fa con il margine di separazione nelle SVM\\
+	Il loro principale vantaggio è che viene costruito partizionando le scelte su un attributo in una determinata situazione, permettendo la costruzione di un albero di decisione ottimale, sopratutto con pochi attributi\\
+	Ciò permette di restringersi ad una dimensione per volta, dichiarando l'output solo quando si arriva alla fine\\
+	Inoltre, permette di fornire più interpretabilità, gestione nativa di feature categoriche, gestione di outlier e dati mancanti\\
+	Il principale svantaggio è proprio il modo in cui costruire quest'albero, infatti ad oggi esistono diversi algoritmi ma, essendo un problema NP completo (non esprimibile con scelta greedy) non esiste ancora un algoritmo ottimale che permette la costruzione di un albero "perfetto"\\
+	Oltretutto, porta probabilmente ad alta varianza (overfitting), instabilità rispetto a piccole variazioni dei dati, scarsa capacità di catturare pattern obliqui senza preprocessing\\
+	Un'idea per realizzare un buon albero è quella di minimizzare l'entropia per ogni sottoset oppure di massimizzare l'Information Gain (H(S) - H(S $ | $ a)), dove H(S) è l'entropia\\
 	Un'estensione di questo modello è il Random forest:\\
 	è un modello di classificazione composto da più alberi di decisione\\
 	Usa bagging (genera più pezzi casuali per aumentare variabilità soluzione) e feature random per combinare alberi\\
 	Riduce la varianza dell'albero originale, però porta a ridondanza e quindi a maggiore complessità computazionale\\
-	La classificazione finale si fa in base ai voti o alla media
-
+	In fase di predizione, ogni albero vota per una classe; la classe finale è quella con \emph{majority vote} (o, in regressione, la media degli output)
 	
+	Esempio dello XOR:\\
+	\begin{forest}
+		for tree={
+			grow=0, % Orientazione orizzontale
+			edge={->}, % Frecce
+			l sep=1cm, % Spaziatura livelli
+			if n children=0{
+				font=\itshape % Stile foglie
+			}{}
+		}
+		[Bit 1, name=root
+		[0, edge label={node[midway,left]{$0$}}
+		[Bit 2
+		[0, edge label={node[midway,left]{$0$}}
+		[\textit{0}, name=leaf1] % Classe XOR=0
+		]
+		[1, edge label={node[midway,right]{$1$}}
+		[\textit{1}, name=leaf2] % Classe XOR=1
+		]
+		]
+		]
+		[1, edge label={node[midway,right]{$1$}}
+		[Bit 2
+		[0, edge label={node[midway,left]{$0$}}
+		[\textit{1}] % Classe XOR=1
+		]
+		[1, edge label={node[midway,right]{$1$}}
+		[\textit{0}] % Classe XOR=0
+		]
+		]
+		]
+		]
+	\end{forest}
+	\\Confronto con reti neurali:\\
+	Le reti neurali apprendono rappresentazioni complesse e oblique; gli alberi usano partizioni assiali che possono richiedere feature engineering (ad es. combinazioni di attributi) per pattern più sofisticati\\
+	Le reti hanno iperparametri quali learning rate, architettura, funzione di attivazione; gli alberi hanno profondità massima, numero minimo di campioni per foglia
 	
+	\subsection{Cos'è il Natural Processing Language (NLP). L'uso dei language model per rappresentare il significato del linguaggio. Uso dei n-gram model, model evalutation}
+	Il Natural Language Processing (NLP) è un campo dell'Intelligenza Artificiale che si occupa dell'interazione tra computer e linguaggio umano, permettendo ai sistemi di comprendere, interpretare e generare testo\\
+	Le applicazioni includono traduzione automatica, chatbots, analisi del sentiment e riconoscimento del parlato\\
+	Poiché il linguaggio naturale è ambiguo, complesso e non segue regole rigide come i linguaggi di programmazione, si usano i language model per cercare di stimare la probabilità di sequenze di parole
+	Infatti, siccome è impossibile formalizzare il problema, si cerca una frase quanto è probabile/meno probabile\\
+	Per questo motivo nascono gli n-gram model, ovvero language model definiti come la distribuzione probabilistica su sequenze di caratteri\\
+	\[
+		P(C_{1:N}) = \text{probabilità di sequenza di N caratteri, da }c_1 \text{ a }c_n
+	\]
+	Un n-gram model è un tipo semplice di language model basato su catene di Markov di ordine n-1: la probabilità di una parola dipende solo dalle n-1 parole precedenti\\
+	La probabilità di $C_i$ dipende dalla probabilità delle precedenti parole
+	\[
+		P(W_{1:N}) = \prod_{i=1}^{N}P(W_i | W_{1:i-1}) = \prod_{i=1}^{N}P(W_i | W_{i-2:i-1})
+	\]
+	Un approccio semplice per l'identificazione della lingua è dato dalla costruzione di un trigram model per ogni linguaggio, dando la probabilità P(Text|Language)\\
+	Un trigram model è un tipo di modello in cui si considerano solamente le 2 parole precedenti per diminuire la complessità computazionale, siccome alcune lingue sono facilmente identificabili (ad esempio "the" si collega facilmente all'inglese)
+	\[
+		l^* = \arg\max_l P(l|C_{1:N}) = \arg\max_l P(l) P(C_{1:N}|l) = \arg\max_l P(l) \prod_{i=1}^{N} P(C_i | C_{i-2:i-1},l)
+	\]
+	La model evaluation indica quando si prende il modello che assegna probabilità più alta alla (prossima) parola che dovrebbe esserci. Il miglior model language dà (in media) la migliore P(sentence)\\
+	Un language model è modello che computa P(w) o P($w_n | w_1,...,w_{n-1}$)
+	\[
+		P(w_1,...,w_n) = \prod_{i}P(w_i | w_1,...,w_{i-1})
+	\]
+	
+		
 \end{document}
