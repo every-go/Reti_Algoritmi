@@ -24,8 +24,7 @@
 %inizio l'effettivo conteggio delle pagine
 \pagenumbering{arabic}
 \setcounter{page}{1}
-\section{Prima parte}
-	\subsection{Quali sono i principali paradigmi del machine learning? Se ne riporti una descrizione
+	\section{Quali sono i principali paradigmi del machine learning? Se ne riporti una descrizione
 		sintetica – chiarendo quali siano le principali differenze – con particolare enfasi per il caso
 		del supervised learning. Si distinguano in particolare classificazione e regressione}
  	I principali paradigmi sono:
@@ -63,7 +62,7 @@
 	
 	
 	
-	\subsection{Si descrivano nel modo più accurato possibile i concetti di bias e variance, il loro rapporto e come nella pratica possano essere affrontati e ridotti i problemi. A tal fine si riportino anche esempi concreti che aiutino a chiarire i diversi aspetti coinvolti}
+	\section{Si descrivano nel modo più accurato possibile i concetti di bias e variance, il loro rapporto e come nella pratica possano essere affrontati e ridotti i problemi. A tal fine si riportino anche esempi concreti che aiutino a chiarire i diversi aspetti coinvolti}
 	Il bias rappresenta l'errore sistematico introdotto da un modello nel semplificare troppo il problema, portando a una rappresentazione inaccurata dei dati\\
 	L'inductive bias rappresenta l'insieme di ipotesi che un algoritmo assume sulla funzione target per poter generalizzare dai dati di training ai dati nuovi\\
 	Infatti, nel caso della regressione lineare, l'inductive bias principale è che l'insieme di input e output può essere rappresentato come una funzione lineare, oppure, nel caso dei "Nearest Neighbors", si assume che la maggior parte dei casi in uno spazio ravvicinato faccia parte della stessa classe \\
@@ -87,13 +86,13 @@
 
 	
 	
-	\subsection{Si descriva in modo dettagliato il
+	\section{Si descriva in modo dettagliato il
 		modello di logistic regression (con regolarizzazione), le sue principali caratteristiche ed il contributo dei diversi elementi presenti nella funzione
 		di costo. Si riporti infine una descrizione accurata delle differenze e degli elementi in comune di tale modello rispetto
 		ad un semplice classificatore lineare, anche mediante esempi qualitativi. Infine, si descriva chiaramente la procedura di addestramento
 		mediante l’applicazione di gradient descent}
 		
-	\subsubsection{Introduzione e motivazione}
+	\subsection{Introduzione e motivazione}
 	La \textbf{logistic regression} è un modello di classificazione che evita i problemi della regressione lineare applicata a task di classificazione:
 	\begin{itemize}
 		\item La regressione lineare è sensibile a \textit{outliers} e può produrre valori al di fuori dell'intervallo $[0,1]$.
@@ -101,12 +100,12 @@
 		Comunque il suo scopo è quello di trovare una funzione $h \approx f: X \to Y$ dove Y è un insieme di classi (2) e non in $\mathcal{R}$ come nella regressione lineare
 	\end{itemize}
 	
-	\subsubsection{Formulazione del modello}
+	\subsection{Formulazione del modello}
 	L'ipotesi è data da:
 	\[
 	h_\theta(\mathbf{x}) = g(\theta^T \mathbf{x}) = \frac{1}{1 + e^{-\theta^T \mathbf{x}}}, \quad \text{dove } g(z) = \frac{1}{1+e^{-z}}
 	\]
-	\subsubsection{Interpretazione probabilistica}
+	\subsection{Interpretazione probabilistica}
 	\begin{itemize}
 		\item $h_\theta(\mathbf{x}) = P(y=1 \mid \mathbf{x}; \theta)$
 		\item Per due classi: $P(y=0 \mid \mathbf{x}; \theta) = 1 - h_\theta(\mathbf{x})$
@@ -120,7 +119,7 @@
 		\]
 	\end{itemize}
 	
-	\subsubsection{Funzione di costo con regolarizzazione}
+	\subsection{Funzione di costo con regolarizzazione}
 	La \textbf{cross-entropy loss} con regolarizzazione:
 	\[
 	J(\theta) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)} \log(h_\theta(\mathbf{x}^{(i)})) + (1-y^{(i)}) \log(1 - h_\theta(\mathbf{x}^{(i)})) \right] + \frac{\lambda}{2m} \sum_{j=1}^n \theta_j^2
@@ -128,7 +127,7 @@
 	Questa funzione serve per quando ci sono tantissime feature, però serve mantenere le due più importanti e le altre renderle molto piccole, dove quest'ultime sono molto poco influenti però danno il loro contributo per trovare y\\
 	Come in tutti gli altri casi, bisogna trovare $min(J(\Theta))$
 	
-	\subsubsection{Confronto con il classificatore lineare}
+	\subsection{Confronto con il classificatore lineare}
 	\begin{itemize}
 		\item \textbf{Similarità}:
 		\begin{itemize}
@@ -153,7 +152,7 @@
 	
 	
 	
-	\subsection{Si descriva dettagliatamente la procedura di crossvalidation, motivandone scopo ed utilità,
+	\section{Si descriva dettagliatamente la procedura di crossvalidation, motivandone scopo ed utilità,
 		e fornendo una chiara descrizione della (corretta) procedura di addestramento di un
 		qualunque sistema di machine learning. Si descrivano inoltre i concetti di true error ed
 		empirical error e se ne evidenzino le relazioni con la procedura di cross-validation}
@@ -182,7 +181,7 @@
 	
 	
 	
-	\subsection{Si descriva dettagliatamente la procedura di model selection (aiutandosi con un esempio
+	\section{Si descriva dettagliatamente la procedura di model selection (aiutandosi con un esempio
 		concreto) e si fornisca una chiara giustificazione teorica/concettuale a tale procedura}
 	La model selection è il processo grazie al quale si può scegliere il miglior modello/iperparametri dato un problema\\
 	Uno dei tanti metodi per trovarli è la cross-validation, che fa parte della famiglia della model selection\\
@@ -212,7 +211,7 @@
 	
 	
 	
-	\subsection{Cosa si intende per “one learning algorithm hypothesis” e come tale ipotesi si relaziona
+	\section{Cosa si intende per “one learning algorithm hypothesis” e come tale ipotesi si relaziona
 		con le reti neurali artificiali? Si fornisca inoltre una descrizione esaustiva degli elementi/ingredienti
 		principali che permettono la definizione di una rete neurale multistrato}
 	"One learning algorithm hypothesis" si riferisce all'idea che esista un unico algoritmo di apprendimento che possa essere utilizzato per affrontare una vasta gamma di compiti, indipendentemente dalla specificità dei dati o della struttura del problema\\
@@ -221,55 +220,14 @@
 	
 	
 	
-	\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
-		neurali, illustrando chiaramente la fase di feed-forward\\
-		Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
-		mediante la realizzazione di un’architettura a più strati, fornendo un esempio che evidenzi
-		le differenze/vantaggi di tale architettura
-		Si riporti inoltre un esempio di rete neurale per la realizzazione di un semplice operatore
-		logico OR, AND, XOR, XNOR e NAND}
-	Il perceptron è un modello semplice:\\
-	un neurone che fa una trasformazione per combinazione lineare con una "funzione di attivazione" definita come f($\Theta^T$x)\\
-	Questa funzione di attivazione può essere la sigmoide ($\frac{1}{1+e^-z}$), il tanh (tangente iperbolico), la ReLU ($max(0,x)$), Leaky ReLU: max(0.1x, x), Maxout: max($w_1^Tx+b_1, w_2^Tx+b_2$), ELU : x quando x$>=0$, $\alpha$($e^x$-1) quando $x<0$\\
-	Ogni neurone implementa da solo la logistic regression (nel caso in cui usi la funzione sigmoide)\\
-	Esso prende in input quindi tutti i pesi $\Theta$ e definisce, tramite la funzione scelta fra quelle descritte precedentemente, un output\\
-	In questo caso, i pesi $\Theta$ sono definiti dalla fase di feed-forward dello strato precedente\\
-	Questi percepetron sono la base per la costruzione di una rete neurale multistrato, infatti essa è formata da più strati, divisi in 3 macrocategorie:
-	\begin{enumerate}
-		\item input layer
-		\item hidden layer ($>=1$)
-		\item output layer
-	\end{enumerate}
-	Il passaggio da uno strato all'altro (feed-forward) si misura come
-	\[
-	a_i^{(l)} = f\left(\sum_{k=1}^{n^{(l-1)}} \Theta_{ik}^{(l)} a_k^{(l-1)} + b_i^{(l)}\right)
-	\]
 	
-	\textbf{Spiegazione dei simboli:}
-	\begin{itemize}
-		\item $a_i^{(l)}$: Attivazione del neurone $i$-esimo nel layer $l$.
-		\item $\Theta_{ik}^{(l)}$: Peso tra il neurone $k$ del layer $l-1$ e il neurone $i$ del layer $l$.
-		\item $b_i^{(l)}$: \textbf{Bias} (spesso incluso come $\Theta_{i0}^{(l)}$ con $a_0^{(l-1)} = 1$).
-		\item $f$: Funzione di attivazione (ReLU, sigmoide, ecc.).
-		\item $n^{(l-1)}$: Numero di neuroni nel layer precedente.
-	\end{itemize}
-	Mentre i perceptron riescono a fare unicamente una combinazione lineare, il collegamento fra più perceptron permette architetture molto più complesse che permettono di definire operazioni più difficili che un unico perceptron non riuscirebbe a fare\\
-	Questo permette la costruzione di un sistema che offre nettamente più vantaggi rispetto al perceptron singolo, ma anche un numero di collegamenti decisamente più elevato (per le reti che abbiamo visto fino ad ora ogni perceptron è collegato a tutti i perceptron dello stato successivo, portando la complessità computazionale ad essere molto elevata per sistemi formati da centinaia se non migliaia di strati)\\
-	Queste reti neurali seguono una fase di feed-forward, ovvero una propagazione in avanti dei dati dove si porta ogni dato da uno strato a quello successivo\\
-	L'architettura multistrato e la propagazione feed-forward permettono la costruzione di operatori logici OR, AND, XOR (XNOR $\to$ NOT AND NOT) e NAND (NOT AND)\\
-	La differenza principale fra questi operatori logici è che OR e AND sono operatori logici linearmente separabili, quindi non richiedono strati nascosti, invece XOR e NAND non sono linearmente separabili e richiedono degli strati nascosti per arrivare al corretto risultato\\
-	\textbf{Gli esempi sono nelle slide/negli appunti}	
-		
-	
-	\newpage
-	\section{Seconda parte}
-	\subsection{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
+	\section{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
 		neurali. Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
 		mediante la realizzazione di un’architettura multistrato, fornendo un esempio che evidenzi
 		le differenze ed i vantaggi di tale architettura. Illustrare chiaramente le due fasi di feedforward e backpropagation}
 	Il perceptron è un modello semplice:\\
 	un neurone che fa una trasformazione per combinazione lineare con una "funzione di attivazione" definita come f($\Theta^T$x)\\
-	Questa funzione di attivazione può essere la sigmoide ($\frac{1}{1+e^-z}$), il tanh (tangente iperbolico), la ReLU ($max(0,x)$), Leaky ReLU: max(0.1x, x), Maxout: max($w_1^Tx+b_1, w_2^Tx+b_2$), ELU : x quando x$>=0$, $\alpha$($e^x$-1) quando $x<0$\\
+	Questa funzione di attivazione può essere la sigmoide ($\frac{1}{1+e^{-z}}$), il tanh (tangente iperbolico), la ReLU ($max(0,x)$), Leaky ReLU: max(0.1x, x), Maxout: max($w_1^Tx+b_1, w_2^Tx+b_2$), ELU : x quando x$>=0$, $\alpha$($e^x$-1) quando $x<0$\\
 	Ogni neurone implementa da solo la logistic regression (nel caso in cui usi la funzione sigmoide)\\
 	Esso prende in input quindi tutti i pesi $\Theta$ e definisce, tramite la funzione scelta fra quelle descritte precedentemente, un output\\
 	In questo caso, i pesi $\Theta$ sono definiti dalla fase di feed-forward dello strato precedente\\
@@ -279,7 +237,7 @@
 		\item hidden layer ($>=1$)
 		\item output layer
 	\end{enumerate}
-	\subsubsection{Feedforward}
+	\subsection{Feedforward}
 	Il passaggio da uno strato all'altro (feed-forward) si misura come
 	\[
 	a_i^{(l)} = f\left(\sum_{k=1}^{n^{(l-1)}} \Theta_{ik}^{(l)} a_k^{(l-1)} + b_i^{(l)}\right)
@@ -296,20 +254,18 @@
 	Mentre i perceptron riescono a fare unicamente una combinazione lineare, il collegamento fra più perceptron permette architetture molto più complesse che permettono di definire operazioni più difficili che un unico perceptron non riuscirebbe a fare\\
 	Questo permette la costruzione di un sistema che offre nettamente più vantaggi rispetto al perceptron singolo, ma anche un numero di collegamenti decisamente più elevato (per le reti che abbiamo visto fino ad ora ogni perceptron è collegato a tutti i perceptron dello stato successivo, portando la complessità computazionale ad essere molto elevata per sistemi formati da centinaia se non migliaia di strati)\\
 	Queste reti neurali seguono una fase di feed-forward, ovvero una propagazione in avanti dei dati dove si porta ogni dato da uno strato a quello successivo\\
-	L'architettura multistrato e la propagazione feed-forward permettono la costruzione di operatori logici OR, AND, XOR (XNOR $\to$ NOT AND NOT) e NAND (NOT AND)\\
+	L'architettura multistrato e la propagazione feed-forward permettono la costruzione di operatori logici OR, AND, XOR, XNOR (NOT AND NOT) e NAND (NOT AND)\\
 	La differenza principale fra questi operatori logici è che OR e AND sono operatori logici linearmente separabili, quindi non richiedono strati nascosti, invece XOR e NAND non sono linearmente separabili e richiedono degli strati nascosti per arrivare al corretto risultato\\
 	\textbf{Gli esempi sono nelle slide/negli appunti}
-	\subsubsection{Backpropagation}
-	La backpropagation è un algoritmo fondamentale per l'addestramento delle reti neurali, che calcola efficientemente il gradiente della funzione di costo rispetto ai pesi della rete mediante la \textbf{regola della catena} (chain rule). Questo permette di ottimizzare i parametri attraverso metodi come la discesa del gradiente.
-	
-	\textbf{Algoritmo}\\
+	\subsection{Backpropagation}
+	La backpropagation è un algoritmo fondamentale per l'addestramento delle reti neurali, che calcola efficientemente il gradiente della funzione di costo rispetto ai pesi della rete mediante la \textbf{regola della catena} (chain rule)\\
+	Questo permette di ottimizzare i parametri attraverso metodi come la discesa del gradiente\\
 	L'algoritmo si compone di due fasi principali:
 	\begin{enumerate}
 		\item \textbf{Forward pass}: calcolo dell'output della rete dato un input.
 		\item \textbf{Backward pass}: propagazione all'indietro dell'errore per aggiornare i pesi.
 	\end{enumerate}
-	
-	\paragraph{Formule matematiche}
+	\textbf{Formule matematiche}\\
 	Sia:
 	\begin{itemize}
 		\item $L$: numero di strati (layer) nella rete
@@ -347,12 +303,12 @@
 		\item L'inizializzazione casuale dei pesi (non nulla) è cruciale per evitare simmetria nell'apprendimento
 		\item La backpropagation è applicabile a qualsiasi architettura feedforward
 	\end{itemize}
-	\subsection{Spiegare in dettaglio gli elementi fondamentali di SVM; in particolare:
+	\section{Spiegare in dettaglio gli elementi fondamentali di SVM; in particolare:
 			1) la sua interpretazione geometrica, 2) la funzione di costo, 3) le differenze/similitudini con altri modelli di ML.
 			Infine, si introduca brevemente l’estensione di SVM basata sul kernel trick}
 	Le Support Vector Machines (SVM) sono un algoritmo di apprendimento supervisionato per classificazione e regressione. Pur essendo un classificatore lineare, può affrontare problemi non lineari attraverso il \textit{kernel trick}.
 	
-	\subsubsection{Interpretazione geometrica}
+	\subsection{Interpretazione geometrica}
 	L'SVM cerca l'\textbf{iperpiano di separazione ottimale} che massimizza il \textbf{margine} tra le classi. Geometricamente:
 	\begin{itemize}
 		\item I \textbf{vettori di supporto} sono i punti più vicini all'iperpiano e determinano la soluzione
@@ -360,7 +316,7 @@
 		\item Per dati non linearmente separabili, si introducono \textbf{variabili di slack} $\xi^{(i)}$ per permettere errori di classificazione
 	\end{itemize}
 	
-	\subsubsection{Funzione di costo}
+	\subsection{Funzione di costo}
 	La SVM utilizza una funzione di costo modificata rispetto alla logistic regression:
 	\[
 	\min_{\Theta} \frac{1}{\delta} \sum_{i=1}^m \left[
@@ -376,7 +332,7 @@
 		\item Il termine \( \frac{1}{2}\|\Theta\|^2 \) massimizza il margine di separazione
 	\end{itemize}
 	
-	\subsubsection{Confronto con altri modelli}
+	\subsection{Confronto con altri modelli}
 	\begin{itemize}
 		\item \textbf{vs Logistic Regression}:
 		\begin{itemize}
@@ -400,7 +356,7 @@
 		\end{itemize}
 	\end{itemize}
 	
-	\subsubsection{Kernel Trick}
+	\subsection{Kernel Trick}
 	Per problemi non lineari, SVM applica una trasformazione $\phi: R^n \rightarrow R^m$:
 	\begin{itemize}
 		\item Evita il calcolo esplicito di $\phi(x)$ usando funzioni kernel:
@@ -411,7 +367,8 @@
 		\item Kernel comuni:
 		\begin{itemize}
 			\item Gaussiano (RBF): $K(x,z) = \exp\left(-\frac{\|x-z\|^2}{2\sigma^2}\right)$
-			\item Polinomiale: $K(x,z) = (x^Tz + c)^d$
+			\item Polinomiale: $K(x,z) = (x^Tz + c)^d$, \\
+					d = grado polinomio: alto-$>$overfitting, basso-$>$underfitting, il termine c è un iperparametro (bias term) che controlla il contributo delle componenti di ordine inferiore del polinomio
 		\end{itemize}
 		
 		\item Il modello diventa:
@@ -421,7 +378,7 @@
 		dove $\alpha_i$ sono i coefficienti dei vettori di supporto
 	\end{itemize}
 	
-	\subsection{Si descriva in modo accurato l’algoritmo k-NN, illustrando il ruolo dei principali iperparametri, i vantaggi e le debolezze del modello nei 
+	\section{Si descriva in modo accurato l’algoritmo k-NN, illustrando il ruolo dei principali iperparametri, i vantaggi e le debolezze del modello nei 
 		confronti di altri algoritmi affrontati nel corso, e si evidenzi il principale inductive bias di tale algoritmo}
 	L'algoritmo k-NN è un modello non parametrico, ovvero quel tipo di modello che richiede come parametri solamente i dati in input, a differenza di altri modelli come le reti neurali oppure la logistic regression\\
 	È un \textit{lazy learner} poiché non costruisce un modello esplicito durante il training, ma posticipa tutta la computazione alla fase di prediction\\
@@ -430,16 +387,16 @@
 	\textbf{Fase di prediction}: Per un nuovo punto $x_{\text{test}}$:
 	\begin{enumerate}
 		\item Calcola le distanze tra $x_{\text{test}}$ e tutti gli $x_i \in \mathcal{D}$
-		\item Seleziona i $k$ vicini più prossimi ($\mathcal{N}_k$)
+		\item Seleziona i $k$ punti più vicini ($\mathcal{N}_k$)
 		\item Assegna la classe più frequente in $\mathcal{N}_k$ (moda)
 	\end{enumerate}
-	L'\textbf{inductive bias} è il \textbf{principio di località}: punti vicini nello spazio delle feature hanno etichette simili\\
+	L'\textbf{inductive bias} è il \textbf{principio di località}:\\
+	punti vicini nello spazio delle feature hanno etichette simili\\
 	Formalmente:
 	\[
 	\forall x_i, x_j \in \mathcal{X}, \quad d(x_i,x_j) \approx 0 \implies P(y_i=y_j) \approx 1
 	\]
-	L'idea chiave è che il valore della funzione target per un sample è stimato dagli esempi di training memorizzati, calcolando la distanza fra il sample e tutti gli esempi di training, scegliendo la classe dell'esempio meno distante (oppure in base ai k elementi meno distanti, scegliendo la classe più presente)\\
-	Le metriche includono:
+	L'idea chiave è che il valore della funzione target per un sample è stimato dagli esempi di training memorizzati
 	\begin{itemize}
 		\item Norma 2 (Euclidea): $\sqrt{\sum_{i=1}^n (x_i-y_i)^2}$
 		\item Norma 1 (Manhattan): $\sum_{i=1}^n |x_i-y_i|$
@@ -449,16 +406,11 @@
 	\[
 	V(x_i) = \{x \in \mathcal{X} \mid d(x,x_i) \leq d(x,x_j), \forall j \neq i\}
 	\]
-	\subsubsection{Vantaggi e svantaggi}
-	Il principale vantaggio è che la fase di learning ha un tempo di O(1), ovvero richiede solo la memorizzazione dei dati, cosa non presente in diversi algoritmi visti fino ad ora e che può essere utilizzato per classificare le istanze di test fra più classi (a differenza ad esempio della logistic regression)\\
-	Il principale svantaggio è anche la complessità, infatti:\\
-	\begin{itemize}
-		\item Training: $O(1)$ (memorizzazione)
-		\item Prediction: $O(mn)$ (brute-force), riducibile a $O(n \log n)$ con strutture dati specializzate
-	\end{itemize}
-	Si può ridurre a qualcosa di simile ad O(nlogn) con una struttura ad albero per scendere più velocemente in base alla distanza\\
+	\subsection{Vantaggi e svantaggi}
+	Il principale vantaggio è che la fase di learning ha un tempo di O(1), ovvero richiede solo la memorizzazione dei dati, cosa non presente in diversi algoritmi e che può essere utilizzato per classificare le istanze di test fra più classi (a differenza ad esempio della logistic regression)\\
+	Il principale svantaggio è la complessità, per la prediction infatti si ha una complessità di tipo $O(mn)$ (brute-force), riducibile a $O(n \log n)$ con strutture dati specializzate, ovvero una struttura ad albero per scendere più velocemente in base alla distanza\\
 	Inoltre, altri problemi sono il fatto che alcune feature hanno range più larghi, quindi devono essere considerate più importanti (feature scaling), poi alcune feature possono essere anche irrilevanti (feature selection) e bisogna cercare di ridurre la dimensione dei dati (PCA)
-	\subsubsection{Confronto con Algoritmi Visti}
+	\subsection{Confronto con Algoritmi Visti}
 	\begin{itemize}
 		\item \textbf{vs Alberi di Decisione}: 
 		\begin{itemize}
@@ -476,12 +428,12 @@
 			\item NN più scalabili in alta dimensionalità
 		\end{itemize}
 	\end{itemize}
-	\subsubsection{Scelta k}
-	La scelta della k (parametro che indica quanti punti meno distante dall'istanza di test bisogna considerare) è molto importante, e con un dataset molto sbilanciato può portare la scelta ad essere sempre verso un'unica classe evitando le altre meno presenti\\
+	\subsection{Scelta k}
+	La scelta della k (parametro che indica quanti punti meno distanti dall'istanza di test bisogna considerare) è molto importante, e con un dataset molto sbilanciato può portare la scelta ad essere sempre verso un'unica classe evitando le altre meno presenti\\
 	Fortunatamente, nei casi realistici i dataset difficilmente sono sbilanciati, e k viene scelta più piccola di $\sqrt{m}$, m = elementi dataset\\
 	Infatti, una considerazione importante da fare è che la scelta di un k piccolo porta a basso bias ed alta varianza, invece un k grande porta ad alto bias e bassa varianza
 	
-	\subsection{Si descrivano nel modo più accurato possibile gli alberi di decisione, i loro vantaggi e svantaggi rispetto ad altri modelli (ad es. reti neurali)
+	\section{Si descrivano nel modo più accurato possibile gli alberi di decisione, i loro vantaggi e svantaggi rispetto ad altri modelli (ad es. reti neurali)
 		e si evidenzi il principale inductive bias di tale algoritmo. Si fornisca inoltre un semplice esempio di albero di decisione, successivamente lo XOR. Infine, si illustri brevemente l’estensione di tale modello attraverso random forest}
 	Gli alberi di decisione sono una struttura in cui:
 	\begin{itemize}
@@ -493,7 +445,7 @@
 	Ogni albero rappresenta la funzione d'ipotesi h(x) che vogliamo modellare\\
 	L'idea generale è che, dato un attributo per volta, si fa un test, poi, condizionatamente alla scelta, si prende un altro attributo per fare un altro test, fino a quando non si arriva alla foglia che assegna un valore all'input\\
 	Quindi, l'inductive bias principale è che si assume che la funzione target sia ben approssimabile da un reticolo di partizioni assiali successive, una per attributo\\
-	Gli alberi di decisione possono essere visti come modelli generati dalle regole d'induzione, che è una differenza sostanziale rispetto ad altri algoritmi come la regressione lineare (il cui inductive bias principale è che la classificazione sia di tipo binaria) oppure la regressione lineare (che cerca di minimizzare la MSE)\\
+	Gli alberi di decisione possono essere visti come modelli generati dalle regole d'induzione, che è una differenza sostanziale rispetto ad altri algoritmi come la logistic regression (il cui inductive bias principale è che la classificazione sia di tipo binaria)\\
 	Il loro principale vantaggio è che viene costruito partizionando le scelte su un attributo in una determinata situazione, permettendo la costruzione di un albero di decisione ottimale, sopratutto con pochi attributi\\
 	Ciò permette di restringersi ad una dimensione per volta, dichiarando l'output solo quando si arriva alla fine\\
 	Inoltre, permette di fornire più interpretabilità, gestione nativa di feature categoriche, gestione di outlier e dati mancanti\\
@@ -517,22 +469,22 @@
 			}{}
 		}
 		[Bit 1, name=root
-		[0, edge label={node[midway,left]{$0$}}
+		[0, edge label={node[midway,left]{$$}}
 		[Bit 2
-		[0, edge label={node[midway,left]{$0$}}
+		[0, edge label={node[midway,left]{$$}}
 		[\textit{0}, name=leaf1] % Classe XOR=0
 		]
-		[1, edge label={node[midway,right]{$1$}}
+		[1, edge label={node[midway,right]{$$}}
 		[\textit{1}, name=leaf2] % Classe XOR=1
 		]
 		]
 		]
-		[1, edge label={node[midway,right]{$1$}}
+		[1, edge label={node[midway,right]{$$}}
 		[Bit 2
-		[0, edge label={node[midway,left]{$0$}}
+		[0, edge label={node[midway,left]{$$}}
 		[\textit{1}] % Classe XOR=1
 		]
-		[1, edge label={node[midway,right]{$1$}}
+		[1, edge label={node[midway,right]{$$}}
 		[\textit{0}] % Classe XOR=0
 		]
 		]
@@ -543,10 +495,10 @@
 	Le reti neurali apprendono rappresentazioni complesse e oblique; gli alberi usano partizioni assiali che possono richiedere feature engineering (ad es. combinazioni di attributi) per pattern più sofisticati\\
 	Le reti hanno iperparametri quali learning rate, architettura, funzione di attivazione; gli alberi hanno profondità massima, numero minimo di campioni per foglia
 	
-	\subsection{Cos'è il Natural Processing Language (NLP). L'uso dei language model per rappresentare il significato del linguaggio. Uso dei n-gram model, model evalutation}
+	\section{Cos'è il Natural Processing Language (NLP). L'uso dei language model per rappresentare il significato del linguaggio. Uso dei n-gram model, model evalutation}
 	Il Natural Language Processing (NLP) è un campo dell'Intelligenza Artificiale che si occupa dell'interazione tra computer e linguaggio umano, permettendo ai sistemi di comprendere, interpretare e generare testo\\
 	Le applicazioni includono traduzione automatica, chatbots, analisi del sentiment e riconoscimento del parlato\\
-	Poiché il linguaggio naturale è ambiguo, complesso e non segue regole rigide come i linguaggi di programmazione, si usano i language model per cercare di stimare la probabilità di sequenze di parole
+	Poiché il linguaggio naturale è ambiguo, complesso e non segue regole rigide come i linguaggi di programmazione, si usano i language model per cercare di stimare la probabilità di sequenze di parole\\
 	Infatti, siccome è impossibile formalizzare il problema, si cerca una frase quanto è probabile/meno probabile\\
 	Per questo motivo nascono gli n-gram model, ovvero language model definiti come la distribuzione probabilistica su sequenze di caratteri\\
 	\[
@@ -557,7 +509,7 @@
 	\[
 		P(W_{1:N}) = \prod_{i=1}^{N}P(W_i | W_{1:i-1}) = \prod_{i=1}^{N}P(W_i | W_{i-2:i-1})
 	\]
-	Un approccio semplice per l'identificazione della lingua è dato dalla costruzione di un trigram model per ogni linguaggio, dando la probabilità P(Text|Language)\\
+	Un approccio semplice per l'identificazione della lingua è dato dalla costruzione di un trigram model per ogni linguaggio, dando la probabilità P(Text$|$Language)\\
 	Un trigram model è un tipo di modello in cui si considerano solamente le 2 parole precedenti per diminuire la complessità computazionale, siccome alcune lingue sono facilmente identificabili (ad esempio "the" si collega facilmente all'inglese)
 	\[
 		l^* = \arg\max_l P(l|C_{1:N}) = \arg\max_l P(l) P(C_{1:N}|l) = \arg\max_l P(l) \prod_{i=1}^{N} P(C_i | C_{i-2:i-1},l)
