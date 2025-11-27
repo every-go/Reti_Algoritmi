@@ -1,1 +1,1 @@
-Appunti di vari corsi del secondo anno UniPd, CdL in Informatica, Dipartimento di Matematica
+Appunti di vari corsi, CdL in Informatica, Dipartimento di Matematica, Università di Padova
