@@ -1,0 +1,58 @@
+\documentclass[10pt,oneside,a4paper]{article}
+\usepackage{hyperref, amsmath, forest}
+\usetikzlibrary{positioning}  
+\hypersetup{
+	colorlinks=true,   % Abilita il colore dei link (senza box intorno)
+	linkcolor=blue,    % Colore per i link interni (come quelli nell'indice)
+	urlcolor=red,      % Colore per i link URL esterni
+	filecolor=magenta, % Colore per i link ai file locali
+	citecolor=green,   % Colore per i riferimenti bibliografici
+	pdfborder={0 0 0}  % Disabilita i bordi intorno ai link
+}
+\title{Tecnologie Web}
+\author{Matteo Mazzaretto}
+\date{2025/2026}
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\begin{center}
+		%do un nuovo nome alla tabella degli indici e la inizializzo
+		\renewcommand{\contentsname}{Indice}
+		\tableofcontents
+	\end{center}
+	\newpage
+	%inizio l'effettivo conteggio delle pagine
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+	
+	\input{content/01_idvsclass}
+	
+	\input{content/02_procedimentocascata}
+	
+	\input{content/03_significatopuro}
+	
+	\input{content/04_accessibilitarichiesta}
+	
+	\input{content/05_specificita}
+	
+	\input{content/06_serpdescription}
+	
+	\input{content/07_localizzazione}
+	
+	\input{content/08_metodopesca}
+	
+	\input{content/09_strutturagerarchica}
+	
+	\input{content/10_areasicura}
+	
+	\input{content/11_ampiezzaprofondita}
+	
+	\input{content/12_emotionaldesign}
+	
+	\input{content/13_getvspost}
+	
+	\input{content/14_tabellaaccessibile}
+	
+	\input{content/15_schemastrutturaorganizzativa}
+	
+\end{document}
