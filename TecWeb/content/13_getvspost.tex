@@ -1,1 +1,21 @@
 \section{Differenze fra metodo GET e POST}
+
+Metodo GET: è il predefinito, serve a recuperare informazioni e passa le stringhe in chiaro.\\
+Il browser allega la stringa di query all’url:
+\begin{itemize}
+	\item http://server/path/file.php?parametro=valore
+	\item limite alla lunghezza della stringa (256 caratteri)
+	\item vulnerabilità dell’accesso
+\end{itemize}
+Metodo POST: la stringa di query viene passato come input standard, il che vuol dire maggiore facilità di gestione.\\
+Serve a passare stringhe importanti che non possono essere catturate direttamente, come le password.
+In PHP i parametri vengono memorizzati in variabili superglobali:
+
+\begin{itemize}
+	\item Con GET: i dati sono accessibili tramite \texttt{\$\_GET}
+	\item Con POST: i dati sono accessibili tramite \texttt{\$\_POST}
+	\item Indipendentemente dal metodo, i dati sono sempre presenti in \texttt{\$\_REQUEST}, permettendo allo script di non dover distinguere il metodo di invio
+\end{itemize}
+\texttt{\$\_REQUEST} è indipendente da \texttt{\$\_GET} e \texttt{\$\_POST}: modificarne i valori non influisce sulle altre variabili e viceversa.\\
+Il metodo che serve a passare file è \textbf{POST}.\\
+Il metodo POST consente l’invio di dati binari tramite form con l’attributo \texttt{enctype="multipart/form-data"}, necessario per l’upload di file. GET non supporta l’invio di file perché i parametri vengono passati nell’URL.

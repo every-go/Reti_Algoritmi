@@ -1,1 +1,59 @@
 \section{Come costruire una tabella accessibile}
+
+\includegraphics[width=\textwidth,height=\textwidth]{images/estabella}
+
+Per prima cosa bisogna inserire un paragrafo con il riassunto della tabella.\\
+La tabella deve avere aria-describedby="sum" che indica il paragrafo di riassunto precedente.\\
+Successivamente ci deve essere la caption, inoltre ogni th deve avere uno scope che indica se è colonna singola ("col") oppure colonna multipla ("colgroup").\\
+Si inserisce scope="row" per indica la riga singola
+Da ricordare che th è utilizzato per le intestazioni.
+Se possibile inserire le abbreviazioni con abbr assieme agli scope.\\
+Ricordare che $<$tr$>$ indica la riga mentre $<$td$>$ indica la colonna.\\
+\newpage
+\begin{lstlisting}[style=pseudocodice]
+	<p id="sum">Tabella organizzata per colonne con il numero di medaglie d'oro, d'argento, di bronzo e totali vinte dall'Italia. La seconda parte della tabella contiene il nome dell'atleta, le medaglie vinte e la specialita.
+	</p>
+	<table aria-describedby="sum">
+		<caption>Medagliere Olimpiadi Tokyo 2021</caption>
+		<thead>
+			<tr>
+				<th scope="colgroup" colspan="4">Italia</th>
+			</tr>
+			<tr>
+				<th scope="col" abbr="Oro"> Medaglie d'Oro</th>
+				<th scope="col" abbr="Argento">Medaglie d'Argento</th>
+				<th scope="col" abbr="Bronzo">Medaglie di Bronzo</th>
+				<th scope="col" abbr="Tot">Totali</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>10</td>
+				<td>10</td>
+				<td>20</td>
+				<td>40</td>
+			</tr>
+			<tr>
+				<th scope="col">Atleta</th>
+				<th scope="col">Medaglie</th>
+				<th scope="colgroup" colspan="2">Specialita</th>
+			</tr>
+			<tr>
+				<th scope="row" lang="en">Marcell Jacobs</th>
+				<td>2 medaglie d'Oro</td>
+				<td colspan="2">100<abbr title="metri">m</abbr> maschile, staffetta 4x100
+				<abbr title="metri">m</abbr></td>
+			</tr>
+			<tr>
+				<th scope="row">Vanessa Ferrari</th>
+				<td>1 medaglia d'argento</td>
+				<td colspan="2">Ginnastica Artistica, corpo libero</td>
+			</tr>
+			<tr>
+				<th scope="row">Gianmarco Tamberi</th>
+				<td>1 medaglia d'oro</td>
+				<td colspan="2">Salto in alto maschile</td>
+			</tr>
+			</tbody>
+	</table>
+\end{lstlisting}

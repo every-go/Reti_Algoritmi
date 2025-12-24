@@ -1,6 +1,5 @@
 \documentclass[10pt,oneside,a4paper]{article}
-\usepackage{hyperref, amsmath, forest}
-\usetikzlibrary{positioning}  
+\usepackage{hyperref, forest, listings}
 \hypersetup{
 	colorlinks=true,   % Abilita il colore dei link (senza box intorno)
 	linkcolor=blue,    % Colore per i link interni (come quelli nell'indice)
@@ -9,6 +8,24 @@
 	citecolor=green,   % Colore per i riferimenti bibliografici
 	pdfborder={0 0 0}  % Disabilita i bordi intorno ai link
 }
+
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+\lstdefinestyle{pseudocodice}{
+	language=HTML,  % Non importa quale linguaggio di base, lo utilizziamo per la sintassi
+	basicstyle=\ttfamily\footnotesize,  % Font di base
+	keywordstyle=\color{blue}\bfseries,  % Parole chiave in blu e in grassetto, comprende parole chiave c++ e quelle aggiunte
+	commentstyle=\color{red},  % Commenti in rosso, seguiti da //
+	stringstyle=\color{purple},  % Stringhe in viola, racchiuse fra virgolette, es: "ciao"
+	identifierstyle=\color{black},  % Variabili in nero (in generale tutto ciò che è scritto in maniera normale)
+	backgroundcolor=\color{lightgray},  % Colore di sfondo
+	numbers=left,  % Disabilita la numerazione delle righe
+	numberstyle=\tiny\color{black},%imposta stile dei numeri
+	frame=single,  % Bordo intorno al codice
+	breaklines=true,  % Rientro automatico delle linee troppo lunghe
+	morekeywords={then, begin, end, endif, endwhile, elif, endfor, and, or},  % Parole chiave personalizzate per pseudocodice
+	tabsize=3
+}
+
 \title{Tecnologie Web}
 \author{Matteo Mazzaretto}
 \date{2025/2026}
@@ -54,5 +71,7 @@
 	\input{content/14_tabellaaccessibile}
 	
 	\input{content/15_schemastrutturaorganizzativa}
+	
+	\input{content/16_testaccessibilita}
 	
 \end{document}

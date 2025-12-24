@@ -1,1 +1,22 @@
 \section{Indicatori di specificità}
+
+Un figlio eredita le impostazioni del padre.\\
+Con più regole a stessa importanza viene applicata l'ultima definita.\\
+L'importanza si calcola con gli indicatori di specificità.\\
+La regola più specifica sarà quella di cui viene applicata la regola.\\
+Date le regole, si calcolano così:\\
+(num !important, num id, num attributi, num tag html).\\
+È molto importante la virgola fra un indicatore e l'altro per permettere la divisione degli elementi.\\
+Esempio:
+
+\begin{lstlisting}[style=pseudocodice]
+	#nav a{
+		color:orange;	
+	}
+	a{
+		color:blue;
+	}
+\end{lstlisting}
+La specificità per il primo è (0, 1, 0, 1).\\
+La specificità per il secondo è (0, 0, 0, 1).\\
+Quindi viene applicata la prima regola in caso di contrasti.
