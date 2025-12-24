@@ -1,0 +1,31 @@
+\section{Link State Routing (2018, 21, 22, 23)}
+\subsection{Descrizione}
+Il Link State Routing è un algoritmo di routing che consente ai nodi di una rete di ottenere una visione completa della topologia di rete, permettendo il calcolo dei percorsi ottimali per l'instradamento dei pacchetti\\
+Il processo si articola in diversi passaggi:\\
+Rilevamento dei vicini: ogni nodo identifica i propri nodi vicini tramite l’invio di pacchetti HELLO\\
+Misurazione delle distanze: i nodi misurano la distanza dai loro vicini utilizzando pacchetti ECHO\\
+Costruzione delle informazioni locali: ogni nodo raccoglie informazioni sui propri vicini e sulla distanza che li separa, costruendo un pacchetto denominato Link State Packet (LSP)\\
+Broadcast delle informazioni: il pacchetto LSP viene inviato a tutti gli altri nodi della rete tramite un’operazione di broadcast basata sul flooding\\
+Ricostruzione della mappa globale: ogni nodo riceve le informazioni locali di tutti gli altri nodi, ricostruendo così una mappa completa della rete\\
+Calcolo dei percorsi ottimali: Utilizzando la mappa completa, ogni nodo applica un algoritmo di instradamento (ad esempio, l’algoritmo di Dijkstra) per calcolare i percorsi migliori verso ciascuna destinazione\\
+Poiché la topologia della rete può variare nel tempo, il processo di broadcast deve essere ripetuto periodicamente per effettuare il refresh delle informazioni, garantendo che la mappa sia aggiornata e accurata\\
+Questo comporta un maggiore utilizzo di banda rispetto ad altri algoritmi, ma migliora notevolmente la robustezza globale della rete, superando i limiti di soluzioni basate su informazioni locali
+\subsection{Ambiti d’uso}
+Il Link State Routing è utilizzato in contesti in cui è necessario un routing altamente dinamico, accurato e robusto\\
+Gli ambiti principali includono:\\
+Reti complesse con topologie dinamiche: ad esempio, reti di grandi dimensioni come le reti geografiche (WAN) o le dorsali Internet, dove la topologia varia frequentemente\\
+Reti ad alta priorità sulla robustezza: applicazioni critiche che richiedono affidabilità elevata, come reti di provider di servizi e sistemi di controllo industriale
+\subsection{Pregi}
+\begin{enumerate}
+\item Conoscenza globale della rete: ogni nodo dispone di una mappa completa della rete, consentendo di calcolare i percorsi ottimali per qualsiasi destinazione
+\item Adattabilità ai cambiamenti: grazie al processo periodico di broadcasting, l’algoritmo reagisce rapidamente ai cambiamenti nella topologia della rete, mantenendo la mappa aggiornata
+\item Robustezza: essendo basato su informazioni globali, il Link State Routing evita i problemi legati alla conoscenza locale, riducendo il rischio di instradamenti inefficienti o errori di rete
+\item Calcolo di percorsi ottimali: utilizzando algoritmi come Dijkstra, garantisce sempre il percorso più corto e veloce tra i nodi
+\item Scalabilità: funziona bene anche in reti di grandi dimensioni, grazie alla precisione e alla granularità delle informazioni trasmesse
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Elevato consumo di banda: il processo di broadcasting dei pacchetti LSP richiede una quantità significativa di larghezza di banda, specialmente in reti di grandi dimensioni
+\item Maggiore complessità computazionale: il calcolo dei percorsi ottimali basato su una mappa globale richiede una maggiore capacità di elaborazione da parte dei nodi rispetto agli algoritmi di routing locali
+\item Overhead per aggiornamenti periodici: anche quando la topologia della rete non cambia, il flooding deve essere ripetuto periodicamente per mantenere aggiornate le informazioni, causando un sovraccarico inutile in assenza di modifiche
+\end{enumerate}

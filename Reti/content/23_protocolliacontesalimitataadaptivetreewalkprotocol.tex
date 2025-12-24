@@ -1,0 +1,23 @@
+\section{Protocolli a contesa limitata: adaptive tree walk protocol (2015, 18, 24, 25)}
+\subsection{Descrizione}
+I protocolli a contesa limitata cercano di unire i lati positivi dei metodi della contesa e dei metodi senza collisioni\\
+Infatti si cerca di crearne uno capace di usare il metodo della contesa per ottenere un ritardo limitato a basso carico e il metodo senza collisioni per raggiungere una buona efficienza di canale nelle situazioni a carico più elevato\\
+SI basa sulle probabilità\\
+Dividono le stazioni in gruppi in cui ognuno ha uno slot e solo le stazioni di quel gruppo possono competere per quello slot\\
+Se uno di loro vince acquisisce il controllo del canale e trasmette il frame altrimenti se l'intervallo rimane inutilizzato o c'è una collisione si "avvia" il secondo gruppo\\
+La difficoltà è ridurre il livello di contesa per ogni intervallo\\
+Lo slotted ALOHA è un tipo di protocollo in cui tutte le stazioni sono in un singolo gruppo\\
+Un esempio è l'adaptive tree walk protocol, il quale può essere visto come un albero binario dove, nel primo slot tutti possono tentare di acquisire il controllo del canale ma se nessuno ci riesce viene diviso a metà in modo da far contendere N/2 stazioni ogni volta in modo ricorsivo fino a quando non si trova chi vince per trasmettere il suo frame\\
+Dato che l'algoritmo ricerca dall'alto al basso si parte dal livello P che sarebbe il logaritmo in base 2 del numero di stazioni attive per individuare più velocemente la stazione a cui permettere di trasmettere il frame
+\subsection{Ambiti d'uso}
+Sono protocolli utilizzati in ambiti come reti Ethernet, reti wireless, mobile, nei sistemi operativi per la gestione delle risorse condivise, nei sistemi distribuiti e nell'Internet of Things\\
+L'adaptive tree walk protocol viene usato specialmente per reti a traffico elevato, reti satellitari, gestione delle trasmissioni dei disposivitivi Internet of Things, nelle applicazioni di monitoraggio
+\subsection{Pregi}
+\begin{enumerate}
+\item C'è una notevole riduzione delle collisioni in cui i protocolli a contesa limitata riducono significativamente le collisioni rispetto ai protocolli randomici, l'adaptive tree walk protocol suddivide dinamicamente i dispositivi in gruppi gerarchici analizzandoli uno per uno in modo ordinato
+\item Sono più efficienti in condizioni di traffico moderato o elevato, adattandosi dinamicamente al numero di dispositivi in contesa, l'adaptive tree walk protocol eccelle in questo contesto, poiché modifica il comportamento in base al livello di contesa
+\item I protocolli garantiscono che tutti i dispositivi abbiano possibilità eque di accedere al canale
+\item L'adaptive tree walk protocol ha una scalabilità molto elevata in quanto si può avere un numero crescente di nodi
+\end{enumerate}
+\subsection{Difetti}
+I difetti possono essere l'overhead di controllo, la latenza elevata in caso di traffico leggero, la complessità di implementazione (la navigazione dinamica e la costruzione di una struttura ad albero richiedono parecchia complessità) e non è ottimale in ambienti asincroni, oltre al continuo aggiornamento

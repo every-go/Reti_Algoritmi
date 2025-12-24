@@ -1,0 +1,33 @@
+\section{Leaky bucket (2015, 25)}
+\subsection{Descrizione}
+Il leaky bucket è un tipo di algoritmo utilizzato per regolare il flusso di dati in una rete al fine di garantire una trasmissione controllata e costante\\
+Si basa sull'analogia di un secchio che perde: i dati entrano nel secchio a una velocità arbitraria, ma ne escono a un ritmo costante\\
+Se il secchio si riempie oltre la sua capacità, i dati in eccesso vengono scartati, garantendo così un traffico controllato\\
+Questo meccanismo consente di evitare sovraccarichi della rete e di ridurre i burst di dati, ossia i picchi improvvisi di traffico\\
+I due modi per implementare correttamente un algoritmo leaky bucket sono:
+\begin{itemize}
+	\item Sul mittente: viene regolata la frequenza di spedizione dei pacchetti in modo da non superare la soglia di tolleranza della rete
+	\item Sui nodi intermedi (router): il buffer di ricezione (secchio) è posto sul ricevente (router), e quando si riempie completamente (acqua) ciò che non può essere salvato viene perso
+\end{itemize}
+\subsection{Ambiti d'uso}
+Il leaky bucket trova applicazione in diversi contesti, tra cui:
+\begin{enumerate}
+\item Reti di telecomunicazione, per controllare il traffico e garantire una trasmissione fluida
+\item QoS (Quality of Service), per rispettare i contratti di traffico che limitano la banda o impongono requisiti di ritardo e jitter
+\item Reti locali (LAN) e reti geografiche (WAN), per prevenire congestioni dovute a picchi di traffico generati da applicazioni o dispositivi
+\item Applicazioni multimediali, come lo streaming video, per assicurare una qualità stabile del servizio
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+    \item Controllo della congestione: l'algoritmo garantisce un flusso costante, riducendo il rischio di sovraccarichi nella rete
+    \item Semplicità di implementazione: il meccanismo è semplice da implementare sia a livello hardware che software
+    \item Prevedibilità del traffico: limita i burst e rende il traffico più prevedibile, facilitando la gestione della rete
+    \item Riduzione della perdita di pacchetti a valle: regolando il traffico in modo proattivo, riduce il rischio che i nodi successivi debbano scartare pacchetti
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+    \item Scarto dei dati in eccesso: se i burst superano la capacità del secchio, i dati vengono scartati, portando a possibili perdite di informazioni
+    \item Limitazione della flessibilità: il tasso costante imposto dal leaky bucket potrebbe non adattarsi bene a tutte le applicazioni, specialmente quelle che richiedono un traffico variabile
+    \item Possibili ritardi: in alcuni casi, il meccanismo può introdurre ritardi nella trasmissione dei dati se il secchio non si svuota abbastanza rapidamente
+    \item Overhead di configurazione: determinare la capacità ottimale del secchio e il tasso di perdita richiede una buona conoscenza delle esigenze della rete e delle applicazioni
+\end{enumerate}

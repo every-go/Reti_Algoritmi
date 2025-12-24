@@ -1,0 +1,32 @@
+\section{Token bucket (2016, 18, 19, 20, 21, 24)}
+\subsection{Descrizione}
+Il token bucket è un tipo di algoritmo utilizzato per regolare il flusso di dati in una rete al fine di garantire una trasmissione controllata e costante\\
+Si basa sull'analogia di un secchio che ogni tanto perde, infatti ogni certo intervallo di tempo genera un token\\
+I pacchetti in arrivo possono uscire solo se "bruciano" un token disponibile
+\subsection{Ambiti d'uso}
+Come detto prima è un sistema necessario per garantire il flusso di dati ed è determinante in alcuni ambiti per il rispetto dei parametri del QoS\\
+Infatti, se il traffico per un certo periodo è lento ma poi c'è un burst (aumento) si riesce a gestire meglio consumando i token che si sono accumulati
+\subsection{Pregi}
+\begin{enumerate}
+\item Flessibilità per traffico: \\
+il token bucket consente di accumulare token, permettendo al traffico bursty (picchi) di essere trasmesso rapidamente, purché ci siano token sufficienti
+\item Controllo della banda media:\\
+garantisce che il tasso medio di trasmissione rimanga entro i limiti impostati, evitando congestioni di rete
+\item Adattabilità:\\
+è adatto sia a traffico regolare che irregolare, rendendolo versatile per molte applicazioni, come streaming multimediali
+\item Supporto per QoS:\\
+consente di rispettare i vincoli di qualità del servizio (Quality of Service), garantendo priorità o limitazioni al traffico
+\item Configurabilità:\\
+i parametri (capacità del secchio e tasso di accumulo dei token) possono essere facilmente regolati per adattarsi a esigenze specifiche
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Ritardi possibili:\\
+in caso di esaurimento dei token, i pacchetti devono attendere che i token si rigenerino, introducendo ritardi nel traffico
+\item Gestione di traffico costante meno rigida:\\
+a differenza del leaky bucket, che forza un tasso di trasmissione costante, il token bucket consente picchi che potrebbero causare congestione se non ben gestiti
+\item Possibili perdite di pacchetti:\\
+se i burst superano la capacità del secchio e non ci sono token disponibili, i pacchetti in eccesso vengono scartati, causando perdita di dati
+\item Necessità di monitoraggio:\\
+Per garantire prestazioni ottimali, il meccanismo richiede un monitoraggio continuo della rete e una manutenzione periodica dei parametri configurati
+\end{enumerate}

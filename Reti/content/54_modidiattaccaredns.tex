@@ -1,0 +1,21 @@
+\section{Modi di attaccare DNS (2018)}
+\subsection{Descrizione}
+Gli attacchi al Domain Name System (DNS) mirano a compromettere la risoluzione dei nomi di dominio, influenzando le comunicazioni su Internet. Due delle principali tecniche di attacco sono il DNS spoofing e il DDoS (Distributed Denial of Service)\\
+Il DNS spoofing consiste nell'inviare risposte DNS false a un client o a un server DNS, ingannando il sistema di risoluzione dei domini e redirigendo il traffico verso destinazioni non desiderate\\
+Il DDoS contro i server DNS può essere utilizzato per sovraccaricare un server DNS con un volume massiccio di traffico, impedendo che possa risolvere correttamente i domini per gli utenti legittimi
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Attacchi contro la disponibilità di siti web: utilizzati per dirottare il traffico Internet verso server malevoli (DNS spoofing) o per sovraccaricare i server DNS, rendendo i siti web e i servizi online irraggiungibili (DDoS)
+\item Attacchi di phishing: il DNS spoofing viene utilizzato per reindirizzare gli utenti a siti web fasulli, rubando informazioni sensibili come credenziali di login, dati bancari, e altro
+\item Interruzione di servizio: il DDoS su server DNS è utilizzato per impedire la risoluzione dei domini, causando interruzioni nei servizi di rete
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Semplicità: gli attacchi come il DNS spoofing sono relativamente facili da eseguire, richiedendo poche risorse e conoscenze tecniche
+\item Efficacia: Il DNS spoofing può compromettere rapidamente la navigazione web, reindirizzando gli utenti a siti malevoli
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Difesa con DNSSEC: meccanismi di protezione come DNSSEC (DNS Security Extensions) possono prevenire il DNS spoofing
+\item Difficoltà di difesa contro DDoS: i DDoS contro i server DNS richiedono soluzioni scalabili come il bilanciamento del carico e l'uso di reti distribuite per mitigare l'impatto
+\end{enumerate}

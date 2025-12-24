@@ -1,0 +1,48 @@
+\section{IPv4 (2024)}
+\subsection{Descrizione}
+IPv4 (Internet Protocol versione 4) è il protocollo che definisce il formato del datagramma IP e il meccanismo per il trasferimento di dati tra dispositivi su reti basate su IP\\
+L'intestazione (header) di un datagramma IPv4 è suddivisa in due parti principali:
+\begin{itemize}
+\item Parte fissa: È lunga 20 byte e include campi essenziali
+\item Parte variabile: può contenere aggiunte opzionali, come timestamp, sicurezza, o registrazione del percorso, pensate per eventuali funzionalità future
+\end{itemize}
+IPv4 è stato progettato con un'architettura robusta per gestire le comunicazioni su reti eterogenee, garantendo adattabilità
+\subsection{Ambiti d'uso}
+IPv4 è il protocollo fondamentale per l'invio di pacchetti nello strato di rete (network layer) e rappresenta la base delle comunicazioni su Internet\\
+Alcuni ambiti di utilizzo:
+\begin{itemize}
+\item Trasporto dati su Internet:\\
+è il protocollo principale per il trasferimento di pacchetti tra dispositivi collegati alla rete
+\item Reti locali (LAN) e geografiche (WAN):\\
+IPv4 è utilizzato in contesti di rete di diversa scala, dal piccolo ufficio a reti globali
+\item Interconnessione di reti eterogenee:\\
+permette la comunicazione tra dispositivi con architetture diverse, garantendo universalità e flessibilità
+\item Gestione del traffico dinamico:\\
+IPv4 utilizza tecniche come il routing dinamico e il flooding per garantire la consegna anche in condizioni di rete non ottimali (es. congestione o attacchi)
+\end{itemize}
+IPv4 non implementa meccanismi di controllo degli errori per garantire alte prestazioni; questo compito è demandato ai livelli superiori
+\subsection{Pregi}
+\begin{itemize}
+\item Struttura gerarchica degli indirizzi:\\
+gli indirizzi IPv4 vengono assegnati attraverso un sistema gerarchico gestito da autorità centralizzate garantendo efficienza nella distribuzione e nel routing
+\item Compatibilità universale:\\
+IPv4 è supportato da praticamente tutti i dispositivi connessi alla rete, rendendolo il protocollo più utilizzato per le comunicazioni IP
+\item Semplicità e robustezza:\\
+è progettato per essere operativo in contesti di rete dinamici, garantendo resilienza contro interruzioni o perdite di pacchetti
+\item Cachability e instradamento ottimizzato:\\
+grazie alla struttura gerarchica, il routing può essere ottimizzato attraverso subnetting e aggregazione degli indirizzi
+\end{itemize}
+\subsection{Difetti}
+Nonostante i suoi pregi, IPv4 presenta alcuni limiti intrinseci:
+\begin{itemize}
+\item Limitazione degli indirizzi disponibili:\\
+gli indirizzi IPv4 sono a 32 bit, il che consente circa 4,3 miliardi di indirizzi univoci\\
+Tuttavia, lo spazio degli indirizzi è ormai quasi esaurito a causa della crescita esponenziale dei dispositivi connessi
+\item Frammentazione dei pacchetti:\\
+in reti con diverse dimensioni di MTU (Maximum Transmission Unit), i pacchetti devono essere frammentati, aumentando l'overhead e la complessità
+\item Vulnerabilità alla sicurezza:\\
+IPv4 non include nativamente meccanismi di sicurezza, come l'autenticazione o la crittografia, che devono essere implementati tramite protocolli aggiuntivi
+\item Limite del TTL:\\
+il campo TTL consente al datagramma un massimo di 255 salti\\
+Anche se i router possono rigenerare i datagrammi, questo valore rappresenta una limitazione nei casi estremi
+\end{itemize}

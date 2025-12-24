@@ -1,0 +1,24 @@
+\section{Choke packet (2016, 18, 19, 21, 22, 23, 24)}
+\subsection{Descrizione}
+Un choke packet funziona similmente al sistema a crediti di un bus: quando un router rileva una congestione nel flusso di trasmissione, si occupa di spedire ai vari mittenti un pacchetto di congestione, che obbliga un ritmo di spedizione moderato\\
+Dopo un po’ il flusso tornerà al suo ritmo originale autonomamente (fading)
+\subsection{Ambiti d'uso}
+Il suo ambito d'uso principale è al fine di "decongestionare" la rete, infatti con questa tecnica si dimezza il flusso dati in uscita e permette di elaborare al meglio i pacchetti già arrivati
+\subsection{Pregi}
+\begin{enumerate}
+\item Riduzione della Congestione\\
+Aiuta a limitare la congestione della rete comunicando rapidamente al mittente di rallentare il flusso di dati, prevenendo ulteriori sovraccarichi
+\item Semplicità del Meccanismo\\
+La logica alla base del choke packet è relativamente semplice da implementare: il nodo rileva il sovraccarico e invia un messaggio di feedback al mittente
+\item Adattamento Dinamico del Traffico\\
+Permette al sistema di adattarsi in tempo reale alle condizioni della rete, mantenendo un flusso dati che evita il collasso
+\item Minimizzazione della Perdita di Pacchetti\\
+Riducendo la velocità di invio prima che la rete raggiunga uno stato critico, si evita la perdita massiccia di pacchetti dovuta alla saturazione dei buffer
+\item Compatibilità con Altri Meccanismi di Controllo\\
+Il choke packet può essere utilizzato insieme ad altri metodi di controllo della congestione, come il controllo basato sulla finestra (ad esempio TCP), per migliorare l'efficacia complessiva
+\end{enumerate}
+\subsection{Difetti}
+Il suo principale problema è "il problema dell'entrata"\\
+Se si ha una sequenza di router A, B, C, D, E ed avviene la congestione della rete fra A ed E i router B, C, D inviano ad A un choke portando il suo data rate a 12,5$\%$\\
+Infatti, quando si riceve un choke, per un certo periodo di tempo detto fading alla rovescia (minore del fading) si ignorano degli eventuali altri choke in arrivo\\
+Un altro problema è che una richiesta di choke può metterci troppo per decongestionare la rete, infatti si è progettata una variante choke hop-by-hop in cui ogni router incontrato subisce gli effetti del choke

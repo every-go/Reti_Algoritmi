@@ -1,0 +1,37 @@
+\section{CSMA non persistent (2022)}
+\subsection{Descrizione}
+Il CSMA non persistente è un tipo di CSMA (protocollo multiaccesso) in cui, quando un dispositivo rileva che il canale è occupato, non continua a monitorarlo costantemente\\
+Invece, attende un intervallo di tempo casuale (random backoff) prima di verificare nuovamente se il canale è libero e riprovare la trasmissione\\
+Questo approccio aiuta a ridurre la probabilità di collisioni rispetto al CSMA 1-persistente (dove i dispositivi trasmettono immediatamente quando rilevano il canale libero)\\
+Esso può raggiungere performance fino al 90$\%$
+\subsection{Ambiti d'uso}
+Il CSMA non persistente è adatto a scenari in cui la riduzione delle collisioni è cruciale e il traffico della rete non è eccessivamente intenso\\
+Gli ambiti principali includono:\\
+Reti locali cablate (LAN):\\
+può essere utilizzato in reti Ethernet tradizionali con basso o moderato traffico\\
+Reti di sensori e IoT (Internet of Things):\\
+sistemi con dispositivi che trasmettono dati sporadicamente, dove si vuole ridurre il rischio di collisioni\\
+Comunicazioni satellitari o radio:\\
+in reti dove i tempi di propagazione sono elevati e si richiede un approccio più conservativo per ridurre le collisioni\\
+Sistemi di controllo industriale:\\
+utilizzato in ambienti con un numero limitato di dispositivi che devono trasmettere senza sovraccaricare il canale
+\subsection{Pregi}
+Il CSMA non persistente offre diversi vantaggi:\\
+Riduzione delle collisioni:\\
+l’attesa di un tempo casuale prima di riprovare la trasmissione riduce la probabilità che più dispositivi trasmettano contemporaneamente quando il canale diventa libero\\
+Maggiore efficienza in condizioni di traffico moderato:\\
+la probabilità di saturare il canale diminuisce rispetto ad altri approcci, come il CSMA 1-persistente\\
+Semplicità di implementazione:\\
+non richiede un coordinamento centrale o sincronizzazione complessa, rendendolo adatto a reti distribuite\\
+Adattabilità dinamica:\\
+funziona bene in reti con traffico non prevedibile o carico variabile
+\subsection{Difetti}
+Il CSMA non persistente presenta anche alcune limitazioni:\\
+Maggiore latenza:\\
+l’attesa casuale introduce ritardi anche quando il canale è libero, causando una latenza maggiore rispetto ad altri protocolli (ad esempio, CSMA 1-persistente)\\
+Prestazioni degradate in reti congestionate:\\
+in condizioni di alto traffico, il numero di tentativi falliti e le attese casuali possono aumentare il ritardo medio e diminuire l'efficienza\\
+Minore utilizzo del canale in reti leggere:\\
+Rispetto al CSMA 1-persistente, in situazioni con pochi dispositivi attivi, il protocollo non persistente può essere meno efficiente perché introduce attese inutili\\
+Difficoltà nel garantire priorità:\\
+Non offre meccanismi per assegnare priorità alla trasmissione di dati urgenti, rendendolo meno adatto a reti con traffico prioritario

@@ -1,0 +1,16 @@
+\section{Attacchi ciphertext only (2019, 20)}
+Uno dei più comuni esempi di questo tipo di attacco è l'attacco brute-force
+\subsection{Descrizione}
+Gli attacchi ciphertext-only sono un tipo di attacco crittografico in cui l'attaccante dispone solo di uno o più testi cifrati, senza alcuna conoscenza aggiuntiva sul testo in chiaro o sulla chiave utilizzata per cifrarli\\
+L'obiettivo è dedurre il contenuto dei messaggi (testo in chiaro) o, idealmente, la chiave crittografica, sfruttando le caratteristiche del testo cifrato e potenziali vulnerabilità nell'algoritmo di cifratura
+\subsection{Ambiti d'uso}
+Attualmente non sono molto utilizzabili in contesti molto più moderni, infatti vengono usati per cifrari deboli o obsoleti come il cifrario di Cesare (o potenzialmente qualsiasi sostituzione monoalfabetica o un DES a chiave singola),\\
+Però è utile quando ad esempio si intercettano delle comunicazioni oppure per analizzare vecchi documenti cifrati\\
+Infine, è usato come un parametro di criptoanalisi per un nuovo algoritmo
+\subsection{Pregi}
+1) non richiede l'accesso al plaintext (testo in chiaro) o alla chiave\\
+2) applicabile in condizioni realistiche
+\subsection{Difetti}
+1) come menzionato prima, quasi inutile su algoritmi moderni, i quali non rendono noti pattern significativi nel cyphertext\\
+2) dipendente da schemi ripetitivi\\
+3) alta complessità computazionale

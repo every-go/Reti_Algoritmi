@@ -1,0 +1,19 @@
+\section{Selective Repeat (2022)}
+\subsection{Descrizione}
+Selective Repeat è protocollo di trasmissione basato sulle Sliding Windows, progettato per gestire in modo efficiente la comunicazione tra mittente e ricevente soprattutto in presenza di errori\\
+In questo caso specifico la taglia delle sliding window per chi riceve è di una taglia maggiore rispetto ai Go back N (1), prevede la presenza di un buffer per la memorizzazione dei pacchetti mancanti dalla parte del ricevitore\\
+In questo modo è possibile calcolare quali pacchetti manchino (grazie ai numeri di sequenza) e chiedere al mittente di rispedirli singolarmente\\
+Consente al ricevitore di accettare e memorizzare i frame ricevuti fuori ordine in un buffer\\
+Permette al mittente di ritrasmettere solo i frame specifici che risultano persi o corrotti, riducendo l'overhead associato alla ritrasmissione di interi blocchi di dati
+\subsection{Ambiti d'uso}
+Viene utilizzato per le reti ad alta latenza e larghezza di banda elevata (comunicazioni satellitari e transoceaniche), nelle reti wireless e per i trasferimenti di dati critici in cui l'efficienza e l'affidabilità sono essenziali
+\subsection{Pregi}
+Alta efficienza: consente di ottimizzare l'uso della larghezza di banda, riducendo le ritrasmissioni inutili\\
+Gestione dei frame fuori ordine: i frame ricevuti in anticipo o in ordine errato non vengono scartati, ma conservati in un buffer per il successivo riordino\\
+Adatto a reti con alti tassi di errore: migliora le prestazioni rispetto al Go-Back-N in ambienti rumorosi, dove gli errori sono frequenti\\
+Flessibilità: ideale per sistemi con requisiti di precisione e integrità dei dati
+\subsection{Difetti}
+Complessità maggiore: il ricevitore deve gestire un buffer sofisticato per i frame fuori ordine, aumentando il costo e la difficoltà di implementazione\\
+Overhead elevato: a causa della necessità di buffer ampi e della gestione delle conferme per ogni singolo frame, l'overhead operativo è più alto rispetto ad altri protocolli\\
+Problemi di sincronizzazione: la gestione delle finestre di trasmissione e ricezione può risultare complessa, specialmente in presenza di ritardi variabili o errori di sincronizzazione\\
+Buffering elevato: la necessità di memorizzare i frame fuori ordine richiede più memoria, specialmente in reti ad alta velocità o con grandi dimensioni di finestra

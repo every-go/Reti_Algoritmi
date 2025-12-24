@@ -1,0 +1,26 @@
+\section{One time pad (blocco monouso) (2015, 16, 18, 20)}
+\subsection{Descrizione}
+Il One Time Pad (OTP), o cifrario a blocco monouso, è un metodo di cifratura simmetrica che garantisce sicurezza perfetta, a condizione che venga utilizzato correttamente\\
+Il testo in chiaro viene combinato con una chiave completamente casuale, lunga almeno quanto il messaggio, utilizzando lo XOR (esclusivo logico)\\
+Ogni chiave deve essere usata una sola volta, da cui il nome "blocco monouso"\\  
+L'OTP è teoricamente inviolabile, ma è inutilizzabile in tutti i contesti moderni, è utilizzato infatti solamente in situazioni eccezionali come comunicazioni segretissime che non possono in nessuna situazione trapelare all'esterno
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Comunicazioni militari e diplomatiche: utilizzato per la trasmissione di informazioni estremamente sensibili, come i messaggi tra capi di stato o militari durante la guerra
+\item Sistemi ad alta sicurezza: Impiegato in sistemi dove la sicurezza assoluta è prioritaria, come nel caso di reti di intelligence
+\item Applicazioni teoriche: usato come esempio ideale per comprendere i limiti e i principi fondamentali della crittografia
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Sicurezza perfetta: Se usato correttamente, l'OTP è matematicamente inviolabile, perché il testo cifrato non contiene informazioni statistiche sul testo in chiaro
+\item Semplicità matematica: Il metodo utilizza operazioni semplici, come lo XOR, che lo rendono facile da implementare
+\item Resistenza a tutti gli attacchi crittografici: nessun attacco basato sulla crittoanalisi può violare l'OTP se le sue regole vengono seguite
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Gestione della chiave: richiede una chiave lunga quanto il messaggio, che deve essere distribuita e conservata in modo assolutamente sicuro
+\item Uso unico della chiave: ogni chiave può essere utilizzata una sola volta, aumentando la complessità logistica nelle comunicazioni frequenti
+\item Impraticabilità per messaggi lunghi: per messaggi di grandi dimensioni, la gestione delle chiavi diventa onerosa
+\item Difficoltà di distribuzione: la trasmissione sicura della chiave tra le parti è un problema significativo, soprattutto in scenari moderni.
+\item Dipendenza dalla casualità: la sicurezza dipende dalla qualità della chiave, che deve essere completamente casuale
+\end{enumerate}

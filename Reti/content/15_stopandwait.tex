@@ -1,0 +1,18 @@
+\section{Stop and wait}
+\subsection{Descrizione}
+Stop and wait è uno dei protocolli half-duplex (canale singolo) in cui tra ricevente e mittente si condivide un singolo canale e le comunicazioni avvengono in modo alternato\\
+Il mittente trasmette un blocco dati (frame) e attende un segnale di conferma (acknowledgment) segnalandoci che si può inviare un altro messaggio\\
+Se il ricevente rileva errori nel frame ricevuto, invia un messaggio di richiesta di ritrasmissione (NAK, negative acknowledgment)\\
+Se il mittente non riceve nessun ACK entro un tempo prestabilito (timeout), ritrasmette il frame\\
+Per evitare duplicazioni nel caso di ritrasmissioni, ogni frame include un identificatore (di solito un bit, 0 o 1) che permette di distinguere i dati già ricevuti da quelli nuovi
+\subsection{Ambiti d'uso}
+Viene utilizzato principalmente per gestire il flow control in situazioni dove è cruciale garantire l'affidabilità come nei collegamenti a bassa velocità o in ambienti con elevate probabilità di errore\\
+Attualmente trova applicazione in contesti semplici
+\subsection{Pregi}
+Semplicità: l'implementazione è molto semplice, rendendolo ideale per applicazioni basilari o sistemi con risorse limitate\\
+Robustezza: garantisce l'integrità dei dati grazie al meccanismo di ritrasmissione e alla conferma esplicita (ACK)\\
+Compatibilità: funziona su canali half-duplex, dove la comunicazione simultanea non è possibile, riducendo i requisiti hardware
+\subsection{Difetti}
+Lentezza: poiché non è possibile inviare un nuovo frame prima di ricevere l'ACK del precedente, il protocollo introduce notevoli ritardi, soprattutto su canali con alta latenza\\
+Bassa efficienza: utilizza male la larghezza di banda disponibile, dato che il canale rimane inattivo durante l'attesa degli ACK\\
+Limiti in contesti moderni: non è adatto a sistemi ad alta velocità o reti con grandi volumi di dati, dove protocolli più avanzati (come sliding window) risultano preferibili

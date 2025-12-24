@@ -1,0 +1,30 @@
+\section{Quality of Service (QOS) (2014, 20, 23)}
+\subsection{Descrizione}
+Alcune applicazioni richiedono garanzie di prestazione rassicuranti, infatti possono richiedere un livello minimo di capacità di trasmissione e non funzionano bene quando la latenza è superiore a una certa soglia\\
+Le esigenze di ogni flusso sono caratterizzati da quattro parametri primari: ampiezza di banda, ritardo, jitter (la deviazione standard del ritardo o nel tempo di arrivo di un pacchetto) e perdita\\
+Questi parametri assieme determinano la QoS richiesta dal flusso
+\subsection{Ambiti d'uso}
+Usato attualmente per descrivere le esigenze che ogni servizio ha, ad esempio:\\
+La posta elettronica necessita bassa rigidità di ampiezza di banda, ritardo e jitter, mentre la perdita richiede una rigidità media\\
+La condivisione dei file richiede queste rigidità: un'ampiezza di banda elevata, ritardo e jitter non sono importanti ma con una perdita anch'essa media\\
+L'audio, il video, la telefonia richiedono una rigidità del jitter elevata (ovvero jitter molto basso) perché anche una differenza di qualche millisecondo sarebbe riconoscibile, tutti con una rigidità di perdita bassa (poco importa se si perde qualche bit nella trasmissione, infatti può essere che non abbiano nemmeno un sistema di error control)
+\subsection{Pregi}
+\begin{enumerate}
+\item Garanzia della Qualità del Servizio\\
+QoS consente di allocare risorse di rete a specifici tipi di traffico, garantendo che applicazioni critiche (es. VoIP, streaming video) ricevano priorità rispetto a traffico meno importante
+\item Ottimizzazione dell'Utilizzo della Banda\\
+Distribuisce in modo efficiente la larghezza di banda disponibile tra i vari tipi di traffico, evitando che applicazioni non prioritarie congestionino la rete
+\item Flessibilità\\
+QoS può essere configurata per adattarsi a diversi scenari di rete e politiche aziendali, offrendo un controllo granulare sul traffico
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Complessità di Implementazione\\
+La configurazione di QoS può essere complicata e richiedere conoscenze tecniche approfondite, specialmente in reti grandi o eterogenee
+\item Costi Elevati\\
+L'implementazione di QoS può richiedere hardware specifico (es. router e switch avanzati) e software dedicato, aumentando i costi infrastrutturali
+\item Manutenzione Continuativa\\
+QoS richiede monitoraggio e aggiornamenti costanti per garantire che le politiche rimangano efficaci in base ai cambiamenti delle condizioni di rete e delle esigenze aziendali
+\item Impatto sulle Applicazioni Non Prioritarie\\
+Il traffico a bassa priorità potrebbe risentire negativamente di QoS, con prestazioni degradate a causa dell'allocazione preferenziale verso traffico critico
+\end{enumerate}

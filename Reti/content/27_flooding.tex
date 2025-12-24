@@ -1,0 +1,15 @@
+\section{Flooding (2015, 16, 18, 20, 23, 25)}
+\subsection{Descrizione}
+Il flooding è un algoritmo di routing, ovvero quel genere di algoritmi in cui ci si preoccupa di consegnare i pacchetti su una rete complessa\\
+Nel flooding ogni pacchetto viene ritrasmesso su tutte le linee di uscita, garantendo che raggiunga ogni possibile destinazione\\
+Per evitare problemi di ridondanza e congestione, si usano dei metodi di controlllo aggiuntivi fra cui:\\
+1) hop counting: indica il numero massimo di stazioni dopo le quali il pacchetto è inutilizzabile\\
+2) tracking: tiene traccia dei pacchetti già trasmessi e non li ritrasmette per prevenire duplicazioni
+\subsection{Ambiti d'uso}
+Utilissimo quando il carico di rete non è molto alto, la topologia di rete è estremamente variabile ed è critico che un messaggio arrivi nel minor tempo possibile (indipendentemente dall'efficienza complessiva)
+\subsection{Pregi}
+1) il flooding sceglie sempre la via migliore\\
+2) è il più robusto algoritmo di routing rispetto alle modifiche della rete grazie al fatto che non è dipendente da tabelle di routing statiche
+\subsection{Difetti}
+Generazione di traffico eccessivo: si crea una quantità enorme di pacchetti che può rapidamente saturare la rete, riducendone l'efficienza complessiva \\
+Uso inefficiente delle risorse: la ridondanza intrinseca del flooding implica che molti pacchetti vengano inviati inutilmente sprecando larghezza di banda e capacità di elaborazione dei nodi

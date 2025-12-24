@@ -1,0 +1,50 @@
+\section{UDP (2014, 16, 17, 18, 20, 22, 23, 24, 25)}
+\subsection{Descrizione}
+Il User Datagram Protocol (UDP) è un protocollo di trasporto\\
+UDP è progettato per la trasmissione rapida di dati con un overhead minimo, adottando un approccio best-effort\\
+A differenza del TCP, non fornisce meccanismi di controllo della connessione, ritrasmissione o verifica dell'ordine dei pacchetti\\
+Le principali caratteristiche di UDP includono:
+\begin{enumerate}
+\item Nessuna connessione:\\
+UDP è un protocollo connectionless, il che significa che non stabilisce una connessione prima dell'invio dei dati
+\item Struttura semplice:\\
+il segmento UDP contiene solo informazioni essenziali: porta di origine, porta di destinazione, lunghezza del segmento e checksum
+\item Velocità e leggerezza:\\
+poiché non implementa controlli di errore o ritrasmissione, UDP è parecchio veloce
+\item Multiplexing:\\
+UDP consente la comunicazione tra più applicazioni attraverso l'uso delle porte
+\item Affidabilità delegata:\\
+qualsiasi controllo di errore o meccanismo di affidabilità deve essere implementato dall'applicazione che utilizza UDP
+\end{enumerate}
+\subsection{Ambiti d'uso}
+UDP viene utilizzato in diversi scenari, principalmente in applicazioni che richiedono bassa latenza, velocità o trasmissione continua di dati:
+\begin{enumerate}
+\item Streaming audio e video:\\
+per garantire una riproduzione fluida, è preferibile perdere qualche pacchetto piuttosto che ritardare la trasmissione
+\item Trasmissioni multicast e broadcast:\\
+UDP è utilizzato per inviare dati a più destinatari contemporaneamente
+\end{enumerate}
+\subsection{Pregi}
+UDP presenta numerosi vantaggi per applicazioni specifiche:
+\begin{enumerate}
+\item Bassa latenza:\\
+l'assenza di meccanismi di controllo della connessione rende UDP ideale per applicazioni in tempo reale
+\item Efficienza:\\
+il ridotto overhead del protocollo garantisce una trasmissione dei dati più veloce rispetto a TCP
+\item Semplicità:\\
+grazie alla sua struttura minimale, UDP è facile da implementare e consuma meno risorse di sistema
+\item Supporto multicast e broadcast:\\
+UDP consente trasmissioni simultanee a più destinatari, a differenza di TCP
+\item Adatto per applicazioni specifiche:\\
+è perfetto per scenari in cui la perdita di pacchetti non compromette l'esperienza complessiva, come lo streaming
+\end{enumerate}
+\subsection{Difetti}
+Nonostante i suoi vantaggi, UDP ha delle limitazioni:
+\begin{enumerate}
+\item Mancanza di affidabilità:\\
+UDP non garantisce la consegna dei pacchetti, che possono essere persi o arrivare fuori ordine
+\item Assenza di controllo di errore:\\
+il checksum di UDP rileva solo errori nei dati, ma non offre alcuna correzione o ritrasmissione automatica
+\item Non adatto per dati critici:\\
+applicazioni che richiedono integrità e affidabilità dei dati (come il trasferimento di file) devono utilizzare protocolli come TCP
+\end{enumerate}

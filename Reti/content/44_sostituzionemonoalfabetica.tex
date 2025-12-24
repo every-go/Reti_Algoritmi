@@ -1,0 +1,18 @@
+\section{Sostituzione monoalfabetica (2019, 24)}
+\subsection{Descrizione}
+Tipo di crittografia molto debole nell'epoca moderna\\
+Consiste nel sostituire ogni lettera con un'altra cosicché il testo sia pressoché indecifrabile (se letto senza opportuni algoritmi di cifratura)\\
+Viene considerato un algoritmo che è parte del principio di Kerchoff, ovvero che "Il design di un sistema non dovrebbe richiedere segretezza e compromettere il sistema non dovrebbe dare problemi ai corrispondenti"\\
+Infatti il suo principio ha dato vita all'idea che l'algoritmo di encrypting deve essere pubblico (tutti sanno che ogni lettera è sostituita con un'altra) ma le chiavi sono segrete (nessuno sa quale lettere sono state sostituite)
+\subsection{Ambiti d'uso}
+Il suo uso è nato nel passato, grazie all'uso di questa tecnica in documenti militari e diplomatici\\
+L'esempio più famoso è il cifrario di Cesare, il quale consiste nel scambiare ogni lettera con quella 3 lettere davanti nell'alfabeto (esempio la A con la D, la B con la E e così via)\\
+Attualmente viene usato anche come principio d'insegnamento della crittografia e per sfide educative ma non trova quasi mai contesti moderni nell'ambito di internet in cui esso sia realmente utilizzato e sicuro, infatti ormai viene usato più per comunicazioni informali o non critiche
+\subsection{Pregi}
+Il suo grosso pregio è che ci possono essere tantissime chiavi, ovvero 26!-1 chiavi diverse e, con la brute-force, per tentare tutte le combinazioni ci vorrebbe troppo tempo\\
+Inoltre ha dalla sua la facilità d'implementazione e decifratura, comodo se si vuole dare un minimo di sicurezza, ha una bassa dipendenza da risorse tecnologiche ed è ottimo contro i "non esperti"\\
+Inoltre un errore nella cifratura o decifratura di un singolo carattere non compromette gli altri caratteri del messaggio, infatti ogni lettera è cifrata in modo indipendente, a differenza di cifrari più avanzati che collegano i blocchi.
+\subsection{Difetti}
+Ampiamente superata dagli algoritmi moderni, come il DES o anche il triple DES, è decifrabile da qualunque attaccante che abbia una quasi minima conoscenza di crittografia\\
+Infatti, quando si hanno ulteriori informazioni sul sistema, come l'alfabeto utilizzato, la frequenza delle lettere più presenti in quell'alfabeto, i bigrammi e i trigrammi più frequenti, è facile risalire con un'analisi semi-statistica ogni lettere quale lettera rappresenta realmente, rendendo poi più facile la decifratura nei successivi passaggi\\
+Tutto questo infatti si chiama frequency analysis

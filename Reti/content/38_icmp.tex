@@ -1,0 +1,42 @@
+\section{ICMP (2014, 15, 22)}
+\subsection{Descrizione}
+Internet Control Message Protocol (ICMP) è un protocollo di rete del livello 3 (network layer) progettato per trasmettere messaggi di controllo e segnalazione tra dispositivi in una rete IP\\
+ICMP non è utilizzato per il trasferimento di dati applicativi, ma per comunicare errori, condizioni di rete o informazioni diagnostiche\\
+Alcune delle sue funzioni principali includono
+\begin{itemize}
+\item Segnalare errori, come l'inaccessibilità di una destinazione o il superamento del TTL (Time to Live)
+\item Gestione del controllo del traffico, ad esempio avvisando un mittente di ridurre la velocità di trasmissione
+\end{itemize}
+I messaggi ICMP vengono trasportati all'interno di datagrammi IP, ma non garantiscono la consegna: ICMP si basa sul protocollo IP, che è di tipo best-effort (il sistema fa del suo meglio per consegnare i dati, ma non garantisce alcuna affidabilità, ordine o tempi di consegna precisi)
+\subsection{Ambiti d'uso}
+ICMP è utilizzato in vari contesti per il controllo e la gestione delle reti:
+\begin{enumerate}
+\item Diagnostica della rete
+\item Gestione degli errori:
+\begin{enumerate}
+\item Notifica di destinazione irraggiungibile (Destination Unreachable) quando un pacchetto non può essere consegnato
+\item Avviso di superamento del TTL (Time Exceeded) quando un pacchetto supera il numero massimo di salti consentiti
+\end{enumerate}
+\item Ottimizzazione della rete:\\
+ICMP può suggerire al mittente di ridurre la velocità di trasmissione o instradare i pacchetti su percorsi alternativi
+\item Supporto al routing dinamico:\\
+ICMP viene utilizzato dai router per segnalare problemi o aggiornamenti di stato ai sistemi di gestione della rete
+\end{enumerate}
+\subsection{Pregi}
+ICMP offre numerosi vantaggi per il monitoraggio e la gestione delle reti:
+\begin{enumerate}
+\item Leggerezza:\\
+ICMP è un protocollo leggero con overhead minimo, rendendolo ideale per notifiche e diagnosi rapide
+\item Strumento diagnostico essenziale:\\
+fornisce informazioni cruciali sulla connettività e le prestazioni di rete, indispensabili per i tecnici e gli amministratori di rete
+\item Universalità:\\
+essendo parte integrante del protocollo IP, ICMP è supportato da quasi tutti i dispositivi di rete
+\end{enumerate}
+\subsection{Difetti}
+Nonostante la sua utilità, ICMP presenta alcune limitazioni e vulnerabilità:
+\begin{enumerate}
+\item Nessuna garanzia di consegna: ICMP si basa sul protocollo IP, che è un protocollo best-effort, quindi i messaggi ICMP possono andare persi
+\item Vulnerabilità alla sicurezza
+\item Blocco in alcune reti:\\
+per motivi di sicurezza, molti firewall e dispositivi di rete bloccano i messaggi ICMP, riducendo la loro utilità per diagnosi o gestione della rete
+\end{enumerate}

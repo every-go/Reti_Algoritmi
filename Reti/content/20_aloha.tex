@@ -1,0 +1,35 @@
+\section{Aloha (2014, 17, 18, 19, 21, 23)}
+\subsection{Descrizione}
+Aloha è un tipo di protocollo multiaccesso, ovvero quei sistemi di comunicazione multipla in cui c'è un unico canale condiviso da molti (contention), che lo occuperanno in momenti diversi\\
+Ogni protocollo di questo tipo ha la station model (entità che trasmettono) e le collision (quando 2 frame si sovrappongono c'è una collisione e sono inutilizzabili)\\
+Questo protocollo sfrutta le probabilità, infatti, nell'eventualità di una collisione, il tempo di ritrasmissione è deciso dalle probabilità\\
+La probabilità che k frames siano generati in un certo intervallo di tempo è di tipo Poisson e viene studiata con la sua distribuzione\\
+Grazie a questa si ottiene che con Aloha "classico" si ottiene un 18,4$\%$ di banda che ha il pregio di non dipendere dal numero di trasmissioni contemporanee\\
+Invece, con lo slotted Aloha (in cui la trasmissione è permessa solo all'inizio di uno slot) si arriva a un 36,8$\%$ di banda\\
+Questo tipo di protocollo non ha il carrier sense (la stazione non può analizzare il canale finché non lo usa)
+\subsection{Ambiti d'uso}
+Reti wireless a bassa complessità:\\
+è stato utilizzato nelle reti satellitari e nelle prime reti mobili, dove la semplicità era una priorità\\
+Reti di sensori:\\
+può essere applicato in reti di sensori distribuiti, dove i nodi trasmettono dati solo sporadicamente\\
+Sistemi di comunicazione a bassa velocità:\\
+ideale per applicazioni a basso traffico e ridotta necessità di coordinamento
+\subsection{Pregi}
+Semplicità di implementazione:\\
+il protocollo non richiede una gestione complessa o una sincronizzazione rigorosa tra i nodi\\
+Distribuzione decentralizzata:\\
+ogni dispositivo agisce in modo autonomo, rendendo il sistema flessibile e adatto a reti distribuite\\
+Adattabilità:\\
+può essere facilmente implementato in sistemi con traffico intermittente o poco intenso\\
+Robustezza:\\
+in reti con pochi nodi o basso traffico, ALOHA funziona bene, garantendo una trasmissione rapida dei dati
+\subsection{Difetti}
+Efficienza bassa:\\
+Nel Pure ALOHA, l'efficienza massima teorica è del 18$\%$ (1/2e), a causa delle collisioni frequenti\\
+Nello Slotted ALOHA, l'efficienza migliora ma si ferma a circa il 37$\%$\\
+Gestione delle collisioni:\\
+non esiste un meccanismo preventivo per evitare collisioni; ciò comporta ritrasmissioni e perdita di tempo e risorse\\
+Non adatto a traffico elevato:\\
+quando il numero di utenti cresce, il tasso di collisioni aumenta esponenzialmente, rendendo il protocollo inefficace\\
+Latenza alta nei casi peggiori:\\
+con molte collisioni, i tempi di ritrasmissione possono aumentare significativamente, generando latenza

@@ -1,0 +1,32 @@
+\section{TCP, Trasmission Control Protocol (2016)}
+\subsection{Descrizione}
+TCP è uno dei principali protocolli di rete su Internet\\
+È un protocollo di comunicazione orientato alla connessione, che si basa sul 3-way handshake\\
+Full-duplex e point-to-point, è un protocollo reliable (affidabile) e il checksum è solo frutto di semplici somme e non codici di error detection complessi\\
+Oltretutto ha integrati il controllo del flusso, il controllo della congestione e la ritrasmissione automatica
+\subsection{Ambiti d'uso}
+TCP viene utilizzato in tutti quei contesti dove è essenziale avere una trasmissione dati affidabile, anche a costo di una maggiore latenza\\
+Alcuni esempi includono:
+\begin{enumerate}
+\item Navigazione web: protocollo HTTP e HTTPS
+\item Email: protocolli come SMTP, IMAP e POP3
+\item Trasferimenti di file: FTP (File Transfer Protocol)
+\item Applicazioni di gestione remota: SSH e Telnet
+\item Sistemi di database: comunicazioni tra client e server di database
+\end{enumerate}
+\subsection{Pregi}
+I suoi pregi sono anche le sue principali caratteristiche:
+\begin{enumerate}
+\item Affidabile
+\item Permette di controllare la congestione
+\item Supporto universale: ampiamente supportato su tutti i sistemi operativi e dispositivi connessi a Internet
+\item Versatilità: adatto a una vasta gamma di applicazioni, dalle comunicazioni interattive (come SSH) ai trasferimenti di file
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Maggiore latenza: l'affidabilità e il controllo di flusso aumentano la latenza rispetto ai protocolli più semplici, come UDP
+\item Overhead elevato: le informazioni aggiuntive necessarie per la gestione di sequenze, ritrasmissioni e controllo della congestione aumentano l'overhead
+\item Non adatto a trasmissioni in tempo reale: per applicazioni come lo streaming video o i giochi online, l'elevata latenza e la gestione dell'ordine dei pacchetti possono essere controproducenti
+\item Gestione della connessione: essendo orientato alla connessione, richiede una fase di handshake iniziale, che può essere onerosa in applicazioni con molte connessioni brevi
+\item Difficoltà in reti instabili: in reti molto instabili, il numero di ritrasmissioni può crescere significativamente, rallentando ulteriormente la comunicazione
+\end{enumerate}

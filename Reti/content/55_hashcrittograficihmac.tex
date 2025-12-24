@@ -1,0 +1,19 @@
+\section{Hash crittografici, HMAC (2016, 18, 19)}
+\subsection{Descrizione}
+Un hash crittografico è una funzione che prende un input e restituisce una stringa di lunghezza fissa\\
+Le funzioni hash sono progettate per essere unidirezionali, cioè facili da calcolare ma difficili da invertire\\
+HMAC (Hashed Message Authentication Code) è una costruzione basata su una funzione hash che fornisce un meccanismo di autenticazione per verificare l'integrità e l'autenticità dei messaggi
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Autenticazione nei protocolli di rete: utilizzato in protocollo come IPsec, TLS e HTTPS per garantire che i dati non siano stati alterati durante la trasmissione
+\item Verifica dell'integrità dei dati: impiegato per assicurare che i dati non siano stati modificati durante la trasmissione o l'archiviazione
+\item Generazione di chiavi segrete: utilizzato per la generazione di chiavi segrete condivise tra due parti
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Sicurezza: HMAC fornisce una forte garanzia di integrità e autenticità, proteggendo i dati da modifiche non autorizzate
+\item Flessibilità: È compatibile con qualsiasi funzione hash, come SHA-1, SHA-256, ecc
+\item Efficienza: HMAC è relativamente efficiente dal punto di vista computazionale, rendendolo adatto anche a dispositivi con risorse limitate
+\end{enumerate}
+\subsection{Difetti}
+Lentezza con funzioni hash deboli: se la funzione hash utilizzata non è ottimale le prestazioni e la sicurezza possono essere compromesse

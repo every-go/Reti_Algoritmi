@@ -1,0 +1,13 @@
+\section{Error control}
+\subsection{Descrizione}
+L'error control è composto da error detection, che si occupa di accorgersi se il frame ha subito errori e nel caso ritrasmettendo dati, ed error correction, che corregge autonomamente i frame errati utilizzando tecniche che permettono di identificare e ripristinare i dati alterati
+\subsection{Ambiti d'uso}
+Ampiamente utilizzato in tutte le aree della comunicazione dati, dalle reti di telecomunicazione ai sistemi di archiviazione, in quanto è indispensabile per garantire la qualità e l'integrità delle informazioni
+\subsection{Pregi}
+Affidabilità: consente di rilevare e, in molti casi, correggere errori, migliorando l'affidabilità delle trasmissioni\\
+Flessibilità: la capacità di rilevare o correggere errori varia in base alla tecnica utilizzata, adattandosi alle esigenze del sistema\\
+Metriche di qualità: l'efficacia dell'error control è misurata attraverso la distanza di Hamming, ovvero il numero minimo di bit che differenziano due messaggi validi\\
+Una maggiore distanza di Hamming indica una maggiore capacità di rilevare e correggere errori
+\subsection{Difetti}
+Purtroppo, sempre a causa della distanza variabile, non esistono tecniche di error control che permettono di correggere al 100$\%$ gli errori\\
+Inoltre, prevede spesso una forte complessità computazionale e un overhead a causa dell'aggiunta dei bit di controllo

@@ -1,0 +1,18 @@
+\section{Distance Vector routing (2014, 19, 20, 24)}
+\subsection{Descrizione}
+Il Distance Vector Routing è un altro algoritmo di routing in cui gni router conserva una tabella che definisce la migliore distanza onosciuta per ogni destinazione e il collegamento che conduce a tale destinazione\\
+Queste tabelle sono aggiornate scambiando informazioni con i router vicini\\
+Alla fine del processo ogni router conosce il collegamento migliore per raggiungere qualsiasi destinazione
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Reti locali (LAN) e piccole reti aziendali: adatto in ambienti dove la topologia della rete è stabile e le risorse sono limitate.
+\item Reti non critiche: in contesti dove il traffico e la complessità sono bassi, il Distance Vector può ancora essere una soluzione pratica grazie alla sua semplicità
+\end{enumerate}
+\subsection{Pregi}
+Reagisce molto rapidamente alle buone notizie, convergendo velocemente alle risposte corrette calcolando i cammini minimi\\
+Infatti le buone notizie sono elaborate in un solo scambio di vettori 
+\subsection{Difetti}
+Reagisce troppo lentamente alle cattive notizie\\
+Per esempio si supponga che il percorso il migliore da un router ad una destinazione X sia molto lungo, se uno degli scambi successivi con il vicino A imporvvisamente indica un ritardo breve verso X il router inizia ad utilizzare la linea che punta ad A per inoltrare il traffico verso X\\
+In pratica questo è definito il problema del "conteggio all'infinito" e avviene quando X comunica a Y che ha un percorso che punta da qualche parte, Y non ha modo di sapere se fa parte di quel percorso\\
+In altre parole: si verifica quando un nodo diventa irraggiungibile e gli altri router continuano ad aggiornarsi a vicenda con informazioni errate incrementando progressivamente la distanza

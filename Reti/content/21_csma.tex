@@ -1,0 +1,39 @@
+\section{CSMA (2017, 18, 20)}
+\subsection{Descrizione}
+CSMA (Carrier Sense Multiple Access) è un protocollo multiaccesso più complesso ispirato da Aloha\\
+Prima di trasmettere si controlla se non ci sia già una trasmissione e, se essa è presente, si controlla che il canale sia libero\\
+Se così fosse, viene effettuato un controllo l'istante successivo finché non si ha la possibilità di trasmettere\\
+Ci sono diverse varianti di CSMA, che migliorano il protocollo in base al modo in cui le collisioni vengono gestite:\\
+CSMA/CD (Collision Detection):\\
+utilizzato nelle reti Ethernet cablate, rileva le collisioni durante la trasmissione e interrompe immediatamente la trasmissione\\
+CSMA/CA (Collision Avoidance):\\
+utilizzato nelle reti wireless (come Wi-Fi), cerca di evitare le collisioni implementando un sistema di attesa (backoff) e segnalazioni di conferma (acknowledgments)\\
+CSMA senza controllo delle collisioni\\
+il dispositivo trasmette solo se il canale è libero, ma non reagisce alle collisioni
+\subsection{Ambiti d'uso}
+Ethernet (CSMA/CD):\\
+reti Ethernet cablate delle prime generazioni (ad esempio reti 10BASE5 e 10BASE2), dove più dispositivi condividevano lo stesso mezzo trasmissivo\\
+Wi-Fi (CSMA/CA):\\
+reti wireless, come IEEE 802.11, dove le collisioni sono difficili da rilevare ma possono essere mitigate con strategie di evitamento\\
+Sistemi wireless a bassa potenza:\\
+ad esempio in reti di sensori o reti IoT (Internet of Things), dove i dispositivi comunicano su un canale condiviso\\
+Reti satellitari o radio:\\
+utilizzato nei sistemi dove il mezzo trasmissivo è condiviso da molteplici dispositivi e le risorse radio sono limitate
+\subsection{Pregi}
+Semplicità:\\
+CSMA è relativamente semplice da implementare e si adatta bene a reti a basso traffico o con poche stazioni attive\\
+Efficienza in reti leggere:\\
+con pochi dispositivi attivi, la probabilità di collisione è bassa, e il protocollo garantisce una trasmissione efficace\\
+Flessibilità:\\
+è adatto sia a reti cablate (CSMA/CD) sia a reti wireless (CSMA/CA), con modifiche per adattarsi alle caratteristiche specifiche del mezzo trasmissivo\\
+Uso decentralizzato:\\
+Non richiede un coordinatore centrale, rendendolo adatto a reti distribuite\\
+Adattabilità dinamica:\\
+il meccanismo di rilevazione o evitamento di collisioni consente al protocollo di reagire in tempo reale ai cambiamenti nel traffico della rete
+\subsection{Difetti}
+Problemi con traffico elevato:\\
+all'aumentare del numero di dispositivi, aumenta la probabilità di collisioni, riducendo drasticamente l'efficienza\\
+Collisioni inevitabili:\\
+anche con il carrier sensing, le collisioni possono avvenire, specialmente nei sistemi con alti tempi di propagazione del segnale (ad esempio reti wireless)\\
+Degrado delle prestazioni:\\
+Quando la rete è congestionata, CSMA può portare a ritrasmissioni frequenti, riducendo l'efficienza complessiva e aumentando i ritardi

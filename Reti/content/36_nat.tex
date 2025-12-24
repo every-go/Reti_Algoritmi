@@ -1,0 +1,47 @@
+\section{NAT (Network Address Translation) (2015, 18, 19, 22, 23)}
+\subsection{Descrizione}
+L'idea del protocollo NAT è simulare un'intera sottorete usando un solo indirizzo IP: gli indirizzi IP di una rete sono quelli, ma sono riutilizzabili tra sottoreti diverse (e anche da una sottorete “maggiore”) perché non sono visibili al di fuori della loro sottorete di appartenenza\\
+Internamente:\\
+la rete funziona con degli indirizzi IP interni, che sono invisibili all'esterno\\
+Esternamente:\\
+la rete appare come un singolo indirizzo IP\\
+Ogni pacchetto che esce dalla rete perde il suo indirizzo IP e viene sostituito dall'unico indirizzo NAT\\
+Certi indirizzi sono riservati per le reti interne ai NAT e non possono essere usati come normali indirizzi Internet\\
+\begin{itemize}
+\item 10.0.0.0 (rete da $2^{24}$ hosts)
+\item 172.16.0.0 (rete da $2^{20}$ hosts)
+\item 192.168.0.0 (rete da $2^{16}$ hosts)
+\end{itemize}
+\subsection{Ambiti d'uso}
+Il NAT è largamente utilizzato in diversi contesti, tra cui:
+\begin{enumerate}
+\item Reti domestiche e aziendali:\\
+permette a più dispositivi di connettersi a Internet utilizzando un unico indirizzo IP pubblico, riducendo la necessità di acquistare più indirizzi IP
+\item Conservazione degli indirizzi IPv4:\\
+a causa della scarsità degli indirizzi IPv4 pubblici, il NAT è una soluzione pratica per estendere l'utilizzo di un singolo indirizzo IP su più dispositivi
+\item Sicurezza di rete:\\
+nasconde gli indirizzi IP interni, rendendo più difficile per un attaccante esterno identificare e attaccare i dispositivi interni
+\end{enumerate}
+\subsection{Pregi}
+Il NAT presenta numerosi vantaggi, tra cui:
+\begin{enumerate}
+\item Risparmio di indirizzi IPv4:\\
+consente l'uso di un singolo indirizzo IP pubblico per una rete di molti dispositivi, riducendo il consumo di indirizzi IPv4
+\item Maggiore sicurezza:\\
+gli indirizzi IP privati della rete interna non sono visibili all'esterno, il che aumenta la sicurezza contro attacchi diretti
+\item Facilità di configurazione:\\
+il NAT può essere implementato facilmente su router e dispositivi di rete senza modificare i dispositivi della rete interna
+\item Flessibilità:\\
+permette di cambiare gli indirizzi interni senza influire sulle comunicazioni esterne
+\item Supporto per il port forwarding:\\
+consente di configurare regole per inoltrare il traffico specifico verso determinati dispositivi interni
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Difficoltà di tracciamento:\\
+il NAT modifica gli indirizzi IP nei pacchetti, rendendo più complessa l'analisi del traffico e il tracciamento delle connessioni
+\item Performance:\\
+nei router con risorse limitate, il processo di traduzione degli indirizzi può introdurre un leggero overhead e rallentare le connessioni
+\item Incompatibilità con IPv6 puro:\\
+con l'adozione di IPv6, il NAT diventa meno rilevante poiché IPv6 offre un numero sufficiente di indirizzi unici per ogni dispositivo
+\end{enumerate}

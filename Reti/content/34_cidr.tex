@@ -1,0 +1,29 @@
+\section{CIDR (2014, 15, 16, 17, 18, 19, 22)}
+\subsection{Descrizione}
+Il CIDR (Classless Inter-Domain Routing) è una tecnica di indirizzamento IP introdotta per superare le limitazioni delle vecchie classi di rete (Class A, B, C)\\
+Permette di utilizzare blocchi di indirizzi di lunghezza variabile, invece dei blocchi fissi imposti dalle classi tradizionali (classless)\\
+Con il CIDR, gli indirizzi IP sono rappresentati in forma di prefisso, ad esempio `192.168.0.0/24`, dove il numero dopo la barra indica la lunghezza del prefisso di rete.\\
+Questo permette una suddivisione più granulare o un'aggregazione, ottimizzando l'uso degli indirizzi IP.
+\subsection{Ambiti d'uso}
+Principalmente utilizzato per l'ottimizzazione delle tabelle di routing (reti con prefissi comuni possono essere aggregate) e per la gestione degli indirizzi IP (evita sprechi dovuti ai blocchi fissi delle classi tradizionali)\\
+Quando più classi di indirizzi devono essere indirizzate allo stesso router, possono essere combinate in un'unica voce di routing se condividono un prefisso comune\\
+Tuttavia, in caso di sovrapposizione, l'entrata con il prefisso di rete più lungo (più specifica) ha la priorità, secondo la regola del Longest Prefix Match
+\subsection{Pregi}
+\begin{enumerate}
+\item Migliore efficienza nell'uso degli indirizzi IP: Permette di ridurre il problema dello spreco di indirizzi grazie alla flessibilità della lunghezza del prefisso
+\item Riduzione delle dimensioni delle tabelle di routing: \\
+l'aggregazione di reti consente di semplificare e ottimizzare le tabelle di routing
+\item Facilità di gestione del subnetting:\\
+consente di creare sottoreti adattabili alle esigenze di organizzazioni di diverse dimensioni.
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Complessità di configurazione:\\
+la flessibilità del CIDR richiede una maggiore attenzione nella pianificazione e configurazione delle reti
+\item Necessità di hardware aggiornato:\\
+i router più vecchi potrebbero non supportare pienamente il CIDR, richiedendo aggiornamenti o sostituzioni
+\item Maggiore difficoltà nella risoluzione dei problemi:\\
+la granularità dei prefissi può complicare l'analisi e la diagnosi di problemi di rete
+\item Dipendenza da un'adeguata progettazione del routing:\\
+una configurazione errata può portare a inefficienze o a conflitti nel routing.
+\end{enumerate}

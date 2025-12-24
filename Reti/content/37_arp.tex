@@ -1,0 +1,41 @@
+\section{ARP (Address Resolution Protocol) (2014, 17, 18, 19, 20, 22, 23, 24, 25)}
+\subsection{Descrizione}
+L'Address Resolution Protocol (ARP) è un protocollo appartenente al livello di rete (network layer) che consente di trovare la corrispondenza tra un indirizzo IP e un indirizzo MAC (Media Access Control) necessario per la comunicazione all'interno di una rete locale (LAN)\\
+Il suo funzionamento può essere riassunto come segue:
+\begin{itemize}
+\item Ogni macchina all'interno della rete mantiene una tabella ARP, che contiene le corrispondenze tra indirizzi IP e indirizzi MAC conosciuti.
+\item Quando un dispositivo deve inviare un pacchetto a un altro dispositivo della rete e conosce solo l'indirizzo IP di destinazione, genera un messaggio ARP in broadcast (richiesta ARP).
+\item La macchina destinataria, riconoscendo il proprio indirizzo IP nella richiesta, risponde con un messaggio ARP di risposta (unicast) contenente il proprio indirizzo MAC.
+\item La corrispondenza IP-MAC viene salvata nella cache ARP del dispositivo richiedente per ottimizzare le comunicazioni future.
+\end{itemize}
+Ogni pacchetto ARP include in piggyback (ossia come dato aggiuntivo) la corrispondenza tra indirizzo IP e indirizzo MAC, permettendo così il continuo aggiornamento della tabella ARP
+\subsection{Ambiti d'uso}
+Il protocollo ARP è fondamentale per la comunicazione in reti IPv4 locali e viene utilizzato in diverse situazioni, tra cui:
+\begin{enumerate}
+\item Trasmissione in reti Ethernet:\\
+consente a un dispositivo di determinare l'indirizzo MAC del destinatario per poter incapsulare correttamente il pacchetto a livello data-link
+\item Routing locale:\\
+è indispensabile quando un router deve inviare pacchetti a un dispositivo nella rete locale
+\item Comunicazioni client-server:\\
+viene utilizzato ogni volta che un client locale deve comunicare con un server nella stessa rete, come in reti domestiche o aziendali
+\end{enumerate}
+\subsection{Pregi}
+ARP offre diversi vantaggi nel contesto delle reti:
+\begin{enumerate}
+\item Semplicità:\\
+il protocollo ARP è semplice e diretto, progettato per svolgere una funzione specifica: risolvere gli indirizzi IP in indirizzi MAC
+\item Trasparenza:\\
+il processo di risoluzione degli indirizzi avviene automaticamente e in modo trasparente per l'utente finale e le applicazioni
+\item Efficienza:\\
+una volta risolta la corrispondenza, i risultati vengono memorizzati nella cache ARP per ridurre la latenza e migliorare le prestazioni in comunicazioni successive
+\item Compatibilità universale:\\
+ARP è supportato dalla maggior parte delle reti Ethernet e IPv4, garantendo interoperabilità tra dispositivi di rete
+\end{enumerate}
+\subsection{Difetti}
+Nonostante la sua utilità, il protocollo ARP presenta alcune limitazioni e vulnerabilità:
+\begin{enumerate}
+\item Dipendenza da IPv4:\\
+ARP è progettato per IPv4, e quindi non è utilizzabile in reti IPv6
+\item Possibili sovraccarichi di rete:\\
+in reti molto grandi o con dispositivi instabili, un numero elevato di richieste ARP può causare congestione, degradando le prestazioni della rete
+\end{enumerate}

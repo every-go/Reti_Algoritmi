@@ -1,0 +1,39 @@
+\section{IPv6 (2016, 20, 23)}
+\subsection{Descrizione}
+IPv6 (Internet Protocol versione 6) è la nuova versione del protocollo IP progettata per superare i limiti di IPv4, in particolare il problema dell'esaurimento degli indirizzi\\
+Le principali caratteristiche di IPv6 sono:
+\begin{enumerate}
+\item Indirizzi più grandi:\\
+gli indirizzi IPv6 sono lunghi 16 byte rispetto ai 4 byte di IPv4\\
+Questo consente di avere un numero quasi illimitato di indirizzi, sufficiente per soddisfare le esigenze future di Internet e l'espansione dell'Internet of Things (IoT)
+\item Eliminazione del checksum:\\
+IPv6 non include un campo checksum nell'header per velocizzare l'elaborazione dei pacchetti
+\item Struttura dell'header semplificata:\\
+l'header di IPv6 è più semplice e uniforme rispetto a quello di IPv4, riducendo il carico sui router e migliorando l'efficienza del routing
+\item Supporto nativo per QoS:\\
+IPv6 include un campo chiamato Flow Label, progettato per facilitare la gestione della qualità del servizio (QoS) per applicazioni in tempo reale, come voce e video
+\end{enumerate}
+\subsection{Ambiti d'uso}
+IPv6 è progettato per essere il protocollo fondamentale di Internet nel futuro e trova applicazione nei seguenti contesti:
+\begin{enumerate}
+\item Reti moderne: viene utilizzato in infrastrutture che richiedono scalabilità, sicurezza e gestione avanzata della rete, come i data center e le reti aziendali
+\item Trasmissioni multicast: IPv6 supporta nativamente la trasmissione multicast, ottimizzando la distribuzione di dati a più destinatari, ad esempio per lo streaming video o l'aggiornamento simultaneo di dispositivi
+\item Reti con mobilità: IPv6 semplifica la gestione degli indirizzi in scenari di mobilità, come nei dispositivi mobili, supportando handover efficienti e connessioni stabili
+\end{enumerate}
+\subsection{Pregi}
+IPv6 offre numerosi vantaggi rispetto a IPv4:
+\begin{enumerate}
+\item Indirizzi illimitati: Con i suoi 128 bit, IPv6 consente la creazione di circa $3.4 \times 10^{38}$ indirizzi univoci, risolvendo il problema dell'esaurimento degli indirizzi IP
+\item Efficienza nel routing: L'header semplificato e l'uso di tecniche come il prefix aggregation migliorano la velocità di instradamento e riducono il carico sui router
+\item Supporto alla mobilità: IPv6 include funzionalità avanzate per supportare dispositivi mobili, migliorando la gestione delle connessioni durante gli spostamenti
+\end{enumerate}
+\subsection{Difetti}
+IPv6 presenta anche alcune limitazioni e sfide:
+\begin{enumerate}
+\item Compatibilità limitata con IPv4:\\
+IPv6 non è direttamente compatibile con IPv4, richiedendo l'uso di meccanismi di transizione
+\item Adozione lenta:\\
+nonostante i vantaggi, l'adozione di IPv6 è stata lenta a causa della necessità di aggiornare le infrastrutture, i dispositivi e il software
+\item Overhead maggiore:\\
+l'header di IPv6 è più grande di quello di IPv4 (40 byte contro 20 byte), il che può aumentare leggermente l'overhead in alcune reti a bassa capacità
+\end{enumerate}

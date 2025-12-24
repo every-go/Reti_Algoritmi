@@ -1,9 +1,0 @@
-ATTENZIONE: questo file è una rivisitazione personale delle
-domande chieste negli anni allo scritto di Reti di Calcolatori
-Sono state aggiunte parecchie domande che secondo me può
-chiedere (sono quelle senza date fra parentesi), però non assicuro di
-dare tutte le risposte di un programma cosı̀ ampio
-Infatti, ad esempio, al 2 appello 2024/2025 ha chiesto il CSMA
-p-persistente, del quale non c’è la descrizione completa in questo file
-
-Matteo Mazzaretto

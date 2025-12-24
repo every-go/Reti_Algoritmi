@@ -1,0 +1,37 @@
+\section{Bit o byte stuffing (2017, 18, 19, 20, 22, 23, 24)}
+Nel campo delle reti l'escaping è una tecnica fondamentale per garantire che i dati trasmessi siano interpretati correttamente\\
+Due tecniche principali sono il byte stuffing e il bit stuffing
+\subsection{Byte stuffing}
+\subsubsection{Descrizione}
+Il byte stuffing consiste nell'aggiungere caratteri speciali di escape per distinguere i dati effettivi da caratteri riservati o delimitatori (FLAG) che indicano l'inizio o la fine del pacchetto\\
+Nell'header dati si indica di cosa si tratta\\
+Nel payload si caricano i dati necessari per il messaggio\\
+Nel trailer, uguale all'header, ci sono i dati per identificare la chiusura del pacchetto\\
+FLAG finale: segna la fine del frame\\
+Se nel payload compare un carattere uguale al FLAG o un carattere di escape, viene preceduto da un ulteriore carattere di escape per evitarne l'interpretazione errata
+\subsubsection{Ambiti d'uso}
+Il byte stuffing è utilizzato per codificare pacchetti dati nei protocolli a frame, come nelle comunicazioni seriali o nei protocolli di livello data link (esempio: PPP)
+\subsubsection{Pregi}
+Metodo semplice e intuitivo per gestire il problema dei caratteri riservati\\
+Il primo metodo adottato per realizzare l'escaping risultando storico e consolidato in molte applicazioni
+\subsubsection{Difetti}
+Il problema potenziale è che ci possono essere molte più flag/escape del necessario, in quanto ogni carattere originale dopo lo stuffing è preceduto da un escape, e se già ci sono degli escape nel messaggio originale in quello finale ce ne saranno molti di più rendendo lunga la decodifica del messaggio\\
+Oltretutto usa grandezze fisse il che lo rende inefficiente in contesti che richiedono maggiore flessibilità
+\subsection{Bit stuffing}
+\subsubsection{Descrizione}
+Il bit stuffing è una tecnica più sofisticata che lavora a livello di bit anziché di byte\\
+In questa tecnica, viene aggiunto un bit 0 ogni volta che nel flusso di dati appaiono cinque bit consecutivi impostati a 1\\ Questo serve a evitare che il ricevitore interpreti erroneamente una sequenza di bit come un FLAG 
+\subsubsection{Ambiti d'uso}
+Il bit stuffing è ampiamente utilizzato in protocolli di comunicazione ad alta efficienza, come HDLC (High-Level Data Link Control), e altre tecnologie di trasmissione dati in cui è essenziale ottimizzare la trasmissione rispetto al byte stuffing
+\subsubsection{Pregi}
+Risolve il problema della grandezza fissa usando i bit e risolve il problema degli escaping multipli\\
+Con la tecnica dello 0 dopo cinque 1 si ha un solo livello di escaping consentendo una più veloce decodifica
+\subsubsection{Difetti}
+\begin{enumerate}
+\item Aumento della lunghezza del frame in quanto vengono aggiunti bit supplementari causando un aumento della lunghezza totale del frame, riducendo l'efficienza della trasmissione, specialmente in sistemi con messaggi lunghi
+\item Maggiore complessità del decoder\\
+Il dispositivo ricevente deve avere la capacità di rilevare e rimuovere i bit aggiunti
+\item Se un errore di trasmissione altera i bit "stuffati" o la sequenza originale, il ricevitore potrebbe interpretare erroneamente i dati, perdendo la sincronizzazione con il flusso di bit
+\item Maggiore complessità del debugging:\\
+Durante il debug della comunicazione, i bit aggiunti rendono più complessa l'analisi del flusso dati, richiedendo strumenti in grado di gestire e interpretare correttamente il bit stuffing
+\end{enumerate}

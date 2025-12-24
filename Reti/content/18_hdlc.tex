@@ -1,0 +1,30 @@
+\section{HDLC}
+\subsection{Descrizione}
+Protocollo concreto ideato inizialmente dall'IBM\\
+L'HDLC (High-Level Data Link Control) è un protocollo standard è un protocollo del livello data link\\
+Si basa su una struttura a frame (trama) e supporta comunicazioni punto-punto e multipunto\\
+Il protocollo si occupa principalmente di:\\
+Organizzazione dei dati\\
+Affidabilità: fornisce meccanismi di rilevamento e correzione degli errori\\
+Controllo del flusso: evita la congestione gestendo il ritmo della trasmissione
+\subsection{Ambiti d'uso}
+Attualmente viene usato per modem/fax, reti di vario tipo (come reti LAN  e WAN) e molti circuiti bancari
+\subsection{Pregi}
+Affidabilità nella trasmissione:\\
+HDLC utilizza meccanismi di rilevamento e correzione degli errori tramite checksum (Cyclic Redundancy Check, CRC), riducendo significativamente il rischio di errori nella trasmissione\\
+Versatilità:\\
+supporta configurazioni punto-punto e multipunto, rendendolo adatto a diverse architetture di rete\\
+Controllo di flusso efficiente:\\
+implementa tecniche di acknowledgment e gestione della finestra scorrevole per garantire una trasmissione fluida ed evitare congestioni\\
+Efficienza nella trasmissione continua:\\
+HDLC utilizza frame strutturati con overhead minimo, ottimizzando la trasmissione di dati su collegamenti con capacità elevate
+\subsection{Difetti}
+Complessità di implementazione:\\
+nonostante la standardizzazione, HDLC richiede un'implementazione relativamente complessa per gestire tutte le sue funzioni (controllo di flusso, rilevamento errori, configurazioni multipunto)\\
+Overhead di controllo:\\
+anche se il protocollo è efficiente, l'uso di campi di controllo, intestazioni e sequenze di frame introduce un overhead che può influire negativamente su collegamenti a bassa velocità\\
+Non ottimale per reti moderne:\\
+è stato progettato per linee seriali e reti tradizionali; potrebbe non essere ideale per reti moderne basate su Ethernet o reti wireless, dove altri protocolli sono più efficienti\\
+Limiti nella gestione degli errori:\\
+sebbene HDLC rilevi errori, non sempre riesce a correggerli\\
+In caso di errore, il frame deve essere ritrasmesso, aumentando il ritardo

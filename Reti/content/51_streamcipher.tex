@@ -1,0 +1,22 @@
+\section{Stream cipher (2015, 16, 18, 19, 20, 23, 24)}
+\subsection{Descrizione}
+I cifrari a flusso cifrano i dati un bit o un byte alla volta\\
+A differenza dei cifrari a blocchi, che operano su intere unità di dati (blocchi), i cifrari a flusso utilizzano una chiave segreta per generare una sequenza di bit che viene combinata con il testo in chiaro tramite XOR\\
+Sono più adatti per applicazioni che richiedono una cifratura continua, come nei canali di comunicazione
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Comunicazioni in tempo reale: utilizzato in ambienti come il VoIP (Voice over IP) e altre forme di comunicazione in tempo reale
+\item Protezione dei dati mobili: implementato in dispositivi mobili per garantire la cifratura continua dei dati
+\item Trasmissioni in tempo reale: impiegato per la cifratura di flussi di dati in tempo reale in applicazioni come video streaming e giochi online
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Alta velocità: i cifrari a flusso sono veloci, poiché operano su singoli bit o byte, rendendoli ideali per applicazioni che richiedono elevata velocità di cifratura
+\item Efficienza in spazi limitati: essendo basati su una chiave continua, i cifrari a flusso sono ideali per dispositivi con risorse di calcolo limitate
+\item Adatti per flussi di dati infiniti: sono perfetti per applicazioni dove il flusso di dati non è predefinito o è continuo nel tempo
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Vulnerabilità al riutilizzo della chiave: se la stessa chiave viene riutilizzata, i dati cifrati diventano vulnerabili agli attacchi
+\item Difficoltà di implementazione sicura: un'implementazione scorretta può esporre la chiave segreta a possibili attacchi
+\end{enumerate}

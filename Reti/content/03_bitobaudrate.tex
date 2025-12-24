@@ -1,0 +1,35 @@
+\section{Bit o baud rate}
+\subsection{Descrizione}
+Sono metriche di misurazione dell'informazione trasmessa ogni secondo e permettono di calcolare la larghezza di banda\\
+Bit rate: è il numero di bit che si possono trasmettere contemporaneamente con ogni impulso, è uguale al baudrate*log2(numero simboli)\\
+Baud rate: si trasmette un impulso usando 4 frequenze con l'alfabeto composto da 4 simboli con ognuno dal peso di 2 bits
+\subsection{Ambiti d'uso}
+Utilizzato per calcolare le larghezze di banda di diversi sistemi e confrontarli, trasferimento di file, comunicazioni digitali, media streaming, sistemi di trasmissione digitale con modulazione complessa
+\subsection{Pregi}
+\subsubsection{Bit}
+Indicatore di qualità:\\
+più alto è il bit rate, maggiore è la qualità dei dati trasmessi (ad esempio, immagini meno compresse nei video)\\
+Scalabilità:\\
+adattabile in base alle capacità del canale (esempio: streaming adattivo)\\
+Misura diretta:\\
+facile da interpretare come velocità di trasmissione
+\subsubsection{Baud}
+Misura dell'efficienza spettrale:\\
+indica quanto efficacemente la banda di frequenza è utilizzata\\
+Rilevanza per il canale fisico:\\
+permette di ottimizzare la trasmissione per canali con larghezza di banda limitata
+\subsection{Difetti}
+\subsubsection{Bit}
+Non tiene conto dell'efficienza del canale:\\
+un bit rate elevato può consumare molta larghezza di banda anche se il canale non è utilizzato in modo efficiente\\
+Dipende dalla codifica\\
+un bit rate elevato non sempre significa qualità migliore; dipende dall'efficienza del codice usato\\
+Suscettibilità agli errori:\\
+a velocità più alte, i dati possono essere più vulnerabili al rumore e alle interferenze\\
+\subsubsection{Baud}
+Non direttamente legato alla velocità dei dati:\\
+il baud rate da solo non indica quanti bit vengono effettivamente trasmessi (esempio: un simbolo può rappresentare più bit)\\
+Dipendenza dalla modulazione:\\
+richiede informazioni aggiuntive sulla tecnica di modulazione per essere interpretato correttamente\\
+Più difficile da misurare:\\
+in sistemi avanzati, calcolare il baud rate richiede una conoscenza precisa dei dettagli del sistema

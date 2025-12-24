@@ -1,0 +1,20 @@
+\section{Go back n (2015, 20, 24)}
+\subsection{Descrizione}
+Go back N è un tipo di protocollo di trasmissione basato sulla tecnica delle Sliding Windows,che consente l'aumento del grado di parallelismo (pipelining)\\
+In questo tipo di protocollo il mittente può inviare fino a N frame consecutivi senza ACK ma il ricevente utilizza una finestra di dimensione 1 accettando i frame nell'ordine corretto\\
+Se un frame arriva fuori sequenza viene scartato\\
+In caso di errore o mancato ACK per un frame, il mittente ritrasmette tutti i frame a partire da quello non confermato, da qui il nome "Go-Back-N"\\
+Questo protocollo è particolarmente efficace quando il prodotto bandwidth*round-trip-delay è elevato e la probabilità di errore è bassa
+\subsection{Ambiti d'uso}
+Ampiamente utilizzato nello strato data-link delle reti per gestire flusso di dati tra mittente e ricevente garantendo affidabilità nella trasmissione\\
+Adatto dove la perdita o la corruzione dei dati è relativamente rara
+\subsection{Pregi}
+Efficienza migliorata rispetto a protocolli come lo Stop-and-Wait, poiché consente l'invio continuo di più frame senza attendere conferme immediate\\
+Implementazione semplice, dato che richiede solo la ritrasmissione dei frame non confermati\\
+Affidabilità garantita: ritrasmettendo tutti i frame a partire dall'errore, si evita qualsiasi dubbio sullo stato dei dati ricevuti\\
+Controllo del flusso integrato: il mittente non sovraccarica il ricevitore, rispettando i limiti della finestra
+\subsection{Difetti}
+Overhead significativo in caso di errore: se un frame viene perso o corrotto, tutti i frame successivi devono essere ritrasmessi, anche se già correttamente ricevuti, causando un uso inefficiente del canale\\
+Memoria e buffer aggiuntivi: il mittente deve mantenere una copia di tutti i frame non ancora confermati, aumentando il carico sul sistema\\
+Non adatto a reti con alti tassi di errore, dove le frequenti ritrasmissioni possono saturare il canale e ridurre l'efficienza complessiva\\
+Ritardo aumentato: i frame corretti che seguono un errore non possono essere elaborati finché il frame errato non viene ritrasmesso e riconosciuto

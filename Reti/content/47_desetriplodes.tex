@@ -1,0 +1,25 @@
+\section{DES e triplo DES (2016, 18, 20, 21, 22, 23, 24, 25)}
+\subsection{Descrizione}
+Il DES (Data Encryption Standard) è un algoritmo di cifratura simmetrica sviluppato negli anni '70 e standardizzato nel 1977\\
+Utilizza una chiave di 56 bit e un approccio basato sulla cifratura a blocchi di 64 bit, combinando sostituzione e trasposizione attraverso 16 round di operazioni\\
+Il Triple DES (3DES) è un'estensione del DES che applica l'algoritmo tre volte in sequenza con due o tre chiavi separate per migliorare la sicurezza\\
+Encrypting e decrypting sono oltretutto intercambiabili perché non ci deve essere un ordine preciso, l'importante è non criptare e decriptare con la stessa chiave, altrimenti si applicherebbe un DES singolo
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Bancario: DES e 3DES sono stati ampiamente utilizzati nei sistemi bancari per proteggere transazioni elettroniche, come nei bancomat e nei POS
+\item Standard di sicurezza: 3DES è stato adottato come standard di sicurezza degli USA
+\end{enumerate}
+\subsection{Pregi}
+\begin{enumerate}
+\item Semplicità: DES e 3DES sono ben documentati e semplici da implementare
+\item Compatibilità: 3DES ha garantito una transizione graduale dai sistemi basati su DES
+\item Maggiore sicurezza rispetto a DES: l'uso di tre chiavi in 3DES aumenta significativamente la lunghezza effettiva della chiave, rendendo più difficile il brute-force
+\end{enumerate}
+\subsection{Difetti}
+\begin{enumerate}
+\item Chiave corta (DES): i 56 bit di chiave di DES sono vulnerabili agli attacchi brute-force con le tecnologie attuali.
+\item Prestazioni (3DES): l'applicazione tripla dell'algoritmo lo rende più lento rispetto ad alcune soluzioni moderne
+\item Deprecazione: DES è considerato insicuro ed è stato deprecato dagli standard\\
+Anche 3DES è in fase di abbandono, venendo sostituito da AES
+\item Lunghezza effettiva della chiave (3DES con 2 chiavi): l'uso di 2 chiavi in 3DES fornisce solo una lunghezza effettiva di 112 bit
+\end{enumerate}

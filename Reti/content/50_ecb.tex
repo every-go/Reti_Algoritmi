@@ -1,0 +1,24 @@
+\section{ECB (2014)}
+\subsection{Descrizione}
+ECB (Electronic Code Book) è un modo di trasmettere testi cifrati\\
+Infatti, il testo viene suddiviso in blocchi, e ogni blocco viene considerato come se fosse la pagina di un libro\\
+Per risolvere eventuali mescolamenti delle pagine da parte di attaccanti, si creano dipendenze tra le pagine del libro in modo che non sia possibile scambiarle di posto
+\subsection{Ambiti d'uso}
+\begin{enumerate}
+\item Cifratura di dati in batch: adatto per situazioni in cui i dati devono essere cifrati separatamente e senza dipendenza tra i blocchi
+\item Applicazioni con requisiti di alta velocità: l'assenza di dipendenza tra i blocchi permette un'elaborazione rapida, ideale per applicazioni che richiedono performance elevate
+\item Sistemi legacy: utilizzato in sistemi più vecchi o in ambienti con limitate risorse di elaborazione
+\end{enumerate}
+\subsection{Pregi}
+I principali vantaggi dell'ECB includono:
+\begin{enumerate}
+\item Semplicità: il funzionamento di ECB è facile da comprendere e implementare
+\item Parallellizzazione: poiché ogni blocco è cifrato separatamente, l'algoritmo può essere facilmente parallellizzato per migliorare le performance
+\item Velocità: essendo una modalità senza dipendenza tra i blocchi, è generalmente veloce e consuma meno risorse computazionali rispetto ad altri metodi
+\end{enumerate}
+\subsection{Difetti}
+Nonostante i vantaggi, ECB presenta anche alcuni svantaggi significativi:
+\begin{enumerate}
+\item Vulnerabilità agli attacchi di pattern: poiché lo stesso blocco di testo in chiaro viene sempre cifrato nello stesso modo, i pattern nei dati possono essere facilmente identificati, rendendo ECB meno sicuro per dati sensibili, come quelli contenenti informazioni ripetitive
+\item Mancanza di diffusione: non essendo basato su meccanismi di mescolamento tra blocchi, eventuali debolezze in un singolo blocco possono propagarsi attraverso i dati cifrati
+\end{enumerate}

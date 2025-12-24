@@ -1,0 +1,22 @@
+\section{Codifica Manchester (2014, 18, 19, 20, 22, 24, 25)}
+\subsection{Descrizione} La codifica Manchester è una tecnica di modulazione dati in cui ogni bit è rappresentato da una transizione all'interno di un intervallo di tempo predefinito\\
+Questa caratteristica la rende auto-sincronizzante, consentendo una sincronizzazione precisa del flusso di dati tra il trasmettitore e il ricevitore\\
+Ogni bit viene trasmesso con una transizione specifica che ne identifica il valore:\\
+Una transizione da alto a basso può rappresentare uno 0\\
+Una transizione da basso ad alto può rappresentare un 1 (o viceversa, a seconda della convenzione adottata)
+\subsection{Ambiti d'uso}
+La codifica Manchester è ampiamente utilizzata per la trasmissione dei dati a livello fisico in tecnologie come Ethernet\\
+Il suo principale vantaggio è la capacità di risolvere i problemi di sincronizzazione dei segnali, rendendo superflua l’adozione di hardware complesso e costoso\\
+Tuttavia, questo beneficio comporta un compromesso:\\
+la larghezza di banda disponibile viene ridotta
+\subsection{Pregi}
+\begin{enumerate}
+\item Hardware economico:\\
+la semplicità del segnale e delle transizioni permette di utilizzare hardware meno costoso
+\item Auto-sincronizzazione:\\
+la presenza di una transizione in ogni intervallo di tempo del bit garantisce una sincronizzazione precisa senza l'uso di clock separati
+\item Alta affidabilità:\\
+la robustezza della codifica consente di mantenere elevate prestazioni di rete anche in condizioni non ideali, rendendola adatta a incrementare la banda senza incrementare significativamente i costi hardware
+\end{enumerate}
+\subsection{Difetti}
+Riduzione della banda disponibile: il principale svantaggio della codifica Manchester è il dimezzamento della banda, poiché per ogni bit trasmesso sono necessarie due transizioni

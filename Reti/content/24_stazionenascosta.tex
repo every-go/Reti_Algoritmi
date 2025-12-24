@@ -1,0 +1,16 @@
+\section{Stazione nascosta (2019, 20, 24)}
+\subsection{Descrizione}
+Nei casi wireless la topologia della rete non è fissa ma cambia dinamicamente causando il fatto che non c'è un singolo canale per tutti ma varie zone spaziali dove alcune stazioni interagiscono ed altre no\\
+Quindi il controllo diventa locale compromettendo l'invio singolo di dati ma rischiando l'invio contemporaneo di più dati\\
+La stazione nascosta è il problema in cui una stazione non riesce a vedere che la stazione alla quale vuole inviare dei dati ne sta già ricevendo altri, quindi ne invia causando l'arrivo contemporaneo di dati alla stessa stazione e di conseguenza la collisione\\
+Infatti, nei casi wireless, si trasmette "a bolla" propagando le informazioni e non in linea retta verso l'obiettivo
+\subsection{Quando avviene}
+Ipotizziamo che ci siano A, B, C in sequenza in cui il segnale a bolla di A, arrivi a B, il segnale a bolla di B arriva ad A e C e il segnale a bolla di C arriva ad A\\
+A vuole inviare dei dati a B, però anche C vuole inviare dei dati a B, ma C non sente che A sta già inviando dei dati quindi li invia a B causano la collisione dei dati trasmessi in contemporanea da A e C, la quale è la stazione nascosta per A\\
+\subsection{Come risolvere}
+Si usa il MACA (Multiple Access with Collision Avoidance) in cui si sfrutta l'idea che chi trasmette renda il suo spazio locale conosciuto anche agli altri\\
+Avviene tramite due comandi:
+RTS (Request To Send) che contiene l'informazione del frame e a chi si vuole trasmettere\\
+CTS (Confirm To Send) il quale è l'ACK\\
+Chiunque sente l'RTS e il CTS ma non è né destinatario né mittente non trasmette a loro due fino a quando non è conclusa\\
+Per controllare se la trasmissione è conclusa si sfrutta il protocollo Aloha in modalità non persistente che viene usato anche per trasmissioni multiple alla stessa stazione

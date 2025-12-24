@@ -1,0 +1,14 @@
+\section{PPP}
+\subsection{Descrizione}
+Le connessioni Internet possono essere dedicate punto a punto (point-to-point)\\
+In Internet si usa il protocollo PPP (point-to-point protocol)\\
+Questo tipo di protocollo dà un metodo di framing per impacchettare dati che può essere LCP o NCP:\\
+LCP (Link Control Protocol): si occupa del controllo del flusso per attivare le connessione, test, negoziazione e chiusura\\
+NCP (Network Control Protocol): è il metodo per negoziare con lo strato superiore Network\\
+PPP usa byte stuffing nonostante sia leggermente meno efficiente perché è una tecnica di encoding più veloce rispetto al bit stuffing, e nella base di Internet anche la minima velocità in più fa la differenza
+\subsection{Ambiti d'uso}
+Lo strato fondamentale di Internet, su di esso si basano tutti i protocolli "avanzati" e permette un rapido invio di messaggi con un error detection in aritmetica polinomiale
+\subsection{Pregi}
+Grazie al byte stuffing è molto veloce e permette le connessioni punto a punto negli strati base di Internet
+\subsection{Difetti}
+Purtroppo usando il byte stuffing dipende da delle grandezze fisse e non per l'appunto dai singoli bit come avviene nel bit stuffing
