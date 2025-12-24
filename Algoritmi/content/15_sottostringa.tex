@@ -1,0 +1,19 @@
+\section{Definizione di sottostringa e sottosequenza  e numero di sottostringe e sottosequenze in una stringa}
+Dato un alfabeto finito $\Sigma$, una stringa X=$<$$x_1$, ... ,$x_m$$>$ $x_i$ $\in$ $\Sigma$ per 1$<$=i$<$=m è una concatenazione finita di simboli in $\Sigma$\\
+Lunghezza di X: $|X|$=m\\
+$\sum^{\ast}$ è l'insieme di tutte le stringhe di lunghezza finita costruibile su $\Sigma$\\
+Stringa vuota: $\xi$$\in$$\Sigma^{\ast}$ per convenzione\\
+Una sottostringa di X:\\
+\begin{math}
+X_i ... j = <x_i, ... , x_j>\\
+1<=i<=j<=m
+\end{math}\\
+Quante sono le sottostringhe di una stringa?\\
+\begin{math}
+1+m+\binom{m}{2} \text{(scelta di 2 indici estremi} = 1+m+\frac{m(m-1)}{2}=\Theta(m^2)\\
+=1+\sum_{i=1}^{m}\sum_{j=i}^{m} 1=1+\sum_{i=1}^{m}(m-i+1)=1+\frac{m(m+1)}{2}=\Theta(m^2)
+\end{math}
+Una sottosequenza di X:\\
+Z è sottosequenza di X se esiste una successione crescente di indici 1$<$=$i_{1}$$<$$i_{2}$$<$ ... $<$$i_{k}$$<$=m tale che $z_{j}$=$x_{ij}$, 1$<$=j$<$=k\\
+Quante sono le sottosequenze di una stringa?\\
+$\sum_{k=0}^{m}$ $\binom{m}{k}$ = $2^{m}$

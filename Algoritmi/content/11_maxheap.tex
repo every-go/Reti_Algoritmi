@@ -1,0 +1,28 @@
+\section{Funzionamento e complessita maxHeapify e buildMaxHeap, complessità inserimento}
+MaxHeapify(A,i) assume che i due sottoalberi di A[i] siano MaxHeap e costruisce un MaxHeap in A[i...n] col seguente algoritmo:\\\\
+\begin{lstlisting}[style=pseudocodice]
+MaxHeapify(A,i)
+
+l=left(i) r=right(i)
+if(l<=A.size) and (A[l]>A[i])
+	max=l
+else
+	max=i
+if(r<=A.size) and (A[r]>A[max])
+	max=r
+if max!=i
+	swap(A,i,max)
+	MaxHeapify(A,max)
+\end{lstlisting}
+Esso ha una complessità di $\Omicron$(logn)
+Invece BuildMaxHeap è una funzione per costruire un MaxHeap partendo dall'array A, e sapendo che ogni foglia è $>$=(n/2) si costruisce il seguente algoritmo:\\\\
+\begin{lstlisting}[style=pseudocodice]
+BuildMaxHeap(A)
+
+for i=(A.length)/2 down to 1
+	MaxHeapify(A,i)
+\end{lstlisting}
+il quale costruisce continuamente MaxHeap partendo dal presupposto che una foglia è già MaxHeap\\
+Ha una complessità di $\Omicron$(nlogn) perché esegue n/2 volte un algoritmo di complessità $\Omicron$(logn)\\
+Ma, volendo essere più precisi, si arriva ad una complessità di $\Omicron$(n).\\\\
+\href{complessitaBuild.pdf}{Foto dimostrazione}.

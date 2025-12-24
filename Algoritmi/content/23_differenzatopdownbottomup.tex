@@ -1,0 +1,32 @@
+\section{Differenza tra approccio top-down e bottom-up per la programmazione dinamica. Vantaggi e svantaggi di entrambi}
+L'approccio \textit{top-down} è una tecnica di risoluzione dei problemi in cui si parte dal problema globale, per poi suddividerlo ricorsivamente in sottoproblemi sempre più piccoli fino a risolverli\\
+Dopo aver risolto i sottoproblemi, si risale per combinare i risultati e ottenere la soluzione del problema iniziale\\
+Questo approccio è particolarmente utile quando i sottoproblemi sono ben definiti e si interconnettono in modo sincrono, come nel caso della sequenza di Fibonacci\\
+L'approccio \textit{bottom-up}, invece, è il contrario: si parte dal problema più piccolo, risolvendo prima i sottoproblemi di base, per poi combinare i risultati per risolvere problemi più grandi\\
+Questo approccio è tipico di problemi come la \textit{Longest Common Subsequence (LCS)}, in cui si risolvono prima le sequenze più corte per costruire progressivamente la soluzione completa, comunque in generale per problemi con ricorrenze\\
+Entrambi gli approcci si prestano molto bene alla memoizzazione, che consente di evitare il ricalcolo di sottoproblemi già risolti, migliorando l'efficienza dell'algoritmo\\
+\textbf{Vantaggi dell'approccio top-down:}
+\begin{itemize}
+\item È più naturale e intuitivo per problemi che si prestano a una soluzione ricorsiva
+\item È più facile da implementare in alcuni casi, in quanto si può risolvere il problema direttamente in modo ricorsivo, con l'ausilio della memoizzazione per ottimizzare il calcolo
+\item È ideale per problemi in cui non si conosce in anticipo la dimensione della soluzione o la struttura dei sottoproblemi
+\end{itemize}
+\textbf{Svantaggi dell'approccio top-down:}
+\begin{itemize}
+\item Può comportare un overhead di memoria e tempo a causa delle chiamate ricorsive, specialmente per problemi che richiedono una grande quantità di memoria stack
+\item La ricorsione può essere meno efficiente rispetto a un approccio iterativo, a causa della gestione del controllo delle chiamate
+\item Non è sempre facile evitare il ricalcolo dei sottoproblemi senza una memoizzazione adeguata
+\end{itemize}
+\textbf{Vantaggi dell'approccio bottom-up:}
+\begin{itemize}
+\item Non comporta l'overhead della ricorsione, poiché i sottoproblemi vengono risolti in ordine crescente senza chiamate ricorsive
+\item È più efficiente in termini di memoria, in quanto non richiede lo stack di chiamate della ricorsione
+\item È spesso più semplice da ottimizzare, poiché i sottoproblemi vengono risolti in modo iterativo e non richiedono una gestione complessa della ricorsione
+\end{itemize}
+\textbf{Svantaggi dell'approccio bottom-up:}
+\begin{itemize}
+\item Può essere meno intuitivo per problemi che sono naturalmente ricorsivi, rendendo il codice più difficile da scrivere e leggere
+\item Potrebbe essere necessario allocare e gestire strutture dati di grandi dimensioni per risolvere il problema, il che può risultare inefficiente in termini di memoria per alcuni problemi
+\item In alcuni casi, l'approccio bottom-up potrebbe richiedere una maggiore complessità nell'organizzazione dei sottoproblemi
+\end{itemize}
+\end{document}

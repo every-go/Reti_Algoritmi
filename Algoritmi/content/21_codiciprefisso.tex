@@ -1,0 +1,9 @@
+\section{Codici Prefisso}
+Nel contesto dei codici di Huffman, un \textit{codice prefisso} è un tipo di codice in cui nessun codice assegnato a un simbolo è un prefisso del codice assegnato a un altro simbolo\\
+Questo è un requisito fondamentale per garantire che l'encoding sia decifrabile in modo univoco, senza ambiguità\\
+Il codice di Huffman è progettato in modo che ogni carattere venga rappresentato da una sequenza di bit, e questi bit sono scelti in modo tale che nessuna sequenza di bit (associata a un carattere) sia un prefisso di un'altra\\
+Questo permette di distinguere facilmente i simboli durante la decodifica, senza la necessità di un separatore speciale tra i codici\\
+La proprietà del codice prefisso è garantita dalla struttura ad albero binario dei codici di Huffman\\
+Quando un albero di Huffman viene costruito, i caratteri più frequenti vengono assegnati a codici più brevi, mentre quelli meno frequenti ottengono codici più lunghi\\
+L'albero binario è costruito in modo che ogni codice assegnato ai caratteri non sia un prefisso di un altro codice, rendendo l'encoding decifrabile in modo efficiente\\
+L'assenza di prefissi tra i codici consente un'ottimizzazione delle operazioni di compressione e decodifica, in quanto un codice può essere interpretato completamente senza bisogno di ulteriori informazioni aggiuntive

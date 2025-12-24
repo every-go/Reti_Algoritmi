@@ -1,0 +1,4 @@
+\section{Cos'è un heap, complessità ricerca massimo}
+L'heap è un albero ordinato binario quasi completo implementato come array, in cui $\forall$i il suo figlio sinistro ha indice 2*i e il suo figlio destro 2*i+1. La radice dell'heap è l'elemento con indice 1 nell'array e il genitore di ogni nodo si trova troncando il risultato di i/2.\\
+$\forall$i $>$= n/2 (dove n è la dimensione dell'array) è una foglia, ovvero non ha nè figli sinistri nè figli destri.\\
+Se si parla di max-heap, la complessità di ricerca del massimo è  $\Omicron$(1) poiché il massimo è sempre il primo elemento dell'array. Il max-heap ha proprietà che ogni nodo è $>$= discendenti e $<$= antenati

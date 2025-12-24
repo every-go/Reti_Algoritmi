@@ -1,0 +1,16 @@
+\section{Max-heap e heapsort}
+Il max-heap è un albero binario ordinato quasi completo costruito come array, il quale ha le proprietà degli heap (figlio destro, sinistro e parent) in cui l'elemento massimo è il primo elemento dell'array, ogni nodo è $<$= antenati e $>$= discendenti\\
+L'heap sort è un algoritmo di ordinamento che sfrutta l'array costruito come heap per ordinarlo e ha complessità $\Omicron$(nlogn)\\\\
+\begin{lstlisting}[style=pseudocodice]
+HeapSort(A)
+
+BuildMaxHeap(A) 
+for i=A.length down to 2
+	A[1]$\iff$A[i]
+	A.size=A.size-1
+	MaxHeapify(A,1)
+\end{lstlisting}
+Invariante è che A[1...i] sia MaxHeap e che A[i+1...n] sia ordinato\\
+Inizio: A[1...n] è maxHeap\\
+Iterazione: A[1....i] è MaxHeap perché MaxHeapify su 1 funziona, il più grande va in fondo quindi A[i+1...n] ordinato\\
+Fine: A[1] MaxHeap, A[2..n] ordinato

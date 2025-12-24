@@ -1,0 +1,137 @@
+\section{Definizione di RB-Tree e costo inserimento}
+I Red-Black trees sono BST in cui i nodi hanno i soliti attributi assieme all'attributo color, il quale può essere Red/Blach\\
+T.nil è un nodo con tutti gli attributi il cui colore è Black e si considera come una foglia "collegata" alla radice e a tutte le foglie dell'albero\\
+Queste sono le sue proprietà:\\
+1) ogni nodo ha uno e un solo colore \\
+2) la radice è Black\\
+3) le foglie (T.nil) sono Black\\
+4) i figli di un nodo Red sono Black\\
+5) $\forall$nodo x, $\forall$cammino x$\to$foglia ha lo stesso numero di nodi Black. Vale per tutti i nodi $\iff$ vale per la radice\\
+Inoltre:\\
+1) se elimino i nodi Red ogni cammino radice$\to$foglia avrà la stessa lunghezza come un albero completo \\
+2) in ogni cammino i nodi rossi sono al più la metà \\
+h$<$=2$\log_{2}$(n+1)\\
+n(x)=numero nodi interni in Tx, bh(x)=numero nodi Black incontrati\\
+Inoltre n(x)$>$=$2^{bh(x)}$-1
+Il costo dell'inserimento è incredibilmente O(h), dove h=logn, ma è fattibile $\iff$ il nodo da inserire ha colore RED\\
+\newpage
+\subsection{Definizione funzioni}
+La funzione Insert è definita così:\\
+\begin{lstlisting}[style=pseudocodice]
+RB-Insert(T,z)
+
+	Insert(T,z)
+	z.color=RED
+	RB-InsertFixUp(T,z)
+\end{lstlisting}
+Con RB-InsertFixUp definita così:
+\begin{lstlisting}[style=pseudocodice]
+RB-InsertFixUp(T,z)
+
+while(z.p.color==RED)
+	if(z.p==z.p.p.left)
+		y=z.p.p.right
+		if(y.color==RED)			//CASO 1
+			y.color=BLACK
+			z.p.color=BLACK
+			z.p.p.color=RED
+			z=z.p.p
+		else							//CASO 2
+			if(z==z.p.right)		//CASO 2.1
+				Left(T,z.p)
+				z=z.left
+				z.p.color=BLACK
+				z.p.p.color=RED
+				Right(T,z.p.p)
+			else						//CASO 2.2
+				Right(T,z.p)
+				z=z.right
+				z.p.color=BLACK
+				z.p.p.color=RED
+				Left(T,z.p.p)
+			endif
+		endif
+	endif
+	else if(z.p==z.p.p.right)
+	(duale)
+endwhile
+T.root.color=BLACK
+\end{lstlisting}
+\newpage
+La funzione RB-Delete è definita così
+\begin{lstlisting}[style=pseudocodice]
+RB-Delete(T, z)
+
+y = z 
+originalcolor = y.color
+if (z.left == T.nil)
+	x = z.right
+	Transplant(T, z, z.right)
+elif (z.right == T.nil)
+	x = z.left
+	Transplant(T, z, z.left)
+else
+ 	y = Min(z.right)
+	originalcolor = y.color
+	x = y.right
+	if(y!=z.right)
+		TransPlant(T,y,y.right)
+		y.right=z.right
+		y.right.p=y
+	else
+		x.p=y
+		Transplant(T,z,y)
+		y.left=z.left
+		y.left.p=y
+		y.color=z.color
+	if(originalcolor==BLACK)
+		RB-DeleteFixUp(T,x)
+\end{lstlisting}
+RB-DeleteFixUp definita così:
+\newpage
+\begin{lstlisting}[style=pseudocodice]
+RB-DeleteFixUp(T,x)
+while (x != T.root and x.color == BLACK)
+	if (x == x.p.left)
+		w = x.p.right
+		if(w.color == RED)
+			w.color = BLACK
+			x.p.color = RED
+			Left(T, x.p)
+ 			w = x.p.right
+		if(w.left.color == BLACK and w.right.color == BLACK)
+			w.color = RED
+ 			x = x.p
+		elif (w.right.color == BLACK)
+			w.left.color = BLACK
+			w.color = RED
+			Right(T, w)
+			w = x.p.right
+		w.color = x.p.color
+		x.p.color = BLACK
+		w.right.color = BLACK
+		Left(T, x.p)
+		x=T.root
+	else
+		w = x.p.left
+		if(w.color == RED)
+			w.color = BLACK
+			x.p.color = RED
+			Right(T, x.p)
+ 			w = x.p.left
+		if(w.right.color == BLACK and w.left.color == BLACK)
+			w.color = RED
+ 			x = x.p
+		elif (w.left.color == BLACK)
+			w.right.color = BLACK
+			w.color = RED
+			Left(T, w)
+			w = x.p.left
+		w.color = x.p.color
+		x.p.color = BLACK
+		w.left.color = BLACK
+		Right(T, x.p)
+		x=T.root
+	endif
+x.color=BLACK
+\end{lstlisting}

@@ -1,0 +1,6 @@
+\section{Definizione e vantaggi della memoizzazione}
+La memoizzazione è una tecnica utilizzata nella programmazione dinamica che consente di evitare la risoluzione ripetuta di sottoproblemi, un fenomeno che può diventare particolarmente problematico in esempi come il calcolo della \textit{Longest Common Subsequence (LCS)}, della \textit{Longest Increasing Subsequence (LIS)}, o anche in problemi più semplici come la sequenza di \textit{Fibonacci}\\
+In pratica, la memoizzazione consiste nel salvataggio dei risultati dei sottoproblemi risolti in una struttura dati, in modo che ogni sottoproblema venga calcolato solo una volta\\
+Successivamente, se il sottoproblema viene richiesto di nuovo, il risultato viene recuperato dalla struttura dati, evitando di ricalcolarlo\\
+Inoltre, la memoizzazione consente di ridurre drasticamente la complessità di un algoritmo\\
+Ad esempio, nel caso del calcolo della LCS, si passa da una complessità di \( \Theta\left( \binom{m}{n} \right) \) a una complessità di \( \Theta(m \cdot n) \), grazie alla memorizzazione dei risultati intermedi

@@ -1,0 +1,18 @@
+\section{Scansione riempimento della tabella di LCS}
+La scansione del riempimento della tabella di LCS può essere fatta o con scansione row-major (riga per riga) oppure scansione column-major (colonna per colonna)\\
+Infatti, la tabella LCS è una tabella a due dimensioni, e per questo richiede una scansione del tipo sopracitato\\
+Faccio un esempio con scansione row-major
+\newpage
+\begin{lstlisting}[style=pseudocodice]
+for i = 0 to length(X)
+	L[i,0] = 0
+for j = 1 to length(Y)
+	L[0, j] = 0
+for i = 1 to length(X)
+	for j=1 to length(Y)
+		if(x[i] = y[j])
+			L[i,j] = 1+ L[i-1, j-1]
+		else
+			L[i,j] = max{L[i, j-1], L[i-1, j]}
+return L[m, n]
+\end{lstlisting}

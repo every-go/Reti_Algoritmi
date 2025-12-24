@@ -1,0 +1,33 @@
+\section{Counting sort, perché non si può usare sempre per ottenere ordinamento lineare, condizione affinché $ \Theta$(n), Radix Sort}
+Il counting sort è un ottimo algoritmo di ordinamento in tempo lineare ma richiede delle ipotesi che restringano l'input, ovvero che sia un array di interi compresi fra 0 e k$>$0\\
+\[
+\begin{cases}
+	\text{Input A[1....n] con A[j] $\in$ [0,1,....,k] }\\
+	\text{Output B[1.n] copia di A ordinata }
+\end{cases}
+\]
+\begin{lstlisting}[style=pseudocodice]
+CountingSort(A,B,k)
+
+C[0...k] riempito di tutti 0
+for j=1 to A.length
+	C[A[j]]++
+for i=1 to k
+	C[i]=C[i]+C[i-1]
+for j=A.length down to 1
+	B[C[A[j]]]=A[j]
+	C[A[j]]--
+\end{lstlisting}
+Inoltre, se k=$\Omicron$(n)$\to$costo $\Omicron$(n) in quanto il costo totale è $\Theta$(n+k)
+Oltretutto ha il contro di essere un algoritmo instabile, ovvero che, se sono presente delle ripetizioni, non è detto che esse mantengano l'ordine iniziale nell'array ordinato\\\\
+RadixSort è un tipo di algoritmo di ordinamento lineare che ordina, dato d=numero cifre significative, i numeri presenti nell'array per cifra significativa con un algoritmo stabile. Nella modalità MDM ordina dalla cifra più significativa, nella modalità LSD ordina dalla cifra meno significativa\\
+Per il RadixSort si usa il Counting Sort, quindi ogni iterazione ha $\Theta$(n+b) e con d=numero iterazioni si ha $\Theta$((n+b)d)\\
+b=$\Omicron$(1)/$\Omicron$(n)$\to$$\Theta$(nd)\\
+se d=1 $\to$ $\Theta$(n)\\
+Spazio: $\Theta$(n+b)
+\begin{lstlisting}[style=pseudocodice]
+RadixSort(A,d)
+for j=1 to d
+	ordina A rispetto alla cifra j-esima
+	con algoritmo stabile
+\end{lstlisting}

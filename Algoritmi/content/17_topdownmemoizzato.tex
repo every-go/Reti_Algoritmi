@@ -1,0 +1,12 @@
+\section{Generico algoritmo top down memoizzato}
+Un algoritmo top-down memoizzato è una tecnica di programmazione dinamica in cui il problema viene risolto ricorsivamente e i risultati intermedi vengono memorizzati in una struttura dati (tipicamente un array o una tabella) per evitare di ricalcolarli più volte\\
+Questo approccio è particolarmente utile per risolvere problemi in cui ci sono sovrapposizioni di sottoproblemi\\
+Ecco come funziona un algoritmo top-down memoizzato:\\
+Struttura di base:\\
+Top-down: Inizialmente, l'algoritmo tenta di risolvere il problema principale\\
+Memoizzazione: Quando l'algoritmo si trova a dover calcolare un sottoproblema che è già stato risolto in precedenza, invece di ricalcolarlo, recupera il valore dalla memoria\\
+Passaggi:\\
+Definisci la funzione ricorsiva che calcola il risultato\\
+Usa una tabella (o array) per memorizzare i risultati già calcolati\\
+Prima di calcolare un valore, verifica se è già presente nella tabella\\
+Se il valore è già calcolato, restituiscilo direttamente, altrimenti, calcolalo e memorizzalo

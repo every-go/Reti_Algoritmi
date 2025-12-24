@@ -1,0 +1,9 @@
+\section{Tabella hash: complessità inserimento e rimozione, chaining e open addressing}
+Le tabelle hash sono molto efficienti, in quanto hanno un costo medio di $\Theta$(1) e un costo peggiore di $\Theta$(n)\\
+L'idea delle tabelle hash è usare uno spazio proporzionale al numero di elementi nella struttura\\
+Con le funzioni di hash ci possono essere più risultati uguali poiché gli hashing non sono iniettive\\
+L'inserimento e la rimozione hanno la grandissima qualità di essere entrambe $\Omicron$(1)\\
+Esistono due modi di costruire una tabella hash: chaining e open addressing\\
+Con il chaining se h(x1.key)=h(x2.key) allora la cella in cui entrambi finiranno viene implementata come una lista e viene considerato un fattore di carico $\alpha$=$\frac{n}{m}$ con n=elementi memorizzati e m=celle tabella\\
+Bisogna però mettere in evidenza la distribuzione degli input e la qualità della funzione hash, la quale idealmente dovrebbe avere probabilità di assegnare ogni elemento in input con probabilità 1/m\\
+Nell'open addressing tutti gli elementi dell'insieme dinamico vengono memorizzati nella tabella

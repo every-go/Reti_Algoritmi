@@ -1,0 +1,18 @@
+\section{Cos'è heap, complessità insert in heap}
+Spiegazione heap fatta sopra.\\
+L'insert ha complessità di tipo $\Omicron$(logn) e l'algoritmo è costruito così:\\\\
+\begin{lstlisting}[style=pseudocodice]
+Insert(A,k)
+
+A.size=A.size+1
+A[A.size]=k
+MaxHeapifyUp(A,A.size)
+\end{lstlisting}
+Questo algoritmo sfrutta MaxHeapifyUp che ha la proprietà di costruire un MaxHeap di A[i...n] partendo da un nodo "basso", forse maggiore di altri nodi (quindi $>$= antenati) che rovina le proprietà di MaxHeap ripristinandole con questo algoritmo:\\\\
+\begin{lstlisting}[style=pseudocodice]
+MaxHeapifyUp(A,i)
+
+if (i>1) and (A[i]>A[parent(i)]
+	swap(A,i,parent(i))
+	MaxHeapifyUp(A,parent(i))
+\end{lstlisting}

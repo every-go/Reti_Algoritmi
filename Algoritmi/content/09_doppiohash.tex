@@ -1,0 +1,8 @@
+\section{Doppio hashing (come scegliere le funzioni)}
+Date h1(k) e h2(k) hash unarie h(k,i)=(h1(k)+i(h2(k))) mod m: la condizione è che h2(k) e m (celle tabella) siano coprimi \\
+Ma come fare in modo che h(k,0)...h(k,m-1) è permutazione?\\
+(h1(k)+ih2(k) mod m) = (h1(k) + i'h2(k) mod m)\\
+(h1(k)+ih2(k) mod m) - (h1(k) + i'h2(k) mod m) = 0\\
+(h1(k)+ih2(k)-h1(k)-i'h2(k)) mod m = 0 $\to$ (ih2(k)-i'h2(k)) mod m = 0\\
+m divide (i-i') e 0$<$=i-i'$<$= (m-1) $\to$ i-i' = 0 $\to$ i=i'\\
+m primo h2(k) $<$ m $\to$ h2(k)=1+k mod m', m'$<$m

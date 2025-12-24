@@ -1,0 +1,4 @@
+\section{Quale tra gli esercizi di programmazione dinamica svolti a lezione non si risolveva solo risolvendo sottoproblemi}
+Uno degli esempi è il modo di risolvere il problema delle LIS (Longest Increasing Subsequence) poiché è necessario avere sottoproblemi più vincolati, in quanto LIS(x$_{i+1}$) = $<$LIS(x$_{i}$), x$_{i+1}$$>$ funzionerebbe solo per alcuni casi\\
+Una possibile soluzione è avere un sottoproblema con proprietà aggiuntive, ovvero calcolare la più lunga IS di x$_i$ che termina proprio con x$_i$\\
+Definizione: Z=LIS(x$_i$) è la più lunga tra le IS(x$_i$) con Z=$<$z$_1$, ..., z$_k$$>$ = $<$x$_{i1}$, ..., x$ik$ $>$ con x$_{ik}$ = x$_i$
