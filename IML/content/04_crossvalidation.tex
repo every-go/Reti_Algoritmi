@@ -1,0 +1,35 @@
+\section{Si descriva dettagliatamente la procedura di crossvalidation, motivandone scopo ed utilità,
+		e fornendo una chiara descrizione della (corretta) procedura di addestramento di un
+		qualunque sistema di machine learning. Si descrivano inoltre i concetti di true error ed
+		empirical error e se ne evidenzino le relazioni con la procedura di cross-validation}
+
+	La \textbf{cross-validation} è una tecnica fondamentale per la selezione e valutazione
+   di modelli nel machine learning, con tre obiettivi chiave:
+	\begin{itemize}
+		\item Stimare le prestazioni del modello su dati non visti (\textit{generalizzazione})
+		\item Ottimizzare gli iperparametri evitando l'overfitting
+		\item Utilizzare efficientemente dataset limitati
+	\end{itemize}
+	Un'implementazione particolarmente diffusa è la \textbf{k-fold cross-validation},
+   dove il dataset viene suddiviso in $k$ sottoinsiemi (\textit{fold}) di uguale dimensione,
+   utilizzati iterativamente per training e validazione.\\
+	Facendo un esempio a 3 set tipicamente si divide in:\\
+	il più grande, detto training set, da 70\%, gli altri due da 15\%, detti validation set,
+   che servono a valutare la retta (o in generale la funzione h$\approx$f: X$\to$Y) ottenuta
+   dallo studio sul validation set\\
+	Questo serve a mantenere un learning molto più approfondito rispetto allo studio sul 100\% del dataset,
+   dove si rischierebbe di andare incontro all'overfitting\\
+	Inoltre, c'è la procedura di "leave-one-out", che è un particolare caso di k-fold dove si divide il
+   dataset in k set di dimensione uguale disgiunti a due a due e volta per volta dei sottoinsiemi vengono
+   considerati validation set e training set fra di loro\\
+	Relativamente a questa procedura, si possono associare i concetti di "true error" ed "empirical error":\\
+	\begin{enumerate}
+		\item il "true error" di una particolare ipotesi \textit{h} che approssima \textit{f} rispetto al dataset D è la probabilità che
+			  \textit{h} non classificherà correttamente un'istanza di D\\
+			  \[ error_D(h) = Prob_{x \in D}\{ f(x) \neq h(x) \} \]
+		\item l' "empirical error" dell'ipotesi \textit{h} è dato da tutti i casi in cui h sbaglierà\\
+			  \[ error_T(h) = \frac{\#\{ (x,f(x)) \in T : f(x) \neq h(x) \}, T \subseteq D}{\text{instances of T}} \]
+	\end{enumerate}
+	Questi due errori diversi servono ad identificare il bias (assunzione troppo "forte/debole" che facciamo sulla funzione target) e la variance (la dipendenza dai dati)\\
+	Inoltre, serve ad identificare l'overfitting, il quale avviene quando:\\
+	\[ \text{data } h \in H, \text{ overfitting avviene se } \exists h' \in H : error_T(h) < error_T(h') \text{ ma } error_D(h) > error_D (h') \]

@@ -1,0 +1,27 @@
+\section{Si descriva dettagliatamente la procedura di model selection (aiutandosi con un esempio
+		concreto) e si fornisca una chiara giustificazione teorica/concettuale a tale procedura}
+      
+	La model selection è il processo grazie al quale si può scegliere il miglior modello/iperparametri dato un problema\\
+	Uno dei tanti metodi per trovarli è la cross-validation, che fa parte della famiglia della model selection\\
+	Facendo un esempio di model selection per la selezione di immagini, ipotizzo che si voglia cercare il miglior modello per la selezione di immagini (classificazione binaria) che identifica se un immagine rappresenta un cane oppure no\\
+	Nell'esempio selezionato, la predizione si può classificare come:
+	\begin{itemize}
+		\item vero positivo (TP)
+		\item falso positivo (FP)
+		\item vero negativo (TN)
+		\item falso negativo (FN)
+	\end{itemize}
+	L'accuratezza del modello è data da $\frac{TP+TN}{P+N} = \frac{\text{all correct}}{\text{all instances}}$, invece la performance si pasa su:
+	\begin{itemize}
+		\item precision: $\frac{TP}{TP+FP}$: frazione delle istanze recuperate che sono rilevanti
+		\item recall: $\frac{TP}{TP+FN}$: frazione delle istanze rilevanti che sono recuperate
+	\end{itemize}
+	Il rapporto corretto, che purtroppo non può essere sempre preciso al 100\%, sopratutto su animali rarissimi di cui girano poche foto su Internet, si valuta tramite gli integrali fra le curve di precision e recall\\
+	Si possono però stimare bias e variance, infatti:
+	le learning curve rappresentano:\\
+	bias elevato se manifesta con errori alti su entrambi, la variance si riconosce da un errore basso sul training ma alto sulla validation\\
+	Inoltre, spesso si computa Prec@k e Rec@k nei top k risultati\\
+	Infine, un'altra misurazione è l'average precision (AP) che è una misura che combina recall e precision per risultati ordinati, quindi restituisce ciò che ha una precisione maggiore, che si calcola sommando la precisione quando si trova un True positive identificato realmente
+	\[ AP=\frac{\sum_{k=1}^{n}P(k) \cdot rel(k)}{\text{all groundtruth instances}} \]
+	Quest'ultima sommatoria serve a trovare la corretta sequenza in cui i primi k risultati corretti compaiono, infatti se AP=1 vuol dire che tutti i risultati antecedenti al 1° sbagliato saranno corretti\\
+	Grazie a quest'ultima, nel caso del nostro esempio ma anche per altri modelli, si può trovare chiaramente qual è il modello migliore per un determinato problema

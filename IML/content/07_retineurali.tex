@@ -1,0 +1,83 @@
+\section{Spiegare in dettaglio gli elementi fondamentali del perceptron e, più in generale, delle reti
+		neurali. Si riporti inoltre una breve descrizione di come tale modello possa essere esteso
+		mediante la realizzazione di un’architettura multistrato, fornendo un esempio che evidenzi
+		le differenze ed i vantaggi di tale architettura. Illustrare chiaramente le due fasi di feedforward e backpropagation}
+	
+   Il perceptron è un modello semplice:\\
+	un neurone che fa una trasformazione per combinazione lineare con una "funzione di attivazione" definita come f($\Theta^T$x)\\
+	Questa funzione di attivazione può essere la sigmoide ($\frac{1}{1+e^{-z}}$), il tanh (tangente iperbolico), la ReLU ($max(0,x)$), Leaky ReLU: max(0.1x, x), Maxout: max($w_1^Tx+b_1, w_2^Tx+b_2$), ELU : x quando x$>=0$, $\alpha$($e^x$-1) quando $x<0$\\
+	Ogni neurone implementa da solo la logistic regression (nel caso in cui usi la funzione sigmoide)\\
+	Esso prende in input quindi tutti i pesi $\Theta$ e definisce, tramite la funzione scelta fra quelle descritte precedentemente, un output\\
+	In questo caso, i pesi $\Theta$ sono definiti dalla fase di feed-forward dello strato precedente\\
+	Questi percepetron sono la base per la costruzione di una rete neurale multistrato, infatti essa è formata da più strati, divisi in 3 macrocategorie:
+	\begin{enumerate}
+		\item input layer
+		\item hidden layer ($>=1$)
+		\item output layer
+	\end{enumerate}
+	\subsection{Feedforward}
+	Il passaggio da uno strato all'altro (feed-forward) si misura come
+	\[
+	a_i^{(l)} = f\left(\sum_{k=1}^{n^{(l-1)}} \Theta_{ik}^{(l)} a_k^{(l-1)} + b_i^{(l)}\right)
+	\]
+	
+	\textbf{Spiegazione dei simboli:}
+	\begin{itemize}
+		\item $a_i^{(l)}$: Attivazione del neurone $i$-esimo nel layer $l$.
+		\item $\Theta_{ik}^{(l)}$: Peso tra il neurone $k$ del layer $l-1$ e il neurone $i$ del layer $l$.
+		\item $b_i^{(l)}$: \textbf{Bias} (spesso incluso come $\Theta_{i0}^{(l)}$ con $a_0^{(l-1)} = 1$).
+		\item $f$: Funzione di attivazione (ReLU, sigmoide, ecc.).
+		\item $n^{(l-1)}$: Numero di neuroni nel layer precedente.
+	\end{itemize}
+	Mentre i perceptron riescono a fare unicamente una combinazione lineare, il collegamento fra più perceptron permette architetture molto più complesse che permettono di definire operazioni più difficili che un unico perceptron non riuscirebbe a fare\\
+	Questo permette la costruzione di un sistema che offre nettamente più vantaggi rispetto al perceptron singolo, ma anche un numero di collegamenti decisamente più elevato (per le reti che abbiamo visto fino ad ora ogni perceptron è collegato a tutti i perceptron dello stato successivo, portando la complessità computazionale ad essere molto elevata per sistemi formati da centinaia se non migliaia di strati)\\
+	Queste reti neurali seguono una fase di feed-forward, ovvero una propagazione in avanti dei dati dove si porta ogni dato da uno strato a quello successivo\\
+	L'architettura multistrato e la propagazione feed-forward permettono la costruzione di operatori logici OR, AND, XOR, XNOR (NOT AND NOT) e NAND (NOT AND)\\
+	La differenza principale fra questi operatori logici è che OR e AND sono operatori logici linearmente separabili, quindi non richiedono strati nascosti, invece XOR e NAND non sono linearmente separabili e richiedono degli strati nascosti per arrivare al corretto risultato\\
+	\textbf{Gli esempi sono nelle slide/negli appunti}
+	\subsection{Backpropagation}
+	La backpropagation è un algoritmo fondamentale per l'addestramento delle reti neurali, che calcola efficientemente il gradiente della funzione di costo rispetto ai pesi della rete mediante la \textbf{regola della catena} (chain rule)\\
+	Questo permette di ottimizzare i parametri attraverso metodi come la discesa del gradiente\\
+	L'algoritmo si compone di due fasi principali:
+	\begin{enumerate}
+		\item \textbf{Forward pass}: calcolo dell'output della rete dato un input.
+		\item \textbf{Backward pass}: propagazione all'indietro dell'errore per aggiornare i pesi.
+	\end{enumerate}
+	\textbf{Formule matematiche}\\
+	Sia:
+	\begin{itemize}
+		\item $L$: numero di strati (layer) nella rete
+		\item $\Theta^{(l)}$: matrice dei pesi al layer $l$
+		\item $a^{(l)}$: attivazioni al layer $l$
+		\item $z^{(l)} = \Theta^{(l)}a^{(l-1)}$: input al layer $l$ prima dell'attivazione
+		\item $f$: funzione di attivazione (es. sigmoide, ReLU)
+	\end{itemize}
+	
+	1. \textbf{Errore al layer di output} ($\delta^{(L)}$):
+	\[
+	\delta^{(L)} = a^{(L)} - y
+	\]
+	dove $y$ è il vettore target.
+	
+	2. \textbf{Errore nei layer nascosti} ($l = L-1, L-2, ..., 2$):
+	\[
+	\delta^{(l)} = (\Theta^{(l)})^T \delta^{(l+1)} \odot f'(z^{(l)})
+	\]
+	dove $\odot$ indica il prodotto elemento per elemento (Hadamard product) e $f'$ è la derivata della funzione di attivazione.
+	
+	3. \textbf{Gradiente dei pesi}:
+	\[
+	\frac{\partial J}{\partial \Theta^{(l)}} = \delta^{(l+1)} (a^{(l)})^T
+	\]
+	
+	4. \textbf{Aggiornamento dei pesi} (gradient descent):
+	\[
+	\Theta^{(l)} := \Theta^{(l)} - \alpha \frac{\partial J}{\partial \Theta^{(l)}}
+	\]
+	con $\alpha$ tasso di apprendimento.
+	
+	\paragraph{Osservazioni chiave}
+	\begin{itemize}
+		\item L'inizializzazione casuale dei pesi (non nulla) è cruciale per evitare simmetria nell'apprendimento
+		\item La backpropagation è applicabile a qualsiasi architettura feedforward
+	\end{itemize}

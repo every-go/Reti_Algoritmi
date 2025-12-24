@@ -1,0 +1,34 @@
+\section{Cos'è il Natural Processing Language (NLP). L'uso dei language model per rappresentare il significato del linguaggio. Uso dei n-gram model, model evalutation}
+
+   Il Natural Language Processing (NLP) è un campo dell'Intelligenza Artificiale che si occupa dell'interazione
+   tra computer e linguaggio umano, permettendo ai sistemi di comprendere, interpretare e generare testo\\
+	Le applicazioni includono traduzione automatica, chatbots, analisi del sentiment e riconoscimento del parlato\\
+	Poiché il linguaggio naturale è ambiguo, complesso e non segue regole rigide come i
+   linguaggi di programmazione, si usano i language model per cercare di stimare la probabilità di
+   sequenze di parole\\
+	Infatti, siccome è impossibile formalizzare il problema, si cerca una frase quanto è probabile/meno probabile\\
+	Per questo motivo nascono gli n-gram model, ovvero language model definiti come la distribuzione
+   probabilistica su sequenze di caratteri\\
+	\[
+		P(C_{1:N}) = \text{probabilità di sequenza di N caratteri, da }c_1 \text{ a }c_n
+	\]
+	Un n-gram model è un tipo semplice di language model basato su catene di Markov di ordine n-1:
+   la probabilità di una parola dipende solo dalle n-1 parole precedenti\\
+	La probabilità di $C_i$ dipende dalla probabilità delle precedenti parole
+	\[
+		P(W_{1:N}) = \prod_{i=1}^{N}P(W_i | W_{1:i-1}) = \prod_{i=1}^{N}P(W_i | W_{i-2:i-1})
+	\]
+	Un approccio semplice per l'identificazione della lingua è dato dalla costruzione di un trigram model
+   per ogni linguaggio, dando la probabilità P(Text$|$Language)\\
+	Un trigram model è un tipo di modello in cui si considerano solamente le 2 parole precedenti per
+   diminuire la complessità computazionale, siccome alcune lingue sono facilmente identificabili
+   (ad esempio "the" si collega facilmente all'inglese)
+	\[
+		l^* = \arg\max_l P(l|C_{1:N}) = \arg\max_l P(l) P(C_{1:N}|l) = \arg\max_l P(l) \prod_{i=1}^{N} P(C_i | C_{i-2:i-1},l)
+	\]
+	La model evaluation indica quando si prende il modello che assegna probabilità più alta alla (prossima)
+   parola che dovrebbe esserci. Il miglior model language dà (in media) la migliore P(sentence)\\
+	Un language model è modello che computa P(w) o P($w_n | w_1,...,w_{n-1}$)
+	\[
+		P(w_1,...,w_n) = \prod_{i}P(w_i | w_1,...,w_{i-1})
+	\]

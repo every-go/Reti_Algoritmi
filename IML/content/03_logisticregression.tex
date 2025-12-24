@@ -1,0 +1,63 @@
+\section{Si descriva in modo dettagliato il
+		modello di logistic regression (con regolarizzazione), le sue principali caratteristiche ed il contributo dei diversi elementi presenti nella funzione
+		di costo. Si riporti infine una descrizione accurata delle differenze e degli elementi in comune di tale modello rispetto
+		ad un semplice classificatore lineare, anche mediante esempi qualitativi. Infine, si descriva chiaramente la procedura di addestramento
+		mediante l’applicazione di gradient descent}
+		
+	\subsection{Introduzione e motivazione}
+	La \textbf{logistic regression} è un modello di classificazione che evita i problemi della regressione lineare applicata a task di classificazione:
+	\begin{itemize}
+		\item La regressione lineare è sensibile a \textit{outliers} e può produrre valori al di fuori dell'intervallo $[0,1]$.
+		\item La logistic regression garantisce invece output probabilistici in $[0,1]$ tramite la \textbf{funzione sigmoide}\\
+		Comunque il suo scopo è quello di trovare una funzione $h \approx f: X \to Y$ dove Y è un insieme di classi (2) e non in $\mathcal{R}$ come nella regressione lineare
+	\end{itemize}
+	
+	\subsection{Formulazione del modello}
+	L'ipotesi è data da:
+	\[
+	h_\theta(\mathbf{x}) = g(\theta^T \mathbf{x}) = \frac{1}{1 + e^{-\theta^T \mathbf{x}}}, \quad \text{dove } g(z) = \frac{1}{1+e^{-z}}
+	\]
+	\subsection{Interpretazione probabilistica}
+	\begin{itemize}
+		\item $h_\theta(\mathbf{x}) = P(y=1 \mid \mathbf{x}; \theta)$
+		\item Per due classi: $P(y=0 \mid \mathbf{x}; \theta) = 1 - h_\theta(\mathbf{x})$
+		\item \textbf{Limite di decisione}: 
+		\[
+		y = 
+		\begin{cases}
+			1 & \text{se } h_\theta(\mathbf{x}) \geq 0.5 \\
+			0 & \text{se } h_\theta(\mathbf{x}) < 0.5
+		\end{cases}
+		\]
+	\end{itemize}
+	
+	\subsection{Funzione di costo con regolarizzazione}
+	La \textbf{cross-entropy loss} con regolarizzazione:
+	\[
+	J(\theta) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)} \log(h_\theta(\mathbf{x}^{(i)})) + (1-y^{(i)}) \log(1 - h_\theta(\mathbf{x}^{(i)})) \right] + \frac{\lambda}{2m} \sum_{j=1}^n \theta_j^2
+	\]
+	Questa funzione serve per quando ci sono tantissime feature, però serve mantenere le due più importanti e le altre renderle molto piccole, dove quest'ultime sono molto poco influenti però danno il loro contributo per trovare y\\
+	Come in tutti gli altri casi, bisogna trovare $min(J(\Theta))$
+	
+	\subsection{Confronto con il classificatore lineare}
+	\begin{itemize}
+		\item \textbf{Similarità}:
+		\begin{itemize}
+			\item Entrambi usano una funzione lineare $\theta^T \mathbf{x}$.
+			\item Utilizzano ottimizzazione tramite gradient descent.
+		\end{itemize}
+		\item \textbf{Differenze}:
+		\begin{itemize}
+			\item La regressione lineare minimizza l'MSE, la logistic regression la cross-entropy.
+			\item La logistic regression produce probabilità, mentre il classificatore lineare valori continui.
+			\item \textit{Inductive bias}: La logistic regression assume una relazione logistica tra features e classi.
+		\end{itemize}
+		\item \textbf{Esempio}: Per dati con outlier, la logistic regression è robusta mentre la regressione lineare può produrre un iperpiano distorto.
+	\end{itemize}
+	
+	L'addestramento con gradient descent usa la procedura iterativa aggiornando i parametri $\theta$ come:
+	\[
+	\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j} = \theta_j - \frac{\alpha}{m} (\sum_{i=1}^{m} (h_{\theta}(x^{(i)}) - y^i)x_j^i + \lambda \theta_j)
+	\]
+	dove $\alpha$ è il learning rate\\
+	L'algoritmo termina quando le derivate sono vicine a zero (punto di minimo), si può notare che è molto simile al procedimento di "gradient descent" della regressione lineare

@@ -1,0 +1,79 @@
+\section{Si descrivano nel modo più accurato possibile gli alberi di decisione, i loro vantaggi e svantaggi rispetto ad altri modelli (ad es. reti neurali)
+		e si evidenzi il principale inductive bias di tale algoritmo. Si fornisca inoltre un semplice esempio di albero di decisione, successivamente lo XOR. Infine, si illustri brevemente l’estensione di tale modello attraverso random forest}
+	
+      Gli alberi di decisione sono una struttura in cui:
+	\begin{itemize}
+		\item i nodi interni rappresentano feature
+		\item i rami rappresentano l'esito del test (esempio: vero o falso)
+		\item nodi foglia rappresentano classi o valori target
+	\end{itemize}
+	Forniscono risultati interpretabili e supportano analisi di decisione\\
+	Ogni albero rappresenta la funzione d'ipotesi h(x) che vogliamo modellare\\
+	L'idea generale è che, dato un attributo per volta, si fa un test, poi, condizionatamente
+   alla scelta, si prende un altro attributo per fare un altro test, fino a quando non si arriva
+   alla foglia che assegna un valore all'input\\
+	Quindi, l'inductive bias principale è che si assume che la funzione target sia ben approssimabile
+   da un reticolo di partizioni assiali successive, una per attributo\\
+	Gli alberi di decisione possono essere visti come modelli generati dalle regole d'induzione,
+   che è una differenza sostanziale rispetto ad altri algoritmi come la logistic regression
+   (il cui inductive bias principale è che la classificazione sia di tipo binaria)\\
+	Il loro principale vantaggio è che viene costruito partizionando le scelte su un attributo
+   in una determinata situazione, permettendo la costruzione di un albero di decisione ottimale, sopratutto con pochi attributi\\
+	Ciò permette di restringersi ad una dimensione per volta, dichiarando l'output solo quando
+   si arriva alla fine\\
+	Inoltre, permette di fornire più interpretabilità, gestione nativa di feature categoriche,
+   gestione di outlier e dati mancanti\\
+	Il principale svantaggio è proprio il modo in cui costruire quest'albero, infatti ad oggi
+   esistono diversi algoritmi ma, essendo un problema NP completo (non esprimibile con scelta greedy) non esiste ancora un algoritmo ottimale che permette la costruzione di un albero "perfetto"\\
+	Oltretutto, porta probabilmente ad alta varianza (overfitting), instabilità rispetto a piccole
+   variazioni dei dati, scarsa capacità di catturare pattern obliqui senza preprocessing\\
+	Un'idea per realizzare un buon albero è quella di minimizzare l'entropia per ogni sottoset
+   oppure di massimizzare l'Information Gain (H(S) - H(S $ | $ a)), dove H(S) è l'entropia\\
+	Un'estensione di questo modello è il Random forest:\\
+	è un modello di classificazione composto da più alberi di decisione\\
+	Usa bagging (genera più pezzi casuali per aumentare variabilità soluzione) e feature random
+   per combinare alberi\\
+	Riduce la varianza dell'albero originale, però porta a ridondanza e quindi a maggiore
+   complessità computazionale\\
+	In fase di predizione, ogni albero vota per una classe; la classe finale è quella con
+   \emph{majority vote} (o, in regressione, la media degli output)
+	
+	Esempio dello XOR:\\
+	\begin{forest}
+		for tree={
+			grow=0, % Orientazione orizzontale
+			edge={->}, % Frecce
+			l sep=1cm, % Spaziatura livelli
+			if n children=0{
+				font=\itshape % Stile foglie
+			}{}
+		}
+		[Bit 1, name=root
+		[0, edge label={node[midway,left]{$$}}
+		[Bit 2
+		[0, edge label={node[midway,left]{$$}}
+		[\textit{0}, name=leaf1] % Classe XOR=0
+		]
+		[1, edge label={node[midway,right]{$$}}
+		[\textit{1}, name=leaf2] % Classe XOR=1
+		]
+		]
+		]
+		[1, edge label={node[midway,right]{$$}}
+		[Bit 2
+		[0, edge label={node[midway,left]{$$}}
+		[\textit{1}] % Classe XOR=1
+		]
+		[1, edge label={node[midway,right]{$$}}
+		[\textit{0}] % Classe XOR=0
+		]
+		]
+		]
+		]
+	\end{forest}
+	\\Confronto con reti neurali:\\
+	Le reti neurali apprendono rappresentazioni complesse e oblique; gli alberi usano partizioni
+   assiali che possono richiedere feature engineering (ad es. combinazioni di attributi) per
+   pattern più sofisticati\\
+	Le reti hanno iperparametri quali learning rate, architettura, funzione di attivazione; gli
+   alberi hanno profondità massima, numero minimo di campioni per foglia

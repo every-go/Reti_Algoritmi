@@ -1,0 +1,26 @@
+\section{Si descrivano nel modo più accurato possibile i concetti di bias e variance,
+il loro rapporto e come nella pratica possano essere affrontati e ridotti i problemi.
+A tal fine si riportino anche esempi concreti che aiutino a chiarire i diversi aspetti coinvolti}
+
+	Il bias rappresenta l'errore sistematico introdotto da un modello nel semplificare troppo il problema, portando a una rappresentazione inaccurata dei dati\\
+	L'inductive bias rappresenta l'insieme di ipotesi che un algoritmo assume sulla funzione target per poter generalizzare dai dati di training ai dati nuovi\\
+	Infatti, nel caso della regressione lineare, l'inductive bias principale è che l'insieme di input e output può essere rappresentato come una funzione lineare, oppure, nel caso dei "Nearest Neighbors", si assume che la maggior parte dei casi in uno spazio ravvicinato faccia parte della stessa classe \\
+	Ci sono esattamente due tipi:
+	\begin{enumerate}
+		\item restriction: limita lo spazio delle ipotesi
+		\item preference: impone l'ordine delle preferenze
+	\end{enumerate}
+	Il bias alto causa all'algoritmo la mancanza di relazioni rilevanti fra feature e target, ad esempio un modello di regressione lineare ha un bias alto se i dati reali seguono una relazione quadratica: la sua rigidità lo porterà a fare errori sistematici\\
+	La variance misura quanto il modello è sensibile alle variazioni nei dati di training\\
+	Un modello ha varianza alta quando è molto sensibile ai cambiamenti nei dati di training: piccole variazioni possono portare a grandi differenze nelle predizioni\\
+	Questo accade quando il modello è troppo complesso e tende a sovradattarsi (overfitting)\\
+	Il loro rapporto principale porta al bias-variance tradeoff, ovvero ciò che rappresenta il rapporto tra bias e varianza: un modello con bias alto semplifica troppo il problema (underfitting), mentre un modello con varianza alta si adatta troppo ai dati di training (overfitting)\\
+	L'obiettivo è trovare un equilibrio tra i due per minimizzare l'errore totale\\
+	La cosa migliore per un algoritmo sarebbe avere bias basso, varianza bassa\\
+	Alcuni metodi pratici per bilanciare bias e varianza:\\
+   \begin{enumerate}
+      \item Ridurre il bias: usare modelli più complessi (es. passare da regressione lineare a polinomiale)\\
+	   \item Ridurre la varianza: usare più dati di training\\
+   \end{enumerate}
+	Le learning curve (errori su training e validation) aiutano a diagnosticare questi problemi:\\
+	bias elevato si manifesta con errori alti su entrambi, mentre la variance si riconosce da un errore basso sul training ma alto sulla validation\\

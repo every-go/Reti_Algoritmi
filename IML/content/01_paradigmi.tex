@@ -1,0 +1,36 @@
+\section{Quali sono i principali paradigmi del machine learning? Se ne riporti una descrizione
+		sintetica – chiarendo quali siano le principali differenze – con particolare enfasi per il caso
+		del supervised learning. Si distinguano in particolare classificazione e regressione}
+   
+ 	I principali paradigmi sono:
+	\begin{enumerate}
+		\item Supervised learning:\\
+			lo scopo di questo paradigma è quello di dare la risposta corretta ad ogni esempio, ovvero, dati gli x$^i$ e gli y$^i$, trovare la funzione $h\approx f:X \to Y$\\
+			Si chiama "supervised" perché il supervisore fornisce i valori di $h(\cdot)$ alle varie istanze $x^i$\\
+			Può essere utilizzato sia per i casi di classificazione (valori discreti per capire se un dato appartiene ad una classe o ad un'altra) e per i casi di regressione (trovare la vera funzione che mappa correttamente gli input e gli output)
+		\item Unsupervised learning:\\
+			in questo paradigma non esistono supervisori, l'obiettivo di questo paradigma è trovare la regolarità oppure i pattern, dunque dati esempio $x^i$ trovare le regolarità presenti in tutto il dominio
+		\item Reinforncement learning:\\
+			in questo paradigma si ha un agente che può essere in uno stato "s", esegue azione "a" (tra quelle ammissibili per lo stato s) ed opera in un ambiente "e" che in risposta all'azione "a" e lo stato "s" ritorna un nuovo stato e una ricompensa (positiva, negativa o neutrale)\\
+			L'obiettivo dell'agente è massimizzare la funzione delle ricompense
+	\end{enumerate}
+	Altri paradigmi possono essere:
+	\begin{enumerate}
+		\item Weak-supervised learning:\\
+			è una branca dell'apprendimento automatico in cui vengono utilizzati
+			dati non organizzati o imprecisi per fornire indicazioni per etichettare una grande quantità di
+			dati non supervisionati in modo che possa essere utilizzata
+			nell'apprendimento automatico o nell'apprendimento supervisionato
+		\item Self-supervised learning:\\
+			consente ai sistemi di intelligenza artificiale di apprendere da ordini di
+			grandezza maggiori di dati, il che è importante per riconoscere e comprendere modelli di
+			rappresentazioni del mondo più sottili e meno comuni
+		\item Federated learning:\\
+			(noto anche come apprendimento collaborativo) è una tecnica di
+			apprendimento automatico che addestra un algoritmo su più dispositivi edge decentralizzati o
+			server che conservano campioni di dati locali, senza scambiarli
+		\item Deep Learning:\\
+			la cui traduzione letterale significa apprendimento profondo, è una
+			sottocategoria del Machine Learning e indica quella branca dell’intelligenza artificiale che fa riferimento agli algoritmi
+			ispirati alla struttura e alla funzione del cervello chiamate reti neurali artificiali
+	\end{enumerate}

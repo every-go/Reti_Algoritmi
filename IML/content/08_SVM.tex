@@ -1,0 +1,78 @@
+\section{Spiegare in dettaglio gli elementi fondamentali di SVM; in particolare:
+			1) la sua interpretazione geometrica, 2) la funzione di costo, 3) le differenze/similitudini con altri modelli di ML.
+			Infine, si introduca brevemente l’estensione di SVM basata sul kernel trick}
+
+	Le Support Vector Machines (SVM) sono un algoritmo di apprendimento supervisionato per classificazione e
+   regressione. Pur essendo un classificatore lineare, può affrontare problemi non lineari attraverso
+   il \textit{kernel trick}.
+
+	\subsection{Interpretazione geometrica}
+	L'SVM cerca l'\textbf{iperpiano di separazione ottimale} che massimizza il \textbf{margine} tra le classi.
+   Geometricamente:
+	\begin{itemize}
+		\item I \textbf{vettori di supporto} sono i punti più vicini all'iperpiano e determinano la soluzione
+		\item Il margine $M$ è la distanza tra l'iperpiano e i vettori di supporto: $M = \frac{2}{\|\Theta\|}$
+		\item Per dati non linearmente separabili, si introducono \textbf{variabili di slack} $\xi^{(i)}$ per permettere errori di classificazione
+	\end{itemize}
+	
+	\subsection{Funzione di costo}
+	La SVM utilizza una funzione di costo modificata rispetto alla logistic regression:
+	\[
+	\min_{\Theta} \frac{1}{\delta} \sum_{i=1}^m \left[
+	\underbrace{y^{(i)} \max(0, 1 - h_\Theta(x^{(i)}))}_{\text{Per } y^{(i)}=1} + 
+	\underbrace{(1-y^{(i)}) \max(0, 1 + h_\Theta(x^{(i)}))}_{\text{Per } y^{(i)}=0}
+	\right] + 
+	\frac{1}{2} \|\Theta\|^2
+	\]
+	dove:
+	\begin{itemize}
+		\item \( h_\Theta(x) = \Theta^T x + \Theta_0 \) è il classificatore lineare
+		\item \( \delta \) (o \( C = \frac{1}{\delta} \)) regola il trade-off tra errore e margine
+		\item Il termine \( \frac{1}{2}\|\Theta\|^2 \) massimizza il margine di separazione
+	\end{itemize}
+	
+	\subsection{Confronto con altri modelli}
+	\begin{itemize}
+		\item \textbf{vs Logistic Regression}:
+		\begin{itemize}
+			\item Entrambi sono classificatori lineari
+			\item LR minimizza la cross-entropy, SVM massimizza il margine
+			\item SVM più robusta a outliers
+			\item Logistic Regression fornisce probabilità, la SVM non lo fa direttamente
+		\end{itemize}
+		
+		\item \textbf{vs Reti Neurali}:
+		\begin{itemize}
+			\item SVM trova soluzione globale, NN può convergere a minimi locali
+			\item SVM più efficiente con pochi dati
+			\item NN più flessibile per problemi complessi
+		\end{itemize}
+		
+		\item \textbf{vs Decision Trees}:
+		\begin{itemize}
+			\item SVM fornisce iperpiani di separazione, DT divisioni assiali (paralleli agli assi)
+			\item SVM migliore per spazi continui, DT per dati categoriali
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection{Kernel Trick}
+	Per problemi non lineari, SVM applica una trasformazione $\phi: R^n \rightarrow R^m$:
+	\begin{itemize}
+		\item Evita il calcolo esplicito di $\phi(x)$ usando funzioni kernel:
+		\[
+		K(x,z) = \phi(x)^T\phi(z)
+		\]
+		
+		\item Kernel comuni:
+		\begin{itemize}
+			\item Gaussiano (RBF): $K(x,z) = \exp\left(-\frac{\|x-z\|^2}{2\sigma^2}\right)$
+			\item Polinomiale: $K(x,z) = (x^Tz + c)^d$, \\
+					d = grado polinomio: alto-$>$overfitting, basso-$>$underfitting, il termine c è un iperparametro (bias term) che controlla il contributo delle componenti di ordine inferiore del polinomio
+		\end{itemize}
+		
+		\item Il modello diventa:
+		\[
+		f(x) = \sum_{i=1}^m \alpha_i y^{(i)}K(x^{(i)},x) + b
+		\]
+		dove $\alpha_i$ sono i coefficienti dei vettori di supporto
+	\end{itemize}
