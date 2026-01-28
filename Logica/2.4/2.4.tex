@@ -1,0 +1,223 @@
+\documentclass[12pt,oneside,a4paper]{article}
+\usepackage{bussproofs}
+\pagenumbering{arabic}
+\title{Es 2.4 simulazione appello}
+\author{Matteo Mazzaretto}
+\date{23 gennaio 2023}
+\begin{document}
+\maketitle
+\begin{center}{\bf 2.4}\end{center}
+"Esiste uno a cui nessuno scrive se e solo se lui scrive a tutti oppure non esiste uno che, se
+lui scrive a qualcuno tutti scrivono a qualcuno.”\newline
+Si consiglia di usare:\newline
+S(x, y)=x scrive a y\newline
+La traduzione è:
+\begin{center}$\vdash$$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))$\vee$($\neg$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z)))\end{center}
+Durante la correzione della simulazione, ci è stato esposto che questo sequente è un paradosso\newline
+In realtà, si tratta di opinione, e ora lo dimostro\newline
+\section{Formula negata}
+Innanzitutto, dato che ci è stato detto che doveva essere paradosso, derivo immediatamente la negazione
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{problema}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))$\vdash$}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{S(x,z),S(x1,x2)$\vdash$S(x1,x2),$\forall$y$\exists$zS(y,z)}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{S(x,z),S(x1,x2)$\vdash$$\exists$zS(x1,z),$\forall$y$\exists$zS(y,z)}
+\RightLabel{SCdx}
+\UnaryInfC{S(x,z),S(x1,x2)$\vdash$$\forall$y$\exists$zS(y,z),$\exists$zS(x1,z)}
+\RightLabel{$\exists$-S x2$\notin$VL}
+\UnaryInfC{S(x,z),$\exists$zS(x1,z)$\vdash$$\forall$y$\exists$zS(y,z),$\exists$zS(x1,z)}
+\RightLabel{$\to$-D}
+\UnaryInfC{S(x,z)$\vdash$$\exists$zS(x1,z)$\to$$\forall$y$\exists$zS(y,z),$\exists$zS(x1,z)}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{S(x,z)$\vdash$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z)),$\exists$zS(x1,z)}
+\RightLabel{Scdx}
+\UnaryInfC{S(x,z)$\vdash$$\exists$zS(x1,z),$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))}
+\RightLabel{$\exists$-S z$\notin$VL}
+\UnaryInfC{$\exists$zS(x,z)$\vdash$$\exists$zS(x1,z),$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))}
+\RightLabel{$\forall$-D x1$\notin$VL}
+\UnaryInfC{$\exists$zS(x,z)$\vdash$$\forall$y$\exists$zS(y,z),$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))}
+\RightLabel{$\to$-D}
+\UnaryInfC{$\vdash$$\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z),$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))}
+\RightLabel{$\exists$-D}
+\UnaryInfC{$\vdash$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))$\vdash$}
+\RightLabel{$\vee$-S}
+\BinaryInfC{$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))$\vee$($\neg$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))))$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$($\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))$\vee$($\neg$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))))}
+\end{prooftree}
+Grazie all'applicazione della regola $\vee$-D siamo riusciti a separare le due formule che compongono il sequente di partenza\newline
+Abbiamo dimostrato che $\neg$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z)) è un paradosso, in quanto in logica se la derivazione della negazione della formula è tautologia allora il sequente di partenza è paradosso\newline
+Il problema è $\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y)), il quale causa il risultato di opinione al sequente di partenza
+\section{Dimostrazione del perché è un problema}
+Innanzitutto, dato che abbiamo scoperto che la seconda parte del sequente di partenza è paradosso, procedo a derivare unicamente la prima parte col metodo "classico", ovvero considerando $\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))\newline
+Nelle parti successive verrà indicato come "sequente fr"
+\subsection{Derivazione di sequente fr}
+Derivo il sequente fr per dimostrare che è possibile costruire un contromodello
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{continua sotto}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$$\neg$$\exists$yS(y,x)$\to$$\forall$yS(x,y),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$$\forall$yS(x,y)$\to$$\neg$$\exists$yS(y,x),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{$\&$-D}
+\BinaryInfC{$\vdash$$\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{$\exists$-D}
+\UnaryInfC{$\vdash$$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\end{prooftree}
+Non si vede nel pdf, ma ho applicato la regola $\&$-D per arrivare alle due foglie\newline
+Continuo la derivazione della foglia di sinistra
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{loop}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$S(z,x),$\exists$yS(y,x),S(x,z),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{$\exists$-D}
+\UnaryInfC{$\vdash$$\exists$yS(y,x),S(x,z),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{SCdx}
+\UnaryInfC{$\vdash$S(x,z),$\exists$yS(y,x),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{$\forall$-D z$\notin$VL}
+\UnaryInfC{$\vdash$$\forall$yS(x,y),$\exists$yS(y,x),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{SCdx}
+\UnaryInfC{$\vdash$$\exists$yS(y,x),$\forall$yS(x,y),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$$\exists$yS(y,x)$\vdash$$\forall$yS(x,y),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\RightLabel{$\to$-D}
+\UnaryInfC{$\vdash$$\neg$$\exists$yS(y,x)$\to$$\forall$yS(x,y),$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))}
+\end{prooftree}
+Ho trovato un loop perché, indipendetemente da quante volte applico la regola dell'$\exists$-D sulla formula, nel ramo di sinistra sviluppato dopo l'applicazione della regola $\&$-D non si dimostra niente in quanto tutte le formule (fr1, fr2,...,fri) sono a destra del sequente e non è possibile dimostrare il $tt$ non avendo neanche a nostra disposizione dei predicati con la negazione\newline
+Quindi trovo un contromodello\newline
+D=\{Minni, Topolino\}\newline
+(S(z,x))$^{D}$(Minni,Topolino)=0\newline
+(S(x,z))$^{D}$(Topolino,Minni)=0\newline
+Questo contromodello risulta falso nel sequente di partenza $tt$$\vdash$$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y)) perché: \newline
+$\exists$yS(y,x)$^{D}$=0  per ogni d $\in$ D in quanto né Minni scrive a Topolino né Topolino scrive a Minni\newline
+quindi $\neg$$\exists$yS(y,x)$^{D}$=1 per ogni d $\in$ D\newline
+inoltre $\forall$yS(x,y)$^{D}$=0 per ogni d $\in$ D perché basta che uno degli due elementi del dominio non scriva all'altro, e in questo caso non si scrivono a vicenda\newline
+Quindi questo contro contromodello è valido perché:\newline
+$tt$$\vdash$$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))=\newline
+$tt$$\vdash$$\exists$x(1$\leftrightarrow$0)=\newline
+$tt$$\vdash$$\exists$x(0)=\newline
+$tt$$\vdash$0=0 per definizione di implica\newline
+Ora che abbiamo trovato un contromodello, posso dimostrare che è opinione tramite la derivazione della negazione del sequente fr
+\section{Derivazione negazione}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$$\exists$yS(y,w)$\to$$\forall$yS(w,y)$\vdash$$\forall$yS(w,y)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$$\exists$yS(y,w)$\to$$\forall$yS(w,y),$\neg$$\exists$yS(y,w)$\vdash$}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\neg$$\exists$yS(y,w)$\to$$\forall$yS(w,y),$\forall$yS(w,y)$\to$$\neg$$\exists$yS(y,w)$\vdash$}
+\RightLabel{$\&$-S}
+\UnaryInfC{$\neg$$\exists$yS(y,w)$\leftrightarrow$$\forall$yS(w,y)$\vdash$}
+\RightLabel{$\exists$-S w$\notin$VL}
+\UnaryInfC{$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$($\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y)))}
+\end{prooftree}
+\subsection{Derivazione foglia destra: $\neg$$\exists$yS(y,w)$\to$$\forall$yS(w,y),$\neg$$\exists$yS(y,w)$\vdash$}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{S(x,w)$\vdash$S(x,w)}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{S(x,w)$\vdash$$\exists$yS(y,w)}
+\RightLabel{$\exists$-Sx$\notin$VL}
+\UnaryInfC{$\exists$yS(y,w)$\vdash$$\exists$yS(y,w)}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$$\exists$yS(y,w),$\exists$yS(y,w)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{S(w,w)$\vdash$S(w,w)}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{S(w,w)$\vdash$$\exists$yS(y,w)}
+\RightLabel{$\forall$-SV}
+\UnaryInfC{$\forall$yS(w,y)$\vdash$$\exists$yS(y,w)}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\neg$$\exists$yS(y,w)$\to$$\forall$yS(w,y)$\vdash$$\exists$yS(y,w)}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\neg$$\exists$yS(y,w)$\to$$\forall$yS(w,y),$\neg$$\exists$yS(y,w)$\vdash$}
+\end{prooftree}
+La derivazione di questa foglia non causa problemi; deriviamo l'altra
+\subsection{Derivazione foglia sinistra: $\neg$$\exists$yS(y,w)$\to$$\forall$yS(w,y)$\vdash$$\forall$yS(w,y)}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{problema}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{S(x,w)$\vdash$S(w,z)}
+\RightLabel{$\exists$-Sx$\notin$VL}
+\UnaryInfC{$\exists$yS(y,w)$\vdash$S(w,z)}
+\RightLabel{$\forall$-D z$\notin$VL}
+\UnaryInfC{$\exists$yS(y,w)$\vdash$$\forall$yS(w,y)}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$$\exists$yS(y,w),$\forall$yS(w,y)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{S(w,z)$\vdash$S(w,z)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$yS(w,y)$\vdash$S(w,z)}
+\RightLabel{$\forall$-D z$\notin$VL}
+\UnaryInfC{$\forall$yS(w,y)$\vdash$$\forall$yS(w,y)}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\neg$$\exists$yS(y,w)$\to$$\forall$yS(w,y)$\vdash$$\forall$yS(w,y)}
+\end{prooftree}
+Una foglia non si può dimostrare, dimostro un contromodello\newline
+D=\{Minni,Topolino\}\newline
+(S(x,w))$^{D}$(Minni,Topolino)=1\newline
+(S(w,z))$^{D}$(Topolino,Minni)=0\newline
+Questo contromodello risulta falso nel sequente fr perché: \newline
+$\exists$yS(y,x)$^{D}$=1  perché è verificato nel contromodello il fatto che Minni scrive a Topolino\newline
+Quindi $\neg$$\exists$yS(y,x)$^{D}$=0\newline
+Inoltre $\forall$yS(x,y)$^{D}$=0 perché non tutti gli elementi del dominio scrivono all'altro, come nel caso di Topolino che $non$ scrive a Minni\newline
+Quindi questo contro contromodello è valido perché:\newline
+$tt$$\vdash$$\neg$($\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y)))=\newline
+$tt$$\vdash$$\neg$($\exists$x(0$\leftrightarrow$0))=\newline
+$tt$$\vdash$$\neg$($\exists$x(1))=\newline
+$tt$$\vdash$$\neg$(1)=\newline
+$tt$$\vdash$0=0 per definizione di implica\newline
+\subsection{Conclusione}
+Avendo trovato un contromodello sia per il sequente fr sia per la sua derivazione 'classica' che per la sua negazione, si può affermare che il sequente fr è opinione\newline
+Essendo il sequente fr opinione anche il sequente di partenza\newline
+$\vdash$$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))$\vee$($\neg$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z))) lo è
+\end{document}

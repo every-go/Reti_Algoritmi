@@ -1,0 +1,1520 @@
+\documentclass[12pt,oneside,a4paper]{article}
+\usepackage{bussproofs}
+\pagenumbering{arabic}
+\title{Correzione simulazione appello}
+\author{Matteo Mazzaretto}
+\date{18 dicembre 2023}
+\begin{document}
+\maketitle
+\section{Esercizio 1}
+Mostrare se i sequenti elencati sotto sono tautologie, opinioni o paradossi in logica classica con
+uguaglianza motivando la risposta: nel caso di sequente proposizionale non valido si indichi la riga
+della tabella di verità in cui il sequente è falso e nel caso di sequente predicativo non valido si
+mostri un contromodello (nel caso di non validità si assegna il doppio dei punti indicati)
+\subsection{(3 punti): $\neg$$\neg$(C$\vee$A)$\vdash$$\neg$C$\&$A}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{C,C$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{C$\vdash$$\neg$C}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{A,C$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{A$\vdash$$\neg$C}
+\RightLabel{$\vee$-S}
+\BinaryInfC{C$\vee$A$\vdash$$\neg$C}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\vdash$$\neg$(C$\vee$A),$\neg$C}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$$\neg$(C$\vee$A)$\vdash$$\neg$C}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{riga falsaria}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{C$\vdash$A}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A$\vdash$A}
+\BinaryInfC{C$\vee$A$\vdash$A}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\vdash$$\neg$(C$\vee$A),A}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$$\neg$(C$\vee$A)$\vdash$A}
+\RightLabel{$\&$-D}
+\BinaryInfC{$\neg$$\neg$(C$\vee$A)$\vdash$$\neg$C$\&$A}
+\end{prooftree}
+Il sequente di partenza è falso nella riga falsaria con C=1,A=0\newline
+Derivo la negazione del sequente per capire se è opinione o paradosso
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$C,A}
+\RightLabel{$\vee$-D}
+\UnaryInfC{$\vdash$C$\vee$A}
+\RightLabel{$\neg$$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$$\neg$(C$\vee$A)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{riga falsaria}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A$\vdash$C}
+\RightLabel{$\neg$-S}
+\UnaryInfC{A,$\neg$C$\vdash$}
+\RightLabel{Scsx}
+\UnaryInfC{$\neg$C,A$\vdash$}
+\RightLabel{$\&$-S}
+\UnaryInfC{$\neg$C$\&$A$\vdash$}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\neg$$\neg$(C$\vee$A)$\to$$\neg$C$\&$A$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$($\neg$$\neg$(C$\vee$A)$\to$$\neg$C$\&$A)}
+\end{prooftree}
+La negazione del sequente è falso nella riga falsaria A=1, C=0\newline
+Conclusione: il sequente di partenza è opinione, falso nella riga falsaria del sequente di partenza C=1, A=0, vero nella riga falsaria della negazione A=1, C=0
+\subsection{(++) (6 punti): $\vdash$$\forall$y y$\Relbar$b $\&$ $\neg$$\neg$$\exists$x x$\neq$a}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$y$\Relbar$b}
+\RightLabel{$\forall$-D y$\notin$VL}
+\UnaryInfC{$\vdash$$\forall$y y$\Relbar$b}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$$\neg$$\neg$$\exists$x x$\neq$a}
+\RightLabel{$\&$-D}
+\BinaryInfC{$\vdash$$\forall$y y$\Relbar$b $\&$ $\neg$$\neg$$\exists$x x$\neq$a}
+\end{prooftree}
+Dcontra=\{Topolino\}\newline
+(Ipotizzando Topolino$\neq$b)\newline
+(y=b)$^{Dcontra}$(Topolino)=0\newline
+E quindi (tt$\vdash$$\forall$y y$\Relbar$b $\&$ $\neg$$\neg$$\exists$x x$\neq$a)$^{Dcontra}$=0\newline
+Perché ($\forall$y y$\Relbar$b)$^{Dcontra}$(Topolino)=0\newline
+$\neg$$\neg$$\exists$x x$\neq$a)$^{Dcontra}(Topolino)$=????\newline
+tt$\vdash$0$\&$???=tt$\vdash$0=0\newline
+Avendo trovato un contromodello, posso derivare la negazione
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{a$\Relbar$b,x$\Relbar$a$\vdash$x$\Relbar$a}
+\RightLabel{$\Relbar$-S}
+\UnaryInfC{x$\Relbar$b,a$\Relbar$b$\vdash$x$\Relbar$a}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{x$\Relbar$b,$\forall$yy$\Relbar$b$\vdash$x$\Relbar$a}
+\RightLabel{Scsx}
+\UnaryInfC{$\forall$yy$\Relbar$b,x$\Relbar$b$\vdash$x$\Relbar$a}
+\RightLabel{$\forall$-S}
+\UnaryInfC{$\forall$yy$\Relbar$b$\vdash$x$\Relbar$a}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\forall$yy$\Relbar$b,x$\neq$a$\vdash$}
+\RightLabel{$\exists$-Sx$\notin$VL}
+\UnaryInfC{$\forall$yy$\Relbar$b,$\exists$xx$\neq$a$\vdash$}
+\RightLabel{$\neg$$\neg$-S}
+\UnaryInfC{$\forall$yy$\Relbar$b,$\neg$$\neg$$\exists$xx$\neq$a$\vdash$}
+\RightLabel{$\&$-S}
+\UnaryInfC{$\forall$yy$\Relbar$b$\&$$\neg$$\neg$$\exists$xx$\neq$a$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$($\forall$yy$\Relbar$b$\&$$\neg$$\neg$$\exists$xx$\neq$a)}
+\end{prooftree}
+Conclusione: la negazione del sequente di partenza è derivabile, quindi il sequente di partenza è paradosso
+\subsection{(5 punti): $\neg$B(w), $\neg$$\forall$z B(z) $\vdash$ $\exists$y $\neg$B(y)}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx2}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$$\neg$B(w),B(w),B(x)}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{$\vdash$$\exists$y$\neg$B(y),B(w),B(x)}
+\RightLabel{Scdx}
+\UnaryInfC{$\vdash$B(w),B(x),$\exists$y$\neg$B(y)}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$B(w)$\vdash$B(x),$\exists$y$\neg$B(y)}
+\RightLabel{$\forall$-D x$\notin$VL}
+\UnaryInfC{$\neg$B(w)$\vdash$$\forall$zB(z),$\exists$y$\neg$B(y)}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$B(w),$\neg$$\forall$zB(z)$\vdash$$\exists$y$\neg$B(y)}
+\end{prooftree}
+Conclusione: il sequente di partenza è derivabile quindi è tautologia
+\section{Esercizio 2}
+Formalizzare le seguenti asserzioni e stabilire se i sequenti ottenuti sono tautologie, opinioni o paradossi nella logica classica con uguaglianza motivando la risposta: nel caso di sequente predicativo non valido si mostri un contromodello (nel caso di non validità si assegna il doppio dei punti indicati)
+\subsection{6 punti}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{Chi ama è felice}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{Tutti quelli che non amano sono infelici}
+\RightLabel{\(\)}
+\UnaryInfC{Ognuno o è felice o non ama}
+\end{prooftree}
+Si consiglia di usare\newline
+A(y) =“y ama” \newline
+F(x) = “x è felice”
+\setlength{\parindent}{0pt}\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$A(z),$\neg$A(z),F(z),$\neg$A(z)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{F(z)$\vdash$$\neg$A(z),F(z),$\neg$A(z)}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(z)$\to$F(z)$\vdash$$\neg$A(z),F(z),$\neg$A(z)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$x(A(x)$\to$F(x))$\vdash$$\neg$A(z),F(z),$\neg$A(z)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{(continua sotto)}
+\RightLabel{\(\)}
+\UnaryInfC{$\forall$x(A(x)$\to$F(x)),$\neg$F(z)$\vdash$F(z),$\neg$A(z)}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\forall$x(A(x)$\to$F(x)),$\neg$A(z)$\to$$\neg$F(z)$\vdash$F(z),$\neg$A(z)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$x(A(x)$\to$F(x)),$\forall$y($\neg$A(y)$\to$$\neg$F(y))$\vdash$F(z),$\neg$A(z)}
+\RightLabel{$\vee$-D}
+\UnaryInfC{$\forall$x(A(x)$\to$F(x)),$\forall$y($\neg$A(y)$\to$$\neg$F(y))$\vdash$F(z)$\vee$$\neg$A(z)}
+\RightLabel{$\forall$-D z $\notin$VL}
+\UnaryInfC{$\forall$x(A(x)$\to$F(x)),$\forall$y($\neg$A(y)$\to$$\neg$F(y))$\vdash$$\forall$z(F(z)$\vee$$\neg$A(z)))}
+\end{prooftree}
+Continuazione di $\forall$x(A(x)$\to$F(x)),$\neg$F(z)$\vdash$F(z),$\neg$A(z)
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\neg$F(z)$\vdash$A(z),F(z),$\neg$A(z)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\neg$F(z),F(z)$\vdash$F(z),$\neg$A(z)}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\neg$F(z),A(z)$\to$F(z)$\vdash$F(z),$\neg$A(z)}
+\RightLabel{Scsx}
+\UnaryInfC{A(z)$\to$F(z),$\neg$F(z)$\vdash$F(z),$\neg$A(z)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$x(A(x)$\to$F(x)),$\neg$F(z)$\vdash$F(z),$\neg$A(z)}
+\end{prooftree}
+Conclusione: il sequente di partenza è tautologia
+\subsection{6 punti}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{Qualcuno cerca e trova}
+\RightLabel{\(\)}
+\UnaryInfC{Qualcuno non trova ma neanche cerca}
+\end{prooftree}
+Si consiglia di usare:\newline
+C(y) =“y cerca”\newline
+T(x) = “x trova”\newline
+Traduzione:
+\begin{center}$\exists$x(C(x)$\&$T(x))$\vdash$$\exists$z($\neg$C(z)$\&$$\neg$T(z))\end{center}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine{}
+\AxiomC{}
+\UnaryInfC{loop}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{C(w),T(w),C(w)$\vdash$$\exists$z($\neg$C(z)$\&$$\neg$T(z))}
+\RightLabel{$\neg$D}
+\UnaryInfC{C(w),T(w)$\vdash$$\neg$C(w),$\exists$z($\neg$C(z)$\&$$\neg$T(z))}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{loop}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{C(w),T(w),T(w)$\vdash$$\exists$z($\neg$C(z)$\&$$\neg$T(z))}
+\RightLabel{$\neg$-D}
+\UnaryInfC{C(w),T(w)$\vdash$$\neg$T(w),$\exists$z($\neg$C(z)$\&$$\neg$T(z))}
+\RightLabel{$\&$-D}
+\BinaryInfC{C(w),T(w)$\vdash$$\neg$C(w)$\&$$\neg$T(w),$\exists$z($\neg$C(z)$\&$$\neg$T(z))}
+\RightLabel{$\exists$-D}
+\UnaryInfC{C(w),T(w)$\vdash$$\exists$z($\neg$C(z)$\&$$\neg$T(z))}
+\RightLabel{$\&$-S}
+\UnaryInfC{C(w)$\&$T(w)$\vdash$$\exists$z($\neg$C(z)$\&$$\neg$T(z))}
+\RightLabel{$\exists$-S w$\notin$VL}
+\UnaryInfC{$\exists$x(C(x)$\&$T(x))$\vdash$$\exists$z($\neg$C(z)$\&$$\neg$T(z))}
+\end{prooftree}
+Dato che abbiamo trovato un loop, bisogna trovare un contromodello\newline
+$D_{contra}$=\{Minni\} \newline
+$C(w)^{Dcontra}$(Minni)=1\newline
+$T(w)^{Dcontra}$(Minni)=1\newline
+($\exists$z($\neg$C(z)$\&$$\neg$T(z)))$^{Dcontra}$=0\newline
+vero perché ($\neg$T(z))(Minni)=0\newline
+($\exists$x(C(x)$\&$T(x)))$^{Dcontra}$=1\newline
+perché (C(x)$\&$T(x))$^{Dcontra}$(Minni)=1\newline
+Il sequente radice non vale in tale modello perché \newline
+$\exists$x(C(x)$\&$T(x))$\vdash$$\exists$z($\neg$C(z)$\&$$\neg$T(z)) = 1$\vdash$0=0 \newline
+Provo a negare il sequente radice: \newline
+$\vdash$$\neg$($\exists$x(C(x)$\&$T(x))$\to$$\exists$z($\neg$C(z)$\&$$\neg$T(z)))
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{loop}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$C(w),$\exists$x(C(x)$\&$T(x))}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{loop}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$T(w),$\exists$x(C(x)$\&$T(x))}
+\RightLabel{$\&$-D}
+\BinaryInfC{$\vdash$C(w)$\&$T(w),$\exists$x(C(x)$\&$T(x))}
+\RightLabel{$\exists$-D}
+\UnaryInfC{$\vdash$$\exists$x(C(x)$\&$T(x))}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$C(w),T(w)}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$C(w)$\vdash$T(w)}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$C(w),$\neg$T(w)$\vdash$}
+\RightLabel{$\&$-S}
+\UnaryInfC{$\neg$C(w)$\&$$\neg$T(w)$\vdash$}
+\RightLabel{$\exists$-S w$\notin$VL}
+\UnaryInfC{$\exists$z($\neg$C(z)$\&$$\neg$T(z))$\vdash$}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\exists$x(C(x)$\&$T(x))$\to$$\exists$z($\neg$C(z)$\&$$\neg$T(z))$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$($\exists$x(C(x)$\&$T(x))$\to$$\exists$z($\neg$C(z)$\&$$\neg$T(z)))}
+\end{prooftree}
+$D_{contraneg}$=\{Minni\} \newline
+(T(w))$^{Dcontraneg}$ a piacere\newline
+(C(w))$^{Dcontraneg}$(Minni)=0\newline
+È un contromodello perché\newline
+($\exists$x(C(x)$\&$T(x)))$^{Dcontraneg}$=0\newline
+($\exists$z($\neg$C(z)$\&$$\neg$T(z)))$^{Dcontraneg}$=??\newline
+$\neg$(0$\to$??)=$\neg$1=0\newline
+Conclusione: il sequente di partenza è opinione con modello il contromodello della negazione e contromodello il contromodello del sequente di partenza
+\subsection{(++) (22 punti)}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{Charlotte è l'unica studentessa straniera}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{Giulia è diversa da Charlotte}
+\RightLabel{\(\)}
+\UnaryInfC{Giulia non è una studentessa straniera}
+\end{prooftree}
+Si consiglia di usare:\newline
+S(x)= x è una studentessa straniera\newline
+c=Charlotte, g=Giulia
+\begin{prooftree}
+\noLine
+\RightLabel{\(\)}
+\AxiomC{}
+\noLine
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{S(c),S(g)$\vdash$S(g),g$\Relbar$c}
+\noLine
+\RightLabel{\(\)}
+\AxiomC{}
+\UnaryInfC{ax-id}
+\noLine
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{S(c),S(g),g$\Relbar$c$\vdash$g$\Relbar$c}
+\RightLabel{$\to$-S}
+\BinaryInfC{S(c),S(g),S(g)$\to$g$\Relbar$c$\vdash$g$\Relbar$c}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{S(c),S(g),$\forall$x(S(x)$\to$x=c)$\vdash$g$\Relbar$c}
+\RightLabel{SCsx}
+\UnaryInfC{S(c),$\forall$x(S(x)$\to$x=c),S(g)$\vdash$g$\Relbar$c}
+\RightLabel{$\neg$-D}
+\UnaryInfC{S(c),$\forall$x(S(x)$\to$x=c)$\vdash$$\neg$S(g),g$\Relbar$c}
+\RightLabel{SCdx}
+\UnaryInfC{S(c),$\forall$x(S(x)$\to$x=c)$\vdash$g$\Relbar$c,$\neg$S(g)}
+\RightLabel{$\&$-S}
+\UnaryInfC{S(c)$\&$$\forall$x(S(x)$\to$x=c)$\vdash$g$\Relbar$c,$\neg$S(g)}
+\RightLabel{$\neg$-S}
+\UnaryInfC{S(c)$\&$$\forall$x(S(x)$\to$x=c),g$\neq$c$\vdash$$\neg$S(g)}
+\end{prooftree}
+Conclusione: il sequente di partenza è tautologia
+\subsection{(++) (20 punti)}
+\begin{center}{\bf Attenzione: esercizio da non guardare perché non si capisce bene se fosse opinione o paradosso, in quanto la prof diceva che venisse paradosso ma a me ed altri ragazzi veniva opinione, quindi non metto la correzione venendo risultati diversi ma lascio la traduzione}\end{center}
+"Esiste uno a cui nessuno scrive se e solo se lui scrive a tutti oppure non esiste uno che, se
+lui scrive a qualcuno tutti scrivono a qualcuno.”\newline
+Si consiglia di usare:\newline
+S(x, y)=x scrive a y\newline
+La traduzione è:
+\begin{center}$\vdash$$\exists$x($\neg$$\exists$yS(y,x)$\leftrightarrow$$\forall$yS(x,y))$\vee$($\neg$$\exists$x($\exists$zS(x,z)$\to$$\forall$y$\exists$zS(y,z)))\end{center}
+\section{Teoria 1}
+(32 punti) Sia Tmon la teoria ottenuta estendendo LC= con la formalizzazione dei seguenti assiomi:\newline
+1. Valerio non va in montagna se nevica.\newline
+2. Nevica se Reinhold non va in montagna.\newline
+3. Valerio non va in montagna solo se neanche Reinhold va in montagna.\newline
+4. Nevica se e solo se, o Valerio non va in montagna o Reinhold non ci va.\newline
+5. Se c'è uno che va in montagna, Reinhold non ci va e tutti vanno in montagna.\newline
+6. Solo se Reinhold va in montagna, nevica.\newline
+Si consiglia di usare:\newline
+M(x)= x va in montagna\newline
+N= Nevica\newline
+v=Valerio r=Reinhold\newline
+Formalizzare le seguenti affermazioni e dedurne la validità in Tmon:\newline
+- (4 punti) Reinhold non va in montagna solo se, o nevica oppure non nevica.\newline
+- (6 punti) Reinhold va in montagna.\newline
+- (5 punti) Valerio va in montagna.\newline
+- (5 punti ) Non nevica.\newline
+- (5 punti) Non nevica e almeno uno non va in montagna.
+\subsection{Traduzione assiomi}
+Ax1: N$\to$$\neg$M(v)\newline
+Ax2: $\neg$M(r)$\to$N\newline
+Ax3: $\neg$M(v)$\to$$\neg$M(r)\newline
+Ax4: N$\leftrightarrow$$\neg$M(v)$\vee$$\neg$M(r)\newline
+Ax5: $\exists$xM(x)$\to$($\neg$M(r)$\&$$\forall$xM(x))\newline
+Ax6: N$\to$M(r)
+\subsection{Traduzione teoremi}
+Th1: $\neg$M(r)$\to$N$\vee$$\neg$N\newline
+Th2: M(r)\newline
+Th3: M(v)\newline
+Th4: $\neg$N\newline
+Th5: $\neg$N$\&$$\exists$x$\neg$M(x)
+\subsection{Dimostrazione teoremi}
+\subsubsection{Dimostrazione teorema 1}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax1}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{N$\to$$\neg$M(v),$\neg$M(v)$\vdash$N,$\neg$N}
+\RightLabel{$\vee$-D}
+\UnaryInfC{N$\to$$\neg$M(v),$\neg$M(v)$\vdash$N$\vee$$\neg$N}
+\RightLabel{$\to$-D}
+\UnaryInfC{N$\to$$\neg$M(v)$\vdash$$\neg$M(v)$\to$N$\vee$$\neg$N}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$M(r)$\to$N$\vee$$\neg$N}
+\end{prooftree}
+Teorema 1 dimostrato
+\subsubsection{Dimostrazione teorema 2}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax6}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax2}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx2}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$$\neg$M(r),N,M(r)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{N$\vdash$N,M(r)}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\neg$M(r)$\to$N$\vdash$N,M(r)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$N,M(r)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M(r)$\vdash$M(r)}
+\RightLabel{$\to$-S}
+\BinaryInfC{N$\to$M(r)$\vdash$M(r)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$M(r)}
+\end{prooftree}
+Teorema 2 dimostrato
+\subsubsection{Dimostrazione teorema 3}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$Th2,ax3}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx2}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M(r)$\vdash$$\neg$M(v),M(v)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M(r),$\neg$M(r)$\vdash$M(v)}
+\RightLabel{$\to$-S}
+\BinaryInfC{M(r),$\neg$M(v)$\to$$\neg$M(r)$\vdash$M(v)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$M(v)}
+\end{prooftree}
+Teorema 3 dimostrato
+\subsubsection{Dimostrazione teorema 4}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax1}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$N,$\neg$N}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$th3}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M(v),$\neg$M(v)$\vdash$$\neg$N}
+\RightLabel{comp}
+\BinaryInfC{$\neg$M(v)$\vdash$$\neg$N}
+\RightLabel{$\to$-S}
+\BinaryInfC{N$\to$$\neg$M(v)$\vdash$$\neg$N}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$N}
+\end{prooftree}
+Teorema 4 dimostrato
+\subsubsection{Dimostrazione teorema 5}
+\begin{prooftree}
+\noLine
+\RightLabel{\(\)}
+\AxiomC{}
+\UnaryInfC{$\vdash$ax5}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$th4}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\neg$N$\vdash$$\neg$N,$\exists$xM(x)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$N,$\exists$xM(x)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M(z)$\vdash$M(z)}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{M(z)$\vdash$$\exists$xM(x)}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\vdash$$\neg$M(z),$\exists$xM(x)}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{$\vdash$$\exists$x$\neg$M(x),$\exists$xM(x)}
+\RightLabel{$\&$-D}
+\BinaryInfC{$\vdash$$\neg$N$\&$$\exists$x$\neg$M(x),$\exists$xM(x)}
+\RightLabel{Scdx}
+\UnaryInfC{$\vdash$$\exists$xM(x),$\neg$N$\&$$\exists$x$\neg$M(x)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{Sviluppo sotto}
+\RightLabel{$\to$-S}
+\BinaryInfC{$\exists$xM(x)$\to$($\neg$M(r)$\&$$\forall$xM(x))$\vdash$$\neg$N$\&$$\exists$x$\neg$M(x)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$N$\&$$\exists$x$\neg$M(x)}
+\end{prooftree}
+Continuo sviluppo foglia di destra a seguito di $\to$-S\newline
+Da sviluppare $\neg$M(r)$\&$$\forall$xM(x)$\vdash$$\neg$N$\&$$\exists$x$\neg$M(x)
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx2}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\neg$M(r),M(r)$\vdash$$\neg$N$\&$$\exists$x$\neg$M(x)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\neg$M(r),$\forall$xM(x)$\vdash$$\neg$N$\&$$\exists$x$\neg$M(x)}
+\RightLabel{$\&$-S}
+\UnaryInfC{$\neg$M(r)$\&$$\forall$xM(x)$\vdash$$\neg$N$\&$$\exists$x$\neg$M(x)}
+\end{prooftree}
+Teorema 5 dimostrato
+\section{Teoria 2}
+ (++ 60 punti) Sia Tamm la teoria ottenuta estendendo LC= con la formalizzazione dei seguenti
+assiomi:\newline
+- (1 punto) Beatrice non è Rosa.\newline
+- (3 punti) Uno ammira un altro qualsiasi se e solo se quest’altro non ammira il primo.\newline
+- (2 punti) Non si dà il caso che qualcuno non ammiri Ester.\newline
+- (2 punti) Gino è ammirato da tutti.\newline
+- (3 punti) Non si dà il caso che qualcuno non ammiri sé stesso.\newline
+- (3 punti) Beatrice ammira Rosa e soltanto lei.\newline
+Si consiglia di usare:\newline
+A(x, y)= x ammira y\newline
+g=“Gino” r=“Rosa” b=“Beatrice” e=“Ester”\newline
+Dopo aver formalizzato le frase seguenti mostrarne una derivazione nella teoria in Tamm:\newline
+- (5 punti) Rosa ammira Ester.\newline
+- (5 punti) Rosa non si ammira.\newline
+- (12 punti) Beatrice non si ammira e non si dà il caso che non esista nessuno diverso da Rosa.\newline
+- (12 punti) Ester non ammira Rosa.\newline
+- (12 punti) Gino non ammira nessuno.
+\subsection{Traduzione assiomi}
+Ax1: b$\neq$r\newline
+Ax2: $\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))\newline
+Ax3: $\neg$$\exists$x$\neg$A(x,e)\newline
+Ax4: $\forall$y A(y,g)\newline
+Ax5: $\neg$$\exists$x$\neg$A(x,x)\newline
+Ax6: A(b,r)$\&$$\forall$y(A(b,y)$\to$y$\Relbar$r)
+\subsection{Traduzione teoremi}
+Th1: A(r,e) \newline
+Th2: $\neg$A(r,r)\newline
+Th3: $\neg$A(b,b)$\&$ $\neg$$\neg$$\exists$x x$\neq$r \newline
+Th4: $\neg$A(e,r)\newline
+Th5: $\neg$$\exists$xA(g,x)
+\subsection{Dimostrazione teoremi}
+\subsubsection{Dimostrazione teorema 1}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax3}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx2}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$$\neg$A(x,e),A(r,e)}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{$\vdash$$\exists$x$\neg$A(x,e),A(r,e)}
+\RightLabel{$\neg$-S}
+\UnaryInfC{$\neg$$\exists$x$\neg$A(x,e)$\vdash$A(r,e)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$A(r,e)}
+\end{prooftree}
+Teorema 1 dimostrato
+\subsubsection{Dimostrazione teorema 2}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax2}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$A(r,r),$\neg$A(r,r),$\neg$A(r,r)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\neg$A(r,r)$\vdash$$\neg$A(r,r),$\neg$A(r,r)}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(r,r)$\to$$\neg$A(r,r)$\vdash$$\neg$A(r,r),$\neg$A(r,r)}
+\noLine
+\AxiomC{}
+\RightLabel{}
+\UnaryInfC{continua sotto}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(r,r)$\to$$\neg$A(r,r),$\neg$A(r,r)$\to$A(r,r)$\vdash$$\neg$A(r,r)}
+\RightLabel{$\&$-S}
+\UnaryInfC{(A(r,r)$\leftrightarrow$$\neg$A(y,r))$\vdash$$\neg$A(r,r)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$y(A(r,y)$\leftrightarrow$$\neg$A(y,r))$\vdash$$\neg$A(r,r)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\neg$A(r,r)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$A(r,r)}
+\end{prooftree}
+Continuazione della foglia destra dell'implica a sinistra\newline
+A(r,r)$\to$$\neg$A(r,r),A(r,r)$\vdash$$\neg$A(r,r)
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(r,r)$\vdash$A(r,r),$\neg$A(r,r)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(r,r),$\neg$A(r,r)$\vdash$$\neg$A(r,r)}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(r,r),A(r,r)$\to$$\neg$A(r,r)$\vdash$$\neg$A(r,r)}
+\RightLabel{Scsx}
+\UnaryInfC{A(r,r)$\to$$\neg$A(r,r),A(r,r)$\vdash$$\neg$A(r,r)}
+\end{prooftree}
+Teorema 2 dimostrato
+\subsubsection{Dimostrazione teorema 3}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax2}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\neg$A(b,b)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\neg$$\neg$$\exists$xx$\neq$r}
+\RightLabel{$\&$-D}
+\BinaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\neg$A(b,b)$\&$$\neg$$\neg$$\exists$xx$\neq$r}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$A(b,b)$\&$$\neg$$\neg$$\exists$xx$\neq$r}
+\end{prooftree}
+Derivo separatamente le due foglie ottenute dopo l'applicazione della regola $\&$-D\newline
+Faccio prima $\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\neg$A(b,b)
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$A(b,b),$\neg$A(b,b),$\neg$A(b,b)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\neg$A(b,b)$\vdash$$\neg$A(b,b),$\neg$A(b,b)}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,b)$\to$$\neg$A(b,b)$\vdash$$\neg$A(b,b),$\neg$A(b,b)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{continua sotto}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,b)$\to$$\neg$A(b,b),$\neg$A(b,b)$\to$A(b,b)$\vdash$$\neg$A(b,b)}
+\RightLabel{$\&$-S}
+\UnaryInfC{A(b,b)$\leftrightarrow$$\neg$A(b,b)$\vdash$$\neg$A(b,b)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$y(A(b,y)$\leftrightarrow$$\neg$A(y,b))$\vdash$$\neg$A(b,b)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\neg$A(b,b)}
+\end{prooftree}
+Continuo la foglia di destra dopo l'implica a sinistra:\newline
+A(b,b)$\to$$\neg$A(b,b),A(b,b)$\vdash$$\neg$A(b,b)
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,b)$\vdash$A(b,b)$\neg$A(b,b)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,b),$\neg$A(b,b)$\vdash$$\neg$A(b,b)}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,b),A(b,b)$\to$$\neg$A(b,b)$\vdash$$\neg$A(b,b)}
+\RightLabel{Scsx}
+\UnaryInfC{A(b,b)$\to$$\neg$A(b,b),A(b,b)$\vdash$$\neg$A(b,b)}
+\end{prooftree}
+Adesso derivo la foglia di destra dopo l'applicazione della regola $\&$-D\newline
+$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\neg$$\neg$$\exists$xx$\neq$r
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$A(b,b),$\neg$A(b,b),$\exists$xx$\neq$r}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\neg$A(b,b)$\vdash$$\neg$A(b,b),$\exists$xx$\neq$r}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,b)$\to$$\neg$A(b,b)$\vdash$$\neg$A(b,b),$\exists$xx$\neq$r}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{continua sotto}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,b)$\to$$\neg$A(b,b),$\neg$A(b,b)$\to$A(b,b)$\vdash$$\exists$xx$\neq$r}
+\RightLabel{$\&$-S}
+\UnaryInfC{A(b,b)$\leftrightarrow$$\neg$A(b,b)$\vdash$$\exists$xx$\neq$r}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$y(A(b,y)$\leftrightarrow$$\neg$A(y,b))$\vdash$$\exists$xx$\neq$r}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\exists$xx$\neq$r}
+\RightLabel{$\neg$$\neg$-D}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\neg$$\neg$$\exists$xx$\neq$r}
+\end{prooftree}
+Continuo la derivazione dell'altra foglia\newline
+A(b,b)$\to$$\neg$A(b,b),A(b,b)$\vdash$$\exists$xx$\neq$r
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,b)$\vdash$A(b,b),$\exists$xx$\neq$r}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,b),$\neg$A(b,b)$\vdash$$\exists$xx$\neq$r}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,b),A(b,b)$\to$$\neg$A(b,b)$\vdash$$\exists$xx$\neq$r}
+\RightLabel{Scsx}
+\UnaryInfC{A(b,b)$\to$$\neg$A(b,b),A(b,b)$\vdash$$\exists$xx$\neq$r}
+\end{prooftree}
+Teorema 3 dimostrato
+\subsubsection{Dimostrazione teorema 4}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax6}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,r)$\vdash$A(b,r),$\neg$A(e,r)}
+\AxiomC{}
+\noLine
+\UnaryInfC{$\vdash$ax2}
+\noLine
+\AxiomC{}
+\UnaryInfC{continua sotto}
+\noLine
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x)),A(b,r),r$\Relbar$r,A(e,r)$\vdash$}
+\RightLabel{comp}
+\BinaryInfC{A(b,r),r$\Relbar$r,A(e,r)$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{A(b,r),r$\Relbar$r$\vdash$$\neg$A(e,r)}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,r),A(b,r)$\to$r$\Relbar$r$\vdash$$\neg$A(e,r)}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{A(b,r),$\forall$y(A(b,y)$\to$y$\Relbar$r)$\vdash$$\neg$A(e,r)}
+\RightLabel{$\&$-S}
+\UnaryInfC{A(b,r)$\&$$\forall$y(A(b,y)$\to$y$\Relbar$r)$\vdash$$\neg$A(e,r)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$A(e,r)}
+\end{prooftree}
+Continuazione di $\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x)),A(b,r),r$\Relbar$r,A(e,r)$\vdash$
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{continua sotto}
+\RightLabel{$\to$-S}
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r),A(r,r)$\to$$\neg$A(r,r),$\neg$A(r,r)$\to$A(r,r)$\vdash$}
+\RightLabel{$\&$-S}
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r),A(r,r)$\leftrightarrow$$\neg$A(r,r)$\vdash$}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r),$\forall$y(A(r,y)$\leftrightarrow$$\neg$A(y,r))$\vdash$}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r),$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$}
+\RightLabel{SCsx}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x)),A(b,r),r$\Relbar$r,A(e,r)$\vdash$}
+\end{prooftree}
+Foglia sinistra a seguito dell'applicazione della regola $\to$-S:\newline
+Derivazione di A(b,r),r$\Relbar$r,A(e,r),A(r,r)$\to$$\neg$A(r,r)$\vdash$$\neg$A(r,r)
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r)$\vdash$A(r,r),$\neg$A(r,r)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r),$\neg$A(r,r)$\vdash$$\neg$A(r,r)}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,r),r$\Relbar$r,A(e,r),A(r,r)$\to$$\neg$A(r,r)$\vdash$$\neg$A(r,r)}
+\end{prooftree}
+Foglia destra a seguito dell'applicazione della regola $\to$-S:\newline
+Derivazione di: A(b,r),r$\Relbar$r,A(e,r),A(r,r)$\to$$\neg$A(r,r),A(r,r)$\vdash$
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r),A(r,r)$\vdash$A(r,r)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r),A(r,r),$\neg$A(r,r)$\vdash$}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(b,r),r$\Relbar$r,A(e,r),A(r,r),A(r,r)$\to$$\neg$A(r,r)$\vdash$}
+\RightLabel{SCsx}
+\UnaryInfC{A(b,r),r$\Relbar$r,A(e,r),A(r,r)$\to$$\neg$A(r,r),A(r,r)$\vdash$}
+\end{prooftree}
+Teorema 4 dimostrato
+\subsubsection{Dimostrazione teorema 5}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax4}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax2}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{continua sotto}
+\RightLabel{}
+\noLine
+\UnaryInfC{A(y,g),A(g,y),A(g,y)$\to$$\neg$A(y,g),$\neg$A(y,g)$\to$A(g,y)$\vdash$}
+\RightLabel{$\&$-S}
+\UnaryInfC{A(y,g),A(g,y),A(g,y)$\leftrightarrow$$\neg$A(y,g)$\vdash$}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{A(y,g),A(g,y),$\forall$y(A(g,y)$\leftrightarrow$$\neg$A(y,g))$\vdash$}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{A(y,g),A(g,y),$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$}
+\RightLabel{SCsx}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x)),A(y,g),A(g,y)$\vdash$}
+\RightLabel{comp}
+\BinaryInfC{A(y,g),A(g,y)$\vdash$}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$yA(y,g),A(g,y)$\vdash$}
+\RightLabel{$\exists$-S y$\notin$VL}
+\UnaryInfC{$\forall$yA(y,g),$\exists$xA(g,x)$\vdash$}
+\RightLabel{$\neg$-D}
+\UnaryInfC{$\forall$yA(y,g)$\vdash$$\neg$$\exists$xA(g,x)}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$$\exists$xA(g,x)}
+\end{prooftree}
+Continuo la derivazione
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(y,g),A(g,y)$\vdash$A(g,y),$\neg$A(y,g)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(y,g),A(g,y),$\neg$A(y,g)$\vdash$$\neg$A(y,g)}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(y,g),A(g,y),A(g,y)$\to$$\neg$A(y,g)$\vdash$$\neg$A(y,g)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{continua sotto}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(y,g),A(g,y),A(g,y)$\to$$\neg$A(y,g),$\neg$A(y,g)$\to$A(g,y)$\vdash$}
+\end{prooftree}
+Continuazione di A(y,g),A(g,y),A(g,y)$\to$$\neg$A(y,g),A(g,y)$\vdash$
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(y,g),A(g,y),A(g,y)$\vdash$A(g,y)}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(y,g),A(g,y),A(g,y),$\neg$A(y,g)$\vdash$}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(y,g),A(g,y),A(g,y),A(g,y)$\to$$\neg$A(y,g)$\vdash$}
+\RightLabel{SCsx}
+\UnaryInfC{A(y,g),A(g,y),A(g,y)$\to$$\neg$A(y,g),A(g,y)$\vdash$}
+\end{prooftree}
+Teorema 5 dimostrato
+\subsection{Alternativa}
+Si nota che l'assioma 2 dimostra da solo il falso, quindi procediamo alla derivazione del falso
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax2}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$A(x,x),$\neg$A(x,x),$\bot$}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\neg$A(x,x)$\vdash$$\neg$A(x,x),$\bot$}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(x,x)$\to$$\neg$A(x,x)$\vdash$$\neg$A(x,x),$\bot$}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{continua sotto}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(x,x)$\to$$\neg$A(x,x),$\neg$A(x,x)$\to$A(x,x)$\vdash$$\bot$}
+\RightLabel{$\&$-S}
+\UnaryInfC{(A(x,x)$\leftrightarrow$$\neg$A(x,x))$\vdash$$\bot$}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\bot$}
+\RightLabel{$\forall$-Sv}
+\UnaryInfC{$\forall$x$\forall$y(A(x,y)$\leftrightarrow$$\neg$A(y,x))$\vdash$$\bot$}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\bot$}
+\end{prooftree}
+Continuo la derivazione dell'altra foglia\newline
+A(x,x)$\to$$\neg$A(x,x),A(x,x)$\vdash$$\bot$
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(x,x)$\vdash$A(x,x),$\bot$}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axsx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{A(x,x),$\neg$A(x,x)$\vdash$$\bot$}
+\RightLabel{$\to$-S}
+\BinaryInfC{A(x,x),A(x,x)$\to$$\neg$A(x,x)$\vdash$$\bot$}
+\RightLabel{Scsx}
+\UnaryInfC{A(x,x)$\to$$\neg$A(x,x),A(x,x)$\vdash$$\bot$}
+\end{prooftree}
+Ora possiamo dimostrare che tutti i teoremi in Tamm sono tautologie derivandoli come segue:
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$$\bot$}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\bot$-ax}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\bot$$\vdash$Ti}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$Ti}
+\end{prooftree}
+per i=1,2,3,4,5
+\section{Esercizio 5}
+(++): Dall'affermazione
+\begin{center}{\bf Ip   Di sera non tutti non escono}\end{center}
+Si dica quali delle seguenti affermazioni si possono dedurre (la classificazione di ciascuna vale 8
+punti se è deducibile e 14 punti se NON lo è):
+\begin{center}A {\bf Qualcuno non esce oppure è sera}\end{center}
+\begin{center}B {\bf Qualcuno esce oppure non è sera}\end{center}
+\begin{center}C {\bf Se nessuno esce non è sera}\end{center}
+Si giustifichi la risposta producendo una sua derivazione nella teoria predicativa
+\begin{center}{\bf  TIp = LC= + Ip}\end{center}
+dopo aver formalizzato ciascuna affermazione utilizzando:\newline
+{\bf E(x)= “x esce ”}\newline
+{\bf S=“È sera”}\newline
+In particolare si giustifichi le risposte “affermazione X” classificando in {\bf LC=} il sequente {\bf Ip}  {$\vdash$} “affermazione X” .\newline
+\subsection{Traduzione ipotesi}
+Di sera non tutti non escono\newline
+S$\to$$\exists$xE(x)
+\subsubsection{Affermazione A}
+Qualcuno non esce oppure è sera\newline
+$\exists$x$\neg$E(x)$\vee$S\newline
+Provo a vedere se l'affermazione A è deducibile dall'ipotesi
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$Ip}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{loop}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$$\neg$E(w),$\exists$x$\neg$E(x),S,S}
+\RightLabel{$\exists$-D}
+\UnaryInfC{$\vdash$$\exists$x$\neg$E(x),S,S}
+\RightLabel{Scdx}
+\UnaryInfC{$\vdash$S,$\exists$x$\neg$E(x),S}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{loop}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{E(w)$\vdash$$\neg$E(w),$\exists$x$\neg$E(x),S}
+\RightLabel{$\exists$-D}
+\UnaryInfC{E(w)$\vdash$$\exists$x$\neg$E(x),S}
+\RightLabel{$\exists$-S w$\notin$VL}
+\UnaryInfC{$\exists$xE(x)$\vdash$$\exists$x$\neg$E(x),S}
+\RightLabel{$\to$-S}
+\BinaryInfC{S$\to$$\exists$xE(x)$\vdash$$\exists$x$\neg$E(x),S}
+\RightLabel{$\vee$-D}
+\UnaryInfC{S$\to$$\exists$xE(x)$\vdash$$\exists$x$\neg$E(x)$\vee$S}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\exists$x$\neg$E(x)$\vee$S}
+\end{prooftree}
+Contromodello di Ip$\vdash$AffA\newline
+La foglia che non si riesce a derivare\newline
+$\neg$E(w),$\exists$x$\neg$E(x),S,S\newline
+Suggerisce il seguente contromodello\newline
+$D_{contra}$=\{Minni\}\newline
+(S)$^{Dcontra}$=0\newline
+($\neg$E(w))$^{Dcontra}$(Minni)=0\newline
+In questo modello\newline
+($\exists$xE(x))$^{Dcontra}$=1 perché nel dominio c'è solo Minni che esce (perché il suo non uscire in questo contromodello ha il valore di 0, quindi esce)\newline
+($\exists$x$\neg$E(x))$^{Dcontra}$=0 perché nel dominio c'è solo Minni ed ($\neg$E(x))$^{Dcontra}$=0\newline
+Quindi ipotesi ed affermazione assumono questi significati:\newline
+(Ip)$^{Dcontra}$=(S$\to$$\exists$xE(x))$^{Dcontra}$=0$\to$1=1\newline
+(Aff.A)$^{Dcontra}$=($\exists$x$\neg$E(x)$\vee$S)$^{Dcontra}$=0$\vee$0=0\newline
+Quindi (Ip$\vdash$Aff.A)$^{Dcontra}$=1$\vdash$0=0\newline
+Ho trovato un contromodello, quindi l'affermazione A non è deducibile dall'ipotesi
+\subsubsection{Affermazione B}
+Qualcuno esce oppure non è sera\newline
+$\exists$xE(x)$\vee$$\neg$S
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$Ip}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$S,$\exists$xE(x),$\neg$S}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{E(w)$\vdash$E(w),$\neg$S}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{E(w)$\vdash$$\exists$xE(x),$\neg$S}
+\RightLabel{$\exists$-S w$\notin$VL}
+\UnaryInfC{$\exists$xE(x)$\vdash$$\exists$xE(x),$\neg$S}
+\RightLabel{$\to$-S}
+\BinaryInfC{S$\to$$\exists$xE(x)$\vdash$$\exists$xE(x),$\neg$S}
+\RightLabel{$\vee$-D}
+\UnaryInfC{S$\to$$\exists$xE(x)$\vdash$$\exists$xE(x)$\vee$$\neg$S}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\exists$xE(x)$\vee$$\neg$S}
+\end{prooftree}
+L'affermazione B è deducibile dall'ipotesi
+\subsubsection{Affermazione C}
+Se nessuno esce non è sera\newline
+$\neg$$\exists$xE(x)$\to$$\neg$S
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$Ip}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$S,$\exists$xE(x),$\neg$S}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{E(w)$\vdash$E(w),$\neg$S}
+\RightLabel{$\exists$-Dv}
+\UnaryInfC{E(w)$\vdash$$\exists$xE(x),$\neg$S}
+\RightLabel{$\exists$-S w$\notin$VL}
+\UnaryInfC{$\exists$xE(x)$\vdash$$\exists$xE(x),$\neg$S}
+\RightLabel{$\to$-S}
+\BinaryInfC{S$\to$$\exists$xE(x)$\vdash$$\exists$xE(x),$\neg$S}
+\RightLabel{$\neg$-S}
+\UnaryInfC{S$\to$$\exists$xE(x),$\neg$$\exists$xE(x)$\vdash$$\neg$S}
+\RightLabel{$\to$-D}
+\UnaryInfC{S$\to$$\exists$xE(x)$\vdash$$\neg$$\exists$xE(x)$\to$$\neg$S}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$$\exists$xE(x)$\to$$\neg$S}
+\end{prooftree}
+L'affermazione C è deducibile dall'ipotesi
+\section{Esercizio 6}
+Stabilire se la seguente regola è sicura rispetto alla semantica classica (nel caso di regola non sicura
+si analizzi entrambe le inverse):\newline
+-(++ solo sicurezza della regola) (15 punti)\newline
+\subsection{Validità regola}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{M$\vdash$ $\neg$$\neg$F}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$$\neg$F$\vdash$ $\neg$M}
+\RightLabel{1}
+\BinaryInfC{M$\vdash$ $\neg$M}
+\end{prooftree}
+Sia r riga fissata sulla tabella di verità\newline
+Ip.1: M$\to$$\neg$$\neg$F=1 su r\newline
+IP.2: $\neg$$\neg$F$\to$$\neg$M=1 su r\newline
+Ip.3: M=1 su r\newline
+Tesi:\newline
+$\neg$M=1 su r\newline
+Dall'ip. 3 abiamo M=1.\newline
+Applicato all'ip.1 abbiamo  M$\to$$\neg$$\neg$F=1$\to$$\neg$$\neg$F che per essere vero deve avere come valore F=1 in modo che, per definizione di implica, 1$\to$1=1\newline
+Ma M=1 ed F=1 non rendono vera l'ip.2 perché $\neg$$\neg$F$\to$$\neg$M=1$\to$0=0\newline
+Essendo una foglia della regola a valore 0 date le ipotesi, allora sicuramente la regola è valida perché\newline
+1$\&$0$\vdash$1$\to$$\neg$1=0$\vdash$0=1\newline
+\subsection{Prima regola inversa}
+Essendo per l'appunto la regola è valida, analizzo intanto la prima inversa
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{M$\vdash$$\neg$M}
+\RightLabel{inv-1-1}
+\UnaryInfC{M$\vdash$$\neg$$\neg$F}
+\end{prooftree}
+Sia r riga fissata sulla tabella di verità\newline
+Ip.1: M$\to$$\neg$M=1 su r\newline
+Ip.2: M=1 su r\newline
+Tesi\newline
+$\neg$$\neg$F=1 su r\newline
+L'ip.2 M=1 applicata all'ip.1 porta ad avere 1$\to$$\neg$1=1$\to$0=0\newline
+Dato che una delle ipotesi avrà valore 0, per definizione di implica quando lo 0 è antecedente dell'implicazione essa avrà sempre valore 1\newline
+Quindi la prima regola inversa è valida\newline
+\subsection{Seconda regola inversa}
+Analizzo la seconda inversa
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{M$\vdash$$\neg$M}
+\RightLabel{inv-1-2}
+\UnaryInfC{$\neg$$\neg$F$\vdash$$\neg$M}
+\end{prooftree}
+Sia r riga fissata sulla tabella di verità\newline
+Ip.1: M$\to$$\neg$M=1 su r\newline
+Ip.2: $\neg$$\neg$F=1 su r\newline
+Tesi\newline
+$\neg$M=1 su r\newline
+L'ip.2 porta ad avere F=1.\newline
+L'ip.1 è verificata con M=0 poiché 0$\to$$\neg$0=0$\to$1=1.\newline
+La tesi è verificata poiché $\neg$0=1.\newline
+Seconda regola inversa valida\newline
+\subsection{Conclusione}
+Dato che entrambe le regole inverse sono valide, la regola 1 è sicura
+\section{Esercizio 7}
+(++) (32 punti)\newline
+In un gioco due amiche fanno un’affermazione, che è vera o falsa.\newline
+Un’affermazione è mancante e l’altra è riportata sotto:\newline
+{\bf Celeste: ....}\newline
+{\bf Morgana: Almeno una di noi dice la verità.}\newline
+Si può dedurre, anche se non si conosce l’affermazione di Celeste, quante affermazioni sono vere?\newline
+a) No\newline
+b) Sì, sono vere tutte e due le affermazioni.\newline
+c) Sì, è vera solo l’affermazione di Morgana.\newline
+d) Sì, è vera solo l’affermazione di Celeste.\newline
+e) Nessuna affermazione è vera.\newline
+Si analizzino le varie affermazioni nella teoria proposizionale TMorgana ottenuta estendendo LCp con la formalizzazione di ciò che dice Morgana (formalizzazione 2 punti) tramite:\newline
+{\bf M= l’affermazione di Morgana è vera}\newline
+{\bf C= l’affermazione di Celeste è vera}
+\subsection{Formalizzazione Morgana}
+Almeno una di noi dice la verità\newline
+ax.Morgana=M$\leftrightarrow$M$\vee$C che diventa\newline
+(M$\to$M$\vee$C)$\&$(M$\vee$C$\to$M)
+\subsubsection{Verifica risposta b}
+Provo a vedere se entrambe dicono il vero
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$axMorgana}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{(M$\to$M$\vee$C)$\&$(M$\vee$C$\to$M)$\vdash$M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{(M$\to$M$\vee$C)$\&$(M$\vee$C$\to$M)$\vdash$C}
+\RightLabel{$\&$-D}
+\BinaryInfC{(M$\to$M$\vee$C)$\&$(M$\vee$C$\to$M)$\vdash$M$\&$C}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$M$\&$C}
+\end{prooftree}
+Grazie alla regola del $\&$-D, posso verificare anche separatamente se Morgana dice il vero o Celeste dice il vero (od eventualmente entrambe)
+\subsubsection{Morgana dice il vero?}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$M,M,C,M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M$\vdash$M,C,M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{C$\vdash$M,C,M}
+\RightLabel{\(\)}
+\BinaryInfC{M$\vee$C$\vdash$M,C,M}
+\RightLabel{$\to$-S}
+\BinaryInfC{M$\to$M$\vee$C$\vdash$M,C,M}
+\RightLabel{$\vee$-D}
+\UnaryInfC{M$\to$M$\vee$C$\vdash$M$\vee$C,M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M$\to$M$\vee$C,M$\vdash$M}
+\RightLabel{$\to$-S}
+\BinaryInfC{M$\to$M$\vee$C,M$\vee$C$\to$M$\vdash$M}
+\RightLabel{$\&$-S}
+\UnaryInfC{(M$\to$M$\vee$C)$\&$(M$\vee$C$\to$M)$\vdash$M}
+\end{prooftree}
+Il sequente è falso per M=0, C=0, quindi Morgana non dice il vero, escludendo così anche la risposta c, ma controlliamo se Celeste dice il vero
+\subsubsection{Celeste dice il vero? (risposta d)}
+Celeste dice il vero se la seguente foglia è derivabile \newline
+(M$\to$M$\vee$C)$\&$(M$\vee$C$\to$M)$\vdash$C
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$M,C,C}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M$\vdash$M,C,C}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{C$\vdash$M,C,C}
+\RightLabel{$\vee$-S}
+\BinaryInfC{M$\vee$C$\vdash$M,C,C}
+\RightLabel{$\to$-S}
+\BinaryInfC{M$\to$M$\vee$C$\vdash$M$\vee$C,C}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{M,M$\vdash$C}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M,C$\vdash$C}
+\RightLabel{$\vee$-S}
+\BinaryInfC{M,M$\vee$C$\vdash$C}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M$\vdash$M,C}
+\RightLabel{$\to$-S}
+\BinaryInfC{M$\to$M$\vee$C,M$\vdash$C}
+\RightLabel{$\to$-S}
+\BinaryInfC{M$\to$M$\vee$C,M$\vee$C$\to$M$\vdash$C}
+\RightLabel{$\&$-S}
+\UnaryInfC{(M$\to$M$\vee$C)$\&$(M$\vee$C$\to$M)$\vdash$C}
+\end{prooftree}
+Il sequente per verificare se Celeste dice il vero è falso per M=1,C=0\newline
+La risposta d non è possibile
+\subsection{Verifica risposta e}
+In quanto Morgana e Celeste non dicono il vero, vediamo se è derivabile l'ultima risposta per comprendere se è la risposta corretta o non  è deducibile chi ha ragione
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\vdash$ax.Morgana}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{M$\to$M$\vee$C,M$\vee$C$\to$M$\vdash$$\neg$M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{M$\to$M$\vee$C,M$\vee$C$\to$M$\vdash$$\neg$C}
+\RightLabel{$\&$-D}
+\BinaryInfC{M$\to$M$\vee$C,M$\vee$C$\to$M$\vdash$$\neg$M$\&$$\neg$C}
+\RightLabel{$\&$-S}
+\UnaryInfC{(M$\to$M$\vee$C)$\&$(M$\vee$C$\to$M)$\vdash$$\neg$M$\&$$\neg$C}
+\RightLabel{comp}
+\BinaryInfC{$\vdash$$\neg$M$\&$$\neg$C}
+\end{prooftree}
+Posso applicare lo stesso ragionamento di prima, ovvero verificare prima se Morgana non dice il vero e se sì verificare anche se Celeste non dice il vero
+\subsubsection{Morgana non dice il vero?}
+\begin{prooftree}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{$\neg$-axdx1}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{$\vdash$M,M,C,$\neg$M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M$\vdash$M,C,$\neg$M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{C$\vdash$M,C,$\neg$M}
+\RightLabel{$\vee$-S}
+\BinaryInfC{M$\vee$C$\vdash$M,C,$\neg$M}
+\RightLabel{$\to$-S}
+\BinaryInfC{M$\to$M$\vee$C$\vdash$M,C,$\neg$M}
+\RightLabel{$\vee$-D}
+\UnaryInfC{M$\to$M$\vee$C$\vdash$M$\vee$C,$\neg$M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{M,M$\vdash$$\neg$M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{M,C$\vdash$$\neg$M}
+\RightLabel{$\vee$-S}
+\BinaryInfC{M,M$\vee$C$\vdash$$\neg$M}
+\RightLabel{\(\)}
+\noLine
+\AxiomC{}
+\UnaryInfC{ax-id}
+\RightLabel{\(\)}
+\noLine
+\UnaryInfC{M$\vdash$M,$\neg$M}
+\RightLabel{$\to$-S}
+\BinaryInfC{M,M$\to$M$\vee$C$\vdash$$\neg$M}
+\RightLabel{Scsx}
+\noLine
+\UnaryInfC{M$\to$M$\vee$C,M$\vdash$$\neg$M}
+\RightLabel{$\to$-S}
+\BinaryInfC{M$\to$M$\vee$C,M$\vee$C$\to$M$\vdash$$\neg$M}
+\end{prooftree}
+Il sequente è falso nella riga falsaria M=1,C=1\newline
+Di conseguenza non si dimostra il sequente radice ottenuto dopo la regola di composizione, il che permette di escludere la risposta e come possibile risposta 
+\subsection{Conclusione}
+La risposta corretta è: no\newline
+Non è possibile dedurre chi ha ragione
+\end{document}

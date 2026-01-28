@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb, booktabs, tabularx}  % Per simboli come \square
+\usepackage{enumitem} % Per liste personalizzate
+\usepackage{tikz}     % Per disegnare quadrati con lettere dentro
+\usepackage{amsthm,amsmath,amssymb,ragged2e}
+
+% Comando per il quadrato con lettera
+\newcommand{\boxletter}[1]{%
+	\tikz[baseline=(char.base)]{
+		\node[draw, minimum size=1.2em, inner sep=0pt] (char) {#1};
+	}%
+}
+
+\pagenumbering{arabic}
+\title{Primo compitino algebra e matematica discreta}
+\date{2024/2025}
+\author{ATTENZIONE: questa è una rivisitazione del primo parziale, non garantisco siano presenti tutti gli esercizi svolti}
+\begin{document}
+	\maketitle
+	\section{Quiz matematica discreta}
+	$\sum$d(v) di un grafo semplice è sempre pari? \hfill \boxletter{V} \quad \boxletter{F} \\\\
+		$K_3$ completo è sottografo di $K_{3,3}$? \hfill \boxletter{V} \quad \boxletter{F} \\\\
+		Esiste grafo bipartito completo con 19 spigoli? \hfill \boxletter{V} \quad \boxletter{F} \\\\
+		Il cammino di peso minimo tra 2 vertici è unico se è un albero? \hfill \boxletter{V} \quad \boxletter{F} \\\\
+		Ogni albero ha esattamente 2 vertici di grado 1 \hfill \boxletter{V} \quad \boxletter{F} \\\\
+		Un grafo che ammette $K_6$ come minore può essere planare \hfill \boxletter{V} \quad \boxletter{F} \\\\
+		Secondo teorema di Dirac, se in un grafo esiste un vertice v \\ per ogni d(v) $< \frac{|V|}{2}$, il grafo non è Hamiltoniano \hfill \boxletter{V} \quad \boxletter{F} \\
+	\section{Esercizi algebra}
+	\subsection{Congruenze}
+	Si risolva la seguente congruenza:\\
+	10x $\equiv$ 16 mod 54\\
+	\subsection{Esercizi matrice}
+	Sia data A($\alpha$)=$\begin{pmatrix} 1 & \alpha + 1 & 1 \\
+								1 & \alpha + 1 & -\alpha \\
+								0 & \alpha + 1 & 0
+				\end{pmatrix}$
+	\newline
+	\newline
+	\newline
+	Sia data b($\alpha$)=$\begin{pmatrix} 2  \\
+								2  \\
+								\alpha + 1
+				\end{pmatrix}$
+	\newline
+	\newline
+	\newline
+	Si risolva il sistema lineare A($\alpha$) = b($\alpha$)
+\end{document}

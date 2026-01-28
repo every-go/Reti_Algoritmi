@@ -1,0 +1,90 @@
+\documentclass[12pt,oneside,a4paper]{article}
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\newcounter{choice}
+\renewcommand\thechoice{\Alph{choice}}
+\newcommand\choicelabel{\thechoice.}
+
+\newenvironment{choices}%
+  {\list{\choicelabel}%
+     {\usecounter{choice}\def\makelabel##1{\hss\llap{##1}}%
+       \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+       \def\choice{%
+         \item
+       } % choice
+       \labelwidth\leftmargin\advance\labelwidth-\labelsep
+       \topsep=0pt
+       \partopsep=0pt
+     }%
+  }%
+  {\endlist}
+
+\newenvironment{oneparchoices}%
+  {%
+    \setcounter{choice}{0}%
+    \def\choice{%
+      \refstepcounter{choice}%
+      \ifnum\value{choice}>1\relax
+        \penalty -50\hskip 1em plus 1em\relax
+      \fi
+      \choicelabel
+      \nobreak\enskip
+    }% choice
+    % If we're continuing the paragraph containing the question,
+    % then leave a bit of space before the first choice:
+    \ifvmode\else\enskip\fi
+    \ignorespaces
+  }%
+  {}
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+%--------------------------------------------------------------------
+\usepackage{amsthm,amsmath,amssymb,ragged2e}
+\pagenumbering{arabic}
+\title{Secondo compitino algebra e matematica discreta}
+\date{2023/2024}
+\begin{document}
+\maketitle
+\section{Quiz matematica discreta}
+\begin{enumerate}
+\item Quante sequenze di 6 cifre posso costruire con quattro 1 e due 2?
+  \begin{choices}
+    \choice 6!
+    \choice 6!/4!
+    \choice 15
+    \choice 30
+  \end{choices}
+\item Qual è la soluzione di a$_{n}$=-8a$_{n-1}$?
+  \begin{choices}
+    \choice a$_{n}$=8$^{n}$
+    \choice a$_{n}$=8$^{n}$+8
+    \choice a$_{n}$=(-1)$^{n}$8$^{n+1}$
+    \choice a$_{n}$=(-8)$^{n}$
+  \end{choices}
+\item In quanti modi si possono disporre 9 oggetti distinti in 6 scatole
+  \begin{choices}
+    \choice 9$^{6}$
+    \choice 6$^{9}$
+    \choice 15!/9!6!
+    \choice 14!/8!6!
+  \end{choices}
+\end{enumerate}
+\section{Esercizi algebra}
+\textbf{Esercizio 1}\newline
+Sia data A=$\begin{pmatrix}$i$ & n & -n\\0 & $i$ & 0 \\0 & $i$ & 0\end{pmatrix}$
+con n lettere del proprio nome\newline
+a) Si dica se A è unitariamente diagonalizzabile, motivando la risposta\newline
+b) Sia U=C(A). Trovare base \textit{\textbf{B}}  di \textit{\textbf{U}}\newline
+c) Sia U=C(A)$^{\perp}$. Trovare base \textit{\textbf{D}}  del complemento ortogonale \textit{\textbf{U}}\newline\newline
+\textbf{Esercizio 2}\newline
+Sia \textit{f}: $\mathbb{R}$$^{2}$$\to$$\mathbb{R}$$^{2}$ definita da:\newline
+\[\textit{f} :\begin{pmatrix}a\\b\end{pmatrix}\to \begin{pmatrix}5a\\-5b\end{pmatrix}\]\newline
+Trovare matrice A associata ad \textit{f} con basi ordinate\newline
+\[\textit{\textbf{B}} = \{\begin{pmatrix}1\\ 1\end{pmatrix},\begin{pmatrix}1\\ -1\end{pmatrix}\}  e  \textit{\textbf{D}} =\{\begin{pmatrix}1\\ 5\end{pmatrix},\begin{pmatrix}1\\ -5\end{pmatrix}\}\]\newline
+su dominio e codominio rispettivamente\newline\newline
+\textbf{Esercizio 3}\newline\newline
+Sia A=$\begin{pmatrix}5 & -2 \\ -2 & 2\end{pmatrix}$\newline
+a) A è unitariamente diagonalizzabile, dimostrarlo\newline
+b) scrivere A nella forma A=$\lambda$$_{1}$\textit{P}$_{1}$+$\lambda$$_{2}$\textit{P}$_{2}$ con  $\lambda$$_{1}$ e $\lambda$$_{2}$ autovalori di A e \textit{P}$_{1}$ e \textit{P}$_{2}$ matrici di proiezione su EA( $\lambda$$_{1}$) ed EA( $\lambda$$_{1}$) rispettivamente
+\end{document}

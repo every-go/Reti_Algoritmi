@@ -1,0 +1,60 @@
+\documentclass{verifica}
+\usepackage{amsthm,amsmath,amssymb,ragged2e}
+\pagenumbering{arabic}
+\title{Primo appello algebra e matematica discreta\\Traccia 2}
+\date{2023/2024}
+\begin{document}
+\maketitle
+\section{Quiz matematica discreta}
+\begin{esercizi}
+\item Stabilisci se le seguenti affermazioni sono vere o false.
+\begin{enumerate}[a)]
+\item  In un albero con 4 vertici c'è almeno un vertice di grado 3 \vf
+\item Un grafo connesso planare con 5 vertici e 7 archi ha 4 facce \vf
+\item Esiste un grafo (semplice) con sequenza di gradi 4,2,2,1,1 \vf
+\item Il grafo completo \textit{K}$_{3}$ è un grafo euleriano \vf
+\item Il complementare di un albero con 4 vertici ha 2 archi \vf
+\item Il grafo bipartito completo \textit{K}$_{2,2}$ è un grafo 2-regolare \vf
+\item Il grafo completo \textit{K}$_{n}$ ha n(n-1) archi \vf
+\item Il grafo bipartito completo \textit{K}$_{2,3}$ è un grafo hamiltoniano \vf
+\item La relazione di ricorrenza a$_n$=a$_{n-1}$ + a$_{n-2}$ è una relazione di ricorrenza lineare di grado 2\vf
+\item Gli anagrammi (anche privi di significato) della parola EDERE sono 20\vf
+\item Siano \textit{a,b,n} $\in$ $\mathbb{Z}$ con \textit{n}$>$0. Se $\operatorname{MCD}$(a,b) non\newline
+divide n allora la congruenza a\textit{x}$\equiv$$\textit{b}$$\mod$n non ha soluzioni\vf
+\end{enumerate}
+\end{esercizi}
+Si indichi la risposta corretta ai seguenti quesiti:
+\begin{esercizi}
+\item Quale è la soluzione della relazione di ricorrenza a$_n$ = 8a$_{n-1}$, con condizione iniziale a$_0$=-1/8?
+\begin{test}
+\item a$_n$ = -8n-$\frac{1}{8}$
+\item a$_n$ = -8$^{n-1}$
+\item a$_n$ = (-8)$^{n-1}$
+\item a$_n$ = 8n-$\frac{1}{8}$
+\end{test}
+\item Il numero di modi in cui si possono distribuire 13 oggetti identici in 5 scatole è:
+\begin{test}
+\item $\binom{13}{5}$
+\item $\binom{18}{5}$
+\item $\binom{17}{4}$
+\item nessuna delle risposte precedenti
+\end{test}
+\end{esercizi}
+\section{Esercizi algebra}
+\textbf{Esercizio 1}\newline
+Siano A($\alpha$)=$\begin{pmatrix}1 & -\alpha & 0 \\ 3 & -2\alpha-2 & \alpha \\ -1 & \alpha & \alpha-2\end{pmatrix}$ e \textit{b}= $\begin{pmatrix} 2\\6\\-2\end{pmatrix}$ dove $\alpha$ $\in$ $\mathbb{C}$\newline
+a) Per ogni $\alpha$ $\in$  $\mathbb{C}$ si risolva il sistema lineare A($\alpha$)x=$\textit{b}$ \newline
+b) Sia A=A(0) la matrice che si ottiene ponendo $\alpha$=0. Si stabilisca se A è diagonalizzabile oppure no. Si richiede di motivare la risposta\newline
+c) Sia A=A(0) la matrice che si ottiene ponendo $\alpha$=0. Si calcoli l'inversa A$^{-1}$ della matrice A \newline\newline
+\textbf{Esercizio 2}\newline
+Si calcoli la matrice di passaggio \textit{\textbf{M}$_{B \leftarrow B'}$} da \textit{\textbf{B'}} a  \textit{\textbf{B}}, dove  \textit{\textbf{B}} e  \textit{\textbf{B'}} sono le seguenti basi ordinate di $\mathbb{R}$$^2$:\newline
+\begin{center}
+ \textit{\textbf{B}}=\{$\begin{pmatrix}1\\ 6\end{pmatrix};\begin{pmatrix}1\\ -6\end{pmatrix}$\} e  \textit{\textbf{B'}}=\{$\begin{pmatrix}6\\ 0 \end{pmatrix};\begin{pmatrix}3\\ 6\end{pmatrix}$\}\newline
+\end{center}
+N.B. non si richiede di verificare che \textit{\textbf{B}} e  \textit{\textbf{B'}} siano due basi di $\mathbb{R}$$^2$\newline\newline
+\textbf{Esercizio 3}\newline\newline
+Sia A=$\begin{pmatrix}1 & 2 \\ 2 & 4\end{pmatrix}$\newline
+a) La matrice A è unitariamente diagonalizzabile (si dica il perché)\newline
+b) Si trovino una matrice unitaria U ed una matrice diagonale D tali che A=UDU$^H$\newline
+N.B. non si richiede di calcolare U$^H$
+\end{document}
